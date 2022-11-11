@@ -11,14 +11,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from FpsCheck import FpsCheck
+
+import unittest
 import json
+import sys
 from publicsuffix2 import PublicSuffixList
 
+sys.path.append('../FPS-Technical-Github-Checks')
+from FpsCheck import FpsCheck
 
 def main():
     # Open the canonical sites, and load the json
-    with open('first_party_sets.JSON') as f:
+    with open('canonical_sites') as f:
         fps_sites = json.load(f)
 
     # Load the etlds from the public suffix list
