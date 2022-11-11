@@ -18,7 +18,7 @@ from publicsuffix2 import PublicSuffixList
 
 def main():
     # Open the canonical sites, and load the json
-    with open('canonical_sites') as f:
+    with open('first_party_sets') as f:
         fps_sites = json.load(f)
 
     # Load the etlds from the public suffix list
