@@ -132,9 +132,9 @@ class FpsCheck:
             if primary in check_sets.keys():
                 load_sets_errors.append(
                     primary + " is already a primary of another site")
-                continue
-            check_sets[primary] = FpsSet(
-                ccTLDs, primary, associated_sites, service_sites)
+            else:
+                check_sets[primary] = FpsSet(
+                    ccTLDs, primary, associated_sites, service_sites)
         self.error_list += load_sets_errors
         return check_sets
 
@@ -160,14 +160,14 @@ class FpsCheck:
             else:
                 sites = service_sites
             rationales = fpset.get('rationaleBySite', None)
-            if sites and rationales:
+            if sites and rationales!=None:
                 for site in sites:
                     if site not in rationales.keys():
                         self.error_list.append(
                             "There is no provided rationale for " + site)
             else:
                 self.error_list.append(
-                    "A rationaleBySite field is required for this set, but" +
+                    "A rationaleBySite field is required for this set, but " +
                     "none is provided")
 
     def check_exclusivity(self, check_sets):
@@ -320,8 +320,8 @@ class FpsCheck:
                     for aliased_site in check_sets[primary].ccTLDs[alias]:
                         if not self.is_eTLD_Plus1(aliased_site):
                             self.error_list.append(
-                                "The provided alias site does not have an eTLD"
-                                + " in the Public suffix list: " + 
+                                "The provided aliased site does not have an "
+                                + "eTLD in the Public suffix list: " + 
                                 aliased_site)
             # Apply to associated sites
             if check_sets[primary].associated_sites:
@@ -329,7 +329,7 @@ class FpsCheck:
                     if not self.is_eTLD_Plus1(associated_site):
                         self.error_list.append(
                             "The provided associated site does not have an " +
-                            " eTLD in the Public suffix list: " + 
+                            "eTLD in the Public suffix list: " + 
                             associated_site)
             # Apply to service sites
             if check_sets[primary].service_sites:
@@ -355,9 +355,7 @@ class FpsCheck:
             None
         """
         for site in site_list:
-            url = site + "/.well-known/first-party-sets"
-            with open(url) as json_file:
-                json_schema = json.load(json_file)
+            url = site + "/.well-known/first-party-set"
             try:
                 with urlopen(url) as json_file:
                     json_schema = json.load(json_file)
@@ -367,7 +365,7 @@ class FpsCheck:
                         + " as a key in its .well-known/first-party-set file: "
                         + site)
                 elif json_schema['primary'] != primary:
-                    self.error_list.append("The listed associated site site "
+                    self.error_list.append("The listed associated site "
                     + "did not have " + primary + " listed as its primary: " 
                     + site)
             except Exception as inst:
@@ -416,7 +414,7 @@ class FpsCheck:
                         self.error_list.append("The following member(s) of " 
                         + field + " were not present in both the changelist "
                         + "and .well-known/first-party-sets file: " + 
-                        str(field_sym_difference))
+                        str(sorted(field_sym_difference)))
             except Exception as inst:
                 self.error_list.append(
                     "Experienced an error when trying to access " + url + 
@@ -424,27 +422,18 @@ class FpsCheck:
             # Check the member sites -
             # Now we check the associated sites
             if check_sets[primary].associated_sites:
-                try:
-                    self.check_list_sites(
-                        primary, check_sets[primary].associated_sites)
-                except Exception as inst:
-                    raise (inst)
+                self.check_list_sites(
+                    primary, check_sets[primary].associated_sites)
             # Now we check the service sites
             if check_sets[primary].service_sites:
-                try:
-                    self.check_list_sites(
-                        primary, check_sets[primary].service_sites)
-                except Exception as inst:
-                    raise (inst)
+                self.check_list_sites(
+                    primary, check_sets[primary].service_sites)
             # Now we check the ccTLDs
             if check_sets[primary].ccTLDs:
                 ccTLD_sites = []
                 for aliased_site in check_sets[primary].ccTLDs:
                     ccTLD_sites += check_sets[primary].ccTLDs[aliased_site]
-                try:
                     self.check_list_sites(primary, ccTLD_sites)
-                except Exception as inst:
-                    raise (inst)
 
     def find_invalid_alias_eSLDs(self, check_sets):
         """Checks that eSLDs match their alias, and that country codes are 
@@ -515,18 +504,19 @@ class FpsCheck:
                 robot_site = service_site + "/robots.txt"
                 try:
                     r = requests.get(robot_site, timeout=10)
-                    if r.status == 200:
-                        if 'X-Robots-Tag' not in r.headers:
+                    if r.status_code == 200:
+                        r_service = requests.get(service_site, timeout=10)
+                        if 'X-Robots-Tag' not in r_service.headers:
                             self.error_list.append("The service site " + 
                             service_site + " has a robots.txt file, " + 
                             "but does not have " + 
-                            "no-index tag in its header")
+                            "X-Robots-Tag in its header")
                         else:
-                            if r.headers['X-Robots-Tag'] != 'noindex':
+                            if r_service.headers['X-Robots-Tag'] != 'noindex':
                                 self.error_list.append(
                                     "The service site " + service_site + 
                                     " has a robots.txt file, but does not have"
-                                    + " no-index tag in its header")
+                                    + " a no-index tag in its header")
                 except Exception as inst:
                     if exception_retries not in str(inst):
                         if exception_timeout not in str(inst):
@@ -556,7 +546,7 @@ class FpsCheck:
                 ads_site = service_site + "/ads.txt"
                 try:
                     r = requests.get(ads_site, timeout=10)
-                    if r.status == 200:
+                    if r.status_code == 200:
                         self.error_list.append("The service site " + 
                         service_site + " has an ads.txt file, this violates "
                         + "the policies for service sites")
@@ -588,13 +578,13 @@ class FpsCheck:
             for service_site in check_sets[primary].service_sites:
                 try:
                     r = requests.get(service_site, timeout=10)
-                    # We want the request status to be a 4xx or 5xx, raise an 
-                    # exception if it's outside that range
-                    if r.status < 400 or r.status >= 600:
+                    # We want the request status_code to be a 4xx or 5xx, raise
+                    # an exception if it's outside that range
+                    if r.status_code < 400 or r.status_code >= 600:
                         # If a get request to a service site successfully 
                         # connects to that site, we expect it to be a redirect
                         # If it is not a redirect, we raise an exception
-                        if r.url == "https://"+service_site:
+                        if r.url == service_site or r.url == service_site+"/":
                             self.error_list.append(
                                 "The service site must not be an endpoint: " + 
                                 service_site)
