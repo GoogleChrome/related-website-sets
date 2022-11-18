@@ -739,35 +739,7 @@ class TestFindRobotsTxt(unittest.TestCase):
         self.assertEqual(fp.error_list, ["The service site " +
         "https://polar-luxuriant-robe.glitch.me has a robots.txt file, but " +
         "does not have X-Robots-Tag in its header"])
-    def test_noheader_robots(self):
-        json_dict = {
-            "sets":
-            [
-                {
-                    "primary": "https://primary.com",
-                    "serviceSites": ["https://netflix.com"]
-                }
-            ]
-        }
-        fp = FpsCheck(fps_sites=json_dict,
-                     etlds=None,
-                     icanns=set())
-        loaded_sets = fp.load_sets()
-        fp.find_robots_txt(loaded_sets)
-        expected_sets = {
-            'https://primary.com': 
-            FpsSet(
-                    primary="https://primary.com", 
-                    associated_sites=None,
-                    service_sites=["https://netflix.com"],
-                    ccTLDs=None
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
-        self.assertEqual(fp.error_list, ["The service site " +
-        "https://netflix.com has a robots.txt file, but " +
-        "does not have a no-index tag in its header"])
-    
+
 class TestFindAdsTxt(unittest.TestCase):
     def test_invalid_robots(self):
         json_dict = {
@@ -826,57 +798,6 @@ class TestCheckRedirect(unittest.TestCase):
         self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, ["The service site must not be an " +
         "endpoint: https://polar-luxuriant-robe.glitch.me"])
-    def test_404_case(self):
-        json_dict = {
-            "sets":
-            [
-                {
-                    "primary": "https://primary.com",
-                    "serviceSites": ["https://bbci.co.uk"]
-                }
-            ]
-        }
-        fp = FpsCheck(fps_sites=json_dict,
-                     etlds=None,
-                     icanns=set())
-        loaded_sets = fp.load_sets()
-        fp.check_for_service_redirect(loaded_sets)
-        expected_sets = {
-            'https://primary.com': 
-            FpsSet(
-                    primary="https://primary.com", 
-                    associated_sites=None,
-                    service_sites=["https://bbci.co.uk"],
-                    ccTLDs=None
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
-        self.assertEqual(fp.error_list, [])
-    def test_timeout_case(self):
-        json_dict = {
-            "sets":
-            [
-                {
-                    "primary": "https://primary.com",
-                    "serviceSites": ["https://googleusercontent.com"]
-                }
-            ]
-        }
-        fp = FpsCheck(fps_sites=json_dict,
-                     etlds=None,
-                     icanns=set())
-        loaded_sets = fp.load_sets()
-        fp.check_for_service_redirect(loaded_sets)
-        expected_sets = {
-            'https://primary.com': 
-            FpsSet(
-                    primary="https://primary.com", 
-                    associated_sites=None,
-                    service_sites=["https://googleusercontent.com"],
-                    ccTLDs=None
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
-        self.assertEqual(fp.error_list, [])
+
 if __name__ == '__main__':
     unittest.main()
