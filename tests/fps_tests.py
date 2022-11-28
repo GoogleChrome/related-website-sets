@@ -729,6 +729,8 @@ def mock_get(*args, **kwargs):
         return MockedGetResponse({"X-Robots-Tag":"noindex"}, 200)
     elif args[0] == 'https://service4.com/robots.txt':
         return MockedGetResponse({}, 400)
+    elif args[0] == 'https://service5.com/ads.txt':
+        return MockedGetResponse({}, 400)
     elif args[0].startswith('https://service'):
         return MockedGetResponse({},200)
     
@@ -856,7 +858,65 @@ class MockTestsClass(unittest.TestCase):
         }
         self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, [])
-    
+    # We run a similar set of mock tests for ads.txt
+    @mock.patch('requests.get', side_effect=mock_get)
+    def test_ads(self, mock_get):
+        # Assert requests.get calls
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "serviceSites": ["https://service1.com"]
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_ads_txt(loaded_sets)
+        expected_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com", 
+                    associated_sites=None,
+                    service_sites=["https://service1.com"],
+                    ccTLDs=None
+                    )
+        }
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, ["The service site " +
+        "https://service1.com has an ads.txt file, this " +
+        "violates the policies for service sites"])
+    @mock.patch('requests.get', side_effect=mock_get)
+    def test_ads(self, mock_get):
+        # Assert requests.get calls
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "serviceSites": ["https://service5.com"]
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_ads_txt(loaded_sets)
+        expected_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com", 
+                    associated_sites=None,
+                    service_sites=["https://service5.com"],
+                    ccTLDs=None
+                    )
+        }
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, [])
 
 if __name__ == '__main__':
     unittest.main()
