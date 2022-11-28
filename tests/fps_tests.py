@@ -717,6 +717,7 @@ def mock_get(*args, **kwargs):
         def __init__(self, headers, status_code):
             self.headers = headers
             self.status_code = status_code
+            self.url = args[0]
 
         def json(self):
             return self.json_data
@@ -731,6 +732,10 @@ def mock_get(*args, **kwargs):
         return MockedGetResponse({}, 400)
     elif args[0] == 'https://service5.com/ads.txt':
         return MockedGetResponse({}, 400)
+    elif args[0] == 'https://service6.com':
+        mgr = MockedGetResponse({}, 200)
+        mgr.url = 'https://example.com'
+        return mgr
     elif args[0].startswith('https://service'):
         return MockedGetResponse({},200)
     
@@ -912,6 +917,92 @@ class MockTestsClass(unittest.TestCase):
                     primary="https://primary.com", 
                     associated_sites=None,
                     service_sites=["https://service5.com"],
+                    ccTLDs=None
+                    )
+        }
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, [])
+    # We run a similar set of mock tests for redirect check
+    @mock.patch('requests.get', side_effect=mock_get)
+    def test_non_redirect(self, mock_get):
+        # Assert requests.get calls
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "serviceSites": ["https://service1.com"]
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.check_for_service_redirect(loaded_sets)
+        expected_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com", 
+                    associated_sites=None,
+                    service_sites=["https://service1.com"],
+                    ccTLDs=None
+                    )
+        }
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, ["The service site " +
+        "must not be an endpoint: https://service1.com"])
+    @mock.patch('requests.get', side_effect=mock_get)
+    def test_proper_redirect(self, mock_get):
+        # Assert requests.get calls
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "serviceSites": ["https://service6.com"]
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.check_for_service_redirect(loaded_sets)
+        expected_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com", 
+                    associated_sites=None,
+                    service_sites=["https://service6.com"],
+                    ccTLDs=None
+                    )
+        }
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, [])
+    @mock.patch('requests.get', side_effect=mock_get)
+    def test_404_redirect(self, mock_get):
+        # Assert requests.get calls
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "serviceSites": ["https://no-such-service.com"]
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.check_for_service_redirect(loaded_sets)
+        expected_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com", 
+                    associated_sites=None,
+                    service_sites=["https://no-such-service.com"],
                     ccTLDs=None
                     )
         }
