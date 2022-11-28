@@ -2,6 +2,7 @@ import unittest
 import sys
 from jsonschema import ValidationError
 from publicsuffix2 import PublicSuffixList
+from unittest import mock
 
 sys.path.append('../FPS-Technical-Github-Checks')
 from FpsSet import FpsSet
@@ -709,6 +710,153 @@ class TestFindInvalidESLDs(unittest.TestCase):
         }
         self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, [])
+
+# This method will be used in tests below to mock get requests
+def mock_get(*args, **kwargs):
+    class MockedGetResponse:
+        def __init__(self, headers, status_code):
+            self.headers = headers
+            self.status_code = status_code
+
+        def json(self):
+            return self.json_data
+
+    if args[0] == 'https://service1.com':
+        return MockedGetResponse({}, 200)
+    elif args[0] == 'https://service2.com':
+        return MockedGetResponse({"X-Robots-Tag":"foo"}, 200)
+    elif args[0] == 'https://service3.com':
+        return MockedGetResponse({"X-Robots-Tag":"noindex"}, 200)
+    elif args[0] == 'https://service4.com/robots.txt':
+        return MockedGetResponse({}, 400)
+    elif args[0].startswith('https://service'):
+        return MockedGetResponse({},200)
+    
+    return MockedGetResponse(None, 404)
+
+# Our test case class
+class MockTestsClass(unittest.TestCase):
+
+    # We patch requests.get with our mocked method. We'll pass
+    # in the relevant urls, and get our responses for robots checks
+    @mock.patch('requests.get', side_effect=mock_get)
+    def test_robots(self, mock_get):
+        # Assert requests.get calls
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "serviceSites": ["https://service1.com"]
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_robots_txt(loaded_sets)
+        expected_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com", 
+                    associated_sites=None,
+                    service_sites=["https://service1.com"],
+                    ccTLDs=None
+                    )
+        }
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, ["The service site " +
+        "https://service1.com has a robots.txt file, but " +
+        "does not have X-Robots-Tag in its header"])
+    @mock.patch('requests.get', side_effect=mock_get)
+    def test_robots_wrong_tag(self, mock_get):
+        # Assert requests.get calls
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "serviceSites": ["https://service2.com"]
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_robots_txt(loaded_sets)
+        expected_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com", 
+                    associated_sites=None,
+                    service_sites=["https://service2.com"],
+                    ccTLDs=None
+                    )
+        }
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, ["The service site " +
+        "https://service2.com has a robots.txt file, but " +
+        "does not have a no-index tag in its header"])
+    @mock.patch('requests.get', side_effect=mock_get)
+    def test_robots_expected_tag(self, mock_get):
+        # Assert requests.get calls
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "serviceSites": ["https://service3.com"]
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_robots_txt(loaded_sets)
+        expected_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com", 
+                    associated_sites=None,
+                    service_sites=["https://service3.com"],
+                    ccTLDs=None
+                    )
+        }
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, [])
+
+    @mock.patch('requests.get', side_effect=mock_get)
+    def test_robots_wrong_tag(self, mock_get):
+        # Assert requests.get calls
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "serviceSites": ["https://service4.com"]
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_robots_txt(loaded_sets)
+        expected_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com", 
+                    associated_sites=None,
+                    service_sites=["https://service4.com"],
+                    ccTLDs=None
+                    )
+        }
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, [])
+    
 
 if __name__ == '__main__':
     unittest.main()

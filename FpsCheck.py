@@ -522,7 +522,7 @@ class FpsCheck:
                         if exception_timeout not in str(inst):
                             self.error_list.append(
                                 "Unexpected error for service site: " +
-                                    service_site + "\nReceived error:" + 
+                                    service_site + "; Received error:" + 
                                     str(inst))
 
     def find_ads_txt(self, check_sets):
