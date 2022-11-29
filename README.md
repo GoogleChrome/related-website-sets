@@ -1,11 +1,9 @@
 # first-party-sets
-This repo stores a json document of First Part Sets (FPSs) within the file 
-"first_party_sets.JSON" which can be edited by any representative of a domain
-owner in order to reflect what domain they would like to be the primary of
-their FPS, and which they would like to be subsets of their FPS. For clarity on
-what a First Party Set is and how they works, please read the information on 
-[this page](https://github.com/WICG/first-party-sets/). When editing
-and submitting changes to this repo, please follow the guidelines provided 
+This repo stores a json document of First-Party Sets (FPSes) within the file 
+"first_party_sets.JSON". For clarity on the First-Party Sets proposal,
+please read the information on 
+[this page](https://github.com/WICG/first-party-sets/). For guidance on submitting sets,
+please follow the guidelines provided 
 here <b>...insert link to submission guideline once it is public...</b> 
 In general, changes are made by creating a Pull Request (PR) from your branch 
 to the main branch. When this occurs, a Github Action will trigger, visible in 
@@ -18,7 +16,7 @@ so that it will be easier to update the repo and accept PRs. A step by step
 guide to running the project is provided below to avoid confusion. 
 
 If you have suggestions or any cases that are failing that you
-believe should be passng, please feel free to add issues to the issues tab
+believe should be passing, please feel free to comment on the PR or add issues to the issues tab
 of this repo. 
 
 ## Running this project
@@ -42,5 +40,3 @@ page for your PR, and on the "Actions" tab.
 "Explore-PR-Actions" and then clicking the drop down labeled "File contents."
 The details will also be visibile in results.txt.
 </ol>
-
-If you have any questions, please reach out to sledoux@google.com.
