@@ -160,7 +160,7 @@ class FpsCheck:
             else:
                 sites = service_sites
             rationales = fpset.get('rationaleBySite', None)
-            if sites and rationales!=None:
+            if sites!=None and rationales!=None:
                 for site in sites:
                     if site not in rationales.keys():
                         self.error_list.append(
@@ -168,7 +168,7 @@ class FpsCheck:
             else:
                 self.error_list.append(
                     "A rationaleBySite field is required for this set, but " +
-                    "none is provided. " + sites)
+                    "none is provided. ")
 
     def check_exclusivity(self, check_sets):
         """This method checks for exclusivity of each field in a set of FpsSets
