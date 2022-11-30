@@ -160,7 +160,7 @@ class FpsCheck:
             else:
                 sites = service_sites
             rationales = fpset.get('rationaleBySite', None)
-            if sites and rationales!=None:
+            if sites!= None and rationales!=None:
                 for site in sites:
                     if site not in rationales.keys():
                         self.error_list.append(
