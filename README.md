@@ -3,8 +3,7 @@ This repo stores a json document of First-Party Sets (FPSes) within the file
 "first_party_sets.JSON". For clarity on the First-Party Sets proposal,
 please read the information on 
 [this page](https://github.com/WICG/first-party-sets/). For guidance on submitting sets,
-please follow the guidelines provided 
-here <b>...insert link to submission guideline once it is public...</b> 
+please follow the guidelines provided in FPS-Submission-Guidelines.md
 In general, changes are made by creating a Pull Request (PR) from your branch 
 to the main branch. When this occurs, a Github Action will trigger, visible in 
 .github/workflows/fps-submission-checks.yml. This action will run 
