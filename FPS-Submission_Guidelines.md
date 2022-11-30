@@ -1,12 +1,3 @@
-<p style="color: red; font-weight: bold">>>>>>  gd2md-html alert:  ERRORs: 0; WARNINGs: 2; ALERTS: 1.</p>
-<ul style="color: red; font-weight: bold"><li>See top comment block for details on ERRORs and WARNINGs. <li>In the converted Markdown or HTML, search for inline alerts that start with >>>>>  gd2md-html alert:  for specific instances that need correction.</ul>
-
-<p style="color: red; font-weight: bold">Links to alert messages:</p><a href="#gdcalert1">alert1</a>
-
-<p style="color: red; font-weight: bold">>>>>> PLEASE check and correct alert issues and delete this message and the inline alerts.<hr></p>
-
-
-
 ## Privacy Sandbox
 
 
@@ -166,25 +157,6 @@ mkellogg@
    </td>
   </tr>
 </table>
-
-
-
-# Context (_not to be published_)
-
-In July 2022, Chrome published an updated design and policy scheme for First-Party Sets (FPS). The updated design features two main changes: (1) leveraging the Storage Access API for cookie access, and (2) using use case-based subsets, each with their own specific policy requirements, to categorize domains within a single set (_see updated [explainer](https://github.com/WICG/first-party-sets)_). 
-
-This document provides developers (the primary audience) and interested parties with guidance on how sets are to be submitted to the canonical FPS list that Chrome will apply. This document will be published in the First-Party Sets repository on GitHub.
-
-This version of the First-Party Sets Submission Guidelines will be published as an early preview of Chrome’s intended set creation process and policy, and is **not** a signal of the process launching officially. This preview will align with the feature flag testing availability of FPS in M108.
-
-
-# Schedule/Timeline (_not to be published_)
-
-
-
-* README file **draft** **completed**: end of **September** 2022 
-* README file reviewed and **approved**: end of **October** 2022 [status: on-track]
-* README file **published** on Github: **November** 2022
 
 
 # Publication Contents
