@@ -1,177 +1,4 @@
-## Privacy Sandbox
-
-
-<table>
-  <tr>
-   <td>
-<h1>First-Party Sets</h1>
-
-
-<h1>Submission</h1>
-
-
-<h1>Guidelines</h1>
-
-
-   </td>
-   <td><strong>Doc Owners: </strong>, 
-<p>
-<strong>Contributors:</strong> ,  , , , , <strong> \
-Status</strong>: <strong> \
-Updated: </strong>
-   </td>
-  </tr>
-</table>
-
-
-
-# Sign-offs
-
-
-<table>
-  <tr>
-   <td><strong>Role</strong>
-   </td>
-   <td><strong>Co-Creator</strong>
-   </td>
-   <td><strong>Status:</strong> ✓ Approved
-   </td>
-  </tr>
-  <tr>
-   <td>Author
-   </td>
-   <td>, 
-   </td>
-   <td>DP, LGTM 10/5
-   </td>
-  </tr>
-  <tr>
-   <td>PM
-   </td>
-   <td>
-   </td>
-   <td>HC LGTM 10/5
-   </td>
-  </tr>
-  <tr>
-   <td>Eng lead
-   </td>
-   <td>
-   </td>
-   <td>KG LGTM w/ comments 10/7
-   </td>
-  </tr>
-</table>
-
-
-
-<table>
-  <tr>
-   <td><strong>Role</strong>
-   </td>
-   <td><strong>Primary Reviewer </strong>(confirm with <a href="http://goto.google.com/k-staffing">go/k-staffing</a>)
-   </td>
-   <td><strong>Back-up Reviewer</strong>
-   </td>
-   <td><strong>Status:</strong> ✓ Approved or FYI
-   </td>
-  </tr>
-  <tr>
-   <td>Chrome Partnerships
-   </td>
-   <td>darojas@ (Ads)
-<p>
-mastromatto@ (Ads)
-<p>
-jney@ (ACT)
-   </td>
-   <td>barbesmith@ 
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>Communications/PR
-   </td>
-   <td>westoverscott@
-   </td>
-   <td>smithcolin@ 
-<p>
-joshcruz@
-   </td>
-   <td>LGTM 10/11 - SW
-   </td>
-  </tr>
-  <tr>
-   <td>GBO (always non-blocking/FYI)
-   </td>
-   <td>klebeau@
-   </td>
-   <td>rahularora@
-   </td>
-   <td>FYI
-   </td>
-  </tr>
-  <tr>
-   <td>Product Inclusion
-   </td>
-   <td>lianea@
-   </td>
-   <td>
-   </td>
-   <td>FYI
-   </td>
-  </tr>
-  <tr>
-   <td>Marketing
-   </td>
-   <td>cmcduffy@
-   </td>
-   <td>martinal@
-   </td>
-   <td>LGTM cmcduffy
-   </td>
-  </tr>
-  <tr>
-   <td>Dev Rel
-   </td>
-   <td>maudn@
-<p>
-dutton@
-   </td>
-   <td>merewood@
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
-   <td>Legal
-   </td>
-   <td>melissaknight@
-<p>
-mkellogg@ 
-   </td>
-   <td>ctanaka@
-   </td>
-   <td>LGTM 10/7/2022 with some comments (MRSK)
-   </td>
-  </tr>
-</table>
-
-
-# Publication Contents
-
-_Everything in the box below will be published._
-
-
-<p id="gdcalert1" ><span style="color: red; font-weight: bold">>>>>>  gd2md-html alert: Long single-cell table. Check to make sure this is meant to be a code block. </span><br>(<a href="#">Back to top</a>)(<a href="#gdcalert2">Next alert</a>)<br><span style="color: red; font-weight: bold">>>>>> </span></p>
-
-
-
-```
-Note: The First-Party Sets set creation process is not yet live, but is available for <link>testing in GitHub</link>. This document is being shared as an early preview. You may submit a set to test the process, but sets will need to be resubmitted when the process launches for General Availability in Chrome.
-
-First-Party Sets Submission Guidelines
+## First-Party Sets Submission Guidelines ## 
 Overview
 First-Party Sets ("FPS") provides a framework for developers to declare relationships among sites, to enable limited cross-site cookie access for specific, user-facing purposes. This framework may help user agents, such as the Chrome browser ("Chrome"), to decide when to allow or deny a site access to their cookies when in a third-party context.
 
@@ -198,7 +25,7 @@ Set Formation Requirements
 The table below describes the types of subset that FPS currently supports, including requirements to help prevent misuse of the subset. 
 
 All submissions are subject to the formation requirements detailed in this section as well as the technical validation requirements in the next section. 
-
+```
 Subset Type
 Subset Definition
 Service
@@ -218,11 +45,12 @@ ccTLD variants must share an identical eSLD with its equivalent domain.
 The eTLD of each ccTLD variant must be present in the ccTLD section of the Public Suffix List (PSL).
 ccTLD variants must share a common owner with its equivalent domain. 
 Set submissions
-
+```
 New submissions to the canonical FPS list must be filed as pull requests (PRs) on GitHub. Submitters should ensure that submissions follow the schema template provided below. Anyone with a GitHub account may make a submission.
 
 Modifications to existing sets, including deletions, must also be submitted as new PRs against the canonical FPS list.
 The canonical FPS list will be validated against this schema whenever a user files their PR:
+```
 {
    "type": "object",
    "properties": {
@@ -269,8 +97,9 @@ The canonical FPS list will be validated against this schema whenever a user fil
        }
    }
 }
-
+```
 A hypothetical example of the FPS canonical list is provided below for reference. A submission should follow the structure below, with new submissions being added like the section highlighted in gray. 
+```
 {
  "sets": [
    {
@@ -307,7 +136,7 @@ A hypothetical example of the FPS canonical list is provided below for reference
    }
  ]
 }
-
+```
 Set Validation Requirements
 
 It is important that users' interests are protected from invalid submissions, and that web browsers use objective methods to validate submissions. As such, Chrome will rely on several technical methods to validate submissions. These technical checks, comprising both set-level checks and subset-level checks, will be conducted on GitHub, where results will be accessible and viewable by the public. 
@@ -321,6 +150,7 @@ Each domain must satisfy the /.well-known/ metadata requirement:
 The /.well-known/ metadata requirement demonstrates that the submitter has administrative access to the domains present in the set, since administrative access is required to modify the /.well-known/ file. This will help prevent unauthorized actors from adding domains to a set. 
 The primary domain must serve a JSON file at /.well-known/first-party-set". The contents of the file must be identical to the submission. Each member domain must serve a JSON file at /.well-known/first-party-set". The contents of the file must name the primary domain.
 Example for  primary.com/.well-known/first-party-set:
+```
 {
 "primary": "https://primary.com",
  "associatedSites": ["https://associate1.com", "https://associate2.com", "https://associate3.com", "https://associate4.com"],
@@ -337,7 +167,9 @@ Example for  primary.com/.well-known/first-party-set:
      "https://associate2.com": ["https://associate2.ru", "https://associate2.co.kr", "https://associate2.fr"],
      "https://primary.com": ["https://primary.co.uk"]
 }
+```
 The /.well-known/first-party-set file for the set primary must follow the schema specified below:
+```
 {
                "type": "object",
                "properties": {
@@ -376,12 +208,15 @@ The /.well-known/first-party-set file for the set primary must follow the schema
                    "serviceSites": ["rationaleBySite"]
                },
            }
-
+```
 Example for associate1.com/.well-known/first-party-set:
+```
 {
    "primary":"https://primary.com"
 }
+```
 The /.well-known/first-party-set file for set members must follow the schema specified below:
+```
 { 
 	"type": "object",
 	"properties": {
@@ -389,6 +224,7 @@ The /.well-known/first-party-set file for set members must follow the schema spe
        },
 	"required": ["primary"]
 }
+```
 Subset-level technical validation
 
 Additionally, more granular technical checks will also run on GitHub for service domains and ccTLD variants in the submissions. 
@@ -445,4 +281,4 @@ Feedback
 Chrome is committed to engaging and receiving feedback from the broader ecosystem, including through the W3C (World Wide Web) Consortium, on the future development of the First-Party Sets standard and this version of the First-Party Sets Submission Guidelines.
 
 For feedback on the First-Party Sets standard, please engage on GitHub or on WICG calls. For feedback or questions on these Guidelines, please file an issue in this repository.
-```
+
