@@ -37,6 +37,6 @@ page for your PR, and on the "Actions" tab.
  certain, always check the actions tab to see the status of the run triggered 
  by your request. 
 <li> The details of the failure will be visible by clicking on 
-"Explore-PR-Actions" and then clicking the drop down labeled "File contents."
+"PR-Actions" and then clicking the drop down labeled "File contents."
 The details will also be visibile in results.txt.
 </ol>

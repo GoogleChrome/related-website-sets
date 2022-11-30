@@ -14,7 +14,7 @@
 name: FPS submission checks
 on: [pull_request]
 jobs:
-  Explore-PR-Actions:
+  PR-Actions:
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.read_results.outputs.contents }}
