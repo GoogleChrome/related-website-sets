@@ -25,32 +25,20 @@ Set Formation Requirements
 The table below describes the types of subset that FPS currently supports, including requirements to help prevent misuse of the subset. 
 
 All submissions are subject to the formation requirements detailed in this section as well as the technical validation requirements in the next section. 
-```
-Subset Type
-Subset Definition
-Service
-Domains that serve another set member to support functionality or security needs. 
-Service domains should not be the entry point to a user's journey on a site, but may be surfaced to a user as part of their journey.
-Service domains must share a common owner with the set primary.
-Submitters must provide an explanation of how each domain in this subset supports functionality or security needs.
-Service domains must have a registered DNS entry
-Associated
-Domains whose affiliation with the set primary is clearly presented to users.
-Submitters must provide an explanation of how they clearly present the affiliation across domains to users and why users would expect their domains to be affiliated (e.g., an About page, header or footer, shared branding or logo, etc).
 
-ccTLD (country code top-level domain) variants for the subsets above are also supported. The requirements for these domains are as follows:
-ccTLD
-Domains that represent variations for a particular country or a geographical area. 
-ccTLD variants must share an identical eSLD with its equivalent domain.
-The eTLD of each ccTLD variant must be present in the ccTLD section of the Public Suffix List (PSL).
-ccTLD variants must share a common owner with its equivalent domain. 
+| Subset Type | Subset Definition |
+| ----------- | ----------------- |
+|   Service   | <ul><li>Domains that serve another set member to support functionality or security needs.</li><li>Service domains should not be the entry point to a user's journey on a site, but may be surfaced to a user as part of their journey.</li><li>Service domains must share a common owner with the set primary.</li><li>Submitters must provide an explanation of how each domain in this subset supports functionality or security needs.</li><li>Service domains must have a registered DNS entry</li>|
+|  Associated | <ul><li>Domains whose affiliation with the set primary is clearly presented to users.</li><li>Submitters must provide an explanation of how they clearly present the affiliation across domains to users and why users would expect their domains to be affiliated (e.g., an About page, header or footer, shared branding or logo, etc).</li>|
+| ccTLD (country code top-level domain) | <ul><li>Domains that represent variations for a particular country or a geographical area. </li><li>ccTLD variants must share an identical eSLD with its equivalent domain.</li><li>The eTLD of each ccTLD variant must be present in the ccTLD section of the Public Suffix List (PSL).</li><li>ccTLD variants must share a common owner with its equivalent domain.</li>|
+
 Set submissions
-```
+
 New submissions to the canonical FPS list must be filed as pull requests (PRs) on GitHub. Submitters should ensure that submissions follow the schema template provided below. Anyone with a GitHub account may make a submission.
 
 Modifications to existing sets, including deletions, must also be submitted as new PRs against the canonical FPS list.
 The canonical FPS list will be validated against this schema whenever a user files their PR:
-```
+```json
 {
    "type": "object",
    "properties": {
@@ -98,8 +86,8 @@ The canonical FPS list will be validated against this schema whenever a user fil
    }
 }
 ```
-A hypothetical example of the FPS canonical list is provided below for reference. A submission should follow the structure below, with new submissions being added like the section highlighted in gray. 
-```
+A hypothetical example of the FPS canonical list is provided below for reference. A submission should follow the structure below, with new submissions being added as items to the "sets" list.
+```json
 {
  "sets": [
    {
@@ -124,7 +112,7 @@ A hypothetical example of the FPS canonical list is provided below for reference
 
      "rationaleBySite": {
        "https://associateA.com": "rationale for site",
-       ""https://associateB.com": "rationale for site",
+       "https://associateB.com": "rationale for site",
        "https://serviceSiteA.com": "rationale for site"
       },
 
@@ -150,7 +138,7 @@ Each domain must satisfy the /.well-known/ metadata requirement:
 The /.well-known/ metadata requirement demonstrates that the submitter has administrative access to the domains present in the set, since administrative access is required to modify the /.well-known/ file. This will help prevent unauthorized actors from adding domains to a set. 
 The primary domain must serve a JSON file at /.well-known/first-party-set". The contents of the file must be identical to the submission. Each member domain must serve a JSON file at /.well-known/first-party-set". The contents of the file must name the primary domain.
 Example for  primary.com/.well-known/first-party-set:
-```
+```json
 {
 "primary": "https://primary.com",
  "associatedSites": ["https://associate1.com", "https://associate2.com", "https://associate3.com", "https://associate4.com"],
@@ -169,7 +157,7 @@ Example for  primary.com/.well-known/first-party-set:
 }
 ```
 The /.well-known/first-party-set file for the set primary must follow the schema specified below:
-```
+```json
 {
                "type": "object",
                "properties": {
@@ -210,13 +198,13 @@ The /.well-known/first-party-set file for the set primary must follow the schema
            }
 ```
 Example for associate1.com/.well-known/first-party-set:
-```
+```json
 {
    "primary":"https://primary.com"
 }
 ```
 The /.well-known/first-party-set file for set members must follow the schema specified below:
-```
+```json
 { 
 	"type": "object",
 	"properties": {
