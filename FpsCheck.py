@@ -168,7 +168,7 @@ class FpsCheck:
             else:
                 self.error_list.append(
                     "A rationaleBySite field is required for this set, but " +
-                    "none is provided")
+                    "none is provided. ")
 
     def check_exclusivity(self, check_sets):
         """This method checks for exclusivity of each field in a set of FpsSets

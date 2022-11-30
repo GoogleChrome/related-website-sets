@@ -199,6 +199,26 @@ class TestHasRationales(unittest.TestCase):
         }
         self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, [])  
+    def test_no_expected_rationales_case(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com"
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                      etlds=None,
+                       icanns=set())
+        loaded_sets = fp.load_sets()
+        expected_sets = {
+            'https://primary.com': FpsSet(ccTLDs=None, 
+                    primary="https://primary.com", associated_sites=None, service_sites=None)
+        }
+        fp.has_all_rationales(loaded_sets)
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, [])  
 
 class TestCheckExclusivity(unittest.TestCase):
     def test_servicesets_overlap(self):
