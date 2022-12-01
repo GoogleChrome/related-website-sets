@@ -44,76 +44,76 @@ Modifications to existing sets, including deletions, must also be submitted as n
 The canonical FPS list will be validated against this schema whenever a user files their PR:
 ```json
 {
-   "type": "object",
-   "properties": {
-       "sets":  {
-           "type": "array",
-           "items": {
-               "type": "object",
-               "properties": {
-                   "ccTLDs": {
-                       "type":"object",
-                       "additionalProperties":{
-                           "type": "array",
-                           "items":{
-                               "type": "string"
-                           }
-                       }
-                   },
-                   "primary" : {"type":"string"},
-                   "associatedSites": {
-                       "type": "array",
-                       "items":{
-                           "type": "string"
-                       }
-                   },
-                   "serviceSites": {
-                       "type":"array",
-                       "items":{
-                           "type": "string"
-                       }
-                   },
-                   "rationaleBySite": {
-                       "type":"object",
-                       "additionalProperties":{
-                           "type": "string"
-                       }
-                   }
-               },
-               "required": ["primary"],
-               "dependentRequired": {
-                   "associatedSites": ["rationaleBySite"],
-                   "serviceSites": ["rationaleBySite"]
-               },
-           },
-       }
-   }
+  "type": "object",
+  "properties": {
+    "sets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ccTLDs": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "primary": { "type": "string" },
+          "associatedSites": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "serviceSites": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "rationaleBySite": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["primary"],
+        "dependentRequired": {
+          "associatedSites": ["rationaleBySite"],
+          "serviceSites": ["rationaleBySite"]
+        }
+      }
+    }
+  }
 }
 ```
 A hypothetical example of the FPS canonical list is provided below for reference. A submission should follow the structure below, with new submissions being added as items to the "sets" list.
 ```json
 {
- "sets": [
-  {
-     "primary": "https://primary1.com", 
+  "sets": [
+    {
+      "primary": "https://primary1.com",
 
-    "associatedSites": ["https://associateA.com", "https://associateB.com"], 
+      "associatedSites": ["https://associateA.com", "https://associateB.com"],
 
-     "serviceSites": ["https://servicesiteA.com"],
+      "serviceSites": ["https://servicesiteA.com"],
 
-     "rationaleBySite": {
-       "https://associateA.com": "rationale for site",
-       "https://associateB.com": "rationale for site",
-       "https://serviceSiteA.com": "rationale for site"
+      "rationaleBySite": {
+        "https://associateA.com": "rationale for site",
+        "https://associateB.com": "rationale for site",
+        "https://serviceSiteA.com": "rationale for site"
       },
 
-     "ccTLDs": {
-       "https://associateA.com": ["https://associateA.ca", "https://associateA.co.uk"],
-       "https://associateB.com": ["https://associateB.ru", "https://associateB.co.kr"],
-       "https://primary1.com": ["https://primary1.co.uk"]
-     }
-   }
- ]
+      "ccTLDs": {
+        "https://associateA.com": ["https://associateA.ca", "https://associateA.co.uk"],
+        "https://associateB.com": ["https://associateB.ru", "https://associateB.co.kr"],
+        "https://primary1.com": ["https://primary1.co.uk"]
+      }
+    }
+  ]
 }
 ```
 # Set Validation Requirements #
@@ -135,77 +135,78 @@ Upon submission of a PR, a series of technical checks will run on GitHub to veri
 	
 ```json
 {
-"primary": "https://primary.com",
- "associatedSites": ["https://associate1.com", "https://associate2.com", "https://associate3.com", "https://associate4.com"],
- "serviceSites": ["https://servicesite1.com"],
- "rationaleBySite": {
-       "https://associate1.com": "rationale for site",
-       "https://associate2.com": "rationale for site",
-       "https://associate3.com": "rationale for site",
-       "https://serviceSite1.com": "rationale for site"
-      },
+  "primary": "https://primary.com",
+  "associatedSites": ["https://associate1.com", "https://associate2.com", "https://associate3.com", "https://associate4.com"],
+  "serviceSites": ["https://servicesite1.com"],
+  "rationaleBySite": {
+    "https://associate1.com": "rationale for site",
+    "https://associate2.com": "rationale for site",
+    "https://associate3.com": "rationale for site",
+    "https://serviceSite1.com": "rationale for site"
+  },
 
-"ccTLDs": {
-     "https://associate1.com": ["https://associate1.ca", "https://associate1.co.uk", "https://associate1.de"],
-     "https://associate2.com": ["https://associate2.ru", "https://associate2.co.kr", "https://associate2.fr"],
-     "https://primary.com": ["https://primary.co.uk"]
+  "ccTLDs": {
+    "https://associate1.com": ["https://associate1.ca", "https://associate1.co.uk", "https://associate1.de"],
+    "https://associate2.com": ["https://associate2.ru", "https://associate2.co.kr", "https://associate2.fr"],
+    "https://primary.com": ["https://primary.co.uk"]
+  }
 }
 ```
-The /.well-known/first-party-set file for the set primary must follow the schema specified below:
+The `/.well-known/first-party-set` file for the set primary must follow the schema specified below:
 ```json
 {
-               "type": "object",
-               "properties": {
-                   "ccTLDs": {
-                       "type":"object",
-                       "additionalProperties":{
-                           "type": "array",
-                           "items":{
-                               "type": "string"
-                           }
-                       }
-                   },
-                   "primary" : {"type":"string"},
-                   "associatedSites": {
-                       "type": "array",
-                       "items":{
-                           "type": "string"
-                       }
-                   },
-                   "serviceSites": {
-                       "type":"array",
-                       "items":{
-                           "type": "string"
-                       }
-                   },
-                   "rationaleBySite": {
-                       "type":"object",
-                       "additionalProperties":{
-                           "type": "string"
-                       }
-                   }
-               },
-               "required": ["primary"],
-               "dependentRequired": {
-                   "associatedSites": ["rationaleBySite"],
-                   "serviceSites": ["rationaleBySite"]
-               },
-           }
+  "type": "object",
+  "properties": {
+    "ccTLDs": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "primary": { "type": "string" },
+    "associatedSites": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "serviceSites": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "rationaleBySite": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  },
+  "required": ["primary"],
+  "dependentRequired": {
+    "associatedSites": ["rationaleBySite"],
+    "serviceSites": ["rationaleBySite"]
+  }
+}
 ```
 Example for associate1.com/.well-known/first-party-set:
 ```json
 {
-   "primary":"https://primary.com"
+  "primary":"https://primary.com"
 }
 ```
 The /.well-known/first-party-set file for set members must follow the schema specified below:
 ```json
-{ 
-	"type": "object",
-	"properties": {
-           "primary" : {"type":"string"}
-       },
-	"required": ["primary"]
+{
+  "type": "object",
+  "properties": {
+    "primary": { "type": "string" }
+  },
+  "required": ["primary"]
 }
 ```
 ## Subset-level technical validation ##
