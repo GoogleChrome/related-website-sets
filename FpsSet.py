@@ -34,3 +34,10 @@ class FpsSet:
                                      'primary': primary,
                                      'associatedSites': associated_sites, 
                                      'serviceSites': service_sites}
+    def __eq__(self, obj):
+      if isinstance(obj, FpsSet) and self.primary == obj.primary:
+        if self.ccTLDs == obj.ccTLDs:
+          if self.associated_sites == obj.associated_sites:
+            if self.service_sites == obj.service_sites:
+              return True
+      return False
