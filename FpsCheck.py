@@ -339,6 +339,18 @@ class FpsCheck:
                             "The provided service site does not have an eTLD " 
                             + "in the Public suffix list: " + service_site)
 
+    def open_and_load_json(self, url):
+        """Calls urlopen and returns json from a site
+
+        Calls urlopena and json.load on a domain. Returns the json object.
+        This functionality is separated out here to make testing easier.
+        
+        Args:
+            url: a domain that we want to load the json from
+        """
+        with urlopen(url) as json_file:
+            return json.load(json_file)
+
     def check_list_sites(self, primary, site_list):
         """Checks that sites in a given list have the correct primary on their 
         well-known page
@@ -357,8 +369,7 @@ class FpsCheck:
         for site in site_list:
             url = site + "/.well-known/first-party-set"
             try:
-                with urlopen(url) as json_file:
-                    json_schema = json.load(json_file)
+                json_schema = self.open_and_load_json(url)
                 if 'primary' not in json_schema.keys():
                     self.error_list.append(
                         "The listed associated site site did not have primary"
@@ -372,8 +383,7 @@ class FpsCheck:
                 self.error_list.append(
                     "Experienced an error when trying to access " + url + "; "
                     + "error was: " + str(inst))
-
-    # For now, the following test is not called
+    
     def find_invalid_well_known(self, check_sets):
         """Checks for and validates well-known pages for FPS sets
 
@@ -396,8 +406,7 @@ class FpsCheck:
             # Read the well-known files and check them against the schema we 
             # have stored
             try:
-                with urlopen(url) as json_file:
-                    json_schema = json.load(json_file)
+                json_schema = self.open_and_load_json(url)
                 schema_fields = set(self.acceptable_fields) & set(
                     json_schema.keys())
                 curr_fps_set = check_sets[primary]

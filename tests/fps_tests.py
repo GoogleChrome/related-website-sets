@@ -4,7 +4,7 @@ from jsonschema import ValidationError
 from publicsuffix2 import PublicSuffixList
 from unittest import mock
 
-sys.path.append('../FPS-Technical-Github-Checks')
+sys.path.append('../first-party-sets')
 from FpsSet import FpsSet
 from FpsCheck import FpsCheck
 
@@ -624,9 +624,6 @@ def mock_get(*args, **kwargs):
             self.status_code = status_code
             self.url = args[0]
 
-        def json(self):
-            return self.json_data
-
     if args[0] == 'https://service1.com':
         return MockedGetResponse({}, 200)
     elif args[0] == 'https://service2.com':
@@ -645,6 +642,46 @@ def mock_get(*args, **kwargs):
         return MockedGetResponse({},200)
     
     return MockedGetResponse(None, 404)
+
+def mock_open_and_load_json(*args, **kwargs):
+    class MockedJsonResponse:
+        def __init__(self, json):
+            self.json = json
+    
+    if args[0] == 'https://primary1.com':
+        return MockedJsonResponse({
+            "primary": "https://primary1.com",
+            "associatedSites": ["https://not-in-list.com"]
+        })
+    elif args[0] == 'https://primary2.com':
+        return MockedJsonResponse({
+            "primary": "https://wrong-primary.com",
+            "associatedSites":["https://associated1.com"]
+        })
+    elif args[0] == 'https://associated1.com':
+        return MockedJsonResponse({
+            "primary": "https://primary2.com"
+        })
+    elif args[0] == 'https://primary3.com':
+        return MockedJsonResponse({
+            "primary": "https://primary3.com",
+            "associatedSites": ["associated2.com"]
+        })
+    elif args[0] == 'https://associated2.com':
+        return MockedJsonResponse({
+            "primary": "https://wrong-primary.com"
+        })
+    elif args[0] == 'https://primary4.com':
+        return MockedJsonResponse({
+            "primary": "https://primary4.com",
+            "associatedSites": ["https://associated3.com"]
+        })
+    elif args[0] == 'https://associated3.com':
+        return MockedJsonResponse({
+            "primary": "https://primary4.com"
+        })
+    
+    return MockedJsonResponse({})
 
 # Our test case class
 class MockTestsClass(unittest.TestCase):
@@ -908,6 +945,35 @@ class MockTestsClass(unittest.TestCase):
                     primary="https://primary.com", 
                     associated_sites=None,
                     service_sites=["https://no-such-service.com"],
+                    ccTLDs=None
+                    )
+        }
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, [])
+    # Now we test the mocked open_and_load_json to test the well-known checks
+    @mock.patch('FpsCheck.open_and_load_json', 
+    side_effect=mock_open_and_load_json)
+    def test_primary_page_differs(self, mock_open_and_load_json):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary1.com",
+                    "associatedSites": ["https://expected-associated.com"]
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.check_for_service_redirect(loaded_sets)
+        expected_sets = {
+            'https://primary1.com': 
+            FpsSet(
+                    primary="https://primary1.com", 
+                    associated_sites=["https://expected-associated.com"],
+                    service_sites=None,
                     ccTLDs=None
                     )
         }
