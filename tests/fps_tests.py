@@ -648,40 +648,43 @@ def mock_open_and_load_json(*args, **kwargs):
         def __init__(self, json):
             self.json = json
     
-    if args[0] == 'https://primary1.com':
-        return MockedJsonResponse({
+    if args[0] == 'https://primary1.com/.well-known/first-party-set':
+        return {
             "primary": "https://primary1.com",
             "associatedSites": ["https://not-in-list.com"]
-        })
-    elif args[0] == 'https://primary2.com':
-        return MockedJsonResponse({
+        }
+    elif args[0] == 'https://expected-associated.com/.well-known/first-party-set':
+        return {
+            "primary": "https://primary1.com"
+        }
+    elif args[0] == 'https://primary2.com/.well-known/first-party-set':
+        return {
             "primary": "https://wrong-primary.com",
             "associatedSites":["https://associated1.com"]
-        })
-    elif args[0] == 'https://associated1.com':
-        return MockedJsonResponse({
+        }
+    elif args[0] == 'https://associated1.com/.well-known/first-party-set':
+        return {
             "primary": "https://primary2.com"
-        })
-    elif args[0] == 'https://primary3.com':
-        return MockedJsonResponse({
+        }
+    elif args[0] == 'https://primary3.com/.well-known/first-party-set':
+        return {
             "primary": "https://primary3.com",
-            "associatedSites": ["associated2.com"]
-        })
-    elif args[0] == 'https://associated2.com':
-        return MockedJsonResponse({
+            "associatedSites": ["https://associated2.com"]
+        }
+    elif args[0] == 'https://associated2.com/.well-known/first-party-set':
+        return {
             "primary": "https://wrong-primary.com"
-        })
-    elif args[0] == 'https://primary4.com':
-        return MockedJsonResponse({
+        }
+    elif args[0] == 'https://primary4.com/.well-known/first-party-set':
+        return {
             "primary": "https://primary4.com",
             "associatedSites": ["https://associated3.com"]
-        })
-    elif args[0] == 'https://associated3.com':
-        return MockedJsonResponse({
+        }
+    elif args[0] == 'https://associated3.com/.well-known/first-party-set':
+        return {
             "primary": "https://primary4.com"
-        })
-    
-    return MockedJsonResponse({})
+        }
+    return {"primary":None}
 
 # Our test case class
 class MockTestsClass(unittest.TestCase):
@@ -951,7 +954,7 @@ class MockTestsClass(unittest.TestCase):
         self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, [])
     # Now we test the mocked open_and_load_json to test the well-known checks
-    @mock.patch('FpsCheck.open_and_load_json', 
+    @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
     side_effect=mock_open_and_load_json)
     def test_primary_page_differs(self, mock_open_and_load_json):
         json_dict = {
@@ -967,12 +970,107 @@ class MockTestsClass(unittest.TestCase):
                      etlds=None,
                      icanns=set())
         loaded_sets = fp.load_sets()
-        fp.check_for_service_redirect(loaded_sets)
+        fp.find_invalid_well_known(loaded_sets)
         expected_sets = {
             'https://primary1.com': 
             FpsSet(
                     primary="https://primary1.com", 
                     associated_sites=["https://expected-associated.com"],
+                    service_sites=None,
+                    ccTLDs=None
+                    )
+        }
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, ["The following member(s) of " +
+        "associatedSites were not present in both the changelist and " + 
+        ".well-known/first-party-sets file: ['https://expected-associated.com'"
+        + ", 'https://not-in-list.com']"])
+    
+    @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
+    side_effect=mock_open_and_load_json)
+    def test_wrong_primary_name(self, mock_open_and_load_json):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary2.com",
+                    "associatedSites": ["https://associated1.com"]
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_well_known(loaded_sets)
+        expected_sets = {
+            'https://primary2.com': 
+            FpsSet(
+                    primary="https://primary2.com", 
+                    associated_sites=["https://associated1.com"],
+                    service_sites=None,
+                    ccTLDs=None
+                    )
+        }
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, ["The following member(s) of " +
+        "primary were not present in both the changelist and " + 
+        ".well-known/first-party-sets file: ['https://primary2.com'"
+        + ", 'https://wrong-primary.com']"])
+
+    @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
+    side_effect=mock_open_and_load_json)
+    def test_associate_wrong_page(self, mock_open_and_load_json):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary3.com",
+                    "associatedSites": ["https://associated2.com"]
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_well_known(loaded_sets)
+        expected_sets = {
+            'https://primary3.com': 
+            FpsSet(
+                    primary="https://primary3.com", 
+                    associated_sites=["https://associated2.com"],
+                    service_sites=None,
+                    ccTLDs=None
+                    )
+        }
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, ["The listed associated site "
+                + "did not have https://primary3.com listed as its primary: " 
+                + "https://associated2.com"])
+
+    @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
+    side_effect=mock_open_and_load_json)
+    def test_expected_case(self, mock_open_and_load_json):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary4.com",
+                    "associatedSites": ["https://associated3.com"]
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_well_known(loaded_sets)
+        expected_sets = {
+            'https://primary4.com': 
+            FpsSet(
+                    primary="https://primary4.com", 
+                    associated_sites=["https://associated3.com"],
                     service_sites=None,
                     ccTLDs=None
                     )
