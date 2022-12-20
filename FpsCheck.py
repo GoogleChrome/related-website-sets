@@ -35,57 +35,9 @@ class FpsCheck:
                 catching other issues. 
   """
 
-    SCHEMA = {
-            "type": "object",
-            "properties": {
-                "sets":  {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "ccTLDs": {
-                                "type": "object",
-                                "additionalProperties": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    }
-                                }
-                            },
-                            "primary": {"type": "string"},
-                            "associatedSites": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            },
-                            "serviceSites": {
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
-                                }
-                            },
-                            "rationaleBySite": {
-                                "type": "object",
-                                "additionalProperties": {
-                                    "type": "string"
-                                }
-                            }
-                        },
-                        "required": ["primary"],
-                        "dependentRequired": {
-                            "associatedSites": ["rationaleBySite"],
-                            "serviceSites": ["rationaleBySite"]
-                        },
-                    },
-                }
-            }
-        }
-
     def __init__(self, fps_sites: json, etlds: PublicSuffixList, icanns: set):
         """Stores the input from canonical_sites, effective_tld_names.dat, and 
         ICANN_domains into the FpsCheck object"""
-
         self.acceptable_fields = set(
             ["ccTLDs", "primary", "associatedSites", "serviceSites"])
         self.fps_sites = fps_sites
@@ -107,7 +59,9 @@ class FpsCheck:
             jsonschema.exceptions.ValidationError if the schema does not match 
             the format stored in SCHEMA 
         """
-        validate(self.fps_sites, schema = self.SCHEMA)
+        with open('SCHEMA.json') as f:
+            SCHEMA = json.loads(f.read())
+        validate(self.fps_sites, schema = SCHEMA)
 
     def load_sets(self):
         """Loads sets from the JSON file into a dictionary of primary->FpsSet
