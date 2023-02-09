@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "sets": [
     {
       "primary": "https://kasatria.com",
@@ -11,7 +12,7 @@
         "https://digitalcustomerprofiling.com"
       ],
       "rationaleBySite": {
-        "https://dictionary.technology": "Dictionary offerings site",
+        "https://dictionary.technology": "Site for data dictionary",
         "https://profiling.technology": "Profiling offerings site",
         "https://recommendation.technology": "Recommendation offerings site",
         "https://digitalcustomerprofiling.com": "Customer profiling service"
@@ -22,3 +23,7 @@
     }
   ]
 }
+=======
+  "sets": []
+}
+>>>>>>> parent of 6a9b5f1 (Update first_party_sets.JSON)
