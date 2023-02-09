@@ -1,5 +1,4 @@
 {
-<<<<<<< HEAD
   "sets": [
     {
       "primary": "https://kasatria.com",
@@ -23,7 +22,3 @@
     }
   ]
 }
-=======
-  "sets": []
-}
->>>>>>> parent of 6a9b5f1 (Update first_party_sets.JSON)
