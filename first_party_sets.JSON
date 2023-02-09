@@ -1,3 +1,24 @@
 {
-  "sets": []
+  "sets": [
+    {
+      "primary": "https://kasatria.com",
+      "associatedSites": [
+        "https://dictionary.technology",
+        "https://profiling.technology",
+        "https://recommendation.technology"
+      ],
+      "serviceSites": [
+        "https://digitalcustomerprofiling.com"
+      ],
+      "rationaleBySite": {
+        "https://dictionary.technology": "Dictionary offerings site",
+        "https://profiling.technology": "Profiling offerings site",
+        "https://recommendation.technology": "Recommendation offerings site",
+        "https://digitalcustomerprofiling.com": "Customer profiling service"
+      },
+      "ccTLDs": {
+        "https://kasatria.com":["https://kasatria.vn"]
+      }
+    }
+  ]
 }
