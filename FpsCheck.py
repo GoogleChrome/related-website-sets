@@ -16,6 +16,7 @@ import requests
 from FpsSet import FpsSet
 from jsonschema import validate
 from urllib.request import urlopen
+from urllib.request import Request
 from publicsuffix2 import PublicSuffixList
 
 
@@ -302,7 +303,8 @@ class FpsCheck:
         Args:
             url: a domain that we want to load the json from
         """
-        with urlopen(url) as json_file:
+        req = Request(url=url, headers={'User-Agent': 'Chrome'})
+        with urlopen(req) as json_file:
             return json.load(json_file)
 
     def check_list_sites(self, primary, site_list):
