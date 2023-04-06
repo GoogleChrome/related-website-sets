@@ -16,6 +16,17 @@
         "https://recommendation.technology": "Recommendation offerings site",
         "https://digitalcustomerprofiling.com": "Customer profiling service"
       }
+    },
+    {
+      "primary": "https://cafemedia.com",
+      "associatedSites": [
+        "https://cardsayings.net",
+        "https://nourishingpursuits.com"
+      ],
+      "rationaleBySite": {
+        "https://cardsayings.net": "Co-branded content site",
+        "https://nourishingpursuits.com": "Co-branded content site"
+      }
     }
   ]
 }
