@@ -16,6 +16,9 @@
         "https://recommendation.technology": "Recommendation offerings site",
         "https://digitalcustomerprofiling.com": "Customer profiling service"
       }
+    },
+    {
+      "primary": "example.com"
     }
   ]
 }
