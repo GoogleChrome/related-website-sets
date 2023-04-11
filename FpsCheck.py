@@ -473,6 +473,8 @@ class FpsCheck:
         exception_retries = "Max retries exceeded with url: /robots.txt"
         exception_timeout = "Read timed out. (read timeout=10)"
         for primary in check_sets:
+            if not check_sets[primary].service_sites:
+                continue
             for service_site in check_sets[primary].service_sites:
                 robot_site = service_site + "/robots.txt"
                 try:
@@ -515,6 +517,8 @@ class FpsCheck:
         exception_retries = "Max retries exceeded with url: /ads.txt"
         exception_timeout = "Read timed out. (read timeout=10)"
         for primary in check_sets:
+            if not check_sets[primary].service_sites:
+                continue
             for service_site in check_sets[primary].service_sites:
                 ads_site = service_site + "/ads.txt"
                 try:
@@ -548,6 +552,8 @@ class FpsCheck:
         exception_retries = "Max retries exceeded with url: /"
         exception_timeout = "Read timed out. (read timeout=10)"
         for primary in check_sets:
+            if not check_sets[primary].service_sites:
+                continue
             for service_site in check_sets[primary].service_sites:
                 try:
                     r = requests.get(service_site, timeout=10)
