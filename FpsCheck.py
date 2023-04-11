@@ -439,16 +439,20 @@ class FpsCheck:
                                 "primary, associated site, or service site " +
                                 "within the firsty pary set for " + primary)
                     # check the validity of the aliases
-                    aliased_tld = aliased_site.split(".")[0]
+                    aliased_domain, aliased_tld = aliased_site.split(".", 1)
+                    if aliased_tld in self.icanns:
+                        icann_check = self.icanns.union({"com"})
+                    else:
+                        icann_check = self.icanns
                     plus1s = [(site, site.split(".")[0], site.split(".")[-1])
                               for site in curr_set.ccTLDs[aliased_site]]
                     for eSLD in plus1s:
-                        if eSLD[1] != aliased_tld:
+                        if eSLD[1] != aliased_domain:
                             self.error_list.append(
                                 "The following top level domain must match: " 
                                 + aliased_site + ", but is instead: " 
                                 + eSLD[0])
-                        if eSLD[2] not in self.icanns:
+                        if eSLD[2] not in icann_check:
                             self.error_list.append(
                                 "The provided country code: " + eSLD[2] + 
                                 ", in: " + eSLD[0] + 
