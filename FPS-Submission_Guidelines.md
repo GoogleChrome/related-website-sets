@@ -1,15 +1,15 @@
-# First-Party Sets Submission Guidelines #
-# Important Notice regarding Set Submissions #
+# First-Party Sets Submission Guidelines 
+# Important Notice regarding Set Submissions 
 As Chrome prepares to [ship First-Party](https://groups.google.com/a/chromium.org/g/blink-dev/c/7_6JDIfE1as) Sets to General Availability (targeting a phased roll-out beginning Chrome 113),  we will shift from “testing” to “live” for First-Party Sets submissions. Please note key dates below as they relate to when your submissions will be applied to Stable behavior in Chrome:
 <ul>
 	<li><b>Monday, April 24, 2023</b>: The first_party_sets.JSON file will be cleared.</li>
 <li><b>Tuesday, April 25, 2023</b>: Submissions will be considered “live” submissions (no longer “test” submissions). The first_party_sets.JSON file will begin to be consumed by Chrome to be applied to Chrome 113+ releases.</li>
 </ul>
-# Overview #
-First-Party Sets ("FPS") provides a framework for developers to declare relationships among sites, to enable limited cross-site cookie access for specific, user-facing purposes. This framework may help user agents, such as the Chrome browser ("Chrome"), to decide when to allow or deny a site access to their cookies when in a third-party context.
 
+# Overview
+First-Party Sets ("FPS") provides a framework for developers to declare relationships among sites, to enable limited cross-site cookie access for specific, user-facing purposes. This framework may help user agents, such as the Chrome browser ("Chrome"), to decide when to allow or deny a site access to their cookies when in a third-party context.
 FPS is a [Privacy Sandbox](https://privacysandbox.com/) proposal being incubated in the W3C's [WICG](https://www.w3.org/community/wicg/). For a full overview, consult the [explainer](https://github.com/privacycg/first-party-sets). The First-Party Sets Submission Guidelines ("Guidelines") are put forth by Chrome to define requirements and expectations for sets submitted by developers. Chrome remains committed to pursuing [standardization](https://www.w3.org/standards/) of FPS through engaging with developers, other browser vendors, and other interested parties.
- # Definitions #
+ # Definitions 
 A <b>First-Party Set</b>, or <b>set</b>, is a collection of domains that is subject to the <a href="#set-formation-requirements">formation requirements</a>, has passed the <a href="#set-validation-requirements">validation requirements</a>, and has been successfully submitted to the canonical FPS list. 
 
 A <b>subset</b> is a defined use case within a set. Set members, or domains, will always be part of a subset. 
@@ -27,7 +27,7 @@ A <b>submission</b> is an addition or modification to the canonical FPS list sub
 A <b>submitter</b> is the individual or, if an individual is acting on behalf of their organization, the organization that has submitted a pull request against the canonical FPS list to create or modify a set for validation.
 
 An <b>equivalent domain</b> is the primary, service, or associated domain in a set for which there is a ccTLD variant in the same set. The equivalent domain has the same effective second-level domain (eSLD, or eTLD+1 minus eTLD) as a ccTLD variant in the same set.
-# Set Formation Requirements #
+# Set Formation Requirements 
 The table below describes the types of subsets that FPS currently supports, including requirements to help prevent misuse of the subset. 
 
 All submissions are subject to the formation requirements detailed in this section as well as the <a href="#set-validation-requirements">technical validation requirements</a> in the next section. 
@@ -125,7 +125,7 @@ A hypothetical example of the FPS canonical list is provided below for reference
   ]
 }
 ```
-# Set Validation Requirements #
+# Set Validation Requirements 
 
 It is important that users' interests are protected from invalid submissions, and that web browsers use objective methods to validate submissions. As such, Chrome will rely on several technical methods to validate submissions. These technical checks, comprising both set-level checks and subset-level checks, will be conducted on GitHub, where results will be accessible and viewable by the public. 
 ## Set-level technical validation ##
@@ -250,7 +250,7 @@ A submission may fail for the following reasons:
 In the case of submission failure, the submitter will be notified through a PR failure on GitHub. The PR failure notification may also provide additional information on why the submission may have failed. All technical checks governing set submissions are conducted on GitHub, and consequently all submission failures resulting from technical checks will be viewable on GitHub. 
 
 If you feel that a specific technical check has mistakenly caused a submission failure, leave a comment on the failed PR after consulting the error log. The Chrome team will investigate and reach out if further action is required.
-# Browser Behavior #
+# Browser Behavior 
 Chrome consumes the canonical FPS list on a regular basis (every 2 weeks) and ships it to clients as an updateable component. Individual clients (with internet access) will refresh the list they apply each time they restart, or on start-up, if newly downloaded.
 
 In addition to the formation requirements and validation requirements above, sets are subject to subset-level limitations imposed by the browser to help prevent misuse of subsets. The table below describes how Chrome treats each subset. 
@@ -262,11 +262,11 @@ In addition to the formation requirements and validation requirements above, set
 
 While there is no limit on the number of ccTLDs that may be associated with a single associated or service domain in the same set, a ccTLD variant inherits the restrictions imposed on its equivalent domain. For example, [requestStorageAccess](https://privacycg.github.io/storage-access/) calls will be auto-rejected when called by a ccTLD variant which is an alias of a service domain.
 To test this behavior in Chrome, please consult the [First-Party Sets integration guide](https://developer.chrome.com/en/docs/privacy-sandbox/first-party-sets-integration/).
-# Set Lifetime #
+# Set Lifetime 
 As a best practice, submitters should plan to review their sets periodically (e.g., annually).
 	
 Submitters should also expect that sets will be subject to expiration and / or renewal requirements. This prevents sets from becoming stale, as technical checks improve, additional subsets are created, and / or alternative technologies are introduced over time. For example, sets will need to be refreshed when Chrome begins phasing out third-party cookies. At that time, submitters may expect additional clarity around set renewal requirements.
-# Responsibilities of the Submitter #
+# Responsibilities of the Submitter 
 The submitter is responsible for maintaining the integrity of their set(s) and should be able to demonstrate conformance with the formation requirements above.
 	
 For example, in the case that conformance with ownership requirements (for ccTLD variants and service domains) must be demonstrated, submitters should use resources verifiable by public documentation, or recognized in filing documentation with an incorporating or registration agency in the submitter's jurisdiction of incorporation or registration, or created or recognized by a government agency. Alternatively, in some cases, conformance with ownership requirements may be attested to by a professional opinion letter signed by a lawyer or public notary. The person signing the legal opinion should have a valid license within the jurisdiction of the country in which the main entity is operating by maintaining an office or residence.
@@ -275,7 +275,7 @@ For example, in the case that conformance with ownership requirements (for ccTLD
 At this time, validation of set submissions will be based on the methods described in these Guidelines, and Chrome will not apply additional enforcement activity governing set submissions, however Chrome reserves the right to act in cases of egregious and blatant disregard of these Guidelines. All submissions are publicly visible and subject to the scrutiny of the broader web community, including users, civil society, and other interested parties.
 
 Chrome will continue to evaluate how best to maintain the appropriate guardrails for set submissions, including developing more rigorous technical checks and introducing additional enforcement mechanisms. If Chrome determines that additional verification steps are necessary to provide a safe and reliable ecosystem for users, the team will notify developers with the appropriate notice. 
-# Feedback #
+# Feedback 
 Chrome is committed to engaging and receiving feedback from the broader ecosystem, including through the W3C (World Wide Web Consortium), on the future development of the First-Party Sets standard and this version of the First-Party Sets Submission Guidelines.
 
 For feedback on the First-Party Sets standard, please engage on GitHub or on [WICG calls](https://docs.google.com/document/d/10dMVqt2x8otohdJx4AZYccdX5Hp_lrxlT7QAO2adcfE/edit#heading=h.uc5qyqdrhfhv). For feedback or questions on these Guidelines, please file an issue in this repository.
