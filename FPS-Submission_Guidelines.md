@@ -1,4 +1,10 @@
 # First-Party Sets Submission Guidelines #
+# Important Notice regarding Set Submissions #
+As Chrome prepares to [ship First-Party](https://groups.google.com/a/chromium.org/g/blink-dev/c/7_6JDIfE1as) Sets to General Availability (targeting a phased roll-out beginning Chrome 113),  we will shift from “testing” to “live” for First-Party Sets submissions. Please note key dates below as they relate to when your submissions will be applied to Stable behavior in Chrome:
+<ul>
+	<li><b>Monday, April 24, 2023</b>: The first_party_sets.JSON file will be cleared.</li>
+<li><b>Tuesday, April 25, 2023</b>: Submissions will be considered “live” submissions (no longer “test” submissions). The first_party_sets.JSON file will begin to be consumed by Chrome to be applied to Chrome 113+ releases.</li>
+</ul>
 # Overview #
 First-Party Sets ("FPS") provides a framework for developers to declare relationships among sites, to enable limited cross-site cookie access for specific, user-facing purposes. This framework may help user agents, such as the Chrome browser ("Chrome"), to decide when to allow or deny a site access to their cookies when in a third-party context.
 
@@ -51,6 +57,7 @@ The canonical FPS list will be validated against this schema whenever a user fil
       "items": {
         "type": "object",
         "properties": {
+	  "contact" : {"type": "string"},
           "ccTLDs": {
             "type": "object",
             "additionalProperties": {
@@ -82,8 +89,8 @@ The canonical FPS list will be validated against this schema whenever a user fil
         },
         "required": ["primary"],
         "dependentRequired": {
-          "associatedSites": ["rationaleBySite"],
-          "serviceSites": ["rationaleBySite"]
+          "associatedSites": ["An explanation of how you clearly present the affiliation across domains to users and why users would expect your domains to be affiliated"],
+          "serviceSites": ["An explanation of how each domain in this subset supports functionality or security needs."]
         }
       }
     }
@@ -95,16 +102,18 @@ A hypothetical example of the FPS canonical list is provided below for reference
 {
   "sets": [
     {
+      "contact": "email address or group alias if available"
       "primary": "https://primary1.com",
 
-      "associatedSites": ["https://associateA.com", "https://associateB.com"],
+      "associatedSites": ["https://associateA.com", "https://associateB.com", "https://associateC.com"],
 
       "serviceSites": ["https://servicesiteA.com"],
 
       "rationaleBySite": {
-        "https://associateA.com": "rationale for site",
-        "https://associateB.com": "rationale for site",
-        "https://serviceSiteA.com": "rationale for site"
+        "https://associateA.com": "An explanation of how you clearly present the affiliation across domains to users and why users would expect your domains to be affiliated",
+        "https://associateB.com": "An explanation of how you clearly present the affiliation across domains to users and why users would expect your domains to be affiliated",
+	 "https://associateC.com": "An explanation of how you clearly present the affiliation across domains to users and why users would expect your domains to be affiliated",
+        "https://serviceSiteA.com": "An explanation of how each domain in this subset supports functionality or security needs."
       },
 
       "ccTLDs": {
@@ -129,7 +138,7 @@ Upon submission of a PR, a series of technical checks will run on GitHub to veri
 		<li>Each domain must satisfy the /.well-known/ metadata requirement:</li>
 		<ul>
 <li>The /.well-known/ metadata requirement demonstrates that the submitter has administrative access to the domains present in the set, since administrative access is required to modify the /.well-known/ file. This will help prevent unauthorized actors from adding domains to a set. </li>
-<li>The primary domain must serve a JSON file at /.well-known/first-party-set. The contents of the file must be identical to the submission. Each member domain must serve a JSON file at /.well-known/first-party-set. The contents of the file must name the primary domain.</li>
+<li>The primary domain must serve a JSON file at /.well-known/first-party-set. The contents of the file must be identical to the submission. Each member domain must serve a JSON file at /.well-known/first-party-set. The contents of the file must name the primary domain. These files must be maintained for the duration of the domain’s inclusion in the set.</li>
 			<li>Example for  primary.com/.well-known/first-party-set:</li>
 		</ul></ul>
 	
@@ -139,10 +148,10 @@ Upon submission of a PR, a series of technical checks will run on GitHub to veri
   "associatedSites": ["https://associate1.com", "https://associate2.com", "https://associate3.com", "https://associate4.com"],
   "serviceSites": ["https://servicesite1.com"],
   "rationaleBySite": {
-    "https://associate1.com": "rationale for site",
-    "https://associate2.com": "rationale for site",
-    "https://associate3.com": "rationale for site",
-    "https://serviceSite1.com": "rationale for site"
+    "https://associate1.com": "An explanation of how you clearly present the affiliation across domains to users and why users would expect your domains to be affiliated",
+    "https://associate2.com": "An explanation of how you clearly present the affiliation across domains to users and why users would expect your domains to be affiliated",
+    "https://associate3.com": "An explanation of how you clearly present the affiliation across domains to users and why users would expect your domains to be affiliated",
+    "https://serviceSite1.com": "An explanation of how each domain in this subset supports functionality or security needs."
   },
 
   "ccTLDs": {
@@ -188,8 +197,8 @@ The `/.well-known/first-party-set` file for the set primary must follow the sche
   },
   "required": ["primary"],
   "dependentRequired": {
-    "associatedSites": ["rationaleBySite"],
-    "serviceSites": ["rationaleBySite"]
+    "associatedSites": ["An explanation of how you clearly present the affiliation across domains to users and why users would expect your domains to be affiliated"],
+    "serviceSites": ["An explanation of how each domain in this subset supports functionality or security needs."]
   }
 }
 ```
@@ -221,6 +230,9 @@ Service Domains must satisfy the following conditions:
 ccTLD variants must satisfy the following conditions:
 	<ul>
 		<li>Must be present on <a href="https://icannwiki.org/Country_code_top-level_domain#Current_ccTLDs">ICANN's list</a> of known ccTLDs.</li>
+		<ul>
+			<li>If the primary domain features a ccTLD like example.co.uk, and the subset domains include a “.com” domain as one of the ccTLD variants such as example.com, Chrome will allow for “.com” to be treated as a ccTLD variant. </li>
+		</ul>
 <li>Must share a common eSLD with the primary domain, 'service' domain, or 'associated' domain in the same set.</li>
 	</ul>
 
@@ -239,19 +251,21 @@ In the case of submission failure, the submitter will be notified through a PR f
 
 If you feel that a specific technical check has mistakenly caused a submission failure, leave a comment on the failed PR after consulting the error log. The Chrome team will investigate and reach out if further action is required.
 # Browser Behavior #
-When the submission process launches for General Availability in Chrome, Chrome will consume the canonical FPS list on a regular basis (e.g., every 2 weeks) and ship it to clients as an updateable component. Individual clients (with internet access) will refresh the list they apply each time they restart, or on start-up, if newly downloaded. 
+Chrome consumes the canonical FPS list on a regular basis (every 2 weeks) and ships it to clients as an updateable component. Individual clients (with internet access) will refresh the list they apply each time they restart, or on start-up, if newly downloaded.
 
-In addition to the formation requirements and validation requirements above, sets are subject to subset-level limitations imposed by the browser to help prevent misuse of subsets. The table below describes how Chrome will treat each subset. 
+In addition to the formation requirements and validation requirements above, sets are subject to subset-level limitations imposed by the browser to help prevent misuse of subsets. The table below describes how Chrome treats each subset. 
 
 | Subset Type | Browser Behavior |
 | ----------- | ----------------- |
 |   Service   | <ul><li>No limit on number of domains.</li><li>Only other domains in the same set may call requestStorageAccessFor on behalf of a service domain. </li><ul><li>This access will be auto-granted. </li><li>A service domain calling requestStorageAccess for itself, or calling requestStorageAccessFor for any other domain, will be auto-rejected.</li>|
-|   Associated   | <ul><li>requestStorageAccess will be auto-granted for up to three domains in the order listed.</li><li>requestStorageAccess will be auto-rejected for any domain beyond the third listed. </li>|
+|   Associated   | <ul><li>requestStorageAccess and requestStorageAccessFor will be auto-granted for up to three domains in the order listed within the associated subset category.</li><li>requestStorageAccess and requestStorageAccessFor will be auto-rejected for any domain beyond the third listed. </li>|
 
 While there is no limit on the number of ccTLDs that may be associated with a single associated or service domain in the same set, a ccTLD variant inherits the restrictions imposed on its equivalent domain. For example, [requestStorageAccess](https://privacycg.github.io/storage-access/) calls will be auto-rejected when called by a ccTLD variant which is an alias of a service domain.
-To test this behavior in Chrome, please consult the [First-Party Sets testing instructions](https://developer.chrome.com/blog/first-party-sets-testing-instructions/).
+To test this behavior in Chrome, please consult the [First-Party Sets integration guide](https://developer.chrome.com/en/docs/privacy-sandbox/first-party-sets-integration/).
 # Set Lifetime #
-Submitters should expect that sets will be subject to expiration and / or renewal requirements. This prevents sets from becoming stale, as technical checks improve, additional subsets are created, and / or alternative technologies are introduced over time. For example, sets created during the testing period will need to be refreshed at the time of third-party cookie deprecation in Chrome. At that time, submitters may expect additional clarity around set renewal requirements.
+As a best practice, submitters should plan to review their sets periodically (e.g., annually).
+	
+Submitters should also expect that sets will be subject to expiration and / or renewal requirements. This prevents sets from becoming stale, as technical checks improve, additional subsets are created, and / or alternative technologies are introduced over time. For example, sets will need to be refreshed when Chrome begins phasing out third-party cookies. At that time, submitters may expect additional clarity around set renewal requirements.
 # Responsibilities of the Submitter #
 The submitter is responsible for maintaining the integrity of their set(s) and should be able to demonstrate conformance with the formation requirements above.
 	
