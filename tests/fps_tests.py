@@ -610,6 +610,68 @@ class TestFindInvalidESLDs(unittest.TestCase):
         self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, ["The provided country code: gov, "+
             "in: https://primary.gov is not a ICANN registered country code"])
+    def test_invalid_com_in_alias(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.edu",
+                    "ccTLDs": {
+                        "https://primary.edu": ["https://primary.com"]
+                    }
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set(["ca"]))
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_alias_eSLDs(loaded_sets)
+        expected_sets = {
+            'https://primary.edu': 
+            FpsSet(
+                    primary="https://primary.edu", 
+                    associated_sites=None,
+                    service_sites=None,
+                    ccTLDs={
+                        "https://primary.edu": ["https://primary.com"]
+                    }
+                    )
+        }
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, ["The provided country code: com, "+
+            "in: https://primary.com is not a ICANN registered country code"])
+    def test_valid_com_in_alias(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.ca",
+                    "ccTLDs": {
+                        "https://primary.ca": ["https://primary.com"]
+                    }
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set(["ca"]))
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_alias_eSLDs(loaded_sets)
+        expected_sets = {
+            'https://primary.ca': 
+            FpsSet(
+                    primary="https://primary.ca", 
+                    associated_sites=None,
+                    service_sites=None,
+                    ccTLDs={
+                        "https://primary.ca": ["https://primary.com"]
+                    }
+                    )
+        }
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, [])
+    
     def test_expected_esld(self):
         json_dict = {
             "sets":
