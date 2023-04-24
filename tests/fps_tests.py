@@ -16,6 +16,7 @@ class TestValidateSchema(unittest.TestCase):
             "sets":
             [
                 {
+                    "contact": "abc@example.com",
                     "associatedSites": ["https://associated1.com"],
                     "serviceSites": ["https://service1.com"],
                     "rationaleBySite": {
@@ -38,6 +39,7 @@ class TestValidateSchema(unittest.TestCase):
             "sets":
             [
                 {
+                    "contact": "abc@example.com",
                     "primary": "https://primary1.com",
                     "associatedSites": ["https://associated1.com"],
                     "serviceSites": ["https://service1.com"],
@@ -57,6 +59,7 @@ class TestValidateSchema(unittest.TestCase):
             "sets":
             [
                 {
+                    "contact": "abc@example.com",
                     "primary": "https://primary.com",
                     "ccTLDs": {
                         "https://primary.com": "https://primary.ca"
@@ -67,6 +70,28 @@ class TestValidateSchema(unittest.TestCase):
         fp = FpsCheck(fps_sites=json_dict,
                       etlds=None, icanns=set(['ca']))
         with self.assertRaises(ValidationError):
+            fp.validate_schema()
+    def test_no_contact(self):
+       json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "associatedSites": ["https://associated1.com"],
+                    "serviceSites": ["https://service1.com"],
+                    "rationaleBySite": {
+                        "https://associated1.com": "example rationale",
+                        "https://service1.com": "example rationale",
+                    },
+                    "ccTLDs": {
+                        "https://associated1.com": ["https://associated1.ca"]
+                    }
+                }
+            ]
+        }
+       fp = FpsCheck(fps_sites=json_dict,
+                      etlds=None, icanns=set(['ca']))
+       with self.assertRaises(ValidationError):
             fp.validate_schema()
 
 class TestLoadSets(unittest.TestCase):
