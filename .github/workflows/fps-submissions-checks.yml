@@ -35,9 +35,22 @@ jobs:
           path: "results.txt"
       - name: File contents
         run: echo '${{ steps.read_results.outputs.contents }}'
+      - name: Create Comment
+        if: steps.read_results.outputs.contents != 'success'
+        run: |
+         echo "It appears you have failed some tests. Here are your results:" > message.txt
+         cat results.txt >> message.txt
+      - name: Comment if sucess
+        if: steps.read_results.outputs.contents == 'success'
+        run: echo "Looks like you've passed all of the checks!" >> message.txt
+      - name: Write Comment on PR
+        uses: mshick/add-pr-comment@v2
+        with:   
+          message-path: 
+            "message.txt" 
       - name: Fail or Succeed
         if: steps.read_results.outputs.contents != 'success'
         uses: actions/github-script@v3
         with:
           script: |
-            core.setFailed(${{ steps.read_results.outputs.contents }})
+            core.setFailed('This run has failed. Check `File Contents` to see why.')
