@@ -138,8 +138,8 @@ Upon submission of a PR, a series of technical checks will run on GitHub to veri
 		<li>Each domain must satisfy the /.well-known/ metadata requirement:</li>
 		<ul>
 <li>The /.well-known/ metadata requirement demonstrates that the submitter has administrative access to the domains present in the set, since administrative access is required to modify the /.well-known/ file. This will help prevent unauthorized actors from adding domains to a set. </li>
-<li>The primary domain must serve a JSON file at /.well-known/first-party-set. The contents of the file must be identical to the submission. Each member domain must serve a JSON file at /.well-known/first-party-set. The contents of the file must name the primary domain. These files must be maintained for the duration of the domain’s inclusion in the set.</li>
-			<li>Example for  primary.com/.well-known/first-party-set:</li>
+<li>The primary domain must serve a JSON file at /.well-known/first-party-set.json. The contents of the file must be identical to the submission. Each member domain must serve a JSON file at /.well-known/first-party-set.json. The contents of the file must name the primary domain. These files must be maintained for the duration of the domain’s inclusion in the set.</li>
+			<li>Example for  primary.com/.well-known/first-party-set.json:</li>
 		</ul></ul>
 	
 ```json
@@ -161,7 +161,7 @@ Upon submission of a PR, a series of technical checks will run on GitHub to veri
   }
 }
 ```
-The `/.well-known/first-party-set` file for the set primary must follow the schema specified below:
+The `/.well-known/first-party-set.json` file for the set primary must follow the schema specified below:
 ```json
 {
   "type": "object",
@@ -202,13 +202,13 @@ The `/.well-known/first-party-set` file for the set primary must follow the sche
   }
 }
 ```
-Example for associate1.com/.well-known/first-party-set:
+Example for associate1.com/.well-known/first-party-set.json:
 ```json
 {
   "primary":"https://primary.com"
 }
 ```
-The /.well-known/first-party-set file for set members must follow the schema specified below:
+The /.well-known/first-party-set.json file for set members must follow the schema specified below:
 ```json
 {
   "type": "object",

@@ -323,13 +323,13 @@ class FpsCheck:
             None
         """
         for site in site_list:
-            url = site + "/.well-known/first-party-set"
+            url = site + "/.well-known/first-party-set.json"
             try:
                 json_schema = self.open_and_load_json(url)
                 if 'primary' not in json_schema.keys():
                     self.error_list.append(
                         "The listed associated site site did not have primary"
-                        + " as a key in its .well-known/first-party-set file: "
+                        + " as a key in its .well-known/first-party-set.json file: "
                         + site)
                 elif json_schema['primary'] != primary:
                     self.error_list.append("The listed associated site "
@@ -358,7 +358,7 @@ class FpsCheck:
         # Check the schema to ensure consistency
         for primary in check_sets:
             # First we check the primary sites
-            url = primary + "/.well-known/first-party-set"
+            url = primary + "/.well-known/first-party-set.json"
             # Read the well-known files and check them against the schema we 
             # have stored
             try:
@@ -386,7 +386,7 @@ class FpsCheck:
                     if field_sym_difference:
                         self.error_list.append("The following member(s) of " 
                         + field + " were not present in both the changelist "
-                        + "and .well-known/first-party-sets file: " + 
+                        + "and .well-known/first-party-set.json file: " + 
                         str(sorted(field_sym_difference)))
             except Exception as inst:
                 self.error_list.append(
