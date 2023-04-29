@@ -1,5 +1,16 @@
 {
   "sets": [
-    
+    {
+      "contact": "https://acbj.com/contact",
+      "primary": "acbj.com",
+
+      "associatedSites": ["https://bizequity.com", "https://bizleads.com", "https://hemmings.com"],
+
+      "rationaleBySite": {
+        "https://bizequity.com": "Through common branding and/or common copyright and/or listed as associated brands on primary site",
+        "https://bizleads.com": "Through common branding and/or common copyright and/or listed as associated brands on primary site",
+        "https://hemmings.com": "Through common branding and/or common copyright and/or listed as associated brands on primary site"
+      }
+    }
   ]
 }
