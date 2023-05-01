@@ -1,5 +1,8 @@
 {
   "sets": [
-    
+    {
+      "primary": "example.com",
+      "contact": "sledoux@google.com"
+    }
   ]
 }
