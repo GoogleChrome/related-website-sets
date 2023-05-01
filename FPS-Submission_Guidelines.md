@@ -138,7 +138,7 @@ Upon submission of a PR, a series of technical checks will run on GitHub to veri
 		<li>Each domain must satisfy the /.well-known/ metadata requirement:</li>
 		<ul>
 <li>The /.well-known/ metadata requirement demonstrates that the submitter has administrative access to the domains present in the set, since administrative access is required to modify the /.well-known/ file. This will help prevent unauthorized actors from adding domains to a set. </li>
-<li>The primary domain must serve a JSON file at /.well-known/first-party-set.json. The contents of the file must be identical to the submission. Each member domain must serve a JSON file at /.well-known/first-party-set.json. The contents of the file must name the primary domain. These files must be maintained for the duration of the domain’s inclusion in the set.</li>
+<li>The primary domain must serve a JSON file at /.well-known/first-party-set.json. The contents of the file must be identical to the submission. Each of the associatedSites and serviceSites domain must also serve a JSON file at /.well-known/first-party-set.json. The contents of the first-party-set.json file on these domains must at a minimum name the primary domain. These files must be maintained for the duration of the domain’s inclusion in the set.</li>
 			<li>Example for  primary.com/.well-known/first-party-set.json:</li>
 		</ul></ul>
 	
