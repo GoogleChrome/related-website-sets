@@ -14,9 +14,9 @@ A <b>First-Party Set</b>, or <b>set</b>, is a collection of domains that is subj
 
 A <b>subset</b> is a defined use case within a set. Set members, or domains, will always be part of a subset. 
 
-A <b>set primary</b> is the domain a set submitter has identified as the representative of its set. Other domains within the set have a defined relationship with the primary. 
+A <a name="set-primary"><b>set primary</b></a> is the domain a set submitter has identified as the representative of its set. Other domains within the set have a defined relationship with the primary. 
 
-A <b>set member</b> is a domain that is part of a set that is not the primary. A set member will always be part of a subset within the set.
+A <a name="set-member"><b>set member</b></a> is a domain that is part of a set that is not the primary. A set member will always be part of a subset within the set.
 
 The <b>canonical FPS list</b> is a publicly viewable list in a JSON file format housed in the <a href="https://github.com/googlechrome/first-party-sets">FPS GitHub repository</a> that is the source-of-truth for all sets that are subject to the formation requirements and have passed the validation requirements. Browsers, such as Chrome, can consume this file to apply to their behavior.
 
@@ -138,7 +138,7 @@ Upon submission of a PR, a series of technical checks will run on GitHub to veri
 		<li>Each domain must satisfy the /.well-known/ metadata requirement:</li>
 		<ul>
 <li>The /.well-known/ metadata requirement demonstrates that the submitter has administrative access to the domains present in the set, since administrative access is required to modify the /.well-known/ file. This will help prevent unauthorized actors from adding domains to a set. </li>
-<li>The primary domain must serve a JSON file at /.well-known/first-party-set.json. The contents of the file must be identical to the submission. Each member domain must serve a JSON file at /.well-known/first-party-set.json. The contents of the file must name the primary domain. These files must be maintained for the duration of the domain’s inclusion in the set.</li>
+<li>The [set primary](#set-primary) domain must serve a JSON file at /.well-known/first-party-set.json. The contents of the file must be identical to the submission. Each [set-member](#set-member) domain must serve a JSON file at /.well-known/first-party-set.json. The contents of the file must name the [set primary domain](#set-primary]. These files must be maintained for the duration of the domain’s inclusion in the set.</li>
 			<li>Example for  primary.com/.well-known/first-party-set.json:</li>
 		</ul></ul>
 	
