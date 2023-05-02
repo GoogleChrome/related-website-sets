@@ -12,22 +12,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 name: FPS submission checks
-on: [pull_request]
+on: pull_request_target
 jobs:
   PR-Actions:
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.read_results.outputs.contents }}
     steps:
-      - name: Gather files changed
+      - name: Get the PR version of the files
         uses: actions/checkout@v2
         with:
-          fileOutput: "json"
+          ref: "refs/pull/${{ github.event.number }}/merge"
+          path: "pull-request"
+      - name: Get the version at main
+        uses: actions/checkout@v2
+        with:
+          path: "main"
       - name: Get necessary libraries
         run: pip install publicsuffix2
       - name: Content check
         id: check
-        run: python3 check_sites.py > results.txt
+        run: python3 main/check_sites.py -i pull-request/first_party_sets.JSON > results.txt
       - name: Read the result
         id: read_results
         uses: andstor/file-reader-action@v1
@@ -46,8 +51,9 @@ jobs:
       - name: Write Comment on PR
         uses: mshick/add-pr-comment@v2
         with:   
-          message-path: 
-            "message.txt" 
+          message-path: "message.txt" 
+          allow-repeats: true
+          refresh-message-position: true
       - name: Fail or Succeed
         if: steps.read_results.outputs.contents != 'success'
         uses: actions/github-script@v3

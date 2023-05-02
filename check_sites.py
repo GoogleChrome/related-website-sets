@@ -13,19 +13,35 @@
 # limitations under the License.
 from FpsCheck import FpsCheck
 import json
+import getopt
+import sys
 from publicsuffix2 import PublicSuffixList
 
 
 def main():
+    args = sys.argv[1:]
+    inputFile = 'first_party_sets.JSON'
+    inputPrefix = ''
+    opts, _ = getopt.getopt(args, "i:")
+    for opt, arg in opts:
+        if opt == '-i':
+            inputFile = arg
+            inputPrefix='main/'
+
     # Open the canonical sites, and load the json
-    with open('first_party_sets.JSON') as f:
-        fps_sites = json.load(f)
+    with open(inputFile) as f:
+        try:
+            fps_sites = json.load(f)
+        except Exception as inst:
+        # If the file cannot be loaded, we will not run any other checks
+            print(inst)
+            exit()      
 
     # Load the etlds from the public suffix list
-    etlds = PublicSuffixList(psl_file = 'effective_tld_names.dat')
+    etlds = PublicSuffixList(psl_file = inputPrefix+'effective_tld_names.dat')
     # Get all the ICANN domains
     icanns = set()
-    with open('ICANN_domains') as f:
+    with open(inputPrefix+'ICANN_domains') as f:
         for line in f:
             l = line.strip()
             icanns.add(l)
@@ -34,7 +50,7 @@ def main():
     error_texts = []
 
     try:
-        fps_checker.validate_schema()
+        fps_checker.validate_schema(inputPrefix+'SCHEMA.json')
     except Exception as inst:
         # If the schema is invalid, we will not run any other checks
         print(inst)
