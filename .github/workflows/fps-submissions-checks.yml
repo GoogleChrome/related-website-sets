@@ -32,7 +32,7 @@ jobs:
         run: pip install publicsuffix2
       - name: Content check
         id: check
-        run: python3 main/check_sites.py -i pull-request/first_party_sets.JSON > results.txt
+        run: python3 main/check_sites.py -i pull-request/first_party_sets.JSON --data_directory main > results.txt
       - name: Read the result
         id: read_results
         uses: andstor/file-reader-action@v1
@@ -52,7 +52,6 @@ jobs:
         uses: mshick/add-pr-comment@v2
         with:   
           message-path: "message.txt" 
-          allow-repeats: true
           refresh-message-position: true
       - name: Fail or Succeed
         if: steps.read_results.outputs.contents != 'success'
