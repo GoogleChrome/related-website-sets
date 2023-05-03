@@ -12,22 +12,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 name: FPS submission checks
-on: [pull_request]
+on: pull_request_target
 jobs:
   PR-Actions:
     runs-on: ubuntu-latest
     outputs:
       output1: ${{ steps.read_results.outputs.contents }}
     steps:
-      - name: Gather files changed
+      - name: Get the PR version of the files
         uses: actions/checkout@v2
         with:
-          fileOutput: "json"
+          ref: "refs/pull/${{ github.event.number }}/merge"
+          path: "pull-request"
+      - name: Get the version at main
+        uses: actions/checkout@v2
+        with:
+          path: "main"
       - name: Get necessary libraries
         run: pip install publicsuffix2
       - name: Content check
         id: check
-        run: python3 check_sites.py > results.txt
+        run: python3 main/check_sites.py -i pull-request/first_party_sets.JSON --data_directory main > results.txt
       - name: Read the result
         id: read_results
         uses: andstor/file-reader-action@v1
@@ -35,22 +40,22 @@ jobs:
           path: "results.txt"
       - name: File contents
         run: echo '${{ steps.read_results.outputs.contents }}'
+      - name: Create Comment
+        if: steps.read_results.outputs.contents != 'success'
+        run: |
+         echo "It appears you have failed some tests. Here are your results:" > message.txt
+         cat results.txt >> message.txt
+      - name: Comment if sucess
+        if: steps.read_results.outputs.contents == 'success'
+        run: echo "Looks like you've passed all of the checks!" >> message.txt
+      - name: Write Comment on PR
+        uses: mshick/add-pr-comment@v2
+        with:   
+          message-path: "message.txt" 
+          refresh-message-position: true
       - name: Fail or Succeed
         if: steps.read_results.outputs.contents != 'success'
         uses: actions/github-script@v3
         with:
           script: |
-            core.setFailed(${{ steps.read_results.outputs.contents }})
-      - name: Create Comment
-        if: steps.read_results.outputs.contents != 'success'
-        run: |
-         echo "Hello, it appears you have failed some tests. Here are your results:\n" > message.txt
-         cat results.txt >> message.txt
-        else:
-        echo "Looks like you've passed all of the checks!" > message.txt
-      - name: Write Comment on PR
-        uses: mshick/add-pr-comment@v2
-        with:   
-          message-path: 
-            "message.txt" 
-
+            core.setFailed('This run has failed. Check `File Contents` to see why.')

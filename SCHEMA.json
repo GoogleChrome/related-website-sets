@@ -1,6 +1,7 @@
 {
     "type": "object",
     "properties": {
+        "contact" : {"type": "string"},
         "sets":  {
             "type": "array",
             "items": {
@@ -35,7 +36,7 @@
                         }
                     }
                 },
-                "required": ["primary"],
+                "required": ["primary", "contact"],
                 "dependentRequired": {
                     "associatedSites": ["rationaleBySite"],
                     "serviceSites": ["rationaleBySite"]

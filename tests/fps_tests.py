@@ -16,6 +16,7 @@ class TestValidateSchema(unittest.TestCase):
             "sets":
             [
                 {
+                    "contact": "abc@example.com",
                     "associatedSites": ["https://associated1.com"],
                     "serviceSites": ["https://service1.com"],
                     "rationaleBySite": {
@@ -38,6 +39,7 @@ class TestValidateSchema(unittest.TestCase):
             "sets":
             [
                 {
+                    "contact": "abc@example.com",
                     "primary": "https://primary1.com",
                     "associatedSites": ["https://associated1.com"],
                     "serviceSites": ["https://service1.com"],
@@ -57,6 +59,7 @@ class TestValidateSchema(unittest.TestCase):
             "sets":
             [
                 {
+                    "contact": "abc@example.com",
                     "primary": "https://primary.com",
                     "ccTLDs": {
                         "https://primary.com": "https://primary.ca"
@@ -67,6 +70,28 @@ class TestValidateSchema(unittest.TestCase):
         fp = FpsCheck(fps_sites=json_dict,
                       etlds=None, icanns=set(['ca']))
         with self.assertRaises(ValidationError):
+            fp.validate_schema()
+    def test_no_contact(self):
+       json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "associatedSites": ["https://associated1.com"],
+                    "serviceSites": ["https://service1.com"],
+                    "rationaleBySite": {
+                        "https://associated1.com": "example rationale",
+                        "https://service1.com": "example rationale",
+                    },
+                    "ccTLDs": {
+                        "https://associated1.com": ["https://associated1.ca"]
+                    }
+                }
+            ]
+        }
+       fp = FpsCheck(fps_sites=json_dict,
+                      etlds=None, icanns=set(['ca']))
+       with self.assertRaises(ValidationError):
             fp.validate_schema()
 
 class TestLoadSets(unittest.TestCase):
@@ -585,6 +610,68 @@ class TestFindInvalidESLDs(unittest.TestCase):
         self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, ["The provided country code: gov, "+
             "in: https://primary.gov is not a ICANN registered country code"])
+    def test_invalid_com_in_alias(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.edu",
+                    "ccTLDs": {
+                        "https://primary.edu": ["https://primary.com"]
+                    }
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set(["ca"]))
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_alias_eSLDs(loaded_sets)
+        expected_sets = {
+            'https://primary.edu': 
+            FpsSet(
+                    primary="https://primary.edu", 
+                    associated_sites=None,
+                    service_sites=None,
+                    ccTLDs={
+                        "https://primary.edu": ["https://primary.com"]
+                    }
+                    )
+        }
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, ["The provided country code: com, "+
+            "in: https://primary.com is not a ICANN registered country code"])
+    def test_valid_com_in_alias(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.ca",
+                    "ccTLDs": {
+                        "https://primary.ca": ["https://primary.com"]
+                    }
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set(["ca"]))
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_alias_eSLDs(loaded_sets)
+        expected_sets = {
+            'https://primary.ca': 
+            FpsSet(
+                    primary="https://primary.ca", 
+                    associated_sites=None,
+                    service_sites=None,
+                    ccTLDs={
+                        "https://primary.ca": ["https://primary.com"]
+                    }
+                    )
+        }
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, [])
+    
     def test_expected_esld(self):
         json_dict = {
             "sets":
@@ -648,39 +735,39 @@ def mock_open_and_load_json(*args, **kwargs):
         def __init__(self, json):
             self.json = json
     
-    if args[0] == 'https://primary1.com/.well-known/first-party-set':
+    if args[0] == 'https://primary1.com/.well-known/first-party-set.json':
         return {
             "primary": "https://primary1.com",
             "associatedSites": ["https://not-in-list.com"]
         }
-    elif args[0] == 'https://expected-associated.com/.well-known/first-party-set':
+    elif args[0] == 'https://expected-associated.com/.well-known/first-party-set.json':
         return {
             "primary": "https://primary1.com"
         }
-    elif args[0] == 'https://primary2.com/.well-known/first-party-set':
+    elif args[0] == 'https://primary2.com/.well-known/first-party-set.json':
         return {
             "primary": "https://wrong-primary.com",
             "associatedSites":["https://associated1.com"]
         }
-    elif args[0] == 'https://associated1.com/.well-known/first-party-set':
+    elif args[0] == 'https://associated1.com/.well-known/first-party-set.json':
         return {
             "primary": "https://primary2.com"
         }
-    elif args[0] == 'https://primary3.com/.well-known/first-party-set':
+    elif args[0] == 'https://primary3.com/.well-known/first-party-set.json':
         return {
             "primary": "https://primary3.com",
             "associatedSites": ["https://associated2.com"]
         }
-    elif args[0] == 'https://associated2.com/.well-known/first-party-set':
+    elif args[0] == 'https://associated2.com/.well-known/first-party-set.json':
         return {
             "primary": "https://wrong-primary.com"
         }
-    elif args[0] == 'https://primary4.com/.well-known/first-party-set':
+    elif args[0] == 'https://primary4.com/.well-known/first-party-set.json':
         return {
             "primary": "https://primary4.com",
             "associatedSites": ["https://associated3.com"]
         }
-    elif args[0] == 'https://associated3.com/.well-known/first-party-set':
+    elif args[0] == 'https://associated3.com/.well-known/first-party-set.json':
         return {
             "primary": "https://primary4.com"
         }
@@ -983,7 +1070,7 @@ class MockTestsClass(unittest.TestCase):
         self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, ["The following member(s) of " +
         "associatedSites were not present in both the changelist and " + 
-        ".well-known/first-party-sets file: ['https://expected-associated.com'"
+        ".well-known/first-party-set.json file: ['https://expected-associated.com'"
         + ", 'https://not-in-list.com']"])
     
     @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
@@ -1015,7 +1102,7 @@ class MockTestsClass(unittest.TestCase):
         self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, ["The following member(s) of " +
         "primary were not present in both the changelist and " + 
-        ".well-known/first-party-sets file: ['https://primary2.com'"
+        ".well-known/first-party-set.json file: ['https://primary2.com'"
         + ", 'https://wrong-primary.com']"])
 
     @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 

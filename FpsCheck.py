@@ -16,6 +16,7 @@ import requests
 from FpsSet import FpsSet
 from jsonschema import validate
 from urllib.request import urlopen
+from urllib.request import Request
 from publicsuffix2 import PublicSuffixList
 
 
@@ -45,7 +46,7 @@ class FpsCheck:
         self.icanns = icanns
         self.error_list = []
 
-    def validate_schema(self):
+    def validate_schema(self, schema_file):
         """Validates the canonical sites list
 
         Calls the validate function from the jsonschema package on the input 
@@ -59,7 +60,7 @@ class FpsCheck:
             jsonschema.exceptions.ValidationError if the schema does not match 
             the format stored in SCHEMA 
         """
-        with open('SCHEMA.json') as f:
+        with open(schema_file) as f:
             SCHEMA = json.loads(f.read())
         validate(self.fps_sites, schema = SCHEMA)
 
@@ -302,7 +303,8 @@ class FpsCheck:
         Args:
             url: a domain that we want to load the json from
         """
-        with urlopen(url) as json_file:
+        req = Request(url=url, headers={'User-Agent': 'Chrome'})
+        with urlopen(req) as json_file:
             return json.load(json_file)
 
     def check_list_sites(self, primary, site_list):
@@ -321,14 +323,14 @@ class FpsCheck:
             None
         """
         for site in site_list:
-            url = site + "/.well-known/first-party-set"
+            url = site + "/.well-known/first-party-set.json"
             try:
                 json_schema = self.open_and_load_json(url)
                 if 'primary' not in json_schema.keys():
                     self.error_list.append(
                         "The listed associated site site did not have primary"
-                        + " as a key in its .well-known/first-party-set file: "
-                        + site)
+                        + " as a key in its .well-known/first-party-set.json "
+                        "file: " + site)
                 elif json_schema['primary'] != primary:
                     self.error_list.append("The listed associated site "
                     + "did not have " + primary + " listed as its primary: " 
@@ -356,7 +358,7 @@ class FpsCheck:
         # Check the schema to ensure consistency
         for primary in check_sets:
             # First we check the primary sites
-            url = primary + "/.well-known/first-party-set"
+            url = primary + "/.well-known/first-party-set.json"
             # Read the well-known files and check them against the schema we 
             # have stored
             try:
@@ -384,7 +386,7 @@ class FpsCheck:
                     if field_sym_difference:
                         self.error_list.append("The following member(s) of " 
                         + field + " were not present in both the changelist "
-                        + "and .well-known/first-party-sets file: " + 
+                        + "and .well-known/first-party-set.json file: " + 
                         str(sorted(field_sym_difference)))
             except Exception as inst:
                 self.error_list.append(
@@ -437,16 +439,20 @@ class FpsCheck:
                                 "primary, associated site, or service site " +
                                 "within the firsty pary set for " + primary)
                     # check the validity of the aliases
-                    aliased_tld = aliased_site.split(".")[0]
+                    aliased_domain, aliased_tld = aliased_site.split(".", 1)
+                    if aliased_tld in self.icanns:
+                        icann_check = self.icanns.union({"com"})
+                    else:
+                        icann_check = self.icanns
                     plus1s = [(site, site.split(".")[0], site.split(".")[-1])
                               for site in curr_set.ccTLDs[aliased_site]]
                     for eSLD in plus1s:
-                        if eSLD[1] != aliased_tld:
+                        if eSLD[1] != aliased_domain:
                             self.error_list.append(
                                 "The following top level domain must match: " 
                                 + aliased_site + ", but is instead: " 
                                 + eSLD[0])
-                        if eSLD[2] not in self.icanns:
+                        if eSLD[2] not in icann_check:
                             self.error_list.append(
                                 "The provided country code: " + eSLD[2] + 
                                 ", in: " + eSLD[0] + 
@@ -471,6 +477,8 @@ class FpsCheck:
         exception_retries = "Max retries exceeded with url: /robots.txt"
         exception_timeout = "Read timed out. (read timeout=10)"
         for primary in check_sets:
+            if not check_sets[primary].service_sites:
+                continue
             for service_site in check_sets[primary].service_sites:
                 robot_site = service_site + "/robots.txt"
                 try:
@@ -513,6 +521,8 @@ class FpsCheck:
         exception_retries = "Max retries exceeded with url: /ads.txt"
         exception_timeout = "Read timed out. (read timeout=10)"
         for primary in check_sets:
+            if not check_sets[primary].service_sites:
+                continue
             for service_site in check_sets[primary].service_sites:
                 ads_site = service_site + "/ads.txt"
                 try:
@@ -546,6 +556,8 @@ class FpsCheck:
         exception_retries = "Max retries exceeded with url: /"
         exception_timeout = "Read timed out. (read timeout=10)"
         for primary in check_sets:
+            if not check_sets[primary].service_sites:
+                continue
             for service_site in check_sets[primary].service_sites:
                 try:
                     r = requests.get(service_site, timeout=10)
