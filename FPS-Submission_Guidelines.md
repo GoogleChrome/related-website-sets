@@ -221,9 +221,10 @@ The /.well-known/first-party-set.json file for set members must follow the schem
 ## Subset-level technical validation ##
 
 Additionally, more granular technical checks will also run on GitHub for service domains and ccTLD variants in the submissions. 
+
 Service Domains must satisfy the following conditions:
 	<ul>
-		<li>Must not have robots.txt, or have a robots.txt with a ["no index"](https://developers.google.com/search/docs/advanced/crawling/block-indexing) header. </li>
+		<li>Must not be crawlable. Service domains must have an X-Robots-Tag containing a 'noindex' or 'none' [value](https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag#directives).</li>
 		<li>Must not have ads.txt.</li>
 <li>Must have a homepage that redirects to a different domain or results in 4xx (client error) or 5xx (server error).</li>
 	</ul>

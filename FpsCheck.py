@@ -329,8 +329,8 @@ class FpsCheck:
                 if 'primary' not in json_schema.keys():
                     self.error_list.append(
                         "The listed associated site site did not have primary"
-                        + " as a key in its .well-known/first-party-set.json file: "
-                        + site)
+                        + " as a key in its .well-known/first-party-set.json "
+                        + "file: " + site)
                 elif json_schema['primary'] != primary:
                     self.error_list.append("The listed associated site "
                     + "did not have " + primary + " listed as its primary: " 
@@ -480,22 +480,23 @@ class FpsCheck:
             if not check_sets[primary].service_sites:
                 continue
             for service_site in check_sets[primary].service_sites:
-                robot_site = service_site + "/robots.txt"
                 try:
-                    r = requests.get(robot_site, timeout=10)
-                    if r.status_code == 200:
-                        r_service = requests.get(service_site, timeout=10)
-                        if 'X-Robots-Tag' not in r_service.headers:
+                    r_service = requests.get(service_site, timeout=10)
+                    if 'X-Robots-Tag' not in r_service.headers:
+                        self.error_list.append("The service site " + 
+                        service_site + " does not have an X-Robots-Tag in its "
+                         + "header")
+                    else:
+                        robots_tag = r_service.headers['X-Robots-Tag']
+                        if ':' in robots_tag:
                             self.error_list.append("The service site " + 
-                            service_site + " has a robots.txt file, " + 
-                            "but does not have " + 
-                            "X-Robots-Tag in its header")
-                        else:
-                            if r_service.headers['X-Robots-Tag'] != 'noindex':
-                                self.error_list.append(
-                                    "The service site " + service_site + 
-                                    " has a robots.txt file, but does not have"
-                                    + " a no-index tag in its header")
+                                service_site + " contains an 'X-Robots-Tag' " +
+                                "that does not meet the policy requirements")
+                        elif 'none' not in robots_tag and 'noindex' not in robots_tag:
+                                    self.error_list.append("The service site " 
+                                        + service_site + " does not have a " +
+                                        "'noindex' or 'none' tag in its header"
+                                        )
                 except Exception as inst:
                     if exception_retries not in str(inst):
                         if exception_timeout not in str(inst):
