@@ -46,7 +46,7 @@ class FpsCheck:
         self.icanns = icanns
         self.error_list = []
 
-    def validate_schema(self):
+    def validate_schema(self, schema_file):
         """Validates the canonical sites list
 
         Calls the validate function from the jsonschema package on the input 
@@ -60,7 +60,7 @@ class FpsCheck:
             jsonschema.exceptions.ValidationError if the schema does not match 
             the format stored in SCHEMA 
         """
-        with open('SCHEMA.json') as f:
+        with open(schema_file) as f:
             SCHEMA = json.loads(f.read())
         validate(self.fps_sites, schema = SCHEMA)
 
@@ -329,8 +329,8 @@ class FpsCheck:
                 if 'primary' not in json_schema.keys():
                     self.error_list.append(
                         "The listed associated site site did not have primary"
-                        + " as a key in its .well-known/first-party-set.json file: "
-                        + site)
+                        + " as a key in its .well-known/first-party-set.json "
+                        "file: " + site)
                 elif json_schema['primary'] != primary:
                     self.error_list.append("The listed associated site "
                     + "did not have " + primary + " listed as its primary: " 
