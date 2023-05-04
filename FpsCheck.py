@@ -46,7 +46,7 @@ class FpsCheck:
         self.icanns = icanns
         self.error_list = []
 
-    def validate_schema(self):
+    def validate_schema(self, schema_file):
         """Validates the canonical sites list
 
         Calls the validate function from the jsonschema package on the input 
@@ -60,7 +60,7 @@ class FpsCheck:
             jsonschema.exceptions.ValidationError if the schema does not match 
             the format stored in SCHEMA 
         """
-        with open('SCHEMA.json') as f:
+        with open(schema_file) as f:
             SCHEMA = json.loads(f.read())
         validate(self.fps_sites, schema = SCHEMA)
 
