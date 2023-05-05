@@ -3,6 +3,7 @@ import sys
 from jsonschema import ValidationError
 from publicsuffix2 import PublicSuffixList
 from unittest import mock
+from requests import structures
 
 sys.path.append('../first-party-sets')
 from FpsSet import FpsSet
@@ -707,7 +708,7 @@ class TestFindInvalidESLDs(unittest.TestCase):
 def mock_get(*args, **kwargs):
     class MockedGetResponse:
         def __init__(self, headers, status_code):
-            self.headers = headers
+            self.headers = structures.CaseInsensitiveDict(headers)
             self.status_code = status_code
             self.url = args[0]
 
