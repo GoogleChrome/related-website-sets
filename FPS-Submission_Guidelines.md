@@ -1,4 +1,3 @@
-# First-Party Sets Submission Guidelines 
 # Important Notice regarding Set Submissions 
 As Chrome prepares to [ship First-Party](https://groups.google.com/a/chromium.org/g/blink-dev/c/7_6JDIfE1as) Sets to General Availability (targeting a phased roll-out beginning Chrome 113),  we will shift from “testing” to “live” for First-Party Sets submissions. Please note key dates below as they relate to when your submissions will be applied to Stable behavior in Chrome:
 <ul>
@@ -9,7 +8,7 @@ As Chrome prepares to [ship First-Party](https://groups.google.com/a/chromium.or
 # Overview
 First-Party Sets ("FPS") provides a framework for developers to declare relationships among sites, to enable limited cross-site cookie access for specific, user-facing purposes. This framework may help user agents, such as the Chrome browser ("Chrome"), to decide when to allow or deny a site access to their cookies when in a third-party context.
 FPS is a [Privacy Sandbox](https://privacysandbox.com/) proposal being incubated in the W3C's [WICG](https://www.w3.org/community/wicg/). For a full overview, consult the [explainer](https://github.com/privacycg/first-party-sets). The First-Party Sets Submission Guidelines ("Guidelines") are put forth by Chrome to define requirements and expectations for sets submitted by developers. Chrome remains committed to pursuing [standardization](https://www.w3.org/standards/) of FPS through engaging with developers, other browser vendors, and other interested parties.
- # Definitions 
+# Definitions 
 A <b>First-Party Set</b>, or <b>set</b>, is a collection of domains that is subject to the <a href="#set-formation-requirements">formation requirements</a>, has passed the <a href="#set-validation-requirements">validation requirements</a>, and has been successfully submitted to the canonical FPS list. 
 
 A <b>subset</b> is a defined use case within a set. Set members, or domains, will always be part of a subset. 
@@ -42,9 +41,29 @@ ccTLD (country code top-level domain) variants for the subsets above are also su
 | ccTLD | <ul><li>Domains that represent variations for a particular country or a geographical area. </li><li>ccTLD variants must share an identical eSLD with its equivalent domain.</li><li>The eTLD of each ccTLD variant must be present in the ccTLD section of the <a href="https://publicsuffix.org">Public Suffix List (PSL)</a>.</li><li>ccTLD variants must share a common owner with its equivalent domain.</li>|
 | ----------- | :------------ |
 
-## Set submissions ##
+## Set submissions
 
 New submissions to the canonical FPS list must be filed as <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request">pull requests (PRs)</a> on GitHub. Submitters should ensure that submissions follow the schema template provided below. Anyone with a <a href="https://docs.github.com/en/get-started/learning-about-github/types-of-github-accounts">GitHub account</a> may make a submission.
+	
+Here are the specific steps necessary to submit a First Party Set (FPS):
+1. Establish a <a href="https://docs.github.com/en/get-started/learning-about-github/types-of-github-accounts">GitHub account</a> (if you don’t already have one).
+2. Sign the <a href="https://cla.developers.google.com/">Google Contributor License Agreement (CLA)</a> (if you haven’t already done so).
+3. Create the first_party_sets.json file for the [set primary](#setprimary) domain and for the [set member](#memb) domains in accordance with the Set Formation Requirements.
+4. Place this [set primary](#setprimary) first_party_sets.json file under "https://\<set_primary_domain\>/.well-known" and the [set member](#setmember) first_party_sets.json file under each of the [set member](#setmember) domains under https://\<set_member_domain\>/.well-known. This step is necessary prior to the pull request step below.
+5. Note the set member’s first_party_sets.json file is NOT entered into the canonical FPS list, it only exists on the [set member](#setmember) domains for purposes of checking the technical validity of the [set primary](#setprimary) domain’s FPS.
+6. Fork the GoogleChrome/first-party-sets repository under your GitHub account.
+7. Edit the canonical FPS list (first_party_sets.JSON) file in the forked repository. The canonical FPS list is maintained in alphabetical order sorted by set primary domain name. Find the appropriate location and insert the contents of the [set primary](#setprimary) domain first_party_sets.json file at this location.
+8. Create a pull request for the forked repository requesting a merge to the GoogleChrome/first-party-sets main branch and submit the pull request.
+9. The workflow will perform the necessary checks and report the success or failure of the pull request.
+
+Here are the specific steps necessary to update an FPS for a set primary domain:
+
+1. Sync your fork with the GoogleChrome/first-party-sets repository main branch.
+2. Update the first_party_sets.json file for the set primary domain and for the [set member](#setmember) domains in accordance with the Set Formation Requirements.
+3. Place this [set primary](#setprimary) first_party_sets.json file under "https://\<set_primary_domain\>/.well-known" and the set members first_party_sets.json file under each of the [set member](#setmember) domains under https://\<set_member_domain\>/.well-known. Remember to add or remove this file from any [set member](#setmember) domains that have been added or removed. This step is necessary prior to the pull request step below
+4. Edit the canonical FPS list (first_party_sets.JSON) file in the forked repository. Locate the [set primary](#setprimary) domain FPS in this file and replace the contents with the updated [set primary](#setprimary) FPS.
+5. Create a pull request for the forked repository requesting a merge to the GoogleChrome/first-party-sets main branch and submit the pull request.
+6. The workflow will perform the necessary checks and report the success or failure of the pull request.
 
 Modifications to existing sets, including deletions, must also be submitted as new PRs against the canonical FPS list.
 The canonical FPS list will be validated against this schema whenever a user files their PR:
@@ -131,16 +150,14 @@ It is important that users' interests are protected from invalid submissions, an
 ## Set-level technical validation ##
 
 Upon submission of a PR, a series of technical checks will run on GitHub to verify the following: 
-	<ul>
-<li>Each domain must be prefixed by the https:// scheme. Sets may only include domains served over secure (https://) schemes. </li>
-<li>Each domain must be a <a href="https://github.com/publicsuffix/list/wiki/Format#:~:text=The%20registered%20or%20registrable%20domain%20is%20the%20public%20suffix%20plus%20one%20additional%20label.">registrable domain</a> (i.e., eTLD+1 using a snapshot (refreshed every 6 months) of the <a href="https://publicsuffix.org/">Public Suffix List (PSL)</a> to determine eTLD) at the time of submission. </li>
-		<li>Each domain must not already be present in the <a href="https://github.com/googlechrome/first-party-sets/blob/main/first_party_sets.JSON">canonical FPS list.</a></li>
-		<li>Each domain must satisfy the /.well-known/ metadata requirement:</li>
-		<ul>
-<li>The /.well-known/ metadata requirement demonstrates that the submitter has administrative access to the domains present in the set, since administrative access is required to modify the /.well-known/ file. This will help prevent unauthorized actors from adding domains to a set. </li>
-<li>The [set primary](#setprimary) domain must serve a JSON file at /.well-known/first-party-set.json. The contents of the file must be identical to the submission. Each [set member](#setmember) domain must also serve a JSON file at /.well-known/first-party-set.json. The contents of the file must name the [set primary](#setprimary) domain. These files must be maintained for the duration of the domain’s inclusion in the set.</li>
-			<li>Example for  primary.com/.well-known/first-party-set.json:</li>
-		</ul></ul>
+
+- Each domain must be prefixed by the https:// scheme. Sets may only include domains served over secure (https://) schemes.
+- Each domain must be a <a href="https://github.com/publicsuffix/list/wiki/Format#:~:text=The%20registered%20or%20registrable%20domain%20is%20the%20public%20suffix%20plus%20one%20additional%20label.">registrable domain</a> (i.e., eTLD+1 using a snapshot (refreshed every 6 months) of the <a href="https://publicsuffix.org/">Public Suffix List (PSL)</a> to determine eTLD) at the time of submission.
+- Each domain must not already be present in the <a href="https://github.com/googlechrome/first-party-sets/blob/main/first_party_sets.JSON">canonical FPS list.</a>
+- Each domain must satisfy the /.well-known/ metadata requirement:
+	- The /.well-known/ metadata requirement demonstrates that the submitter has administrative access to the domains present in the set, since administrative access is required to modify the /.well-known/ file. This will help prevent unauthorized actors from adding domains to a set.
+	- The [set primary](#setprimary) domain must serve a JSON file at /.well-known/first-party-set.json. The contents of the file must be identical to the submission. Each [set member](#setmember) domain must also serve a JSON file at /.well-known/first-party-set.json. The contents of the file must name the [set primary](#setprimary) domain. These files must be maintained for the duration of the domain’s inclusion in the set.
+	- Example for  primary.com/.well-known/first-party-set.json:
 	
 ```json
 {
