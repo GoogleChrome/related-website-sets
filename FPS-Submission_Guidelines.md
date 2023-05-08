@@ -42,7 +42,7 @@ ccTLD (country code top-level domain) variants for the subsets above are also su
 | ccTLD | <ul><li>Domains that represent variations for a particular country or a geographical area. </li><li>ccTLD variants must share an identical eSLD with its equivalent domain.</li><li>The eTLD of each ccTLD variant must be present in the ccTLD section of the <a href="https://publicsuffix.org">Public Suffix List (PSL)</a>.</li><li>ccTLD variants must share a common owner with its equivalent domain.</li>|
 | ----------- | :------------ |
 
-## Set submissions
+## Set submissions ##
 
 New submissions to the canonical FPS list must be filed as <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request">pull requests (PRs)</a> on GitHub. Submitters should ensure that submissions follow the schema template provided below. Anyone with a <a href="https://docs.github.com/en/get-started/learning-about-github/types-of-github-accounts">GitHub account</a> may make a submission.
 	
