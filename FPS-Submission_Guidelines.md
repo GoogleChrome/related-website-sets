@@ -57,7 +57,7 @@ Here are the specific steps necessary to submit a First Party Set (FPS):
 8. Create a pull request for the forked repository requesting a merge to the GoogleChrome/first-party-sets main branch and submit the pull request.
 9. The workflow will perform the necessary checks and report the success or failure of the pull request.
 
-Here are the specific steps necessary to update an FPS for a set primary domain:
+Here are the specific steps necessary to update an FPS:
 
 1. Sync your fork with the GoogleChrome/first-party-sets repository main branch.
 2. Update the first_party_sets.json file for the set primary domain and for the [set member](#setmember) domains in accordance with the Set Formation Requirements.
