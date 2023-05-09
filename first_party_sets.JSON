@@ -1,5 +1,16 @@
 {
   "sets": [
-    
+    {
+      "contact": "dmarti@raptive.com",
+      "primary": "https://cafemedia.com",
+      "associatedSites": [
+        "https://cardsayings.net",
+        "https://nourishingpursuits.com"
+      ],
+      "rationaleBySite": {
+        "https://cardsayings.net": "Co-branded content site",
+        "https://nourishingpursuits.com": "Co-branded content site"
+      }
+    }
   ]
 }
