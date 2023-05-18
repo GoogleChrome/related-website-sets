@@ -21,30 +21,45 @@ from publicsuffix2 import PublicSuffixList
 
 def main():
     args = sys.argv[1:]
-    inputFile = 'first_party_sets.JSON'
-    inputPrefix = ''
-    opts, _ = getopt.getopt(args, "i:", ["data_directory="])
+    input_file = 'first_party_sets.JSON'
+    input_prefix = ''
+    with_diff = False
+    opts, _ = getopt.getopt(args, "i:", ["data_directory=", "with_diff="])
     for opt, arg in opts:
         if opt == '-i':
-            inputFile = arg
+            input_file = arg
         if opt == '--data_directory':
-            inputPrefix = arg
+            input_prefix = arg
+        if opt == '--with_diff':
+            with_diff = arg.lower == "true"
 
-    # Open the canonical sites, and load the json
-    with open(inputFile) as f:
+    # Open and load the json of the new list
+    with open(input_file) as f:
         try:
             fps_sites = json.load(f)
         except Exception as inst:
         # If the file cannot be loaded, we will not run any other checks
-            print("There was an error when loading "+ inputFile + 
+            print("There was an error when loading "+ input_file + 
                   "\nerror was: " + inst)
-            exit()      
+            exit()  
+    # Open and load the json of the old list, if there 
+    if with_diff:   
+        with open(os.path.join(input_prefix,'first_party_sets.JSON')) as f:
+            try:
+                prev_sites = json.load(f)
+            except Exception as inst:
+            # If the file cannot be loaded, we will not run any other checks
+                print("There was an error when loading " +
+                    os.path.join(input_prefix,'first_party_sets.JSON') + 
+                    "\nerror was: " + inst)
+                exit()
+     
 
     # Load the etlds from the public suffix list
-    etlds = PublicSuffixList(psl_file = os.path.join(inputPrefix,'effective_tld_names.dat'))
+    etlds = PublicSuffixList(psl_file = os.path.join(input_prefix,'effective_tld_names.dat'))
     # Get all the ICANN domains
     icanns = set()
-    with open(os.path.join(inputPrefix,'ICANN_domains')) as f:
+    with open(os.path.join(input_prefix,'ICANN_domains')) as f:
         for line in f:
             l = line.strip()
             icanns.add(l)
@@ -53,7 +68,7 @@ def main():
     error_texts = []
 
     try:
-        fps_checker.validate_schema(os.path.join(inputPrefix,'SCHEMA.json'))
+        fps_checker.validate_schema(os.path.join(input_prefix,'SCHEMA.json'))
     except Exception as inst:
         # If the schema is invalid, we will not run any other checks
         print(inst)
