@@ -39,7 +39,9 @@ jobs:
         with:
           path: "results.txt"
       - name: File contents
-        run: echo '${{ steps.read_results.outputs.contents }}'
+        env:
+          CONTENTS: ${{ steps.read_results.outputs.contents }}
+        run: echo "$CONTENTS"
       - name: Create Comment
         if: steps.read_results.outputs.contents != 'success'
         run: |
