@@ -33,7 +33,7 @@ class TestValidateSchema(unittest.TestCase):
         fp = FpsCheck(fps_sites=json_dict,
                       etlds=None, icanns=set(['ca']))
         with self.assertRaises(ValidationError):
-            fp.validate_schema()
+            fp.validate_schema("SCHEMA.json")
 
     def test_no_rationaleBySite(self):
         json_dict = {
@@ -53,7 +53,7 @@ class TestValidateSchema(unittest.TestCase):
         fp = FpsCheck(fps_sites=json_dict,
                       etlds=None, icanns=set(['ca']))
         with self.assertRaises(ValidationError):
-            fp.validate_schema()
+            fp.validate_schema("SCHEMA.json")
 
     def test_invalid_field_type(self):
         json_dict = {
@@ -71,7 +71,7 @@ class TestValidateSchema(unittest.TestCase):
         fp = FpsCheck(fps_sites=json_dict,
                       etlds=None, icanns=set(['ca']))
         with self.assertRaises(ValidationError):
-            fp.validate_schema()
+            fp.validate_schema("SCHEMA.json")
     def test_no_contact(self):
        json_dict = {
             "sets":
@@ -93,7 +93,7 @@ class TestValidateSchema(unittest.TestCase):
        fp = FpsCheck(fps_sites=json_dict,
                       etlds=None, icanns=set(['ca']))
        with self.assertRaises(ValidationError):
-            fp.validate_schema()
+            fp.validate_schema("SCHEMA.json")
 
 class TestLoadSets(unittest.TestCase):
     def test_collision_case(self):
@@ -718,8 +718,8 @@ def mock_get(*args, **kwargs):
         return MockedGetResponse({"X-Robots-Tag":"foo"}, 200)
     elif args[0] == 'https://service3.com':
         return MockedGetResponse({"X-Robots-Tag":"noindex"}, 200)
-    elif args[0] == 'https://service4.com/robots.txt':
-        return MockedGetResponse({}, 400)
+    elif args[0] == 'https://service4.com':
+        return MockedGetResponse({"X-Robots-Tag":"none"}, 200)
     elif args[0] == 'https://service5.com/ads.txt':
         return MockedGetResponse({}, 400)
     elif args[0] == 'https://service6.com':
@@ -807,8 +807,9 @@ class MockTestsClass(unittest.TestCase):
         }
         self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, ["The service site " +
-        "https://service1.com has a robots.txt file, but " +
-        "does not have X-Robots-Tag in its header"])
+        "https://service1.com " +
+        "does not have an X-Robots-Tag in its header"])
+        
     @mock.patch('requests.get', side_effect=mock_get)
     def test_robots_wrong_tag(self, mock_get):
         # Assert requests.get calls
@@ -837,8 +838,8 @@ class MockTestsClass(unittest.TestCase):
         }
         self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, ["The service site " +
-        "https://service2.com has a robots.txt file, but " +
-        "does not have a no-index tag in its header"])
+        "https://service2.com " +
+        "does not have a 'noindex' or 'none' tag in its header"])
     @mock.patch('requests.get', side_effect=mock_get)
     def test_robots_expected_tag(self, mock_get):
         # Assert requests.get calls
@@ -869,7 +870,7 @@ class MockTestsClass(unittest.TestCase):
         self.assertEqual(fp.error_list, [])
 
     @mock.patch('requests.get', side_effect=mock_get)
-    def test_robots_wrong_tag(self, mock_get):
+    def test_robots_none_tag(self, mock_get):
         # Assert requests.get calls
         json_dict = {
             "sets":
