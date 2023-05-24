@@ -18,6 +18,17 @@ import sys
 import os
 from publicsuffix2 import PublicSuffixList
 
+def find_diff_sets(old_sets, new_sets):
+    diff_sets = {}
+    subtracted_sets = {}
+    difference = set(old_sets)^set(new_sets)
+    for diff in difference:
+        if diff in new_sets:
+            diff_sets[diff] = new_sets[diff]
+        else:
+            subtracted_sets[diff] = old_sets[diff]
+    return diff_sets, subtracted_sets
+
 
 def main():
     args = sys.argv[1:]
@@ -42,17 +53,6 @@ def main():
             print("There was an error when loading "+ input_file + 
                   "\nerror was: " + inst)
             exit()  
-    # Open and load the json of the old list, if there 
-    if with_diff:   
-        with open(os.path.join(input_prefix,'first_party_sets.JSON')) as f:
-            try:
-                prev_sites = json.load(f)
-            except Exception as inst:
-            # If the file cannot be loaded, we will not run any other checks
-                print("There was an error when loading " +
-                    os.path.join(input_prefix,'first_party_sets.JSON') + 
-                    "\nerror was: " + inst)
-                exit()
      
 
     # Load the etlds from the public suffix list
@@ -75,10 +75,24 @@ def main():
         exit()
 
     check_sets = {}
-    try:
+    # If called with with_diff, we must determine the sets that are different 
+    # to properly construct our check_sets
+    if with_diff:   
+        with open(os.path.join(input_prefix,'first_party_sets.JSON')) as f:
+            try:
+                old_sites = json.load(f)
+            except Exception as inst:
+            # If the file cannot be loaded, we will not run any other checks
+                print("There was an error when loading " +
+                    os.path.join(input_prefix,'first_party_sets.JSON') + 
+                    "\nerror was: " + inst)
+                exit()
+        old_checker = FpsCheck(old_sites, etlds, icanns)
+        check_sets, _ = find_diff_sets(old_checker.load_sets(), fps_checker.load_sets())
+
+    else:
         check_sets = fps_checker.load_sets()
-    except Exception as inst:
-        error_texts.append(inst)
+    
 
     check_list = [
         fps_checker.has_all_rationales, 

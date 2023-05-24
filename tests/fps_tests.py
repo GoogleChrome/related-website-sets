@@ -1,5 +1,6 @@
 import unittest
 import sys
+import json
 from jsonschema import ValidationError
 from publicsuffix2 import PublicSuffixList
 from unittest import mock
@@ -8,6 +9,7 @@ from requests import structures
 sys.path.append('../first-party-sets')
 from FpsSet import FpsSet
 from FpsCheck import FpsCheck
+from check_sites import find_diff_sets
 
 class TestValidateSchema(unittest.TestCase):
     """A test suite for the validate_schema function of FpsCheck"""
@@ -703,6 +705,40 @@ class TestFindInvalidESLDs(unittest.TestCase):
         }
         self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, [])
+
+class TestFindDiff(unittest.TestCase):
+    def test_basic_find_diff(self):
+        old_json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "ccTLDs": {
+                        "https://primary.com": ["https://primary.ca"]
+                    }
+                }
+            ]
+        }
+        new_json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary2.com",
+                    "ccTLDs": {
+                        "https://primary2.com": ["https://primary2.ca"]
+                    }
+                }
+            ]
+        }
+        old_fp = FpsCheck(fps_sites=old_json_dict,
+                     etlds=None,
+                     icanns=set(["ca"]))
+        new_fp = FpsCheck(fps_sites=new_json_dict,
+                          etlds=None,
+                          icanns=["ca"])
+        diff_sets, _ = find_diff_sets(old_fp.load_sets(), new_fp.load_sets())
+        self.assertEqual(diff_sets, new_fp.load_sets())
+        
 
 # This method will be used in tests below to mock get requests
 def mock_get(*args, **kwargs):
