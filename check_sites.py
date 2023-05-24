@@ -89,8 +89,11 @@ def main():
                 exit()
         old_checker = FpsCheck(old_sites, etlds, icanns)
         check_sets, _ = find_diff_sets(old_checker.load_sets(), fps_checker.load_sets())
+        # TODO: add variable and check for subtracted_sets in case of user 
+        # removing old set from the list
     else:
         check_sets = fps_checker.load_sets()
+
     
     # Run rationale check separately from check_list since it takes no argument
     fps_checker.has_all_rationales
