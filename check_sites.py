@@ -42,7 +42,7 @@ def main():
         if opt == '--data_directory':
             input_prefix = arg
         if opt == '--with_diff':
-            with_diff = arg.lower == "true"
+            with_diff = arg.lower() == "true"
 
     # Open and load the json of the new list
     with open(input_file) as f:
@@ -89,13 +89,14 @@ def main():
                 exit()
         old_checker = FpsCheck(old_sites, etlds, icanns)
         check_sets, _ = find_diff_sets(old_checker.load_sets(), fps_checker.load_sets())
-
     else:
         check_sets = fps_checker.load_sets()
     
+    # Run rationale check separately from check_list since it takes no argument
+    fps_checker.has_all_rationales
 
+    # Run rest of checks
     check_list = [
-        fps_checker.has_all_rationales, 
         fps_checker.check_exclusivity,
         fps_checker.find_non_https_urls, 
         fps_checker.find_invalid_eTLD_Plus1,
@@ -110,7 +111,8 @@ def main():
         try:
             check(check_sets)
         except Exception as inst:
-            error_texts.append(inst)
+            error_texts.append("Error while processing" + check + 
+                               "\nError was: " + inst)
     # This message allows us to check the succes of our action
     if fps_checker.error_list or error_texts:
         for checker_error in fps_checker.error_list:
