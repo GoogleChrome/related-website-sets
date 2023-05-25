@@ -19,14 +19,29 @@ import os
 from publicsuffix2 import PublicSuffixList
 
 def find_diff_sets(old_sets, new_sets):
+    """Finds changes made between two dictionaries of First-Party Sets
+
+        Finds First-Party Sets that have been added or modified in old_sets
+        to create new_sets and returns them as the dictionary diff_sets. 
+        Additionally, finds First-Party Sets that have been removed from
+        old_sets to create new_sets and returns them as subtracted_sets.
+
+        Args:
+            old_sets: a dictionary of primary->FpsSet
+            new_sets: a dictionary of primary->FpsSet
+        Returns:
+            diff_sets: a dictionary of primary->FpsSet
+            substracted_sets: a dictionary of primary->FpsSet
+    """
     diff_sets = {}
-    subtracted_sets = {}
-    difference = set(old_sets)^set(new_sets)
-    for diff in difference:
-        if diff in new_sets:
-            diff_sets[diff] = new_sets[diff]
-        else:
-            subtracted_sets[diff] = old_sets[diff]
+    for primary in new_sets:
+        if primary not in old_sets:
+            diff_sets[primary] = new_sets[primary]
+        elif new_sets[primary] != old_sets[primary]:
+            diff_sets[primary] = new_sets[primary]
+
+    subtracted_sets = {primary: old_sets[primary] for primary in set(old_sets) - set(new_sets)}
+
     return diff_sets, subtracted_sets
 
 
@@ -35,14 +50,14 @@ def main():
     input_file = 'first_party_sets.JSON'
     input_prefix = ''
     with_diff = False
-    opts, _ = getopt.getopt(args, "i:", ["data_directory=", "with_diff="])
+    opts, _ = getopt.getopt(args, "i:", ["data_directory=", "with_diff"])
     for opt, arg in opts:
         if opt == '-i':
             input_file = arg
         if opt == '--data_directory':
             input_prefix = arg
         if opt == '--with_diff':
-            with_diff = arg.lower() == "true"
+            with_diff = "true"
 
     # Open and load the json of the new list
     with open(input_file) as f:
@@ -52,7 +67,7 @@ def main():
         # If the file cannot be loaded, we will not run any other checks
             print("There was an error when loading "+ input_file + 
                   "\nerror was: " + inst)
-            exit()  
+            return  
      
 
     # Load the etlds from the public suffix list
@@ -72,7 +87,7 @@ def main():
     except Exception as inst:
         # If the schema is invalid, we will not run any other checks
         print(inst)
-        exit()
+        return
 
     check_sets = {}
     # If called with with_diff, we must determine the sets that are different 
@@ -86,7 +101,7 @@ def main():
                 print("There was an error when loading " +
                     os.path.join(input_prefix,'first_party_sets.JSON') + 
                     "\nerror was: " + inst)
-                exit()
+                return
         old_checker = FpsCheck(old_sites, etlds, icanns)
         check_sets, _ = find_diff_sets(old_checker.load_sets(), fps_checker.load_sets())
         # TODO: add variable and check for subtracted_sets in case of user 
@@ -94,12 +109,9 @@ def main():
     else:
         check_sets = fps_checker.load_sets()
 
-    
-    # Run rationale check separately from check_list since it takes no argument
-    fps_checker.has_all_rationales
-
     # Run rest of checks
     check_list = [
+        fps_checker.has_all_rationales,
         fps_checker.check_exclusivity,
         fps_checker.find_non_https_urls, 
         fps_checker.find_invalid_eTLD_Plus1,
@@ -114,8 +126,7 @@ def main():
         try:
             check(check_sets)
         except Exception as inst:
-            error_texts.append("Error while processing" + check + 
-                               "\nError was: " + inst)
+            error_texts.append(inst)
     # This message allows us to check the succes of our action
     if fps_checker.error_list or error_texts:
         for checker_error in fps_checker.error_list:

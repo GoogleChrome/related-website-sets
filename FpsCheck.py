@@ -93,7 +93,7 @@ class FpsCheck:
         self.error_list += load_sets_errors
         return check_sets
 
-    def has_all_rationales(self):
+    def has_all_rationales(self, check_sets):
         """Checks for the presence of all rationaleBySite elements in schema
 
         Reads the associated sites and service sites from all FpsSets, and 
@@ -108,12 +108,9 @@ class FpsCheck:
             None
         """
         for fpset in self.fps_sites['sets']:
-            sites = fpset.get("associatedSites")
-            service_sites = fpset.get("serviceSites")
-            if sites:
-                sites = sites + service_sites if service_sites else sites
-            else:
-                sites = service_sites
+            if fpset.get("primary") not in  check_sets:
+                continue
+            sites = fpset.get("associatedSites", []) + fpset.get("serviceSites", [])
             rationales = fpset.get('rationaleBySite', None)
             if sites and rationales!=None:
                 for site in sites:

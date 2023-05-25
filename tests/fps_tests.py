@@ -707,37 +707,181 @@ class TestFindInvalidESLDs(unittest.TestCase):
         self.assertEqual(fp.error_list, [])
 
 class TestFindDiff(unittest.TestCase):
-    def test_basic_find_diff(self):
-        old_json_dict = {
-            "sets":
-            [
-                {
-                    "primary": "https://primary.com",
-                    "ccTLDs": {
+    def test_unchanged_sets(self):
+        old_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com", 
+                    associated_sites=None,
+                    service_sites=None,
+                    ccTLDs={
                         "https://primary.com": ["https://primary.ca"]
                     }
-                }
-            ]
+                    )
         }
-        new_json_dict = {
-            "sets":
-            [
-                {
-                    "primary": "https://primary2.com",
-                    "ccTLDs": {
+        new_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com", 
+                    associated_sites=None,
+                    service_sites=None,
+                    ccTLDs={
+                        "https://primary.com": ["https://primary.ca"]
+                    }
+                    )
+        }
+        diff_sets, subtracted_sets = find_diff_sets(old_sets, new_sets)
+        self.assertEqual(diff_sets, {})
+        self.assertEqual(subtracted_sets, {})
+
+    def test_added_set(self):
+        old_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com", 
+                    associated_sites=None,
+                    service_sites=None,
+                    ccTLDs={
+                        "https://primary.com": ["https://primary.ca"]
+                    }
+                    )
+        }
+        new_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com", 
+                    associated_sites=None,
+                    service_sites=None,
+                    ccTLDs={
+                        "https://primary.com": ["https://primary.ca"]
+                    }
+                    ),
+            'https://primary2.com': 
+            FpsSet(
+                    primary="https://primary2.com", 
+                    associated_sites=None,
+                    service_sites=None,
+                    ccTLDs={
                         "https://primary2.com": ["https://primary2.ca"]
                     }
-                }
-            ]
+                    )
         }
-        old_fp = FpsCheck(fps_sites=old_json_dict,
-                     etlds=None,
-                     icanns=set(["ca"]))
-        new_fp = FpsCheck(fps_sites=new_json_dict,
-                          etlds=None,
-                          icanns=["ca"])
-        diff_sets, _ = find_diff_sets(old_fp.load_sets(), new_fp.load_sets())
-        self.assertEqual(diff_sets, new_fp.load_sets())
+        expected_sets = {
+            'https://primary2.com': 
+            FpsSet(
+                    primary="https://primary2.com", 
+                    associated_sites=None,
+                    service_sites=None,
+                    ccTLDs={
+                        "https://primary2.com": ["https://primary2.ca"]
+                    }
+                    )
+        }
+        diff_sets, subtracted_sets = find_diff_sets(old_sets, new_sets)
+        self.assertEqual(diff_sets, expected_sets)
+        self.assertEqual(subtracted_sets, {})
+    def test_removed_set(self):
+        old_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com", 
+                    associated_sites=None,
+                    service_sites=None,
+                    ccTLDs={
+                        "https://primary.com": ["https://primary.ca"]
+                    }
+                    ),
+            'https://primary2.com': 
+            FpsSet(
+                    primary="https://primary2.com", 
+                    associated_sites=None,
+                    service_sites=None,
+                    ccTLDs={
+                        "https://primary2.com": ["https://primary2.ca"]
+                    }
+                    )
+        }
+        new_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com", 
+                    associated_sites=None,
+                    service_sites=None,
+                    ccTLDs={
+                        "https://primary.com": ["https://primary.ca"]
+                    }
+                    )
+        }
+        expected_sets = {
+            'https://primary2.com': 
+            FpsSet(
+                    primary="https://primary2.com", 
+                    associated_sites=None,
+                    service_sites=None,
+                    ccTLDs={
+                        "https://primary2.com": ["https://primary2.ca"]
+                    }
+                    )
+        }
+        diff_sets, subtracted_sets = find_diff_sets(old_sets, new_sets)
+        self.assertEqual(diff_sets, {})
+        self.assertEqual(subtracted_sets, expected_sets)
+    def test_added_and_removed_set(self):
+        old_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com", 
+                    associated_sites=None,
+                    service_sites=None,
+                    ccTLDs={
+                        "https://primary.com": ["https://primary.ca"]
+                    }
+                    )
+        }
+        new_sets = {
+            'https://primary2.com': 
+            FpsSet(
+                    primary="https://primary2.com", 
+                    associated_sites=None,
+                    service_sites=None,
+                    ccTLDs={
+                        "https://primary2.com": ["https://primary2.ca"]
+                    }
+                    )
+        }
+        diff_sets, subtracted_sets = find_diff_sets(old_sets, new_sets)
+        self.assertEqual(diff_sets, new_sets)
+        self.assertEqual(subtracted_sets, old_sets)
+    def test_modified_set(self):
+        old_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com", 
+                    associated_sites=None,
+                    service_sites=None,
+                    ccTLDs={
+                        "https://primary.com": ["https://primary.ca"]
+                    }
+                    )
+        }
+        new_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com", 
+                    associated_sites=None,
+                    service_sites=None,
+                    ccTLDs={
+                        "https://primary.com": ["https://primary.co.uk"]
+                    }
+                    )
+        }
+        diff_sets, subtracted_sets = find_diff_sets(old_sets, new_sets)
+        self.assertEqual(diff_sets, new_sets)
+        self.assertEqual(subtracted_sets, {})
+
+
+
+        
         
 
 # This method will be used in tests below to mock get requests
