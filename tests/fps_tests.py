@@ -108,11 +108,9 @@ class TestFpsSetEqual(unittest.TestCase):
                         "https://primary.com": "https://primary.ca"
                     }, 
                     primary="https://primary.com")
-        self.assertFalse(fps_1 is fps_2)
-        self.assertTrue(fps_1 == fps_2)
-        fps_2 = fps_1
-        self.assertTrue(fps_1 is fps_2)
-        self.assertTrue(fps_1 == fps_2)
+        self.assertIsNot(fps_1, fps_2)
+        self.assertEqual(fps_1, fps_2)
+        self.assertEqual(fps_1, fps_1)
 
     def test_inequal_cases(self):
         fps_1 = FpsSet(ccTLDs={
@@ -123,21 +121,21 @@ class TestFpsSetEqual(unittest.TestCase):
                         "https://primary.com": "https://primary.co.uk"
                     }, 
                     primary="https://primary.com")
-        self.assertFalse(fps_1 == fps_2)
+        self.assertNotEqual(fps_1, fps_2)
 
         fps_2.ccTLDs = {"https://primary.com": "https://primary.ca"}
-        self.assertTrue(fps_1 == fps_2)
+        self.assertEqual(fps_1, fps_2)
 
         fps_1.associated_sites = ["https://associated1.com"]
         fps_2.associated_sites = ["https://associated2.com"]
-        self.assertFalse(fps_1 == fps_2)
+        self.assertNotEqual(fps_1, fps_2)
 
         fps_2.associated_sites = ["https://associated1.com"]
-        self.assertTrue(fps_1 == fps_2)
+        self.assertEqual(fps_1, fps_2)
 
         fps_1.service_sites = ["https://service1.com"]
         fps_2.service_sites = ["https://service2.com"]
-        self.assertFalse(fps_1 == fps_2)
+        self.assertNotEqual(fps_1, fps_2)
 
 class TestLoadSets(unittest.TestCase):
     def test_collision_case(self):
@@ -888,10 +886,6 @@ class TestFindDiff(unittest.TestCase):
         self.assertEqual(diff_sets, new_sets)
         self.assertEqual(subtracted_sets, {})
 
-
-
-        
-        
 
 # This method will be used in tests below to mock get requests
 def mock_get(*args, **kwargs):
