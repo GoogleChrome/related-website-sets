@@ -790,7 +790,7 @@ class TestFindDiff(unittest.TestCase):
                     }
                     )
         }
-        expected_sets = {
+        expected_diff_sets = {
             'https://primary2.com': 
             FpsSet(
                     primary="https://primary2.com",
@@ -800,7 +800,7 @@ class TestFindDiff(unittest.TestCase):
                     )
         }
         diff_sets, subtracted_sets = find_diff_sets(old_sets, new_sets)
-        self.assertEqual(diff_sets, expected_sets)
+        self.assertEqual(diff_sets, expected_diff_sets)
         self.assertEqual(subtracted_sets, {})
                 
     def test_removed_set(self):
@@ -829,7 +829,7 @@ class TestFindDiff(unittest.TestCase):
                     }
                     )
         }
-        expected_sets = {
+        expected_subtracted_sets = {
             'https://primary2.com': 
             FpsSet(
                     primary="https://primary2.com",
@@ -840,7 +840,7 @@ class TestFindDiff(unittest.TestCase):
         }
         diff_sets, subtracted_sets = find_diff_sets(old_sets, new_sets)
         self.assertEqual(diff_sets, {})
-        self.assertEqual(subtracted_sets, expected_sets)
+        self.assertEqual(subtracted_sets, expected_subtracted_sets)
                 
     def test_added_and_removed_set(self):
         old_sets = {
