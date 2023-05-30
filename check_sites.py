@@ -27,18 +27,15 @@ def find_diff_sets(old_sets, new_sets):
         old_sets to create new_sets and returns them as subtracted_sets.
 
         Args:
-            old_sets: a dictionary of primary->FpsSet
-            new_sets: a dictionary of primary->FpsSet
+            old_sets: Dict[string, FpsSet]
+            new_sets: Dict[string, FpsSet]
         Returns:
-            diff_sets: a dictionary of primary->FpsSet
-            substracted_sets: a dictionary of primary->FpsSet
+            Tuple[Dict[string, FpsSet], Dict[string, FpsSet]]
     """
-    diff_sets = {}
-    for primary in new_sets:
-        if primary not in old_sets:
-            diff_sets[primary] = new_sets[primary]
-        elif new_sets[primary] != old_sets[primary]:
-            diff_sets[primary] = new_sets[primary]
+    diff_sets = {primary: fps
+             for primary, fps in new_sets.items()
+             if fps != old_sets.get(primary)
+            }
 
     subtracted_sets = {primary: old_sets[primary] for primary in set(old_sets) - set(new_sets)}
 
@@ -57,7 +54,7 @@ def main():
         if opt == '--data_directory':
             input_prefix = arg
         if opt == '--with_diff':
-            with_diff = "true"
+            with_diff = True
 
     # Open and load the json of the new list
     with open(input_file) as f:

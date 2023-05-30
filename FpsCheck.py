@@ -108,7 +108,7 @@ class FpsCheck:
             None
         """
         for fpset in self.fps_sites['sets']:
-            if fpset.get("primary") not in  check_sets:
+            if fpset['primary'] not in  check_sets:
                 continue
             sites = fpset.get("associatedSites", []) + fpset.get("serviceSites", [])
             rationales = fpset.get('rationaleBySite', None)
