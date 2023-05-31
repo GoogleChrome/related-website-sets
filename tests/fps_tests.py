@@ -1,6 +1,5 @@
 import unittest
 import sys
-import json
 from jsonschema import ValidationError
 from publicsuffix2 import PublicSuffixList
 from unittest import mock
@@ -797,9 +796,7 @@ class TestFindDiff(unittest.TestCase):
                     }
                     )
         }
-        diff_sets, subtracted_sets = find_diff_sets(old_sets, new_sets)
-        self.assertEqual(diff_sets, expected_diff_sets)
-        self.assertEqual(subtracted_sets, {})
+        self.assertEqual(find_diff_sets(old_sets, new_sets), (expected_diff_sets,{}))
                 
     def test_removed_set(self):
         old_sets = {
