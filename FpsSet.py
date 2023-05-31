@@ -25,7 +25,7 @@ class FpsSet:
     relevant_fields_dict: a dictionary mapping the JSON field equivalents
     of each field to their value within the object. 
   """
-    def __init__(self, ccTLDs, primary, associated_sites, service_sites):
+    def __init__(self, ccTLDs, primary, associated_sites=None, service_sites=None):
         self.ccTLDs = ccTLDs
         self.primary = primary
         self.associated_sites = associated_sites

@@ -103,17 +103,14 @@ class FpsCheck:
         error_list
 
         Args:
-            check_sets: a dictionary of primary->FpsSet
+            None
         Returns:
             None
         """
         for fpset in self.fps_sites['sets']:
-            sites = check_sets[fpset.get("primary")].associated_sites
-            service_sites = check_sets[fpset.get("primary")].service_sites
-            if sites:
-                sites = sites + service_sites if service_sites else sites
-            else:
-                sites = service_sites
+            if fpset['primary'] not in  check_sets:
+                continue
+            sites = fpset.get("associatedSites", []) + fpset.get("serviceSites", [])
             rationales = fpset.get('rationaleBySite', None)
             if sites and rationales!=None:
                 for site in sites:
