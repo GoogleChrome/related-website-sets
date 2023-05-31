@@ -757,9 +757,7 @@ class TestFindDiff(unittest.TestCase):
                     }
                     )
         }
-        diff_sets, subtracted_sets = find_diff_sets(old_sets, new_sets)
-        self.assertEqual(diff_sets, {})
-        self.assertEqual(subtracted_sets, {})
+        self.assertEqual(find_diff_sets(old_sets, new_sets), ({},{}))
 
     def test_added_set(self):
         old_sets = {
@@ -833,9 +831,7 @@ class TestFindDiff(unittest.TestCase):
                     }
                     )
         }
-        diff_sets, subtracted_sets = find_diff_sets(old_sets, new_sets)
-        self.assertEqual(diff_sets, {})
-        self.assertEqual(subtracted_sets, expected_subtracted_sets)
+        self.assertEqual(find_diff_sets(old_sets, new_sets), ({},expected_subtracted_sets))
                 
     def test_added_and_removed_set(self):
         old_sets = {
@@ -856,9 +852,7 @@ class TestFindDiff(unittest.TestCase):
                     }
                     )
         }
-        diff_sets, subtracted_sets = find_diff_sets(old_sets, new_sets)
-        self.assertEqual(diff_sets, new_sets)
-        self.assertEqual(subtracted_sets, old_sets)
+        self.assertEqual(find_diff_sets(old_sets, new_sets),(new_sets, old_sets))
                 
     def test_modified_set(self):
         old_sets = {
@@ -879,9 +873,7 @@ class TestFindDiff(unittest.TestCase):
                     }
                     )
         }
-        diff_sets, subtracted_sets = find_diff_sets(old_sets, new_sets)
-        self.assertEqual(diff_sets, new_sets)
-        self.assertEqual(subtracted_sets, {})
+        self.assertEqual(find_diff_sets(old_sets, new_sets), (new_sets, {}))
 
 
 # This method will be used in tests below to mock get requests
