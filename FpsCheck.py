@@ -409,34 +409,35 @@ class FpsCheck:
         """Checks that eSLDs match their alias, and that country codes are 
         members of icann
         Reads the ccTLDs and makes sure that they match their equivalent sites,
-        and that they're domains are part of ICANNS list of country codes.
-        If either of these is not the case, appends an error to the error_list
+        and that their eTLDs are part of ICANN's list of country codes.
+        If either of these is not the case, appends an error to the error_list.
+        Note: A site may list a variant with "com" as its eTLD IFF the site 
+        being aliased has an eTLD on ICANN's list of countrycodes. 
         Args:
-            check_sets: a dictionary of primary->FpsSet
+            check_sets: Dict[string, FpsSet]
         Returns:
             None
         """
         for primary in check_sets:
             curr_set = check_sets[primary]
             if curr_set.ccTLDs:
+                # This will be more elegant when the default variables are set to []
+                sites = set([primary] + 
+                            (curr_set.associated_sites if curr_set.associated_sites else []) + 
+                            (curr_set.service_sites if curr_set.service_sites else [])
+                            )
                 for aliased_site in curr_set.ccTLDs:
                     # first check if the aliased site is actually anywhere else
                     # in the fps
-                    if aliased_site != primary:
-                        if curr_set.associated_sites:
-                            sites = curr_set.associated_sites 
-                        else:
-                            sites = []
-                        if curr_set.service_sites:
-                            sites += curr_set.service_sites
-                        if aliased_site not in sites:
-                            self.error_list.append(
-                                "The aliased site " + aliased_site + 
-                                " contained within the ccTLDs must be a " +
-                                "primary, associated site, or service site " +
-                                "within the firsty pary set for " + primary)
+                    if aliased_site not in sites:
+                        self.error_list.append(
+                            "The aliased site " + aliased_site + 
+                            " contained within the ccTLDs must be a " +
+                            "primary, associated site, or service site " +
+                            "within the firsty pary set for " + primary)
                     # check the validity of the aliases
-                    aliased_domain, aliased_tld = aliased_site.split(".", 1)
+                    aliased_domain, aliased_tld = (aliased_site.split(".")[0],
+                                                   aliased_site.split(".")[-1])
                     if aliased_tld in self.icanns:
                         icann_check = self.icanns.union({"com"})
                     else:

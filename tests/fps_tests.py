@@ -688,6 +688,49 @@ class TestFindInvalidESLDs(unittest.TestCase):
                     "ccTLDs": {
                         "https://primary.ca": ["https://primary.com"]
                     }
+                },
+                {
+                    "primary": "https://primary2.co.uk",
+                    "ccTLDs": {
+                        "https://primary2.co.uk": ["https://primary2.com"]
+                    }
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set(["ca", "uk"]))
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_alias_eSLDs(loaded_sets)
+        expected_sets = {
+            'https://primary.ca': 
+            FpsSet(
+                    primary="https://primary.ca",
+                    ccTLDs={
+                        "https://primary.ca": ["https://primary.com"]
+                    }
+                    ),
+            'https://primary2.co.uk': 
+            FpsSet(
+                    primary="https://primary2.co.uk",
+                    ccTLDs={
+                        "https://primary2.co.uk": ["https://primary2.com"]
+                    }
+                    )
+        }
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, [])
+    
+    def test_invalid_associated_alias(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "associatedSites": ["https://associated.com"],
+                    "ccTLDs": {
+                        "https://associated.com": ["https://associated.gov"]
+                    }
                 }
             ]
         }
@@ -697,11 +740,44 @@ class TestFindInvalidESLDs(unittest.TestCase):
         loaded_sets = fp.load_sets()
         fp.find_invalid_alias_eSLDs(loaded_sets)
         expected_sets = {
-            'https://primary.ca': 
+            'https://primary.com': 
             FpsSet(
-                    primary="https://primary.ca",
+                    primary="https://primary.com",
+                    associated_sites=["https://associated.com"],
                     ccTLDs={
-                        "https://primary.ca": ["https://primary.com"]
+                        "https://associated.com": ["https://associated.gov"]
+                    }
+                    )
+        }
+        self.assertEqual(loaded_sets, expected_sets)
+        self.assertEqual(fp.error_list, ["The provided country code: gov, "+
+            "in: https://associated.gov is not a ICANN registered country code"])
+        
+    def test_valid_associated_alias(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "associatedSites": ["https://associated.com"],
+                    "ccTLDs": {
+                        "https://associated.com": ["https://associated.ca"]
+                    }
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set(["ca"]))
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_alias_eSLDs(loaded_sets)
+        expected_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com",
+                    associated_sites=["https://associated.com"],
+                    ccTLDs={
+                        "https://associated.com": ["https://associated.ca"]
                     }
                     )
         }
