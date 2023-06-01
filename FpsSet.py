@@ -34,6 +34,7 @@ class FpsSet:
                                      'primary': primary,
                                      'associatedSites': associated_sites, 
                                      'serviceSites': service_sites}
+    
     def __eq__(self, obj):
       if isinstance(obj, FpsSet) and self.primary == obj.primary:
         if self.ccTLDs == obj.ccTLDs:
@@ -41,3 +42,13 @@ class FpsSet:
             if self.service_sites == obj.service_sites:
               return True
       return False
+    
+    def includes(self, domain, with_ccTLDs=False):
+       sites = set([self.primary, 
+                        *(self.associated_sites if self.associated_sites else []),
+                        *(self.service_sites if self.service_sites else []),
+                        ])
+       if with_ccTLDs:
+          for _, aliased_sites in self.ccTLDs.items():
+             sites = sites.union(aliased_sites)
+       return domain in sites

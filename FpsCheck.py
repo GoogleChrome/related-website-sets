@@ -418,43 +418,38 @@ class FpsCheck:
         Returns:
             None
         """
-        for primary in check_sets:
-            curr_set = check_sets[primary]
-            if curr_set.ccTLDs:
-                # This will be more elegant when the default variables are set to []
-                sites = set([primary] + 
-                            (curr_set.associated_sites if curr_set.associated_sites else []) + 
-                            (curr_set.service_sites if curr_set.service_sites else [])
-                            )
-                for aliased_site in curr_set.ccTLDs:
-                    # first check if the aliased site is actually anywhere else
-                    # in the fps
-                    if aliased_site not in sites:
+        for primary, curr_set in check_sets.items():
+            if not curr_set.ccTLDs:
+                continue
+            for aliased_site in curr_set.ccTLDs:
+                # first check if the aliased site is actually anywhere else
+                # in the fps
+                if not curr_set.includes(aliased_site):
+                    self.error_list.append(
+                        "The aliased site " + aliased_site + 
+                        " contained within the ccTLDs must be a " +
+                        "primary, associated site, or service site " +
+                        "within the firsty pary set for " + primary)
+                # check the validity of the aliases
+                aliased_domain, aliased_etld = (aliased_site.split(".")[0],
+                                                aliased_site.split(".")[-1])
+                if aliased_etld in self.icanns:
+                    icann_check = self.icanns.union({"com"})
+                else:
+                    icann_check = self.icanns
+                plus1s = [(site, site.split(".")[0], site.split(".")[-1])
+                            for site in curr_set.ccTLDs[aliased_site]]
+                for eSLD in plus1s:
+                    if eSLD[1] != aliased_domain:
                         self.error_list.append(
-                            "The aliased site " + aliased_site + 
-                            " contained within the ccTLDs must be a " +
-                            "primary, associated site, or service site " +
-                            "within the firsty pary set for " + primary)
-                    # check the validity of the aliases
-                    aliased_domain, aliased_tld = (aliased_site.split(".")[0],
-                                                   aliased_site.split(".")[-1])
-                    if aliased_tld in self.icanns:
-                        icann_check = self.icanns.union({"com"})
-                    else:
-                        icann_check = self.icanns
-                    plus1s = [(site, site.split(".")[0], site.split(".")[-1])
-                              for site in curr_set.ccTLDs[aliased_site]]
-                    for eSLD in plus1s:
-                        if eSLD[1] != aliased_domain:
-                            self.error_list.append(
-                                "The following top level domain must match: " 
-                                + aliased_site + ", but is instead: " 
-                                + eSLD[0])
-                        if eSLD[2] not in icann_check:
-                            self.error_list.append(
-                                "The provided country code: " + eSLD[2] + 
-                                ", in: " + eSLD[0] + 
-                                " is not a ICANN registered country code")
+                            "The following top level domain must match: " 
+                            + aliased_site + ", but is instead: " 
+                            + eSLD[0])
+                    if eSLD[2] not in icann_check:
+                        self.error_list.append(
+                            "The provided country code: " + eSLD[2] + 
+                            ", in: " + eSLD[0] + 
+                            " is not a ICANN registered country code")
 
     def find_robots_txt(self, check_sets):
         """Checks service sites to see if they have a robots.txt subdomain.
