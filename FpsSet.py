@@ -49,5 +49,5 @@ class FpsSet:
                    domain in (self.service_sites or [])):
            return True
        if with_ccTLDs:
-           return domain in (variant for variant in self.ccTLDs.values())
+           return domain in (variant for variant_list in self.ccTLDs.values() for variant in variant_list)
        return False
