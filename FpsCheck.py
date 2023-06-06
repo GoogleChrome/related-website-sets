@@ -75,7 +75,7 @@ class FpsCheck:
         Args:
             None
         Returns:
-            a dictionary of string->FpsSet
+            Dict[string, FpsSet]
         """
         check_sets = {}
         load_sets_errors = []
@@ -103,7 +103,7 @@ class FpsCheck:
         error_list
 
         Args:
-            None
+            Dict[string, FpsSet]
         Returns:
             None
         """
@@ -131,7 +131,7 @@ class FpsCheck:
         added to the error_list.
 
         Args:
-            check_sets: a dictionary of primary->FpsSet
+            check_sets: Dict[string, FpsSet]
         Returns:
             None
         """
@@ -194,7 +194,7 @@ class FpsCheck:
         and appends errors to the error list for any that return false
 
         Args:
-            check_sets: a dictionary of primary->FpsSet
+            check_sets: Dict[string, FpsSet]
         Returns:
             None
         """
@@ -252,7 +252,7 @@ class FpsCheck:
         and appends errors to the error list for any that return false
 
         Args:
-            check_sets: a dictionary of primary->FpsSet
+            check_sets: Dict[string, FpsSet]
         Returns:
             None
         """
@@ -348,7 +348,7 @@ class FpsCheck:
         format, or its contents do no match what is expected.
 
         Args:
-            check_sets: a dictionary of primary->FpsSet
+            check_sets: Dict[string, FpsSet]
         Returns:
             None
         """
@@ -424,7 +424,7 @@ class FpsCheck:
             for aliased_site in curr_set.ccTLDs:
                 # first check if the aliased site is actually anywhere else
                 # in the fps
-                if not curr_set.includes(aliased_site):
+                if not curr_set.includes(aliased_site, False):
                     self.error_list.append(
                         "The aliased site " + aliased_site + 
                         " contained within the ccTLDs must be a " +
@@ -463,7 +463,7 @@ class FpsCheck:
         to the error list.
 
         Args:
-            check_sets: a dictionary of primary->FpsSet
+            check_sets: Dict[string, FpsSet]
         Returns:
             None
         """
@@ -507,7 +507,7 @@ class FpsCheck:
         does not cause a timeout error. 
 
         Args:
-            check_sets: a dictionary of primary->FpsSet
+            check_sets: Dict[string, FpsSet]
         Returns:
             None
         """
@@ -542,7 +542,7 @@ class FpsCheck:
         error. 
 
         Args:
-            check_sets: a dictionary of primary->FpsSet
+            check_sets: Dict[string, FpsSet]
         Returns:
             None
         """

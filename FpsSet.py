@@ -43,12 +43,11 @@ class FpsSet:
               return True
       return False
     
-    def includes(self, domain, with_ccTLDs=False):
-       sites = set([self.primary, 
-                        *(self.associated_sites if self.associated_sites else []),
-                        *(self.service_sites if self.service_sites else []),
-                        ])
+    def includes(self, domain, with_ccTLDs=True):
+       if (self.primary == domain or
+                   domain in (self.associated_sites or []) or
+                   domain in (self.service_sites or [])):
+           return True
        if with_ccTLDs:
-          for _, aliased_sites in self.ccTLDs.items():
-             sites = sites.union(aliased_sites)
-       return domain in sites
+           return domain in (variant for variant in self.ccTLDs.values())
+       return False
