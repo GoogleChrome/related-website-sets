@@ -100,11 +100,11 @@ class TestValidateSchema(unittest.TestCase):
 class TestFpsSetEqual(unittest.TestCase):
     def test_equal_case(self):
         fps_1 = FpsSet(ccTLDs={
-                        "https://primary.com": "https://primary.ca"
+                        "https://primary.com": ["https://primary.ca"]
                     }, 
                     primary="https://primary.com")
         fps_2 = FpsSet(ccTLDs={
-                        "https://primary.com": "https://primary.ca"
+                        "https://primary.com": ["https://primary.ca"]
                     }, 
                     primary="https://primary.com")
         self.assertIsNot(fps_1, fps_2)
@@ -113,16 +113,16 @@ class TestFpsSetEqual(unittest.TestCase):
 
     def test_inequal_cases(self):
         fps_1 = FpsSet(ccTLDs={
-                        "https://primary.com": "https://primary.ca"
+                        "https://primary.com": ["https://primary.ca"]
                     }, 
                     primary="https://primary.com")
         fps_2 = FpsSet(ccTLDs={
-                        "https://primary.com": "https://primary.co.uk"
+                        "https://primary.com": ["https://primary.co.uk"]
                     }, 
                     primary="https://primary.com")
         self.assertNotEqual(fps_1, fps_2)
 
-        fps_2.ccTLDs = {"https://primary.com": "https://primary.ca"}
+        fps_2.ccTLDs = {"https://primary.com": ["https://primary.ca"]}
         self.assertEqual(fps_1, fps_2)
 
         fps_1.associated_sites = ["https://associated1.com"]
@@ -136,6 +136,34 @@ class TestFpsSetEqual(unittest.TestCase):
         fps_2.service_sites = ["https://service2.com"]
         self.assertNotEqual(fps_1, fps_2)
 
+class TestFpsIncludes(unittest.TestCase):
+    def test_primary_case(self):
+        fps = FpsSet(ccTLDs={
+                        "https://primary.com": ["https://primary.ca"]
+                    }, 
+                    primary="https://primary.com")
+        self.assertTrue(fps.includes("https://primary.com"))
+        self.assertFalse(fps.includes("https://primary2.com"))
+
+    def test_associated_case(self):
+        fps = FpsSet(
+                    ccTLDs={},
+                    primary="https://primary.com",
+                    associated_sites= ["https://associated1.com", "https://associated2.com"])
+        self.assertTrue(fps.includes("https://associated1.com"))
+        self.assertTrue(fps.includes("https://associated2.com"))
+        self.assertFalse(fps.includes("https://associated3.com"))
+    
+    def test_cctld_case(self):
+        fps = FpsSet(ccTLDs={
+                        "https://primary.com": ["https://primary.ca", "https://primary.co.uk"]
+                    }, 
+                    primary="https://primary.com")
+
+        self.assertTrue(fps.includes("https://primary.ca"))
+        self.assertFalse(fps.includes("https://primary.ca", with_ccTLDs=False))
+        
+
 class TestLoadSets(unittest.TestCase):
     def test_collision_case(self):
         json_dict = {
@@ -144,13 +172,13 @@ class TestLoadSets(unittest.TestCase):
                 {
                     "primary": "https://primary.com",
                     "ccTLDs": {
-                        "https://primary.com": "https://primary.ca"
+                        "https://primary.com": ["https://primary.ca"]
                     }
                 },
                 {
                     "primary": "https://primary.com",
                     "ccTLDs": {
-                        "https://primary.com": "https://primary.co.uk"
+                        "https://primary.com": ["https://primary.co.uk"]
                     }
                 }
             ]
@@ -161,7 +189,7 @@ class TestLoadSets(unittest.TestCase):
         loaded_sets = fp.load_sets()
         expected_sets = {
             'https://primary.com': FpsSet(ccTLDs={
-                        "https://primary.com": "https://primary.ca"
+                        "https://primary.com": ["https://primary.ca"]
                     }, 
                     primary="https://primary.com")
         }
@@ -176,13 +204,13 @@ class TestLoadSets(unittest.TestCase):
                 {
                     "primary": "https://primary.com",
                     "ccTLDs": {
-                        "https://primary.com": "https://primary.ca"
+                        "https://primary.com": ["https://primary.ca"]
                     }
                 },
                 {
                     "primary": "https://primary2.com",
                     "ccTLDs": {
-                        "https://primary2.com": "https://primary2.co.uk"
+                        "https://primary2.com": ["https://primary2.co.uk"]
                     }
                 }
             ]
@@ -193,11 +221,11 @@ class TestLoadSets(unittest.TestCase):
         loaded_sets = fp.load_sets()
         expected_sets = {
             'https://primary.com': FpsSet(ccTLDs={
-                        "https://primary.com": "https://primary.ca"
+                        "https://primary.com": ["https://primary.ca"]
                     }, 
                     primary="https://primary.com"),
             'https://primary2.com': FpsSet(ccTLDs={
-                        "https://primary2.com": "https://primary2.co.uk"
+                        "https://primary2.com": ["https://primary2.co.uk"]
                     }, 
                     primary="https://primary2.com")
         }
@@ -222,13 +250,6 @@ class TestHasRationales(unittest.TestCase):
                        icanns=set())
         loaded_sets = fp.load_sets()
         fp.has_all_rationales(loaded_sets)
-        expected_sets = {
-            'https://primary.com': FpsSet(ccTLDs= None,
-                    primary="https://primary.com", 
-                    associated_sites=["https://associated1.com"], 
-                    service_sites=["https://service1.com"])
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, 
         ["There is no provided rationale for https://associated1.com", 
         "There is no provided rationale for https://service1.com"])
@@ -252,13 +273,6 @@ class TestHasRationales(unittest.TestCase):
                       etlds=None,
                        icanns=set())
         loaded_sets = fp.load_sets()
-        expected_sets = {
-            'https://primary.com': FpsSet(ccTLDs=None, 
-                    primary="https://primary.com", 
-                    associated_sites=["https://associated1.com"], 
-                    service_sites=["https://service1.com"])
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, [])  
 
 class TestCheckExclusivity(unittest.TestCase):
@@ -285,18 +299,6 @@ class TestCheckExclusivity(unittest.TestCase):
                        icanns=set())
         loaded_sets = fp.load_sets()
         fp.check_exclusivity(loaded_sets)
-        expected_sets = {
-            'https://primary.com': FpsSet(ccTLDs= None,
-                    primary="https://primary.com", 
-                    associated_sites=["https://associated1.com"], 
-                    service_sites=["https://service1.com"]),
-            'https://primary2.com': FpsSet(ccTLDs= None,
-                    primary="https://primary2.com", 
-                    associated_sites=["https://associated2.com"], 
-                    service_sites=["https://service1.com"]),
-                    
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, 
          ["These service sites are already registered in another"
                         + " first party set: {'https://service1.com'}"])
@@ -324,18 +326,6 @@ class TestCheckExclusivity(unittest.TestCase):
                        icanns=set())
         loaded_sets = fp.load_sets()
         fp.check_exclusivity(loaded_sets)
-        expected_sets = {
-            'https://primary.com': FpsSet(ccTLDs= None,
-                    primary="https://primary.com", 
-                    associated_sites=["https://primary2.com"], 
-                    service_sites=["https://service1.com"]),
-            'https://primary2.com': FpsSet(ccTLDs= None,
-                    primary="https://primary2.com", 
-                    associated_sites=["https://associated2.com"], 
-                    service_sites=["https://service2.com"]),
-                    
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, 
          ["This primary is already registered in another"
                         + " first party set: https://primary2.com"])
@@ -363,18 +353,6 @@ class TestCheckExclusivity(unittest.TestCase):
                        icanns=set())
         loaded_sets = fp.load_sets()
         fp.check_exclusivity(loaded_sets)
-        expected_sets = {
-            'https://primary.com': FpsSet(ccTLDs= None,
-                    primary="https://primary.com", 
-                    associated_sites=["https://associated1.com"], 
-                    service_sites=["https://service1.com"]),
-            'https://primary2.com': FpsSet(ccTLDs= None,
-                    primary="https://primary2.com", 
-                    associated_sites=["https://associated2.com"], 
-                    service_sites=["https://service2.com"]),
-                    
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, [])
     
 class TestFindNonHttps(unittest.TestCase):
@@ -395,13 +373,6 @@ class TestFindNonHttps(unittest.TestCase):
                        icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_non_https_urls(loaded_sets)
-        expected_sets = {
-            'primary.com': FpsSet(ccTLDs= None,
-                    primary="primary.com", 
-                    associated_sites=["https://associated1.com"], 
-                    service_sites=["https://service1.com"])         
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, 
          ["The provided primary site does not begin with https:// " +
          "primary.com"])
@@ -426,16 +397,6 @@ class TestFindNonHttps(unittest.TestCase):
                        icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_non_https_urls(loaded_sets)
-        expected_sets = {
-            'https://primary.com': FpsSet(
-                    primary="https://primary.com", 
-                    associated_sites=["https://associated1.com"], 
-                    service_sites=["https://service1.com"],
-                    ccTLDs={
-                        "https://primary.com": ["primary.ca"]
-                    })         
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, 
          ["The provided alias site does not begin with" +
                                 " https:// primary.ca"])
@@ -460,16 +421,6 @@ class TestFindNonHttps(unittest.TestCase):
                        icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_non_https_urls(loaded_sets)
-        expected_sets = {
-            'primary.com': FpsSet(
-                    primary="primary.com", 
-                    associated_sites=["associated1.com"], 
-                    service_sites=["service1.com"],
-                    ccTLDs={
-                        "primary.com": ["primary.ca"]
-                    })         
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, 
          [
         "The provided primary site does not begin with https:// primary.com", 
@@ -498,13 +449,6 @@ class TestFindInvalidETLD(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_invalid_eTLD_Plus1(loaded_sets)
-        expected_sets = {
-            'https://primary.c2om': FpsSet(ccTLDs= None,
-                    primary="https://primary.c2om", 
-                    associated_sites=["https://associated1.com"], 
-                    service_sites=["https://service1.com"])         
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, 
          ["The provided primary site does not have an eTLD in the" +
                     " Public suffix list: https://primary.c2om"])
@@ -530,16 +474,6 @@ class TestFindInvalidETLD(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_invalid_eTLD_Plus1(loaded_sets)
-        expected_sets = {
-            'https://primary.com': FpsSet(
-                    primary="https://primary.com", 
-                    associated_sites=["https://associated1.com"], 
-                    service_sites=["https://service1.com"],
-                    ccTLDs={
-                        "https://primary.com": ["https://primary.c2om"]
-                    })         
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, 
          ["The provided aliased site does not have an eTLD in the" +
                     " Public suffix list: https://primary.c2om"])
@@ -565,16 +499,6 @@ class TestFindInvalidETLD(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_invalid_eTLD_Plus1(loaded_sets)
-        expected_sets = {
-            'https://primary.c2om': FpsSet(
-                    primary="https://primary.c2om", 
-                    associated_sites=["https://associated1.c2om"], 
-                    service_sites=["https://service1.c2om"],
-                    ccTLDs={
-                        "https://primary.c2om": ["https://primary.c2om"]
-                    })         
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, 
          ["The provided primary site does not have an eTLD in the" +
                     " Public suffix list: https://primary.c2om",
@@ -605,16 +529,6 @@ class TestFindInvalidESLDs(unittest.TestCase):
                      icanns=set(["ca"]))
         loaded_sets = fp.load_sets()
         fp.find_invalid_alias_eSLDs(loaded_sets)
-        expected_sets = {
-            'https://primary.com': 
-            FpsSet(
-                    primary="https://primary.com",
-                    ccTLDs={
-                        "https://primary.com": ["https://primary2.ca"]
-                    }
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, ["The following top level domain " + 
         "must match: https://primary.com, but is instead: "+
         "https://primary2.ca"])
@@ -636,16 +550,6 @@ class TestFindInvalidESLDs(unittest.TestCase):
                      icanns=set(["ca"]))
         loaded_sets = fp.load_sets()
         fp.find_invalid_alias_eSLDs(loaded_sets)
-        expected_sets = {
-            'https://primary.com': 
-            FpsSet(
-                    primary="https://primary.com",
-                    ccTLDs={
-                        "https://primary.com": ["https://primary.gov"]
-                    }
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, ["The provided country code: gov, "+
             "in: https://primary.gov is not a ICANN registered country code"])
                 
@@ -666,16 +570,6 @@ class TestFindInvalidESLDs(unittest.TestCase):
                      icanns=set(["ca"]))
         loaded_sets = fp.load_sets()
         fp.find_invalid_alias_eSLDs(loaded_sets)
-        expected_sets = {
-            'https://primary.edu': 
-            FpsSet(
-                    primary="https://primary.edu",
-                    ccTLDs={
-                        "https://primary.edu": ["https://primary.com"]
-                    }
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, ["The provided country code: com, "+
             "in: https://primary.com is not a ICANN registered country code"])
                 
@@ -688,6 +582,32 @@ class TestFindInvalidESLDs(unittest.TestCase):
                     "ccTLDs": {
                         "https://primary.ca": ["https://primary.com"]
                     }
+                },
+                {
+                    "primary": "https://primary2.co.uk",
+                    "ccTLDs": {
+                        "https://primary2.co.uk": ["https://primary2.com"]
+                    }
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set(["ca", "uk"]))
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_alias_eSLDs(loaded_sets)
+        self.assertEqual(fp.error_list, [])
+    
+    def test_invalid_associated_alias(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "associatedSites": ["https://associated.com"],
+                    "ccTLDs": {
+                        "https://associated.com": ["https://associated.gov"]
+                    }
                 }
             ]
         }
@@ -696,16 +616,27 @@ class TestFindInvalidESLDs(unittest.TestCase):
                      icanns=set(["ca"]))
         loaded_sets = fp.load_sets()
         fp.find_invalid_alias_eSLDs(loaded_sets)
-        expected_sets = {
-            'https://primary.ca': 
-            FpsSet(
-                    primary="https://primary.ca",
-                    ccTLDs={
-                        "https://primary.ca": ["https://primary.com"]
+        self.assertEqual(fp.error_list, ["The provided country code: gov, "+
+            "in: https://associated.gov is not a ICANN registered country code"])
+        
+    def test_valid_associated_alias(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "associatedSites": ["https://associated.com"],
+                    "ccTLDs": {
+                        "https://associated.com": ["https://associated.ca"]
                     }
-                    )
+                }
+            ]
         }
-        self.assertEqual(loaded_sets, expected_sets)
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set(["ca"]))
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_alias_eSLDs(loaded_sets)
         self.assertEqual(fp.error_list, [])
     
     def test_expected_esld(self):
@@ -725,16 +656,6 @@ class TestFindInvalidESLDs(unittest.TestCase):
                      icanns=set(["ca"]))
         loaded_sets = fp.load_sets()
         fp.find_invalid_alias_eSLDs(loaded_sets)
-        expected_sets = {
-            'https://primary.com': 
-            FpsSet(
-                    primary="https://primary.com",
-                    ccTLDs={
-                        "https://primary.com": ["https://primary.ca"]
-                    }
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, [])
 
 class TestFindDiff(unittest.TestCase):
@@ -968,15 +889,6 @@ class MockTestsClass(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_robots_txt(loaded_sets)
-        expected_sets = {
-            'https://primary.com': 
-            FpsSet(
-                    primary="https://primary.com",
-                    service_sites=["https://service1.com"],
-                    ccTLDs=None
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, ["The service site " +
         "https://service1.com " +
         "does not have an X-Robots-Tag in its header"])
@@ -998,15 +910,6 @@ class MockTestsClass(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_robots_txt(loaded_sets)
-        expected_sets = {
-            'https://primary.com': 
-            FpsSet(
-                    primary="https://primary.com",
-                    service_sites=["https://service2.com"],
-                    ccTLDs=None
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, ["The service site " +
         "https://service2.com " +
         "does not have a 'noindex' or 'none' tag in its header"])
@@ -1028,15 +931,6 @@ class MockTestsClass(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_robots_txt(loaded_sets)
-        expected_sets = {
-            'https://primary.com': 
-            FpsSet(
-                    primary="https://primary.com",
-                    service_sites=["https://service3.com"],
-                    ccTLDs=None
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, [])
 
     @mock.patch('requests.get', side_effect=mock_get)
@@ -1056,15 +950,6 @@ class MockTestsClass(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_robots_txt(loaded_sets)
-        expected_sets = {
-            'https://primary.com': 
-            FpsSet(
-                    primary="https://primary.com",
-                    service_sites=["https://service4.com"],
-                    ccTLDs=None
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, [])
 
     # We run a similar set of mock tests for ads.txt
@@ -1085,15 +970,6 @@ class MockTestsClass(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_ads_txt(loaded_sets)
-        expected_sets = {
-            'https://primary.com': 
-            FpsSet(
-                    primary="https://primary.com",
-                    service_sites=["https://service1.com"],
-                    ccTLDs=None
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, ["The service site " +
         "https://service1.com has an ads.txt file, this " +
         "violates the policies for service sites"])
@@ -1115,15 +991,6 @@ class MockTestsClass(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_ads_txt(loaded_sets)
-        expected_sets = {
-            'https://primary.com': 
-            FpsSet(
-                    primary="https://primary.com",
-                    service_sites=["https://service5.com"],
-                    ccTLDs=None
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, [])
 
     # We run a similar set of mock tests for redirect check
@@ -1144,15 +1011,6 @@ class MockTestsClass(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.check_for_service_redirect(loaded_sets)
-        expected_sets = {
-            'https://primary.com': 
-            FpsSet(
-                    primary="https://primary.com",
-                    service_sites=["https://service1.com"],
-                    ccTLDs=None
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, ["The service site " +
         "must not be an endpoint: https://service1.com"])
 
@@ -1173,15 +1031,6 @@ class MockTestsClass(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.check_for_service_redirect(loaded_sets)
-        expected_sets = {
-            'https://primary.com': 
-            FpsSet(
-                    primary="https://primary.com",
-                    service_sites=["https://service6.com"],
-                    ccTLDs=None
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, [])
 
     @mock.patch('requests.get', side_effect=mock_get)
@@ -1201,15 +1050,6 @@ class MockTestsClass(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.check_for_service_redirect(loaded_sets)
-        expected_sets = {
-            'https://primary.com': 
-            FpsSet(
-                    primary="https://primary.com",
-                    service_sites=["https://no-such-service.com"],
-                    ccTLDs=None
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, [])
         
     # Now we test the mocked open_and_load_json to test the well-known checks
@@ -1230,15 +1070,6 @@ class MockTestsClass(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_invalid_well_known(loaded_sets)
-        expected_sets = {
-            'https://primary1.com': 
-            FpsSet(
-                    primary="https://primary1.com", 
-                    associated_sites=["https://expected-associated.com"],
-                    ccTLDs=None
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, ["The following member(s) of " +
         "associatedSites were not present in both the changelist and " + 
         ".well-known/first-party-set.json file: ['https://expected-associated.com'"
@@ -1261,15 +1092,6 @@ class MockTestsClass(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_invalid_well_known(loaded_sets)
-        expected_sets = {
-            'https://primary2.com': 
-            FpsSet(
-                    primary="https://primary2.com", 
-                    associated_sites=["https://associated1.com"],
-                    ccTLDs=None
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, ["The following member(s) of " +
         "primary were not present in both the changelist and " + 
         ".well-known/first-party-set.json file: ['https://primary2.com'"
@@ -1292,15 +1114,6 @@ class MockTestsClass(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_invalid_well_known(loaded_sets)
-        expected_sets = {
-            'https://primary3.com': 
-            FpsSet(
-                    primary="https://primary3.com", 
-                    associated_sites=["https://associated2.com"],
-                    ccTLDs=None
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, ["The listed associated site "
                 + "did not have https://primary3.com listed as its primary: " 
                 + "https://associated2.com"])
@@ -1322,15 +1135,6 @@ class MockTestsClass(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_invalid_well_known(loaded_sets)
-        expected_sets = {
-            'https://primary4.com': 
-            FpsSet(
-                    primary="https://primary4.com", 
-                    associated_sites=["https://associated3.com"],
-                    ccTLDs=None
-                    )
-        }
-        self.assertEqual(loaded_sets, expected_sets)
         self.assertEqual(fp.error_list, [])
 
 if __name__ == '__main__':
