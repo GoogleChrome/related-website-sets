@@ -431,24 +431,24 @@ class FpsCheck:
                         "primary, associated site, or service site " +
                         "within the firsty pary set for " + primary)
                 # check the validity of the aliases
-                aliased_domain, aliased_etld = (aliased_site.split(".")[0],
+                aliased_eSLD, aliased_tld = (aliased_site.split(".")[0],
                                                 aliased_site.split(".")[-1])
-                if aliased_etld in self.icanns:
+                if aliased_tld in self.icanns:
                     icann_check = self.icanns.union({"com"})
                 else:
                     icann_check = self.icanns
-                plus1s = [(site, site.split(".")[0], site.split(".")[-1])
+                variants = [(site, site.split(".")[0], site.split(".")[-1])
                             for site in curr_set.ccTLDs[aliased_site]]
-                for eSLD in plus1s:
-                    if eSLD[1] != aliased_domain:
+                for site, eSLD, tld in variants:
+                    if eSLD != aliased_eSLD:
                         self.error_list.append(
                             "The following top level domain must match: " 
                             + aliased_site + ", but is instead: " 
-                            + eSLD[0])
-                    if eSLD[2] not in icann_check:
+                            + site)
+                    if tld not in icann_check:
                         self.error_list.append(
-                            "The provided country code: " + eSLD[2] + 
-                            ", in: " + eSLD[0] + 
+                            "The provided country code: " + tld + 
+                            ", in: " + site + 
                             " is not a ICANN registered country code")
 
     def find_robots_txt(self, check_sets):
