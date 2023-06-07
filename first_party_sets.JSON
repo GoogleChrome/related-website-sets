@@ -31,6 +31,20 @@
         "https://wieistmeineip.de": "Internet speed Measurement Website of Computerbild",
         "https://www.asadcdn.com": "CDN for Ad Files - Frequency Capping"
       }
+    },
+    {
+      "primary": "https://gliadomain.com",
+      "contact": "carlos.paniagua@glia.com",
+      "associatedSites": [
+        "https://salemoveadvisor.com",
+        "https://salemovefinancial.com",
+        "https://salemovetravel.com"
+      ],
+      "rationaleBySite": {
+        "https://salemoveadvisor.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works" ,
+        "https://salemovefinancial.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works",
+        "https://salemovetravel.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works"
+      }
     }
   ]
 }
