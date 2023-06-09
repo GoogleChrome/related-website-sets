@@ -39,7 +39,7 @@ All submissions are subject to the formation requirements detailed in this secti
 	
 ccTLD (country code top-level domain) variants for the subsets above are also supported. The requirements for these domains are as follows:
 	
-| ccTLD | <ul><li>Domains that represent variations for a particular country or a geographical area. </li><li>ccTLD variants must share an identical eSLD with its equivalent domain.</li><li>The eTLD of each ccTLD variant must be present in the ccTLD section of the <a href="https://publicsuffix.org">Public Suffix List (PSL)</a>.</li><li>ccTLD variants must share a common owner with its equivalent domain.</li>|
+| ccTLD | <ul><li>Domains that represent variations for a particular country or a geographical area. </li><li>ccTLD variants must share an identical eSLD with its equivalent domain.</li><li>The TLD of each ccTLD variant must be on <a href="https://icannwiki.org/Country_code_top-level_domain#Current_ccTLDs">ICANN's list of country codes</a>.</li><li>ccTLD variants must share a common owner with its equivalent domain.</li>|
 | ----------- | :------------ |
 
 ## Set submissions ##
