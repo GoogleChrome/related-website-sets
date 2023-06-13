@@ -45,18 +45,6 @@
         "https://salemovefinancial.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works",
         "https://salemovetravel.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works"
       }
-    },
-    {
-      "primary": "https://hapara.com",
-      "contact": "support@hapara.com",
-      "associatedSites": [
-        "https://teacherdashboard.com",
-        "https://mystudentdashboard.com"
-      ],
-      "rationaleBySite": {
-        "https://teacherdashboard.com": "Portal for Hapara teachers",
-        "https://mystudentdashboard.com": "Portal for Hapara students"
-      }
     }
   ]
 }
