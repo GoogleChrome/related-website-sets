@@ -25,7 +25,7 @@ class FpsSet:
     relevant_fields_dict: a dictionary mapping the JSON field equivalents
     of each field to their value within the object. 
   """
-    def __init__(self, ccTLDs, primary, associated_sites, service_sites):
+    def __init__(self, ccTLDs, primary, associated_sites=None, service_sites=None):
         self.ccTLDs = ccTLDs
         self.primary = primary
         self.associated_sites = associated_sites
@@ -34,6 +34,7 @@ class FpsSet:
                                      'primary': primary,
                                      'associatedSites': associated_sites, 
                                      'serviceSites': service_sites}
+    
     def __eq__(self, obj):
       if isinstance(obj, FpsSet) and self.primary == obj.primary:
         if self.ccTLDs == obj.ccTLDs:
@@ -41,3 +42,12 @@ class FpsSet:
             if self.service_sites == obj.service_sites:
               return True
       return False
+    
+    def includes(self, domain, with_ccTLDs=True):
+       if (self.primary == domain or
+                   domain in (self.associated_sites or []) or
+                   domain in (self.service_sites or [])):
+           return True
+       if with_ccTLDs:
+           return domain in (variant for variant_list in self.ccTLDs.values() for variant in variant_list)
+       return False

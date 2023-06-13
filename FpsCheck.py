@@ -75,7 +75,7 @@ class FpsCheck:
         Args:
             None
         Returns:
-            a dictionary of string->FpsSet
+            Dict[string, FpsSet]
         """
         check_sets = {}
         load_sets_errors = []
@@ -103,17 +103,14 @@ class FpsCheck:
         error_list
 
         Args:
-            check_sets: a dictionary of primary->FpsSet
+            Dict[string, FpsSet]
         Returns:
             None
         """
         for fpset in self.fps_sites['sets']:
-            sites = check_sets[fpset.get("primary")].associated_sites
-            service_sites = check_sets[fpset.get("primary")].service_sites
-            if sites:
-                sites = sites + service_sites if service_sites else sites
-            else:
-                sites = service_sites
+            if fpset['primary'] not in  check_sets:
+                continue
+            sites = fpset.get("associatedSites", []) + fpset.get("serviceSites", [])
             rationales = fpset.get('rationaleBySite', None)
             if sites and rationales!=None:
                 for site in sites:
@@ -134,7 +131,7 @@ class FpsCheck:
         added to the error_list.
 
         Args:
-            check_sets: a dictionary of primary->FpsSet
+            check_sets: Dict[string, FpsSet]
         Returns:
             None
         """
@@ -197,7 +194,7 @@ class FpsCheck:
         and appends errors to the error list for any that return false
 
         Args:
-            check_sets: a dictionary of primary->FpsSet
+            check_sets: Dict[string, FpsSet]
         Returns:
             None
         """
@@ -255,7 +252,7 @@ class FpsCheck:
         and appends errors to the error list for any that return false
 
         Args:
-            check_sets: a dictionary of primary->FpsSet
+            check_sets: Dict[string, FpsSet]
         Returns:
             None
         """
@@ -351,7 +348,7 @@ class FpsCheck:
         format, or its contents do no match what is expected.
 
         Args:
-            check_sets: a dictionary of primary->FpsSet
+            check_sets: Dict[string, FpsSet]
         Returns:
             None
         """
@@ -412,51 +409,47 @@ class FpsCheck:
         """Checks that eSLDs match their alias, and that country codes are 
         members of icann
         Reads the ccTLDs and makes sure that they match their equivalent sites,
-        and that they're domains are part of ICANNS list of country codes.
-        If either of these is not the case, appends an error to the error_list
+        and that their eTLDs are part of ICANN's list of country codes.
+        If either of these is not the case, appends an error to the error_list.
+        Note: A site may list a variant with "com" as its eTLD IFF the site 
+        being aliased has an eTLD on ICANN's list of countrycodes. 
         Args:
-            check_sets: a dictionary of primary->FpsSet
+            check_sets: Dict[string, FpsSet]
         Returns:
             None
         """
-        for primary in check_sets:
-            curr_set = check_sets[primary]
-            if curr_set.ccTLDs:
-                for aliased_site in curr_set.ccTLDs:
-                    # first check if the aliased site is actually anywhere else
-                    # in the fps
-                    if aliased_site != primary:
-                        if curr_set.associated_sites:
-                            sites = curr_set.associated_sites 
-                        else:
-                            sites = []
-                        if curr_set.service_sites:
-                            sites += curr_set.service_sites
-                        if aliased_site not in sites:
-                            self.error_list.append(
-                                "The aliased site " + aliased_site + 
-                                " contained within the ccTLDs must be a " +
-                                "primary, associated site, or service site " +
-                                "within the firsty pary set for " + primary)
-                    # check the validity of the aliases
-                    aliased_domain, aliased_tld = aliased_site.split(".", 1)
-                    if aliased_tld in self.icanns:
-                        icann_check = self.icanns.union({"com"})
-                    else:
-                        icann_check = self.icanns
-                    plus1s = [(site, site.split(".")[0], site.split(".")[-1])
-                              for site in curr_set.ccTLDs[aliased_site]]
-                    for eSLD in plus1s:
-                        if eSLD[1] != aliased_domain:
-                            self.error_list.append(
-                                "The following top level domain must match: " 
-                                + aliased_site + ", but is instead: " 
-                                + eSLD[0])
-                        if eSLD[2] not in icann_check:
-                            self.error_list.append(
-                                "The provided country code: " + eSLD[2] + 
-                                ", in: " + eSLD[0] + 
-                                " is not a ICANN registered country code")
+        for primary, curr_set in check_sets.items():
+            if not curr_set.ccTLDs:
+                continue
+            for aliased_site in curr_set.ccTLDs:
+                # first check if the aliased site is actually anywhere else
+                # in the fps
+                if not curr_set.includes(aliased_site, False):
+                    self.error_list.append(
+                        "The aliased site " + aliased_site + 
+                        " contained within the ccTLDs must be a " +
+                        "primary, associated site, or service site " +
+                        "within the firsty pary set for " + primary)
+                # check the validity of the aliases
+                aliased_eSLD, aliased_tld = (aliased_site.split(".")[0],
+                                                aliased_site.split(".")[-1])
+                if aliased_tld in self.icanns:
+                    icann_check = self.icanns.union({"com"})
+                else:
+                    icann_check = self.icanns
+                variants = [(site, site.split(".")[0], site.split(".")[-1])
+                            for site in curr_set.ccTLDs[aliased_site]]
+                for site, eSLD, tld in variants:
+                    if eSLD != aliased_eSLD:
+                        self.error_list.append(
+                            "The following top level domain must match: " 
+                            + aliased_site + ", but is instead: " 
+                            + site)
+                    if tld not in icann_check:
+                        self.error_list.append(
+                            "The provided country code: " + tld + 
+                            ", in: " + site + 
+                            " is not a ICANN registered country code")
 
     def find_robots_txt(self, check_sets):
         """Checks service sites to see if they have a robots.txt subdomain.
@@ -470,7 +463,7 @@ class FpsCheck:
         to the error list.
 
         Args:
-            check_sets: a dictionary of primary->FpsSet
+            check_sets: Dict[string, FpsSet]
         Returns:
             None
         """
@@ -514,7 +507,7 @@ class FpsCheck:
         does not cause a timeout error. 
 
         Args:
-            check_sets: a dictionary of primary->FpsSet
+            check_sets: Dict[string, FpsSet]
         Returns:
             None
         """
@@ -549,7 +542,7 @@ class FpsCheck:
         error. 
 
         Args:
-            check_sets: a dictionary of primary->FpsSet
+            check_sets: Dict[string, FpsSet]
         Returns:
             None
         """
