@@ -57,6 +57,16 @@
         "https://teacherdashboard.com": "Portal for Hapara teachers",
         "https://mystudentdashboard.com": "Portal for Hapara students"
       }
+    },
+    {
+      "contact": "support@songstats.com",
+      "primary": "https://songstats.com",
+      "associatedSites": [
+        "https://songshare.com"
+      ],
+      "rationaleBySite": {
+        "https://songshare.com": "Specialized Platform for Music Smart Links"
+      }
     }
   ]
 }
