@@ -47,6 +47,18 @@
       }
     },
     {
+      "primary": "https://hapara.com",
+      "contact": "support@hapara.com",
+      "associatedSites": [
+        "https://teacherdashboard.com",
+        "https://mystudentdashboard.com"
+      ],
+      "rationaleBySite": {
+        "https://teacherdashboard.com": "Portal for Hapara teachers",
+        "https://mystudentdashboard.com": "Portal for Hapara students"
+      }
+    },
+    {
       "contact": "support@songstats.com",
       "primary": "https://songstats.com",
       "associatedSites": [
