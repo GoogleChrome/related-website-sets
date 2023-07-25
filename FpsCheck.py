@@ -244,7 +244,7 @@ class FpsCheck:
             boolean with truth value dependent on value of get_public_suffix
         """
         assert site is not None
-        site = site.replace("https://", "")
+        site = site.replace("https://", "", 1)
         is_etld_plus1 = self.etlds.get_public_suffix(site, strict=True) == site
         is_not_etld = self.etlds.get_tld(site, strict=True) != site
         return is_etld_plus1 and is_not_etld
