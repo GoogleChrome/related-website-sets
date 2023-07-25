@@ -430,6 +430,7 @@ class TestFindNonHttps(unittest.TestCase):
         "associated1.com",
         "The provided service site does not begin with https:// service1.com"
          ])
+        
 class TestFindInvalidETLD(unittest.TestCase):
     def test_invalid_etld_primary(self):
         json_dict = {
@@ -503,6 +504,7 @@ class TestFindInvalidETLD(unittest.TestCase):
           "The provided aliased site is not an eTLD+1: https://primary.c2om",
           "The provided associated site is not an eTLD+1: https://associated1.c2om",
           "The provided service site is not an eTLD+1: https://service1.c2om"])
+        
     def test_not_etld_plus1(self):
         json_dict = {
             "sets":
@@ -529,6 +531,26 @@ class TestFindInvalidETLD(unittest.TestCase):
             [
                 {
                     "primary": "https://primary.com.ar",
+                    "ccTLDs": {},
+                    "rationaleBySite": {}
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=PublicSuffixList(
+                        psl_file = 'effective_tld_names.dat'),
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_eTLD_Plus1(loaded_sets)
+        self.assertEqual(fp.error_list, 
+                         [])
+    
+    def test_valid_tld_plus1(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
                     "ccTLDs": {},
                     "rationaleBySite": {}
                 }
