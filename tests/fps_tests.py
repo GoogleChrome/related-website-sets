@@ -450,8 +450,7 @@ class TestFindInvalidETLD(unittest.TestCase):
         loaded_sets = fp.load_sets()
         fp.find_invalid_eTLD_Plus1(loaded_sets)
         self.assertEqual(fp.error_list, 
-         ["The provided primary site does not have an eTLD in the" +
-                    " Public suffix list: https://primary.c2om"])
+         ["The provided primary site is not an eTLD+1: https://primary.c2om"])
                 
     def test_invalid_etld_cctld(self):
         json_dict = {
@@ -475,8 +474,7 @@ class TestFindInvalidETLD(unittest.TestCase):
         loaded_sets = fp.load_sets()
         fp.find_invalid_eTLD_Plus1(loaded_sets)
         self.assertEqual(fp.error_list, 
-         ["The provided aliased site does not have an eTLD in the" +
-                    " Public suffix list: https://primary.c2om"])
+         ["The provided aliased site is not an eTLD+1: https://primary.c2om"])
                 
     def test_multi_invalid_etlds(self):
         json_dict = {
@@ -500,16 +498,50 @@ class TestFindInvalidETLD(unittest.TestCase):
         loaded_sets = fp.load_sets()
         fp.find_invalid_eTLD_Plus1(loaded_sets)
         self.assertEqual(fp.error_list, 
-         ["The provided primary site does not have an eTLD in the" +
-                    " Public suffix list: https://primary.c2om",
-          "The provided alias does not have an eTLD in the" +
-                    " Public suffix list: https://primary.c2om",
-          "The provided aliased site does not have an eTLD in the" +
-                    " Public suffix list: https://primary.c2om",
-          "The provided associated site does not have an eTLD in the" +
-                    " Public suffix list: https://associated1.c2om",
-          "The provided service site does not have an eTLD in the" +
-                    " Public suffix list: https://service1.c2om"])
+         ["The provided primary site is not an eTLD+1: https://primary.c2om",
+          "The provided alias is not an eTLD+1: https://primary.c2om",
+          "The provided aliased site is not an eTLD+1: https://primary.c2om",
+          "The provided associated site is not an eTLD+1: https://associated1.c2om",
+          "The provided service site is not an eTLD+1: https://service1.c2om"])
+    def test_not_etld_plus1(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://subdomain.primary.com",
+                    "ccTLDs": {},
+                    "rationaleBySite": {}
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=PublicSuffixList(
+                        psl_file = 'effective_tld_names.dat'),
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_eTLD_Plus1(loaded_sets)
+        self.assertEqual(fp.error_list, 
+                         ["The provided primary site is not an eTLD+1: https://subdomain.primary.com"])
+        
+    def test_valid_etld_plus1(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com.ar",
+                    "ccTLDs": {},
+                    "rationaleBySite": {}
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=PublicSuffixList(
+                        psl_file = 'effective_tld_names.dat'),
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_eTLD_Plus1(loaded_sets)
+        self.assertEqual(fp.error_list, 
+                         [])
         
 class TestFindInvalidESLDs(unittest.TestCase):
     def test_invalid_alias_name(self):

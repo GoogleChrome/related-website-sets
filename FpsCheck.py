@@ -243,7 +243,9 @@ class FpsCheck:
         Returns:
             boolean with truth value dependent on value of get_public_suffix
         """
-        return self.etlds.get_public_suffix(site, strict=True) is not None
+        ps = self.etlds.get_public_suffix(site, strict=True)
+        return (ps is not None and ps == site)
+    
 
     def find_invalid_eTLD_Plus1(self, check_sets):
         """Checks if all domains are etld+1 compliant
@@ -260,36 +262,34 @@ class FpsCheck:
             # Apply to the primary
             if not self.is_eTLD_Plus1(primary):
                 self.error_list.append(
-                    "The provided primary site does not have an eTLD in the" +
-                    " Public suffix list: " + primary)
+                    "The provided primary site is not an eTLD+1: " +
+                    primary)
             # Apply to the country codes
             if check_sets[primary].ccTLDs:
                 for alias in check_sets[primary].ccTLDs:
                     if not self.is_eTLD_Plus1(alias):
                         self.error_list.append(
-                            "The provided alias does not have an eTLD in the "
-                            + "Public suffix list: " + alias)
+                            "The provided alias is not an eTLD+1: " +
+                            alias)
                     for aliased_site in check_sets[primary].ccTLDs[alias]:
                         if not self.is_eTLD_Plus1(aliased_site):
                             self.error_list.append(
-                                "The provided aliased site does not have an "
-                                + "eTLD in the Public suffix list: " + 
-                                aliased_site)
+                                "The provided aliased site is not an eTLD+1: " 
+                                + aliased_site)
             # Apply to associated sites
             if check_sets[primary].associated_sites:
                 for associated_site in check_sets[primary].associated_sites:
                     if not self.is_eTLD_Plus1(associated_site):
                         self.error_list.append(
-                            "The provided associated site does not have an " +
-                            "eTLD in the Public suffix list: " + 
+                            "The provided associated site is not an eTLD+1: " +
                             associated_site)
             # Apply to service sites
             if check_sets[primary].service_sites:
                 for service_site in check_sets[primary].service_sites:
                     if not self.is_eTLD_Plus1(service_site):
                         self.error_list.append(
-                            "The provided service site does not have an eTLD " 
-                            + "in the Public suffix list: " + service_site)
+                            "The provided service site is not an eTLD+1: " + 
+                            service_site)
 
     def open_and_load_json(self, url):
         """Calls urlopen and returns json from a site
