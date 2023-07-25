@@ -243,8 +243,11 @@ class FpsCheck:
         Returns:
             boolean with truth value dependent on value of get_public_suffix
         """
-        ps = self.etlds.get_public_suffix(site, strict=True)
-        return (ps is not None and ps == site)
+        assert site is not None
+        site = site.replace("https://", "")
+        is_etld_plus1 = self.etlds.get_public_suffix(site, strict=True) == site
+        is_not_etld = self.etlds.get_tld(site, strict=True) != site
+        return is_etld_plus1 and is_not_etld
     
 
     def find_invalid_eTLD_Plus1(self, check_sets):

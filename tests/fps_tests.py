@@ -565,6 +565,25 @@ class TestFindInvalidETLD(unittest.TestCase):
         self.assertEqual(fp.error_list, 
                          [])
         
+    def test_just_suffix(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://7.bg",
+                    "rationaleBySite": {}
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                    etlds=PublicSuffixList(
+                        psl_file = 'effective_tld_names.dat'),
+                    icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_eTLD_Plus1(loaded_sets)
+        self.assertEqual(fp.error_list, 
+        ["The provided primary site is not an eTLD+1: https://7.bg"])
+        
 class TestFindInvalidESLDs(unittest.TestCase):
     def test_invalid_alias_name(self):
         json_dict = {
