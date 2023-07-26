@@ -582,7 +582,7 @@ class TestFindInvalidETLD(unittest.TestCase):
         loaded_sets = fp.load_sets()
         fp.find_invalid_eTLD_Plus1(loaded_sets)
         self.assertEqual(fp.error_list, 
-        ["The provided primary site is not an eTLD+1: https://7.bg"])
+                ["The provided primary site is not an eTLD+1: https://7.bg"])
         
 class TestFindInvalidESLDs(unittest.TestCase):
     def test_invalid_alias_name(self):
