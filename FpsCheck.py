@@ -245,9 +245,9 @@ class FpsCheck:
         """
         assert site is not None
         site = site.removeprefix("https://")
-        is_etldp1 = self.etlds.get_sld(site, strict=True) == site
+        is_etldp1_or_etld = self.etlds.get_sld(site, strict=True) == site
         is_etld = self.etlds.get_tld(site, strict=True) == site
-        return is_etldp1 and not is_etld
+        return is_etldp1_or_etld and not is_etld
     
 
     def find_invalid_eTLD_Plus1(self, check_sets):
