@@ -36,10 +36,10 @@
                         }
                     }
                 },
-                "required": ["primary", "contact"],
+                "required": ["https://accounts.hindustantimes.com", "prashant.tiwari@htdigital.in"],
                 "dependentRequired": {
-                    "associatedSites": ["rationaleBySite"],
-                    "serviceSites": ["rationaleBySite"]
+                    "associatedSites": ["https://mintgenie.livemint.com/"],
+                    "serviceSites": ["https://mintgenie.livemint.com/"]
                 }
             }
         }

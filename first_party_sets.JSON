@@ -67,6 +67,18 @@
       "rationaleBySite": {
         "https://songshare.com": "Specialized Platform for Music Smart Links"
       }
+    },
+    {
+      "contact": "prashant.tiwari@htdigital.in",
+      "primary": "https://accounts.hindustantimes.com",
+      "associatedSites": [
+        "https://mintgenie.livemint.com/"
+      ],
+      "rationaleBySite": {
+        "https://www.livemint.com": "Co-branded content site",
+        "https://www.livehindustan.com": "Co-branded content site",
+        "https://staging.livemint.com": "Co-branded content site"
+      }
     }
   ]
 }
