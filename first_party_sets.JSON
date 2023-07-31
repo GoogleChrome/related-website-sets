@@ -73,8 +73,11 @@
       "primary": "https://accounts.hindustantimes.com",
       "associatedSites": [
         "https://mintgenie.livemint.com/"
-      ]
-      
+      ],
+      "rationaleBySite": {
+        "https://mintgenie.livemint.com": "Specialized Platform for economics"
+        
+      }
     }
   ]
 }
