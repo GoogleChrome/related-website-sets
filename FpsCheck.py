@@ -407,6 +407,27 @@ class FpsCheck:
                 for aliased_site in check_sets[primary].ccTLDs:
                     ccTLD_sites += check_sets[primary].ccTLDs[aliased_site]
                     self.check_list_sites(primary, ccTLD_sites)
+        
+    def find_invalid_removal(self, subtracted_sets):
+        """Checks that any sets being removed were properly removed by owner
+        
+        Checks that the /.well-known page for the primary of any FPS removed
+        from the list returns an error 404.
+        Args:
+            subtracted_sets: Dict[string, FpsSet]
+        Returns:
+            None"""
+        for primary in subtracted_sets:
+            url = primary + "/.well-known/first-party-set.json"
+            try:
+                r = requests.get(url, timeout=10)
+                if r.status_code != 404:
+                    self.error_list.append("The set associated with " + primary
+                            + " was removed from the list, but " + primary + 
+                            " does not return error 404.")
+            except Exception as inst:
+                self.error_list.append("Unexpected error when accessing " +
+                                    primary + "; Received error:" + str(inst))
 
     def find_invalid_alias_eSLDs(self, check_sets):
         """Checks that eSLDs match their alias, and that country codes are 
