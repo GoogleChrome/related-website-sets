@@ -1,47 +1,14 @@
 {
-    "type": "object",
-    "properties": {
-        "contact" : {"type": "string"},
-        "sets":  {
-            "type": "array",
-            "items": {
-                "type": "object",
-                "properties": {
-                    "ccTLDs": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        }
-                    },
-                    "primary": {"type": "string"},
-                    "associatedSites": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    },
-                    "serviceSites": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    },
-                    "rationaleBySite": {
-                        "type": "object",
-                        "additionalProperties": {
-                            "type": "string"
-                        }
-                    }
-                },
-                "required": ["https://accounts.hindustantimes.com", "prashant.tiwari@htdigital.in"],
-                "dependentRequired": {
-                    "associatedSites": ["https://mintgenie.livemint.com"],
-                    "serviceSites": ["https://mintgenie.livemint.com"]
-                }
-            }
-        }
+    "required": [
+        "https://accounts.hindustantimes.com",
+        "prashant.tiwari@htdigital.in"
+    ],
+    "dependentRequired": {
+        "associatedSites": [
+            "https://mintgenie.livemint.com"
+        ],
+        "serviceSites": [
+            "https://mintgenie.livemint.com"
+        ]
     }
 }
