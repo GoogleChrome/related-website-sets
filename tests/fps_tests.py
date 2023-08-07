@@ -869,6 +869,34 @@ class TestFindDiff(unittest.TestCase):
         }
         self.assertEqual(find_diff_sets(old_sets, new_sets), (new_sets, {}))
 
+    def test_primary_to_member(self):
+        old_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com",
+                    ccTLDs={
+                        "https://primary.com": ["https://primary.ca"]
+                    }
+                    ),
+            'https://primary2.com':
+            FpsSet(
+                    primary="https://primary2.com",
+                    ccTLDs={
+                    }
+                    )
+        }
+        new_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com",
+                    associated_sites= ["https://primary2.com"],
+                    ccTLDs={
+                        "https://primary.com": ["https://primary.ca"]
+                    }
+                    )
+        }
+        self.assertEqual(find_diff_sets(old_sets, new_sets), (new_sets, {}))
+
 
 # This method will be used in tests below to mock get requests
 def mock_get(*args, **kwargs):

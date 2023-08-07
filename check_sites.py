@@ -36,12 +36,11 @@ def find_diff_sets(old_sets, new_sets):
              for primary, fps in new_sets.items()
              if fps != old_sets.get(primary)
             }
-    subtracted_sets = {primary: old_sets[primary] for primary in set(old_sets) - set(new_sets)}
-    # Make sure that subtracted sets aren't just sets with changed primaries
-    for _, fps in diff_sets.items():
-        for primary in subtracted_sets:
-            if fps.includes(primary):
-                subtracted_sets -= primary
+    subtracted_sets = {
+        primary: old_sets[primary]
+        for primary in set(old_sets) - set(new_sets)
+        if not any(fps.includes(primary) for _, fps in new_sets.items())
+    }
     return diff_sets, subtracted_sets
 
 
@@ -118,8 +117,7 @@ def main():
         check_sets = fps_checker.load_sets()
 
     # Run check on subtracted sets
-    if subtracted_sets:
-        fps_checker.find_invalid_removal(subtracted_sets)
+    fps_checker.find_invalid_removal(subtracted_sets)
 
     # Run rest of checks
     check_list = [
