@@ -39,7 +39,7 @@ def find_diff_sets(old_sets, new_sets):
     subtracted_sets = {
         primary: old_sets[primary]
         for primary in set(old_sets) - set(new_sets)
-        if not any(fps.includes(primary) for _, fps in new_sets.items())
+        if not any(fps.includes(primary) for fps in new_sets.values())
     }
     return diff_sets, subtracted_sets
 

@@ -19,6 +19,7 @@ from urllib.request import urlopen
 from urllib.request import Request
 from publicsuffix2 import PublicSuffixList
 
+WELL_KNOWN = "/.well-known/first-party-set.json"
 
 class FpsCheck:
 
@@ -35,7 +36,7 @@ class FpsCheck:
                 without any given check failing halfway through and not 
                 catching other issues. 
   """
-    WELLKNOWN = "/.well-known/first-party-set.json"
+    
 
     def __init__(self, fps_sites: json, etlds: PublicSuffixList, icanns: set):
         """Stores the input from canonical_sites, effective_tld_names.dat, and 
@@ -324,7 +325,7 @@ class FpsCheck:
             None
         """
         for site in site_list:
-            url = site + self.WELLKNOWN
+            url = site + WELL_KNOWN
             try:
                 json_schema = self.open_and_load_json(url)
                 if 'primary' not in json_schema.keys():
@@ -359,7 +360,7 @@ class FpsCheck:
         # Check the schema to ensure consistency
         for primary in check_sets:
             # First we check the primary sites
-            url = primary + self.WELLKNOWN
+            url = primary + WELL_KNOWN
             # Read the well-known files and check them against the schema we 
             # have stored
             try:
@@ -419,7 +420,7 @@ class FpsCheck:
         Returns:
             None"""
         for primary in subtracted_sets:
-            url = primary + self.WELLKNOWN
+            url = primary + WELL_KNOWN
             try:
                 r = requests.get(url, timeout=10)
                 if r.status_code != 404:
