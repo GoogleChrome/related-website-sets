@@ -19,6 +19,7 @@ from urllib.request import urlopen
 from urllib.request import Request
 from publicsuffix2 import PublicSuffixList
 
+WELL_KNOWN = "/.well-known/first-party-set.json"
 
 class FpsCheck:
 
@@ -35,6 +36,7 @@ class FpsCheck:
                 without any given check failing halfway through and not 
                 catching other issues. 
   """
+    
 
     def __init__(self, fps_sites: json, etlds: PublicSuffixList, icanns: set):
         """Stores the input from canonical_sites, effective_tld_names.dat, and 
@@ -323,7 +325,7 @@ class FpsCheck:
             None
         """
         for site in site_list:
-            url = site + "/.well-known/first-party-set.json"
+            url = site + WELL_KNOWN
             try:
                 json_schema = self.open_and_load_json(url)
                 if 'primary' not in json_schema.keys():
@@ -358,7 +360,7 @@ class FpsCheck:
         # Check the schema to ensure consistency
         for primary in check_sets:
             # First we check the primary sites
-            url = primary + "/.well-known/first-party-set.json"
+            url = primary + WELL_KNOWN
             # Read the well-known files and check them against the schema we 
             # have stored
             try:
@@ -407,6 +409,27 @@ class FpsCheck:
                 for aliased_site in check_sets[primary].ccTLDs:
                     ccTLD_sites += check_sets[primary].ccTLDs[aliased_site]
                     self.check_list_sites(primary, ccTLD_sites)
+        
+    def find_invalid_removal(self, subtracted_sets):
+        """Checks that any sets being removed were properly removed by owner
+        
+        Checks that the /.well-known page for the primary of any FPS removed
+        from the list returns an error 404.
+        Args:
+            subtracted_sets: Dict[string, FpsSet]
+        Returns:
+            None"""
+        for primary in subtracted_sets:
+            url = primary + WELL_KNOWN
+            try:
+                r = requests.get(url, timeout=10)
+                if r.status_code != 404:
+                    self.error_list.append("The set associated with " + primary
+                            + " was removed from the list, but " + url + 
+                            " does not return error 404.")
+            except Exception as inst:
+                self.error_list.append("Unexpected error when accessing " +
+                                    url + "; Received error:" + str(inst))
 
     def find_invalid_alias_eSLDs(self, check_sets):
         """Checks that eSLDs match their alias, and that country codes are 

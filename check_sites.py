@@ -36,9 +36,11 @@ def find_diff_sets(old_sets, new_sets):
              for primary, fps in new_sets.items()
              if fps != old_sets.get(primary)
             }
-
-    subtracted_sets = {primary: old_sets[primary] for primary in set(old_sets) - set(new_sets)}
-
+    subtracted_sets = {
+        primary: old_sets[primary]
+        for primary in set(old_sets) - set(new_sets)
+        if not any(fps.includes(primary) for fps in new_sets.values())
+    }
     return diff_sets, subtracted_sets
 
 
@@ -85,8 +87,16 @@ def main():
         # If the schema is invalid, we will not run any other checks
         print(inst)
         return
+    
+    # Check for exclusivity among all sets in the updated version
+    try:
+        fps_checker.check_exclusivity(fps_checker.load_sets())
+    except Exception as inst:
+            error_texts.append(inst)
+
 
     check_sets = {}
+    subtracted_sets = {}
     # If called with with_diff, we must determine the sets that are different 
     # to properly construct our check_sets
     if with_diff:   
@@ -100,16 +110,18 @@ def main():
                     "\nerror was: " + inst)
                 return
         old_checker = FpsCheck(old_sites, etlds, icanns)
-        check_sets, _ = find_diff_sets(old_checker.load_sets(), fps_checker.load_sets())
+        check_sets, subtracted_sets = find_diff_sets(old_checker.load_sets(), fps_checker.load_sets())
         # TODO: add variable and check for subtracted_sets in case of user 
         # removing old set from the list
     else:
         check_sets = fps_checker.load_sets()
 
+    # Run check on subtracted sets
+    fps_checker.find_invalid_removal(subtracted_sets)
+
     # Run rest of checks
     check_list = [
         fps_checker.has_all_rationales,
-        fps_checker.check_exclusivity,
         fps_checker.find_non_https_urls, 
         fps_checker.find_invalid_eTLD_Plus1,
         fps_checker.find_invalid_well_known, 
