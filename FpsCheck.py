@@ -425,7 +425,7 @@ class FpsCheck:
                 r = requests.get(url, timeout=10)
                 if r.status_code != 404:
                     self.error_list.append("The set associated with " + primary
-                            + " was removed from the list, but " + primary + 
+                            + " was removed from the list, but " + primary + WELL_KNOWN + 
                             " does not return error 404.")
             except Exception as inst:
                 self.error_list.append("Unexpected error when accessing " +
