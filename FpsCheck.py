@@ -425,11 +425,11 @@ class FpsCheck:
                 r = requests.get(url, timeout=10)
                 if r.status_code != 404:
                     self.error_list.append("The set associated with " + primary
-                            + " was removed from the list, but " + primary + WELL_KNOWN + 
+                            + " was removed from the list, but " + url + 
                             " does not return error 404.")
             except Exception as inst:
                 self.error_list.append("Unexpected error when accessing " +
-                                    primary + "; Received error:" + str(inst))
+                                    url + "; Received error:" + str(inst))
 
     def find_invalid_alias_eSLDs(self, check_sets):
         """Checks that eSLDs match their alias, and that country codes are 

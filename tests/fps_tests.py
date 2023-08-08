@@ -1171,7 +1171,8 @@ class MockTestsClass(unittest.TestCase):
         fp.find_invalid_removal(subtracted_sets)
         self.assertEqual(fp.error_list, ["The set associated with " +
                 "https://primary1.com was removed from the list, but " +
-                "https://primary1.com does not return error 404."])
+                "https://primary1.com/.well-known/first-party-set.json does " +
+                "not return error 404."])
         
     @mock.patch('requests.get', side_effect=mock_get)
     def test_find_valid_removal(self, mock_get):
