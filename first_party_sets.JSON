@@ -77,6 +77,24 @@
       "rationaleBySite": {
         "https://landyrev.ru": "Same publisher's website in a different region"
       }
+    },
+    {
+      "contact": "documentation-top-100@rambler.ru",
+      "primary": "https://top100.rambler.ru",
+      "associatedSites": [
+        "https://stat.top100.rambler.ru",
+        "https://stat.ad-tech.ru"
+      ],
+      "serviceSites": [
+        "https://st.top100.ru",
+        "https://kraken.rambler.ru"
+      ],
+      "rationaleBySite": {
+        "https://stat.top100.rambler.ru": "Private part of the site",
+        "https://stat.ad-tech.ru": "New alternative version of the site",
+        "https://st.top100.ru": "CDN for common files",
+        "https://kraken.rambler.ru": "Common api service"
+      }
     }
   ]
 }
