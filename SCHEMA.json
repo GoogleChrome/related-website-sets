@@ -36,10 +36,10 @@
                         }
                     }
                 },
-                "required": ["https://accounts.hindustantimes.com", "prashant.tiwari@htdigital.in"],
+                "required": ["https://hindustantimes.com", "prashant.tiwari@htdigital.in"],
                 "dependentRequired": {
-                    "associatedSites": ["https://mintgenie.livemint.com"],
-                    "serviceSites": ["https://mintgenie.livemint.com"]
+                    "associatedSites": ["https://livemint.com"],
+                    "serviceSites": ["https://livemint.com"]
                 }
             }
         }
