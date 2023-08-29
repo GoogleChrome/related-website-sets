@@ -35,11 +35,6 @@
                             "type": "string"
                         }
                     }
-                },
-                "required": ["https://hindustantimes.com", "prashant.tiwari@htdigital.in"],
-                "dependentRequired": {
-                    "associatedSites": ["https://livemint.com"],
-                    "serviceSites": ["https://livemint.com"]
                 }
             }
         }
