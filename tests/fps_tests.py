@@ -430,6 +430,7 @@ class TestFindNonHttps(unittest.TestCase):
         "associated1.com",
         "The provided service site does not begin with https:// service1.com"
          ])
+        
 class TestFindInvalidETLD(unittest.TestCase):
     def test_invalid_etld_primary(self):
         json_dict = {
@@ -450,8 +451,7 @@ class TestFindInvalidETLD(unittest.TestCase):
         loaded_sets = fp.load_sets()
         fp.find_invalid_eTLD_Plus1(loaded_sets)
         self.assertEqual(fp.error_list, 
-         ["The provided primary site does not have an eTLD in the" +
-                    " Public suffix list: https://primary.c2om"])
+         ["The provided primary site is not an eTLD+1: https://primary.c2om"])
                 
     def test_invalid_etld_cctld(self):
         json_dict = {
@@ -475,8 +475,7 @@ class TestFindInvalidETLD(unittest.TestCase):
         loaded_sets = fp.load_sets()
         fp.find_invalid_eTLD_Plus1(loaded_sets)
         self.assertEqual(fp.error_list, 
-         ["The provided aliased site does not have an eTLD in the" +
-                    " Public suffix list: https://primary.c2om"])
+         ["The provided aliased site is not an eTLD+1: https://primary.c2om"])
                 
     def test_multi_invalid_etlds(self):
         json_dict = {
@@ -500,16 +499,90 @@ class TestFindInvalidETLD(unittest.TestCase):
         loaded_sets = fp.load_sets()
         fp.find_invalid_eTLD_Plus1(loaded_sets)
         self.assertEqual(fp.error_list, 
-         ["The provided primary site does not have an eTLD in the" +
-                    " Public suffix list: https://primary.c2om",
-          "The provided alias does not have an eTLD in the" +
-                    " Public suffix list: https://primary.c2om",
-          "The provided aliased site does not have an eTLD in the" +
-                    " Public suffix list: https://primary.c2om",
-          "The provided associated site does not have an eTLD in the" +
-                    " Public suffix list: https://associated1.c2om",
-          "The provided service site does not have an eTLD in the" +
-                    " Public suffix list: https://service1.c2om"])
+         ["The provided primary site is not an eTLD+1: https://primary.c2om",
+          "The provided alias is not an eTLD+1: https://primary.c2om",
+          "The provided aliased site is not an eTLD+1: https://primary.c2om",
+          "The provided associated site is not an eTLD+1: https://associated1.c2om",
+          "The provided service site is not an eTLD+1: https://service1.c2om"])
+        
+    def test_not_etld_plus1(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://subdomain.primary.com",
+                    "ccTLDs": {},
+                    "rationaleBySite": {}
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=PublicSuffixList(
+                        psl_file = 'effective_tld_names.dat'),
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_eTLD_Plus1(loaded_sets)
+        self.assertEqual(fp.error_list, 
+                         ["The provided primary site is not an eTLD+1: https://subdomain.primary.com"])
+        
+    def test_valid_etld_plus1(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com.ar",
+                    "ccTLDs": {},
+                    "rationaleBySite": {}
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=PublicSuffixList(
+                        psl_file = 'effective_tld_names.dat'),
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_eTLD_Plus1(loaded_sets)
+        self.assertEqual(fp.error_list, 
+                         [])
+    
+    def test_valid_tld_plus1(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "ccTLDs": {},
+                    "rationaleBySite": {}
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=PublicSuffixList(
+                        psl_file = 'effective_tld_names.dat'),
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_eTLD_Plus1(loaded_sets)
+        self.assertEqual(fp.error_list, 
+                         [])
+        
+    def test_just_suffix(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://7.bg",
+                    "rationaleBySite": {}
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                    etlds=PublicSuffixList(
+                        psl_file = 'effective_tld_names.dat'),
+                    icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_eTLD_Plus1(loaded_sets)
+        self.assertEqual(fp.error_list, 
+                ["The provided primary site is not an eTLD+1: https://7.bg"])
         
 class TestFindInvalidESLDs(unittest.TestCase):
     def test_invalid_alias_name(self):
@@ -796,6 +869,34 @@ class TestFindDiff(unittest.TestCase):
         }
         self.assertEqual(find_diff_sets(old_sets, new_sets), (new_sets, {}))
 
+    def test_primary_to_member(self):
+        old_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com",
+                    ccTLDs={
+                        "https://primary.com": ["https://primary.ca"]
+                    }
+                    ),
+            'https://primary2.com':
+            FpsSet(
+                    primary="https://primary2.com",
+                    ccTLDs={
+                    }
+                    )
+        }
+        new_sets = {
+            'https://primary.com': 
+            FpsSet(
+                    primary="https://primary.com",
+                    associated_sites= ["https://primary2.com"],
+                    ccTLDs={
+                        "https://primary.com": ["https://primary.ca"]
+                    }
+                    )
+        }
+        self.assertEqual(find_diff_sets(old_sets, new_sets), (new_sets, {}))
+
 
 # This method will be used in tests below to mock get requests
 def mock_get(*args, **kwargs):
@@ -821,6 +922,8 @@ def mock_get(*args, **kwargs):
         return mgr
     elif args[0].startswith('https://service'):
         return MockedGetResponse({},200)
+    elif args[0] == 'https://primary1.com/.well-known/first-party-set.json':
+        return MockedGetResponse({}, 200)
     
     return MockedGetResponse(None, 404)
 
@@ -1051,7 +1154,41 @@ class MockTestsClass(unittest.TestCase):
         loaded_sets = fp.load_sets()
         fp.check_for_service_redirect(loaded_sets)
         self.assertEqual(fp.error_list, [])
+
+    # Now we test check_invalid_removal by checking for an error 404
+    @mock.patch('requests.get', side_effect=mock_get)
+    def test_find_invalid_removal(self, mock_get):
+        subtracted_sets = {
+            'https://primary1.com': 
+            FpsSet(
+                    primary='https://primary1.com',
+                    ccTLDs={}
+                    )
+        }
+        fp = FpsCheck(fps_sites={},
+                     etlds=None,
+                     icanns=set())
+        fp.find_invalid_removal(subtracted_sets)
+        self.assertEqual(fp.error_list, ["The set associated with " +
+                "https://primary1.com was removed from the list, but " +
+                "https://primary1.com/.well-known/first-party-set.json does " +
+                "not return error 404."])
         
+    @mock.patch('requests.get', side_effect=mock_get)
+    def test_find_valid_removal(self, mock_get):
+        subtracted_sets = {
+            'https://primary2.com': 
+            FpsSet(
+                    primary="https://primary2.com",
+                    ccTLDs={}
+                    )
+        }
+        fp = FpsCheck(fps_sites={},
+                     etlds=None,
+                     icanns=set())
+        fp.find_invalid_removal(subtracted_sets)
+        self.assertEqual(fp.error_list, [])
+
     # Now we test the mocked open_and_load_json to test the well-known checks
     @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
     side_effect=mock_open_and_load_json)

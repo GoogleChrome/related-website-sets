@@ -76,7 +76,16 @@
       ],
       "rationaleBySite": {
         "https://livemint.com": "Specialized Platform for economics"
-        
+      }  
+    },
+    {
+      "contact": "alexey@landyrev.com",
+      "primary": "https://landyrev.com",
+      "associatedSites": [
+        "https://landyrev.ru"
+      ],
+      "rationaleBySite": {
+        "https://landyrev.ru": "Same publisher's website in a different region"
       }
     }
   ]

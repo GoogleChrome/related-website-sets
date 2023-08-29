@@ -19,6 +19,7 @@ from urllib.request import urlopen
 from urllib.request import Request
 from publicsuffix2 import PublicSuffixList
 
+WELL_KNOWN = "/.well-known/first-party-set.json"
 
 class FpsCheck:
 
@@ -35,6 +36,7 @@ class FpsCheck:
                 without any given check failing halfway through and not 
                 catching other issues. 
   """
+    
 
     def __init__(self, fps_sites: json, etlds: PublicSuffixList, icanns: set):
         """Stores the input from canonical_sites, effective_tld_names.dat, and 
@@ -243,7 +245,12 @@ class FpsCheck:
         Returns:
             boolean with truth value dependent on value of get_public_suffix
         """
-        return self.etlds.get_public_suffix(site, strict=True) is not None
+        assert site is not None
+        site = site.removeprefix("https://")
+        is_etldp1_or_etld = self.etlds.get_sld(site, strict=True) == site
+        is_etld = self.etlds.get_tld(site, strict=True) == site
+        return is_etldp1_or_etld and not is_etld
+    
 
     def find_invalid_eTLD_Plus1(self, check_sets):
         """Checks if all domains are etld+1 compliant
@@ -260,36 +267,34 @@ class FpsCheck:
             # Apply to the primary
             if not self.is_eTLD_Plus1(primary):
                 self.error_list.append(
-                    "The provided primary site does not have an eTLD in the" +
-                    " Public suffix list: " + primary)
+                    "The provided primary site is not an eTLD+1: " +
+                    primary)
             # Apply to the country codes
             if check_sets[primary].ccTLDs:
                 for alias in check_sets[primary].ccTLDs:
                     if not self.is_eTLD_Plus1(alias):
                         self.error_list.append(
-                            "The provided alias does not have an eTLD in the "
-                            + "Public suffix list: " + alias)
+                            "The provided alias is not an eTLD+1: " +
+                            alias)
                     for aliased_site in check_sets[primary].ccTLDs[alias]:
                         if not self.is_eTLD_Plus1(aliased_site):
                             self.error_list.append(
-                                "The provided aliased site does not have an "
-                                + "eTLD in the Public suffix list: " + 
-                                aliased_site)
+                                "The provided aliased site is not an eTLD+1: " 
+                                + aliased_site)
             # Apply to associated sites
             if check_sets[primary].associated_sites:
                 for associated_site in check_sets[primary].associated_sites:
                     if not self.is_eTLD_Plus1(associated_site):
                         self.error_list.append(
-                            "The provided associated site does not have an " +
-                            "eTLD in the Public suffix list: " + 
+                            "The provided associated site is not an eTLD+1: " +
                             associated_site)
             # Apply to service sites
             if check_sets[primary].service_sites:
                 for service_site in check_sets[primary].service_sites:
                     if not self.is_eTLD_Plus1(service_site):
                         self.error_list.append(
-                            "The provided service site does not have an eTLD " 
-                            + "in the Public suffix list: " + service_site)
+                            "The provided service site is not an eTLD+1: " + 
+                            service_site)
 
     def open_and_load_json(self, url):
         """Calls urlopen and returns json from a site
@@ -320,7 +325,7 @@ class FpsCheck:
             None
         """
         for site in site_list:
-            url = site + "/.well-known/first-party-set.json"
+            url = site + WELL_KNOWN
             try:
                 json_schema = self.open_and_load_json(url)
                 if 'primary' not in json_schema.keys():
@@ -355,7 +360,7 @@ class FpsCheck:
         # Check the schema to ensure consistency
         for primary in check_sets:
             # First we check the primary sites
-            url = primary + "/.well-known/first-party-set.json"
+            url = primary + WELL_KNOWN
             # Read the well-known files and check them against the schema we 
             # have stored
             try:
@@ -404,6 +409,27 @@ class FpsCheck:
                 for aliased_site in check_sets[primary].ccTLDs:
                     ccTLD_sites += check_sets[primary].ccTLDs[aliased_site]
                     self.check_list_sites(primary, ccTLD_sites)
+        
+    def find_invalid_removal(self, subtracted_sets):
+        """Checks that any sets being removed were properly removed by owner
+        
+        Checks that the /.well-known page for the primary of any FPS removed
+        from the list returns an error 404.
+        Args:
+            subtracted_sets: Dict[string, FpsSet]
+        Returns:
+            None"""
+        for primary in subtracted_sets:
+            url = primary + WELL_KNOWN
+            try:
+                r = requests.get(url, timeout=10)
+                if r.status_code != 404:
+                    self.error_list.append("The set associated with " + primary
+                            + " was removed from the list, but " + url + 
+                            " does not return error 404.")
+            except Exception as inst:
+                self.error_list.append("Unexpected error when accessing " +
+                                    url + "; Received error:" + str(inst))
 
     def find_invalid_alias_eSLDs(self, check_sets):
         """Checks that eSLDs match their alias, and that country codes are 
