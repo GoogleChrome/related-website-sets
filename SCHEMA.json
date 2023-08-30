@@ -35,6 +35,11 @@
                             "type": "string"
                         }
                     }
+                },
+                "required": ["primary", "contact"],
+                "dependentRequired": {
+                    "associatedSites": ["rationaleBySite"],
+                    "serviceSites": ["rationaleBySite"]
                 }
             }
         }
