@@ -1273,6 +1273,69 @@ class MockTestsClass(unittest.TestCase):
         loaded_sets = fp.load_sets()
         fp.find_invalid_well_known(loaded_sets)
         self.assertEqual(fp.error_list, [])
+    @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
+    side_effect=mock_open_and_load_json)
+    def test_absent_field(self, mock_open_and_load_json):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary1.com"
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_well_known(loaded_sets)
+        self.assertEqual(fp.error_list, ["The following member(s) of " +
+        "associatedSites were not present in both the changelist and " + 
+        ".well-known/first-party-set.json file: ['https://not-in-list.com']"])
+    @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
+    side_effect=mock_open_and_load_json)
+    def test_differing_fields(self, mock_open_and_load_json):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary1.com",
+                    "serviceSites": ["https://expected-associated.com"]
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_well_known(loaded_sets)
+        self.assertEqual(sorted(fp.error_list), ["The following member(s) of " +
+        "associatedSites were not present in both the changelist and " + 
+        ".well-known/first-party-set.json file: ['https://not-in-list.com']", 
+        "The following member(s) of serviceSites were not present in both " +
+         "the changelist and .well-known/first-party-set.json file: "
+         + "['https://expected-associated.com']"])
+    @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
+    side_effect=mock_open_and_load_json)
+    def test_unchecked_field(self, mock_open_and_load_json):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary4.com",
+                    "associatedSites": ["https://associated3.com"],
+                    "rationaleBySite": {
+                        "https://associated3.com" : "A rationale."
+                    }
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_well_known(loaded_sets)
+        self.assertEqual(sorted(fp.error_list), [])
 
 if __name__ == '__main__':
     unittest.main()

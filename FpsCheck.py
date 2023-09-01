@@ -83,9 +83,9 @@ class FpsCheck:
         load_sets_errors = []
         for fpset in self.fps_sites['sets']:
             primary = fpset.get('primary', None)
-            ccTLDs = fpset.get('ccTLDs', None)
-            associated_sites = fpset.get('associatedSites', None)
-            service_sites = fpset.get('serviceSites', None)
+            ccTLDs = fpset.get('ccTLDs', {})
+            associated_sites = fpset.get('associatedSites', [])
+            service_sites = fpset.get('serviceSites', [])
             if primary in check_sets.keys():
                 load_sets_errors.append(
                     primary + " is already a primary of another site")
@@ -365,9 +365,11 @@ class FpsCheck:
             # have stored
             try:
                 json_schema = self.open_and_load_json(url)
-                schema_fields = set(self.acceptable_fields) & set(
-                    json_schema.keys())
                 curr_fps_set = check_sets[primary]
+                schema_fields = set({field for field in json_schema.keys()
+                                     if field in self.acceptable_fields})
+                schema_fields.update({field for field in self.acceptable_fields
+                        if len(curr_fps_set.relevant_fields_dict[field]) > 0})
                 for field in schema_fields:
                     if field == "primary":
                         if json_schema["primary"] != curr_fps_set.primary:
@@ -376,8 +378,9 @@ class FpsCheck:
                         else:
                             field_sym_difference = []
                     else:
-                        field_sym_difference = set(json_schema[field]) ^ set(
-                        curr_fps_set.relevant_fields_dict[field])
+                        field_sym_difference = set(json_schema[field] 
+                                if field in json_schema.keys() else []) ^ set(
+                                    curr_fps_set.relevant_fields_dict[field])
                         if field == 'ccTLDs':
                             for aliased_site in json_schema[field]:
                                 field_sym_difference.update(
