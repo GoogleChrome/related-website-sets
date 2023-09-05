@@ -69,6 +69,16 @@
       }
     },
     {
+      "contact": "prashant.tiwari@htdigital.in",
+      "primary": "https://hindustantimes.com",
+      "associatedSites": [
+        "https://livemint.com"
+      ],
+      "rationaleBySite": {
+        "https://livemint.com": "Specialized Platform for economics"
+      }  
+    },
+    {
       "contact": "alexey@landyrev.com",
       "primary": "https://landyrev.com",
       "associatedSites": [
