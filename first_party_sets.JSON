@@ -1,5 +1,38 @@
 {
   "sets": [
+     {
+      "contact": "noc@yandex-team.ru",
+      "primary": "https://ya.ru",
+      "associatedSites": [
+        "https://yandex.ru",
+        "https://yandex.net",
+        "https://yandex.az",
+        "https://yandex.by",
+        "https://yandex.kz",
+        "https://yandex.md",
+        "https://yandex.tj",
+        "https://yandex.tm",
+        "https://yandex.uz",
+        "https://yandex.st",
+        "https://yandex.kg",
+        "https://yandex.com",
+        "https://yandex.com.am",
+        "https://yandex.com.ru",
+        "https://ya.cc",
+        "https://yastatic.net",
+        "https://auto.ru",
+        "https://kinopoisk.ru",
+        "https://adfox.ru",
+        "https://clck.ru",
+        "https://adfox.net",
+        "https://webvisor.com",
+        "https://ymetrica.com",
+        "https://webvisor.org",
+        "https://clients.site",
+        "https://turbopages.org",
+        "https://edadeal.ru"
+      ]
+    },
     {
       "contact": "dmarti@raptive.com",
       "primary": "https://cafemedia.com",
