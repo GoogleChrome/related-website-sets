@@ -26,14 +26,14 @@ class FpsSet:
     of each field to their value within the object. 
   """
     def __init__(self, ccTLDs, primary, associated_sites=[], service_sites=[]):
-        self.ccTLDs = ccTLDs
+        self.ccTLDs = {} if ccTLDs is None else ccTLDs
         self.primary = primary
-        self.associated_sites = associated_sites
-        self.service_sites = service_sites
-        self.relevant_fields_dict = {'ccTLDs': ccTLDs, 
-                                     'primary': primary,
-                                     'associatedSites': associated_sites, 
-                                     'serviceSites': service_sites}
+        self.associated_sites = [] if associated_sites is None else associated_sites
+        self.service_sites = [] if service_sites is None else service_sites
+        self.relevant_fields_dict = {'ccTLDs': self.ccTLDs, 
+                                     'primary': self.primary,
+                                     'associatedSites': self.associated_sites, 
+                                     'serviceSites': self.service_sites}
     
     def __eq__(self, obj):
       if isinstance(obj, FpsSet) and self.primary == obj.primary:

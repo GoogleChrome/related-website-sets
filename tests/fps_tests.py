@@ -968,6 +968,11 @@ def mock_open_and_load_json(*args, **kwargs):
         return {
             "primary": "https://primary4.com"
         }
+    elif args[0] == 'https://primary5.com/.well-known/first-party-set.json':
+        return {
+            "primary": "https://primary5.com",
+            "unchecked": "An unchecked field"
+        }
     return {"primary":None}
 
 # Our test case class
@@ -1229,10 +1234,9 @@ class MockTestsClass(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_invalid_well_known(loaded_sets)
-        self.assertEqual(fp.error_list, ["The following member(s) of " +
-        "primary were not present in both the changelist and " + 
-        ".well-known/first-party-set.json file: ['https://primary2.com'"
-        + ", 'https://wrong-primary.com']"])
+        self.assertEqual(fp.error_list, ["The following primary was not "
+        + "present in both the changelist and .well-known/first-party-set.json"
+        + " file: ['https://primary2.com', 'https://wrong-primary.com']"])
 
     @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
     side_effect=mock_open_and_load_json)
@@ -1273,6 +1277,7 @@ class MockTestsClass(unittest.TestCase):
         loaded_sets = fp.load_sets()
         fp.find_invalid_well_known(loaded_sets)
         self.assertEqual(fp.error_list, [])
+
     @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
     side_effect=mock_open_and_load_json)
     def test_absent_field(self, mock_open_and_load_json):
@@ -1292,6 +1297,7 @@ class MockTestsClass(unittest.TestCase):
         self.assertEqual(fp.error_list, ["The following member(s) of " +
         "associatedSites were not present in both the changelist and " + 
         ".well-known/first-party-set.json file: ['https://not-in-list.com']"])
+
     @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
     side_effect=mock_open_and_load_json)
     def test_differing_fields(self, mock_open_and_load_json):
@@ -1315,6 +1321,7 @@ class MockTestsClass(unittest.TestCase):
         "The following member(s) of serviceSites were not present in both " +
          "the changelist and .well-known/first-party-set.json file: "
          + "['https://expected-associated.com']"])
+        
     @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
     side_effect=mock_open_and_load_json)
     def test_unchecked_field(self, mock_open_and_load_json):
@@ -1336,6 +1343,23 @@ class MockTestsClass(unittest.TestCase):
         loaded_sets = fp.load_sets()
         fp.find_invalid_well_known(loaded_sets)
         self.assertEqual(sorted(fp.error_list), [])
-
+    
+    @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
+    side_effect=mock_open_and_load_json)
+    def test_unchecked_well_known_field(self, mock_open_and_load_json):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary5.com",
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set())
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_well_known(loaded_sets)
+        self.assertEqual(sorted(fp.error_list), [])
 if __name__ == '__main__':
     unittest.main()
