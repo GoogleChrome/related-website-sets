@@ -329,7 +329,7 @@ class FpsCheck:
                 if 'primary' not in json_schema.keys():
                     self.error_list.append(
                         "The listed associated site site did not have primary"
-                        + " as a key in its .well-known/first-party-set.json "
+                        + " as a key in its " + WELL_KNOWN
                         + "file: " + site)
                 elif json_schema['primary'] != primary:
                     self.error_list.append("The listed associated site "
@@ -339,7 +339,16 @@ class FpsCheck:
                 self.error_list.append(
                     "Experienced an error when trying to access " + url + "; "
                     + "error was: " + str(inst))
-                
+    
+    def check_well_known_list(self, field, list1, list2):
+        """Checks that 2 lists for a given field match each other"""
+        if list1 == list2:
+            return []
+        diff = sorted(set(list1) ^ set(list2))
+        return ["Experienced a mismatch between the PR submission and the " 
+        + WELL_KNOWN + " file:\n\t" + field + " was " + str(list1) + " in the PR, and "
+        + str(list2) + " in the well-known.\n\tDiff was: " + str(diff) + "."]
+
     def find_invalid_well_known(self, check_sets):
         """Checks for and validates well-known pages for FPS sets
 
@@ -372,40 +381,35 @@ class FpsCheck:
                 if well_known_set.primary != curr_fps_set.primary:
                     field_sym_difference = [well_known_set.primary, curr_fps_set.primary]
                     self.error_list.append("The following primary was not "
-                    + "present in both the changelist and "
-                    + ".well-known/first-party-set.json file: "
+                    + "present in both the PR and " + WELL_KNOWN + " file: "
                     + str(sorted(field_sym_difference)))
-                if well_known_set.associated_sites != curr_fps_set.associated_sites:
-                    field_sym_difference = set(
-                       well_known_set.associated_sites) ^ set(curr_fps_set.associated_sites)
-                    self.error_list.append("The following member(s) of " 
-                    + "associatedSites were not present in both the "
-                    + "changelist and .well-known/first-party-set.json "
-                    + "file: " + str(sorted(field_sym_difference)))
-                if well_known_set.service_sites != curr_fps_set.service_sites:
-                    field_sym_difference = set(
-                       well_known_set.service_sites) ^ set(curr_fps_set.service_sites)
-                    self.error_list.append("The following member(s) of " 
-                    + "serviceSites were not present in both the "
-                    + "changelist and .well-known/first-party-set.json "
-                    + "file: " + str(sorted(field_sym_difference)))
-                if well_known_set.ccTLDs != curr_fps_set.ccTLDs:
-                    field_sym_difference = set(
-                        well_known_set.ccTLDS.keys()) ^ set(
-                            curr_fps_set.ccTLDs.keys())
-                    self.error_list.append("The following aliased ccTLD sites"
-                    + "were not present in both the changelist and " 
-                    + ".well-known/first-party-set.json file: "
-                    + str(sorted(field_sym_difference)))
-                    for aliased_site in curr_fps_set.ccTLDs & well_known_set.ccTLDs:
-                        field_sym_difference = set(
-                        well_known_set.ccTLDS[aliased_site]) ^ set(
-                            curr_fps_set.ccTLDs[aliased_site])
-                        self.error_list.append("The following ccTLD aliases"
-                        + "were not present in both the changelist and " 
-                        + ".well-known/first-party-set.json file for site "
-                        + aliased_site + ": " 
-                        + str(sorted(field_sym_difference)))
+                associated_diff = self.check_well_known_list(
+                    "associatedSites",
+                    curr_fps_set.associated_sites, 
+                    well_known_set.associated_sites)
+                self.error_list.extend(associated_diff)
+                service_diff = self.check_well_known_list(
+                    "serviceSites",
+                    curr_fps_set.service_sites, 
+                    well_known_set.service_sites)
+                self.error_list.extend(service_diff)
+                aliased_site_diff = self.check_well_known_list(
+                    "ccTLD key list", 
+                    curr_fps_set.ccTLDs.keys(), 
+                    well_known_set.ccTLDs.keys())
+                self.error_list.extend(aliased_site_diff)
+                for aliased_site in curr_fps_set.ccTLDs | well_known_set.ccTLDs:
+                    list1 = []
+                    if aliased_site in curr_fps_set.ccTLDs:
+                        list1 = curr_fps_set.ccTLDs[aliased_site]
+                    list2 = []
+                    if aliased_site in well_known_set.ccTLDs:
+                        list2 = well_known_set.ccTLDs[aliased_site]
+                    alias_diff = self.check_well_known_list(
+                        aliased_site + " alias list",
+                        list1,
+                        list2)
+                    self.error_list.extend(alias_diff)
             except Exception as inst:
                 self.error_list.append(
                     "Experienced an error when trying to access " + url + 

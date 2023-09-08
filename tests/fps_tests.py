@@ -1212,10 +1212,12 @@ class MockTestsClass(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_invalid_well_known(loaded_sets)
-        self.assertEqual(fp.error_list, ["The following member(s) of " +
-        "associatedSites were not present in both the changelist and " + 
-        ".well-known/first-party-set.json file: ['https://expected-associated.com'"
-        + ", 'https://not-in-list.com']"])
+        self.assertEqual(fp.error_list, 
+        ["Experienced a mismatch between the PR submission and the " + 
+        "/.well-known/first-party-set.json file:\n\tassociatedSites was " +
+        "['https://expected-associated.com'] in the PR, and " +
+        "['https://not-in-list.com'] in the well-known.\n\tDiff was: " + 
+        "['https://expected-associated.com', 'https://not-in-list.com']."])
     
     @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
     side_effect=mock_open_and_load_json)
@@ -1235,7 +1237,7 @@ class MockTestsClass(unittest.TestCase):
         loaded_sets = fp.load_sets()
         fp.find_invalid_well_known(loaded_sets)
         self.assertEqual(fp.error_list, ["The following primary was not "
-        + "present in both the changelist and .well-known/first-party-set.json"
+        + "present in both the PR and /.well-known/first-party-set.json"
         + " file: ['https://primary2.com', 'https://wrong-primary.com']"])
 
     @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
@@ -1294,9 +1296,11 @@ class MockTestsClass(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_invalid_well_known(loaded_sets)
-        self.assertEqual(fp.error_list, ["The following member(s) of " +
-        "associatedSites were not present in both the changelist and " + 
-        ".well-known/first-party-set.json file: ['https://not-in-list.com']"])
+        self.assertEqual(fp.error_list, 
+        ["Experienced a mismatch between the PR submission and the " + 
+        "/.well-known/first-party-set.json file:\n\tassociatedSites was [] in "
+        + "the PR, and ['https://not-in-list.com'] in the well-known.\n\tDiff "
+        + "was: ['https://not-in-list.com']."])
 
     @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
     side_effect=mock_open_and_load_json)
@@ -1315,12 +1319,15 @@ class MockTestsClass(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_invalid_well_known(loaded_sets)
-        self.assertEqual(sorted(fp.error_list), ["The following member(s) of " +
-        "associatedSites were not present in both the changelist and " + 
-        ".well-known/first-party-set.json file: ['https://not-in-list.com']", 
-        "The following member(s) of serviceSites were not present in both " +
-         "the changelist and .well-known/first-party-set.json file: "
-         + "['https://expected-associated.com']"])
+        self.assertEqual(sorted(fp.error_list), 
+        ["Experienced a mismatch between the PR submission and the " + 
+        "/.well-known/first-party-set.json file:\n\tassociatedSites was [] in "
+        + "the PR, and ['https://not-in-list.com'] in the well-known.\n\tDiff "
+        + "was: ['https://not-in-list.com'].",
+        "Experienced a mismatch between the PR submission and the " 
+        + "/.well-known/first-party-set.json file:\n\tserviceSites was " + 
+        "['https://expected-associated.com'] in the PR, and [] in the " +
+        "well-known.\n\tDiff was: ['https://expected-associated.com']."])
         
     @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
     side_effect=mock_open_and_load_json)
@@ -1361,5 +1368,41 @@ class MockTestsClass(unittest.TestCase):
         loaded_sets = fp.load_sets()
         fp.find_invalid_well_known(loaded_sets)
         self.assertEqual(sorted(fp.error_list), [])
+    
+    @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
+    side_effect=mock_open_and_load_json)
+    def test_unexpteced_cctTLD(self, mock_open_and_load_json):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary4.com",
+                    "associatedSites": ["https://associated3.com"],
+                    "ccTLDs": {
+                        "https://associated3.com" : ["https://associated3.ca"]
+                    }
+                }
+            ]
+        }
+        fp = FpsCheck(fps_sites=json_dict,
+                     etlds=None,
+                     icanns=set(['ca']))
+        loaded_sets = fp.load_sets()
+        fp.find_invalid_well_known(loaded_sets)
+        self.assertEqual(sorted(fp.error_list), [
+            "Experienced a mismatch between the PR submission and the " +
+            "/.well-known/first-party-set.json file:\n\tccTLD key list was " +
+            "dict_keys(['https://associated3.com']) in the PR, and " +
+            "dict_keys([]) in the well-known.\n\tDiff was: " +
+            "['https://associated3.com'].",
+            "Experienced a mismatch between the PR submission and the "
+            "/.well-known/first-party-set.json file:\n\t" +
+            "https://associated3.com alias list was ['https://associated3.ca']"
+            + " in the PR, and [] in the well-known.\n\tDiff was: " +
+            "['https://associated3.ca'].",
+            "The listed associated site did not have https://primary4.com " +
+            "listed as its primary: https://associated3.ca"
+        ])
+
 if __name__ == '__main__':
     unittest.main()
