@@ -41,8 +41,6 @@ class FpsCheck:
     def __init__(self, fps_sites: json, etlds: PublicSuffixList, icanns: set):
         """Stores the input from canonical_sites, effective_tld_names.dat, and 
         ICANN_domains into the FpsCheck object"""
-        self.acceptable_fields = set(
-            ["ccTLDs", "primary", "associatedSites", "serviceSites"])
         self.fps_sites = fps_sites
         self.etlds = etlds
         self.icanns = icanns
@@ -82,10 +80,10 @@ class FpsCheck:
         check_sets = {}
         load_sets_errors = []
         for fpset in self.fps_sites['sets']:
-            primary = fpset.get('primary', None)
-            ccTLDs = fpset.get('ccTLDs', None)
-            associated_sites = fpset.get('associatedSites', None)
-            service_sites = fpset.get('serviceSites', None)
+            primary = fpset.get('primary')
+            ccTLDs = fpset.get('ccTLDs')
+            associated_sites = fpset.get('associatedSites')
+            service_sites = fpset.get('serviceSites')
             if primary in check_sets.keys():
                 load_sets_errors.append(
                     primary + " is already a primary of another site")
@@ -331,8 +329,8 @@ class FpsCheck:
                 if 'primary' not in json_schema.keys():
                     self.error_list.append(
                         "The listed associated site site did not have primary"
-                        + " as a key in its .well-known/first-party-set.json "
-                        + "file: " + site)
+                        + " as a key in its " + WELL_KNOWN
+                        + " file: " + site)
                 elif json_schema['primary'] != primary:
                     self.error_list.append("The listed associated site "
                     + "did not have " + primary + " listed as its primary: " 
@@ -342,6 +340,28 @@ class FpsCheck:
                     "Experienced an error when trying to access " + url + "; "
                     + "error was: " + str(inst))
     
+    def check_well_known_list(self, field, list1, list2):
+        """Checks that 2 lists for a given field match each other
+        
+        Applies a symmetric diff to list1 and list2 and returns an empty list
+        if the 2 fields are symmetric. Otherwise returns a list with a single
+        string to be used as error text, containing the field, list1, list2, 
+        and their symmetric diff.
+
+        Args:
+            field: string
+            list1: list[string]
+            list2: list[string]
+        Returns:
+            list[string]
+        """
+        if list1 == list2:
+            return []
+        diff = sorted(set(list1) ^ set(list2))
+        return ["Encountered an inequality between the PR submission and the " 
+        + WELL_KNOWN + " file:\n\t" + field + " was " + str(list1) + " in the PR, and "
+        + str(list2) + " in the well-known.\n\tDiff was: " + str(diff) + "."]
+
     def find_invalid_well_known(self, check_sets):
         """Checks for and validates well-known pages for FPS sets
 
@@ -365,31 +385,35 @@ class FpsCheck:
             # have stored
             try:
                 json_schema = self.open_and_load_json(url)
-                schema_fields = set(self.acceptable_fields) & set(
-                    json_schema.keys())
                 curr_fps_set = check_sets[primary]
-                for field in schema_fields:
-                    if field == "primary":
-                        if json_schema["primary"] != curr_fps_set.primary:
-                            field_sym_difference = [json_schema["primary"], 
-                            curr_fps_set.primary]
-                        else:
-                            field_sym_difference = []
-                    else:
-                        field_sym_difference = set(json_schema[field]) ^ set(
-                        curr_fps_set.relevant_fields_dict[field])
-                        if field == 'ccTLDs':
-                            for aliased_site in json_schema[field]:
-                                field_sym_difference.update(
-                                    set(json_schema[field][aliased_site]) ^ 
-                                    set(
-                                    curr_fps_set.relevant_fields_dict[field]
-                                    [aliased_site]))
-                    if field_sym_difference:
-                        self.error_list.append("The following member(s) of " 
-                        + field + " were not present in both the changelist "
-                        + "and .well-known/first-party-set.json file: " + 
-                        str(sorted(field_sym_difference)))
+                well_known_set = FpsSet(
+                    json_schema.get('ccTLDs'), 
+                    json_schema.get('primary'), 
+                    json_schema.get('associatedSites'), 
+                    json_schema.get('serviceSites'))
+                if well_known_set.primary != curr_fps_set.primary:
+                    self.error_list.append("The " + WELL_KNOWN + " set's " + 
+                    "primary (" + well_known_set.primary + ") did not equal " +
+                    "the PR set's primary (" + curr_fps_set.primary + ")")
+                self.error_list.extend(self.check_well_known_list(
+                    "associatedSites",
+                    curr_fps_set.associated_sites, 
+                    well_known_set.associated_sites
+                    )
+                )
+                self.error_list.extend(self.check_well_known_list(
+                    "serviceSites",
+                    curr_fps_set.service_sites, 
+                    well_known_set.service_sites
+                    )
+                )
+                for aliased_site in curr_fps_set.ccTLDs | well_known_set.ccTLDs:
+                    self.error_list.extend(self.check_well_known_list(
+                        aliased_site + " alias list",
+                        curr_fps_set.ccTLDs.get(aliased_site, []),
+                        well_known_set.ccTLDs.get(aliased_site, [])
+                        )
+                    )
             except Exception as inst:
                 self.error_list.append(
                     "Experienced an error when trying to access " + url + 
