@@ -424,7 +424,7 @@ class TestFindNonHttps(unittest.TestCase):
         self.assertEqual(fp.error_list, 
          [
         "The provided primary site does not begin with https:// primary.com", 
-        "The provided alias does not begin with https:// primary.com",
+        "The provided aliased site does not begin with https:// primary.com",
         "The provided alias site does not begin with https:// primary.ca",
         "The provided associated site does not begin with https:// " + 
         "associated1.com",
@@ -475,7 +475,7 @@ class TestFindInvalidETLD(unittest.TestCase):
         loaded_sets = fp.load_sets()
         fp.find_invalid_eTLD_Plus1(loaded_sets)
         self.assertEqual(fp.error_list, 
-         ["The provided aliased site is not an eTLD+1: https://primary.c2om"])
+         ["The provided alias site is not an eTLD+1: https://primary.c2om"])
                 
     def test_multi_invalid_etlds(self):
         json_dict = {
@@ -500,8 +500,8 @@ class TestFindInvalidETLD(unittest.TestCase):
         fp.find_invalid_eTLD_Plus1(loaded_sets)
         self.assertEqual(fp.error_list, 
          ["The provided primary site is not an eTLD+1: https://primary.c2om",
-          "The provided alias is not an eTLD+1: https://primary.c2om",
           "The provided aliased site is not an eTLD+1: https://primary.c2om",
+          "The provided alias site is not an eTLD+1: https://primary.c2om",
           "The provided associated site is not an eTLD+1: https://associated1.c2om",
           "The provided service site is not an eTLD+1: https://service1.c2om"])
         

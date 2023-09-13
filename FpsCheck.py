@@ -161,14 +161,14 @@ class FpsCheck:
             else:
                 site_list.update(fps.service_sites)
             # Check the ccTLDs
-            for aliased_site, alias_site in fps.ccTLDs.items():
-                alias_overlap = set(alias_sites) & site_list
+            for aliased_site, aliases in fps.ccTLDs.items():
+                alias_overlap = set(aliases) & site_list
                 if alias_overlap:
                     self.error_list.append(
                         "These ccTLD sites are already registered in "
                         + "another first party set: " + str(alias_overlap))
                 else:
-                    site_list.update(alias_sites)
+                    site_list.update(aliases)
 
     def url_is_https(self, site):
         """A function that checks for https://
@@ -200,16 +200,16 @@ class FpsCheck:
                     "The provided primary site does not begin with https:// " 
                     + primary)
             # Apply to the country codes
-            for alias, aliased_sites in curr_set.ccTLDs.items():
-                if not self.url_is_https(alias):
+            for aliased_site, aliases in curr_set.ccTLDs.items():
+                if not self.url_is_https(aliased_site):
                     self.error_list.append(
-                        "The provided alias does not begin with https:// " 
-                        + alias)
-                for aliased_site in aliased_sites:
-                    if not self.url_is_https(aliased_site):
+                        "The provided aliased site does not begin with https:// " 
+                        + aliased_site)
+                for alias in aliases:
+                    if not self.url_is_https(alias):
                         self.error_list.append(
                             "The provided alias site does not begin with" +
-                            " https:// " + aliased_site)
+                            " https:// " + alias)
             # Apply to associated sites
             for associated_site in curr_set.associated_sites:
                 if not self.url_is_https(associated_site):
@@ -260,16 +260,16 @@ class FpsCheck:
                     "The provided primary site is not an eTLD+1: " +
                     primary)
             # Apply to the country codes
-            for alias, aliased_sites in curr_set.ccTLDs.items():
-                if not self.is_eTLD_Plus1(alias):
+            for aliased_site, aliases in curr_set.ccTLDs.items():
+                if not self.is_eTLD_Plus1(aliased_site):
                     self.error_list.append(
-                        "The provided alias is not an eTLD+1: " +
-                        alias)
-                for aliased_site in aliased_sites:
-                    if not self.is_eTLD_Plus1(aliased_site):
+                        "The provided aliased site is not an eTLD+1: " +
+                        aliased_site)
+                for alias in aliases:
+                    if not self.is_eTLD_Plus1(alias):
                         self.error_list.append(
-                            "The provided aliased site is not an eTLD+1: " 
-                            + aliased_site)
+                            "The provided alias site is not an eTLD+1: " 
+                            + alias)
             # Apply to associated sites
             for associated_site in curr_set.associated_sites:
                 if not self.is_eTLD_Plus1(associated_site):
@@ -414,10 +414,12 @@ class FpsCheck:
             self.check_list_sites(
                 primary, curr_fps_set.service_sites)
             # Now we check the ccTLDs
-            ccTLD_sites = []
-            for aliased_site in curr_fps_set.ccTLDs:
-                ccTLD_sites += curr_fps_set.ccTLDs[aliased_site]
-                self.check_list_sites(primary, ccTLD_sites)
+            self.check_list_sites(primary,
+                    [alias
+                     for aliases in curr_fps_set.ccTLDs.values()
+                     for alias in aliases
+                    ]
+            )
         
     def find_invalid_removal(self, subtracted_sets):
         """Checks that any sets being removed were properly removed by owner
@@ -454,7 +456,7 @@ class FpsCheck:
             None
         """
         for primary, curr_set in check_sets.items():
-            for alias, aliased_sites in curr_set.ccTLDs.items():
+            for alias, aliases in curr_set.ccTLDs.items():
                 # first check if the aliased site is actually anywhere else
                 # in the fps
                 if not curr_set.includes(alias, False):
@@ -471,7 +473,7 @@ class FpsCheck:
                 else:
                     icann_check = self.icanns
                 variants = [(site, site.split(".")[0], site.split(".")[-1])
-                            for site in aliased_sites]
+                            for site in aliases]
                 for site, eSLD, tld in variants:
                     if eSLD != aliased_eSLD:
                         self.error_list.append(
