@@ -161,7 +161,7 @@ class FpsCheck:
             else:
                 site_list.update(fps.service_sites)
             # Check the ccTLDs
-            for aliased_site, aliases in fps.ccTLDs.items():
+            for aliases in fps.ccTLDs.values():
                 alias_overlap = set(aliases) & site_list
                 if alias_overlap:
                     self.error_list.append(
