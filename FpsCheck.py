@@ -452,18 +452,18 @@ class FpsCheck:
             None
         """
         for primary, curr_set in check_sets.items():
-            for alias, aliases in curr_set.ccTLDs.items():
+            for aliased_site, aliases in curr_set.ccTLDs.items():
                 # first check if the aliased site is actually anywhere else
                 # in the fps
-                if not curr_set.includes(alias, False):
+                if not curr_set.includes(aliased_site, False):
                     self.error_list.append(
-                        "The aliased site " + alias + 
+                        "The aliased site " + aliased_site + 
                         " contained within the ccTLDs must be a " +
                         "primary, associated site, or service site " +
                         "within the firsty pary set for " + primary)
                 # check the validity of the aliases
-                aliased_eSLD, aliased_tld = (alias.split(".")[0],
-                                                alias.split(".")[-1])
+                aliased_eSLD, aliased_tld = (aliased_site.split(".")[0],
+                                                aliased_site.split(".")[-1])
                 if aliased_tld in self.icanns:
                     icann_check = self.icanns.union({"com"})
                 else:
@@ -474,7 +474,7 @@ class FpsCheck:
                     if eSLD != aliased_eSLD:
                         self.error_list.append(
                             "The following top level domain must match: " 
-                            + alias + ", but is instead: " + site)
+                            + aliased_site + ", but is instead: " + site)
                     if tld not in icann_check:
                         self.error_list.append(
                             "The provided country code: " + tld + 
