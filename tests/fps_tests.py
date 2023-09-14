@@ -5,7 +5,7 @@ from publicsuffix2 import PublicSuffixList
 from unittest import mock
 from requests import structures
 
-sys.path.append('../first-party-sets')
+sys.path.append('.')
 from FpsSet import FpsSet
 from FpsCheck import FpsCheck
 from check_sites import find_diff_sets
