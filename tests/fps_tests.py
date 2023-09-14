@@ -10,6 +10,8 @@ from FpsSet import FpsSet
 from FpsCheck import FpsCheck
 from check_sites import find_diff_sets
 
+WELL_KNOWN = "/.well-known/related-website-set.json"
+
 class TestValidateSchema(unittest.TestCase):
     """A test suite for the validate_schema function of FpsCheck"""
 
@@ -922,7 +924,7 @@ def mock_get(*args, **kwargs):
         return mgr
     elif args[0].startswith('https://service'):
         return MockedGetResponse({},200)
-    elif args[0] == 'https://primary1.com/.well-known/first-party-set.json':
+    elif args[0] == 'https://primary1.com' + WELL_KNOWN:
         return MockedGetResponse({}, 200)
     
     return MockedGetResponse(None, 404)
@@ -932,43 +934,43 @@ def mock_open_and_load_json(*args, **kwargs):
         def __init__(self, json):
             self.json = json
     
-    if args[0] == 'https://primary1.com/.well-known/first-party-set.json':
+    if args[0] == 'https://primary1.com' + WELL_KNOWN:
         return {
             "primary": "https://primary1.com",
             "associatedSites": ["https://not-in-list.com"]
         }
-    elif args[0] == 'https://expected-associated.com/.well-known/first-party-set.json':
+    elif args[0] == 'https://expected-associated.com' + WELL_KNOWN:
         return {
             "primary": "https://primary1.com"
         }
-    elif args[0] == 'https://primary2.com/.well-known/first-party-set.json':
+    elif args[0] == 'https://primary2.com' + WELL_KNOWN:
         return {
             "primary": "https://wrong-primary.com",
             "associatedSites":["https://associated1.com"]
         }
-    elif args[0] == 'https://associated1.com/.well-known/first-party-set.json':
+    elif args[0] == 'https://associated1.com' + WELL_KNOWN:
         return {
             "primary": "https://primary2.com"
         }
-    elif args[0] == 'https://primary3.com/.well-known/first-party-set.json':
+    elif args[0] == 'https://primary3.com' + WELL_KNOWN:
         return {
             "primary": "https://primary3.com",
             "associatedSites": ["https://associated2.com"]
         }
-    elif args[0] == 'https://associated2.com/.well-known/first-party-set.json':
+    elif args[0] == 'https://associated2.com' + WELL_KNOWN:
         return {
             "primary": "https://wrong-primary.com"
         }
-    elif args[0] == 'https://primary4.com/.well-known/first-party-set.json':
+    elif args[0] == 'https://primary4.com' + WELL_KNOWN:
         return {
             "primary": "https://primary4.com",
             "associatedSites": ["https://associated3.com"]
         }
-    elif args[0] == 'https://associated3.com/.well-known/first-party-set.json':
+    elif args[0] == 'https://associated3.com' + WELL_KNOWN:
         return {
             "primary": "https://primary4.com"
         }
-    elif args[0] == 'https://primary5.com/.well-known/first-party-set.json':
+    elif args[0] == 'https://primary5.com' + WELL_KNOWN:
         return {
             "primary": "https://primary5.com",
             "unchecked": "An unchecked field"
@@ -1176,7 +1178,7 @@ class MockTestsClass(unittest.TestCase):
         fp.find_invalid_removal(subtracted_sets)
         self.assertEqual(fp.error_list, ["The set associated with " +
                 "https://primary1.com was removed from the list, but " +
-                "https://primary1.com/.well-known/first-party-set.json does " +
+                "https://primary1.com/.well-known/related-website-set.json does " +
                 "not return error 404."])
         
     @mock.patch('requests.get', side_effect=mock_get)
@@ -1214,7 +1216,7 @@ class MockTestsClass(unittest.TestCase):
         fp.find_invalid_well_known(loaded_sets)
         self.assertEqual(fp.error_list, 
         ["Encountered an inequality between the PR submission and the " + 
-        "/.well-known/first-party-set.json file:\n\tassociatedSites was " +
+        "/.well-known/related-website-set.json file:\n\tassociatedSites was " +
         "['https://expected-associated.com'] in the PR, and " +
         "['https://not-in-list.com'] in the well-known.\n\tDiff was: " + 
         "['https://expected-associated.com', 'https://not-in-list.com']."])
@@ -1236,7 +1238,7 @@ class MockTestsClass(unittest.TestCase):
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_invalid_well_known(loaded_sets)
-        self.assertEqual(fp.error_list, ["The /.well-known/first-party-set.json"
+        self.assertEqual(fp.error_list, ["The /.well-known/related-website-set.json"
         + " set's primary (https://wrong-primary.com) did not equal the PR "
         + "set's primary (https://primary2.com)"])
 
@@ -1298,7 +1300,7 @@ class MockTestsClass(unittest.TestCase):
         fp.find_invalid_well_known(loaded_sets)
         self.assertEqual(fp.error_list, 
         ["Encountered an inequality between the PR submission and the " + 
-        "/.well-known/first-party-set.json file:\n\tassociatedSites was [] in "
+        "/.well-known/related-website-set.json file:\n\tassociatedSites was [] in "
         + "the PR, and ['https://not-in-list.com'] in the well-known.\n\tDiff "
         + "was: ['https://not-in-list.com']."])
 
@@ -1321,11 +1323,11 @@ class MockTestsClass(unittest.TestCase):
         fp.find_invalid_well_known(loaded_sets)
         self.assertEqual(sorted(fp.error_list), 
         ["Encountered an inequality between the PR submission and the " + 
-        "/.well-known/first-party-set.json file:\n\tassociatedSites was [] in "
+        "/.well-known/related-website-set.json file:\n\tassociatedSites was [] in "
         + "the PR, and ['https://not-in-list.com'] in the well-known.\n\tDiff "
         + "was: ['https://not-in-list.com'].",
         "Encountered an inequality between the PR submission and the " 
-        + "/.well-known/first-party-set.json file:\n\tserviceSites was " + 
+        + "/.well-known/related-website-set.json file:\n\tserviceSites was " + 
         "['https://expected-associated.com'] in the PR, and [] in the " +
         "well-known.\n\tDiff was: ['https://expected-associated.com']."])
         
@@ -1391,7 +1393,7 @@ class MockTestsClass(unittest.TestCase):
         fp.find_invalid_well_known(loaded_sets)
         self.assertEqual(sorted(fp.error_list), [
             "Encountered an inequality between the PR submission and the "
-            "/.well-known/first-party-set.json file:\n\t" +
+            "/.well-known/related-website-set.json file:\n\t" +
             "https://associated3.com alias list was ['https://associated3.ca']"
             + " in the PR, and [] in the well-known.\n\tDiff was: " +
             "['https://associated3.ca'].",
