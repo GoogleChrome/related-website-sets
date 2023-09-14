@@ -406,15 +406,11 @@ class FpsCheck:
                 self.error_list.append(
                     "Experienced an error when trying to access " + url + 
                     "; error was: " + str(inst))
-            # Check the member sites -
-            # Now we check the associated sites
+            # Check the member sites.
             self.check_list_sites(
-                primary, curr_fps_set.associated_sites)
-            # Now we check the service sites
-            self.check_list_sites(
-                primary, curr_fps_set.service_sites)
-            # Now we check the ccTLDs
-            self.check_list_sites(primary,
+                primary,
+                curr_fps_set.associated_sites +
+                    curr_fps_set.service_sites +
                     [alias
                      for aliases in curr_fps_set.ccTLDs.values()
                      for alias in aliases
