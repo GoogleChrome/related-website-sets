@@ -8,9 +8,8 @@ from requests import structures
 sys.path.append('../first-party-sets')
 from FpsSet import FpsSet
 from FpsCheck import FpsCheck
+from FpsCheck import WELL_KNOWN
 from check_sites import find_diff_sets
-
-WELL_KNOWN = "/.well-known/related-website-set.json"
 
 class TestValidateSchema(unittest.TestCase):
     """A test suite for the validate_schema function of FpsCheck"""
