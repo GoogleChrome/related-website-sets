@@ -19,7 +19,7 @@ from urllib.request import urlopen
 from urllib.request import Request
 from publicsuffix2 import PublicSuffixList
 
-WELL_KNOWN = "/.well-known/first-party-set.json"
+WELL_KNOWN = "/.well-known/related-website-set.json"
 
 class FpsCheck:
 
