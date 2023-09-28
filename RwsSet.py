@@ -11,17 +11,17 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-class FpsSet:
-    """Stores the data of a First Party Set
+class RwsSet:
+    """Stores the data of a Related Website Set
 
   Attributes:
-    primary: A string of the primary domain for a first party set 
+    primary: A string of the primary domain for a related website set 
     associated_sites: a list containing domains associated with the 
-    FPS' primary domain
+    RWS' primary domain
     service_sites: a list containing necessary service sites for the
     primary domain and/or service sites and ccTLD sites.
     ccTLDs: a list of domains that are country code variants of other
-    members of the first party set. 
+    members of the related website set. 
     relevant_fields_dict: a dictionary mapping the JSON field equivalents
     of each field to their value within the object. 
   """
@@ -36,7 +36,7 @@ class FpsSet:
                                      'serviceSites': self.service_sites}
     
     def __eq__(self, obj):
-      if isinstance(obj, FpsSet) and self.primary == obj.primary:
+      if isinstance(obj, RwsSet) and self.primary == obj.primary:
         if self.ccTLDs == obj.ccTLDs:
           if self.associated_sites == obj.associated_sites:
             if self.service_sites == obj.service_sites:

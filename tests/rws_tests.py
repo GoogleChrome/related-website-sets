@@ -6,13 +6,13 @@ from unittest import mock
 from requests import structures
 
 sys.path.append('.')
-from FpsSet import FpsSet
-from FpsCheck import FpsCheck
-from FpsCheck import WELL_KNOWN
+from RwsSet import RwsSet
+from RwsCheck import RwsCheck
+from RwsCheck import WELL_KNOWN
 from check_sites import find_diff_sets
 
 class TestValidateSchema(unittest.TestCase):
-    """A test suite for the validate_schema function of FpsCheck"""
+    """A test suite for the validate_schema function of RwsCheck"""
 
     def test_no_primary(self):
         json_dict = {
@@ -32,7 +32,7 @@ class TestValidateSchema(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                       etlds=None, icanns=set(['ca']))
         with self.assertRaises(ValidationError):
             fp.validate_schema("SCHEMA.json")
@@ -52,7 +52,7 @@ class TestValidateSchema(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                       etlds=None, icanns=set(['ca']))
         with self.assertRaises(ValidationError):
             fp.validate_schema("SCHEMA.json")
@@ -70,7 +70,7 @@ class TestValidateSchema(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                       etlds=None, icanns=set(['ca']))
         with self.assertRaises(ValidationError):
             fp.validate_schema("SCHEMA.json")
@@ -93,76 +93,76 @@ class TestValidateSchema(unittest.TestCase):
                 }
             ]
         }
-       fp = FpsCheck(fps_sites=json_dict,
+       fp = RwsCheck(rws_sites=json_dict,
                       etlds=None, icanns=set(['ca']))
        with self.assertRaises(ValidationError):
             fp.validate_schema("SCHEMA.json")
 
-class TestFpsSetEqual(unittest.TestCase):
+class TestRwsSetEqual(unittest.TestCase):
     def test_equal_case(self):
-        fps_1 = FpsSet(ccTLDs={
+        rws_1 = RwsSet(ccTLDs={
                         "https://primary.com": ["https://primary.ca"]
                     }, 
                     primary="https://primary.com")
-        fps_2 = FpsSet(ccTLDs={
+        rws_2 = RwsSet(ccTLDs={
                         "https://primary.com": ["https://primary.ca"]
                     }, 
                     primary="https://primary.com")
-        self.assertIsNot(fps_1, fps_2)
-        self.assertEqual(fps_1, fps_2)
-        self.assertEqual(fps_1, fps_1)
+        self.assertIsNot(rws_1, rws_2)
+        self.assertEqual(rws_1, rws_2)
+        self.assertEqual(rws_1, rws_1)
 
     def test_inequal_cases(self):
-        fps_1 = FpsSet(ccTLDs={
+        rws_1 = RwsSet(ccTLDs={
                         "https://primary.com": ["https://primary.ca"]
                     }, 
                     primary="https://primary.com")
-        fps_2 = FpsSet(ccTLDs={
+        rws_2 = RwsSet(ccTLDs={
                         "https://primary.com": ["https://primary.co.uk"]
                     }, 
                     primary="https://primary.com")
-        self.assertNotEqual(fps_1, fps_2)
+        self.assertNotEqual(rws_1, rws_2)
 
-        fps_2.ccTLDs = {"https://primary.com": ["https://primary.ca"]}
-        self.assertEqual(fps_1, fps_2)
+        rws_2.ccTLDs = {"https://primary.com": ["https://primary.ca"]}
+        self.assertEqual(rws_1, rws_2)
 
-        fps_1.associated_sites = ["https://associated1.com"]
-        fps_2.associated_sites = ["https://associated2.com"]
-        self.assertNotEqual(fps_1, fps_2)
+        rws_1.associated_sites = ["https://associated1.com"]
+        rws_2.associated_sites = ["https://associated2.com"]
+        self.assertNotEqual(rws_1, rws_2)
 
-        fps_2.associated_sites = ["https://associated1.com"]
-        self.assertEqual(fps_1, fps_2)
+        rws_2.associated_sites = ["https://associated1.com"]
+        self.assertEqual(rws_1, rws_2)
 
-        fps_1.service_sites = ["https://service1.com"]
-        fps_2.service_sites = ["https://service2.com"]
-        self.assertNotEqual(fps_1, fps_2)
+        rws_1.service_sites = ["https://service1.com"]
+        rws_2.service_sites = ["https://service2.com"]
+        self.assertNotEqual(rws_1, rws_2)
 
-class TestFpsIncludes(unittest.TestCase):
+class TestRwsIncludes(unittest.TestCase):
     def test_primary_case(self):
-        fps = FpsSet(ccTLDs={
+        rws = RwsSet(ccTLDs={
                         "https://primary.com": ["https://primary.ca"]
                     }, 
                     primary="https://primary.com")
-        self.assertTrue(fps.includes("https://primary.com"))
-        self.assertFalse(fps.includes("https://primary2.com"))
+        self.assertTrue(rws.includes("https://primary.com"))
+        self.assertFalse(rws.includes("https://primary2.com"))
 
     def test_associated_case(self):
-        fps = FpsSet(
+        rws = RwsSet(
                     ccTLDs={},
                     primary="https://primary.com",
                     associated_sites= ["https://associated1.com", "https://associated2.com"])
-        self.assertTrue(fps.includes("https://associated1.com"))
-        self.assertTrue(fps.includes("https://associated2.com"))
-        self.assertFalse(fps.includes("https://associated3.com"))
+        self.assertTrue(rws.includes("https://associated1.com"))
+        self.assertTrue(rws.includes("https://associated2.com"))
+        self.assertFalse(rws.includes("https://associated3.com"))
     
     def test_cctld_case(self):
-        fps = FpsSet(ccTLDs={
+        rws = RwsSet(ccTLDs={
                         "https://primary.com": ["https://primary.ca", "https://primary.co.uk"]
                     }, 
                     primary="https://primary.com")
 
-        self.assertTrue(fps.includes("https://primary.ca"))
-        self.assertFalse(fps.includes("https://primary.ca", with_ccTLDs=False))
+        self.assertTrue(rws.includes("https://primary.ca"))
+        self.assertFalse(rws.includes("https://primary.ca", with_ccTLDs=False))
         
 
 class TestLoadSets(unittest.TestCase):
@@ -184,12 +184,12 @@ class TestLoadSets(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                       etlds=None,
                        icanns=set(['ca', 'co.uk']))
         loaded_sets = fp.load_sets()
         expected_sets = {
-            'https://primary.com': FpsSet(ccTLDs={
+            'https://primary.com': RwsSet(ccTLDs={
                         "https://primary.com": ["https://primary.ca"]
                     }, 
                     primary="https://primary.com")
@@ -216,16 +216,16 @@ class TestLoadSets(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                       etlds=None,
                        icanns=set(['ca', 'co.uk']))
         loaded_sets = fp.load_sets()
         expected_sets = {
-            'https://primary.com': FpsSet(ccTLDs={
+            'https://primary.com': RwsSet(ccTLDs={
                         "https://primary.com": ["https://primary.ca"]
                     }, 
                     primary="https://primary.com"),
-            'https://primary2.com': FpsSet(ccTLDs={
+            'https://primary2.com': RwsSet(ccTLDs={
                         "https://primary2.com": ["https://primary2.co.uk"]
                     }, 
                     primary="https://primary2.com")
@@ -246,7 +246,7 @@ class TestHasRationales(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                       etlds=None,
                        icanns=set())
         loaded_sets = fp.load_sets()
@@ -270,7 +270,7 @@ class TestHasRationales(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                       etlds=None,
                        icanns=set())
         loaded_sets = fp.load_sets()
@@ -295,14 +295,14 @@ class TestCheckExclusivity(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                       etlds=None,
                        icanns=set())
         loaded_sets = fp.load_sets()
         fp.check_exclusivity(loaded_sets)
         self.assertEqual(fp.error_list, 
          ["These service sites are already registered in another"
-                        + " first party set: {'https://service1.com'}"])
+                        + " related website set: {'https://service1.com'}"])
 
     def test_primary_is_associate(self):
         json_dict = {
@@ -322,14 +322,14 @@ class TestCheckExclusivity(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                       etlds=None,
                        icanns=set())
         loaded_sets = fp.load_sets()
         fp.check_exclusivity(loaded_sets)
         self.assertEqual(fp.error_list, 
          ["This primary is already registered in another"
-                        + " first party set: https://primary2.com"])
+                        + " related website set: https://primary2.com"])
                 
     def test_expected_case(self):
         json_dict = {
@@ -349,7 +349,7 @@ class TestCheckExclusivity(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                       etlds=None,
                        icanns=set())
         loaded_sets = fp.load_sets()
@@ -369,7 +369,7 @@ class TestFindNonHttps(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                       etlds=None,
                        icanns=set())
         loaded_sets = fp.load_sets()
@@ -393,7 +393,7 @@ class TestFindNonHttps(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                       etlds=None,
                        icanns=set())
         loaded_sets = fp.load_sets()
@@ -417,7 +417,7 @@ class TestFindNonHttps(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                       etlds=None,
                        icanns=set())
         loaded_sets = fp.load_sets()
@@ -445,7 +445,7 @@ class TestFindInvalidETLD(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=PublicSuffixList(
                         psl_file = 'effective_tld_names.dat'),
                      icanns=set())
@@ -469,7 +469,7 @@ class TestFindInvalidETLD(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=PublicSuffixList(
                         psl_file = 'effective_tld_names.dat'),
                      icanns=set())
@@ -493,7 +493,7 @@ class TestFindInvalidETLD(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=PublicSuffixList(
                         psl_file = 'effective_tld_names.dat'),
                      icanns=set())
@@ -517,7 +517,7 @@ class TestFindInvalidETLD(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=PublicSuffixList(
                         psl_file = 'effective_tld_names.dat'),
                      icanns=set())
@@ -537,7 +537,7 @@ class TestFindInvalidETLD(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=PublicSuffixList(
                         psl_file = 'effective_tld_names.dat'),
                      icanns=set())
@@ -557,7 +557,7 @@ class TestFindInvalidETLD(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=PublicSuffixList(
                         psl_file = 'effective_tld_names.dat'),
                      icanns=set())
@@ -576,7 +576,7 @@ class TestFindInvalidETLD(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                     etlds=PublicSuffixList(
                         psl_file = 'effective_tld_names.dat'),
                     icanns=set())
@@ -598,7 +598,7 @@ class TestFindInvalidESLDs(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set(["ca"]))
         loaded_sets = fp.load_sets()
@@ -619,7 +619,7 @@ class TestFindInvalidESLDs(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set(["ca"]))
         loaded_sets = fp.load_sets()
@@ -639,7 +639,7 @@ class TestFindInvalidESLDs(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set(["ca"]))
         loaded_sets = fp.load_sets()
@@ -665,7 +665,7 @@ class TestFindInvalidESLDs(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set(["ca", "uk"]))
         loaded_sets = fp.load_sets()
@@ -685,7 +685,7 @@ class TestFindInvalidESLDs(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set(["ca"]))
         loaded_sets = fp.load_sets()
@@ -706,7 +706,7 @@ class TestFindInvalidESLDs(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set(["ca"]))
         loaded_sets = fp.load_sets()
@@ -725,7 +725,7 @@ class TestFindInvalidESLDs(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set(["ca"]))
         loaded_sets = fp.load_sets()
@@ -736,7 +736,7 @@ class TestFindDiff(unittest.TestCase):
     def test_unchanged_sets(self):
         old_sets = {
             'https://primary.com': 
-            FpsSet(
+            RwsSet(
                     primary="https://primary.com",
                     ccTLDs={
                         "https://primary.com": ["https://primary.ca"]
@@ -745,7 +745,7 @@ class TestFindDiff(unittest.TestCase):
         }
         new_sets = {
             'https://primary.com': 
-            FpsSet(
+            RwsSet(
                     primary="https://primary.com",
                     ccTLDs={
                         "https://primary.com": ["https://primary.ca"]
@@ -757,7 +757,7 @@ class TestFindDiff(unittest.TestCase):
     def test_added_set(self):
         old_sets = {
             'https://primary.com': 
-            FpsSet(
+            RwsSet(
                     primary="https://primary.com",
                     ccTLDs={
                         "https://primary.com": ["https://primary.ca"]
@@ -766,14 +766,14 @@ class TestFindDiff(unittest.TestCase):
         }
         new_sets = {
             'https://primary.com': 
-            FpsSet(
+            RwsSet(
                     primary="https://primary.com",
                     ccTLDs={
                         "https://primary.com": ["https://primary.ca"]
                     }
                     ),
             'https://primary2.com': 
-            FpsSet(
+            RwsSet(
                     primary="https://primary2.com",
                     ccTLDs={
                         "https://primary2.com": ["https://primary2.ca"]
@@ -782,7 +782,7 @@ class TestFindDiff(unittest.TestCase):
         }
         expected_diff_sets = {
             'https://primary2.com': 
-            FpsSet(
+            RwsSet(
                     primary="https://primary2.com",
                     ccTLDs={
                         "https://primary2.com": ["https://primary2.ca"]
@@ -794,14 +794,14 @@ class TestFindDiff(unittest.TestCase):
     def test_removed_set(self):
         old_sets = {
             'https://primary.com': 
-            FpsSet(
+            RwsSet(
                     primary="https://primary.com",
                     ccTLDs={
                         "https://primary.com": ["https://primary.ca"]
                     }
                     ),
             'https://primary2.com': 
-            FpsSet(
+            RwsSet(
                     primary="https://primary2.com",
                     ccTLDs={
                         "https://primary2.com": ["https://primary2.ca"]
@@ -810,7 +810,7 @@ class TestFindDiff(unittest.TestCase):
         }
         new_sets = {
             'https://primary.com': 
-            FpsSet(
+            RwsSet(
                     primary="https://primary.com",
                     ccTLDs={
                         "https://primary.com": ["https://primary.ca"]
@@ -819,7 +819,7 @@ class TestFindDiff(unittest.TestCase):
         }
         expected_subtracted_sets = {
             'https://primary2.com': 
-            FpsSet(
+            RwsSet(
                     primary="https://primary2.com",
                     ccTLDs={
                         "https://primary2.com": ["https://primary2.ca"]
@@ -831,7 +831,7 @@ class TestFindDiff(unittest.TestCase):
     def test_added_and_removed_set(self):
         old_sets = {
             'https://primary.com': 
-            FpsSet(
+            RwsSet(
                     primary="https://primary.com",
                     ccTLDs={
                         "https://primary.com": ["https://primary.ca"]
@@ -840,7 +840,7 @@ class TestFindDiff(unittest.TestCase):
         }
         new_sets = {
             'https://primary2.com': 
-            FpsSet(
+            RwsSet(
                     primary="https://primary2.com",
                     ccTLDs={
                         "https://primary2.com": ["https://primary2.ca"]
@@ -852,7 +852,7 @@ class TestFindDiff(unittest.TestCase):
     def test_modified_set(self):
         old_sets = {
             'https://primary.com': 
-            FpsSet(
+            RwsSet(
                     primary="https://primary.com",
                     ccTLDs={
                         "https://primary.com": ["https://primary.ca"]
@@ -861,7 +861,7 @@ class TestFindDiff(unittest.TestCase):
         }
         new_sets = {
             'https://primary.com': 
-            FpsSet(
+            RwsSet(
                     primary="https://primary.com",
                     ccTLDs={
                         "https://primary.com": ["https://primary.co.uk"]
@@ -873,14 +873,14 @@ class TestFindDiff(unittest.TestCase):
     def test_primary_to_member(self):
         old_sets = {
             'https://primary.com': 
-            FpsSet(
+            RwsSet(
                     primary="https://primary.com",
                     ccTLDs={
                         "https://primary.com": ["https://primary.ca"]
                     }
                     ),
             'https://primary2.com':
-            FpsSet(
+            RwsSet(
                     primary="https://primary2.com",
                     ccTLDs={
                     }
@@ -888,7 +888,7 @@ class TestFindDiff(unittest.TestCase):
         }
         new_sets = {
             'https://primary.com': 
-            FpsSet(
+            RwsSet(
                     primary="https://primary.com",
                     associated_sites= ["https://primary2.com"],
                     ccTLDs={
@@ -993,7 +993,7 @@ class MockTestsClass(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set())
         loaded_sets = fp.load_sets()
@@ -1014,7 +1014,7 @@ class MockTestsClass(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set())
         loaded_sets = fp.load_sets()
@@ -1035,7 +1035,7 @@ class MockTestsClass(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set())
         loaded_sets = fp.load_sets()
@@ -1054,7 +1054,7 @@ class MockTestsClass(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set())
         loaded_sets = fp.load_sets()
@@ -1074,7 +1074,7 @@ class MockTestsClass(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set())
         loaded_sets = fp.load_sets()
@@ -1095,7 +1095,7 @@ class MockTestsClass(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set())
         loaded_sets = fp.load_sets()
@@ -1115,7 +1115,7 @@ class MockTestsClass(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set())
         loaded_sets = fp.load_sets()
@@ -1135,7 +1135,7 @@ class MockTestsClass(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set())
         loaded_sets = fp.load_sets()
@@ -1154,7 +1154,7 @@ class MockTestsClass(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set())
         loaded_sets = fp.load_sets()
@@ -1166,12 +1166,12 @@ class MockTestsClass(unittest.TestCase):
     def test_find_invalid_removal(self, mock_get):
         subtracted_sets = {
             'https://primary1.com': 
-            FpsSet(
+            RwsSet(
                     primary='https://primary1.com',
                     ccTLDs={}
                     )
         }
-        fp = FpsCheck(fps_sites={},
+        fp = RwsCheck(rws_sites={},
                      etlds=None,
                      icanns=set())
         fp.find_invalid_removal(subtracted_sets)
@@ -1184,19 +1184,19 @@ class MockTestsClass(unittest.TestCase):
     def test_find_valid_removal(self, mock_get):
         subtracted_sets = {
             'https://primary2.com': 
-            FpsSet(
+            RwsSet(
                     primary="https://primary2.com",
                     ccTLDs={}
                     )
         }
-        fp = FpsCheck(fps_sites={},
+        fp = RwsCheck(rws_sites={},
                      etlds=None,
                      icanns=set())
         fp.find_invalid_removal(subtracted_sets)
         self.assertEqual(fp.error_list, [])
 
     # Now we test the mocked open_and_load_json to test the well-known checks
-    @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
+    @mock.patch('RwsCheck.RwsCheck.open_and_load_json', 
     side_effect=mock_open_and_load_json)
     def test_primary_page_differs(self, mock_open_and_load_json):
         json_dict = {
@@ -1208,7 +1208,7 @@ class MockTestsClass(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set())
         loaded_sets = fp.load_sets()
@@ -1220,7 +1220,7 @@ class MockTestsClass(unittest.TestCase):
         "['https://not-in-list.com'] in the well-known.\n\tDiff was: " + 
         "['https://expected-associated.com', 'https://not-in-list.com']."])
     
-    @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
+    @mock.patch('RwsCheck.RwsCheck.open_and_load_json', 
     side_effect=mock_open_and_load_json)
     def test_wrong_primary_name(self, mock_open_and_load_json):
         json_dict = {
@@ -1232,7 +1232,7 @@ class MockTestsClass(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set())
         loaded_sets = fp.load_sets()
@@ -1241,7 +1241,7 @@ class MockTestsClass(unittest.TestCase):
         + " set's primary (https://wrong-primary.com) did not equal the PR "
         + "set's primary (https://primary2.com)"])
 
-    @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
+    @mock.patch('RwsCheck.RwsCheck.open_and_load_json', 
     side_effect=mock_open_and_load_json)
     def test_associate_wrong_page(self, mock_open_and_load_json):
         json_dict = {
@@ -1253,7 +1253,7 @@ class MockTestsClass(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set())
         loaded_sets = fp.load_sets()
@@ -1262,7 +1262,7 @@ class MockTestsClass(unittest.TestCase):
                 + "did not have https://primary3.com listed as its primary: " 
                 + "https://associated2.com"])
 
-    @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
+    @mock.patch('RwsCheck.RwsCheck.open_and_load_json', 
     side_effect=mock_open_and_load_json)
     def test_expected_case(self, mock_open_and_load_json):
         json_dict = {
@@ -1274,14 +1274,14 @@ class MockTestsClass(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_invalid_well_known(loaded_sets)
         self.assertEqual(fp.error_list, [])
 
-    @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
+    @mock.patch('RwsCheck.RwsCheck.open_and_load_json', 
     side_effect=mock_open_and_load_json)
     def test_absent_field(self, mock_open_and_load_json):
         json_dict = {
@@ -1292,7 +1292,7 @@ class MockTestsClass(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set())
         loaded_sets = fp.load_sets()
@@ -1303,7 +1303,7 @@ class MockTestsClass(unittest.TestCase):
         + "the PR, and ['https://not-in-list.com'] in the well-known.\n\tDiff "
         + "was: ['https://not-in-list.com']."])
 
-    @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
+    @mock.patch('RwsCheck.RwsCheck.open_and_load_json', 
     side_effect=mock_open_and_load_json)
     def test_differing_fields(self, mock_open_and_load_json):
         json_dict = {
@@ -1315,7 +1315,7 @@ class MockTestsClass(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set())
         loaded_sets = fp.load_sets()
@@ -1330,7 +1330,7 @@ class MockTestsClass(unittest.TestCase):
         "['https://expected-associated.com'] in the PR, and [] in the " +
         "well-known.\n\tDiff was: ['https://expected-associated.com']."])
         
-    @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
+    @mock.patch('RwsCheck.RwsCheck.open_and_load_json', 
     side_effect=mock_open_and_load_json)
     def test_unchecked_field(self, mock_open_and_load_json):
         json_dict = {
@@ -1345,14 +1345,14 @@ class MockTestsClass(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_invalid_well_known(loaded_sets)
         self.assertEqual(sorted(fp.error_list), [])
     
-    @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
+    @mock.patch('RwsCheck.RwsCheck.open_and_load_json', 
     side_effect=mock_open_and_load_json)
     def test_unchecked_well_known_field(self, mock_open_and_load_json):
         json_dict = {
@@ -1363,14 +1363,14 @@ class MockTestsClass(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set())
         loaded_sets = fp.load_sets()
         fp.find_invalid_well_known(loaded_sets)
         self.assertEqual(sorted(fp.error_list), [])
     
-    @mock.patch('FpsCheck.FpsCheck.open_and_load_json', 
+    @mock.patch('RwsCheck.RwsCheck.open_and_load_json', 
     side_effect=mock_open_and_load_json)
     def test_unexpteced_cctTLD(self, mock_open_and_load_json):
         json_dict = {
@@ -1385,7 +1385,7 @@ class MockTestsClass(unittest.TestCase):
                 }
             ]
         }
-        fp = FpsCheck(fps_sites=json_dict,
+        fp = RwsCheck(rws_sites=json_dict,
                      etlds=None,
                      icanns=set(['ca']))
         loaded_sets = fp.load_sets()
