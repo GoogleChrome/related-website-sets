@@ -13,14 +13,12 @@
         "https://kinopoisk.ru",
         "https://turbopages.org",
         "https://webvisor.com",
-        "https://webvisor.org",
         "https://ya.cc",
         "https://yandex.az",
         "https://yandex.by",
         "https://yandex.com",
         "https://yandex.com.am",
         "https://yandex.com.ru",
-        "https://yandex.kg",
         "https://yandex.kz",
         "https://yandex.md",
         "https://yandex.net",
@@ -29,8 +27,7 @@
         "https://yandex.tj",
         "https://yandex.tm",
         "https://yandex.uz",
-        "https://yastatic.net",
-        "https://ymetrica.com"
+        "https://yastatic.net"
       ],
       "rationaleBySite": {
         "https://adfox.net": "Yandex owned website",
@@ -42,7 +39,6 @@
         "https://kinopoisk.ru": "Yandex owned website",
         "https://turbopages.org": "Yandex owned website",
         "https://webvisor.com": "Yandex owned website",
-        "https://webvisor.org": "Yandex owned website",
         "https://ya.cc": "Yandex owned website",
         "https://yandex.az": "Yandex owned website",
         "https://yandex.by": "Yandex owned website",
@@ -57,8 +53,8 @@
         "https://yandex.tj": "Yandex owned website",
         "https://yandex.tm": "Yandex owned website",
         "https://yandex.uz": "Yandex owned website",
-        "https://yastatic.net": "Yandex owned website",
-        "https://ymetrica.com": "Yandex owned website"
+        "https://yastatic.net": "Yandex owned website"
+
       }
     },
     {
