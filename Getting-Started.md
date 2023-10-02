@@ -5,7 +5,7 @@ for full instructions and guidance on how to submit a set. This Getting Started 
 
 Changes are made by creating a Pull Request (PR) from your branch to the main 
 branch. When this occurs, a Github Action will trigger, visible in 
-[.github/workflows/fps-submissions-checks.yml](https://github.com/GoogleChrome/first-party-sets/blob/main/.github/workflows/rws-submissions-checks.yml)
+[.github/workflows/rws-submissions-checks.yml](https://github.com/GoogleChrome/first-party-sets/blob/main/.github/workflows/rws-submissions-checks.yml)
 . This action will run [check_sites.py](https://github.com/GoogleChrome/first-party-sets/blob/main/check_sites.py)
 , which calls a number of submission checks visible in 
 [RwsCheck.py](https://github.com/GoogleChrome/first-party-sets/blob/main/RwsCheck.py)
