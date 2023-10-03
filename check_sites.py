@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from FpsCheck import FpsCheck
+from RwsCheck import RwsCheck
 import json
 import getopt
 import sys
@@ -19,34 +19,34 @@ import os
 from publicsuffix2 import PublicSuffixList
 
 def find_diff_sets(old_sets, new_sets):
-    """Finds changes made between two dictionaries of First-Party Sets
+    """Finds changes made between two dictionaries of Related Website Sets
 
-        Finds First-Party Sets that have been added or modified in old_sets
+        Finds Related Website Sets that have been added or modified in old_sets
         to create new_sets and returns them as the dictionary diff_sets. 
-        Additionally, finds First-Party Sets that have been removed from
+        Additionally, finds Related Website Sets that have been removed from
         old_sets to create new_sets and returns them as subtracted_sets.
 
         Args:
-            old_sets: Dict[string, FpsSet]
-            new_sets: Dict[string, FpsSet]
+            old_sets: Dict[string, RwsSet]
+            new_sets: Dict[string, RwsSet]
         Returns:
-            Tuple[Dict[string, FpsSet], Dict[string, FpsSet]]
+            Tuple[Dict[string, RwsSet], Dict[string, RwsSet]]
     """
-    diff_sets = {primary: fps
-             for primary, fps in new_sets.items()
-             if fps != old_sets.get(primary)
+    diff_sets = {primary: rws
+             for primary, rws in new_sets.items()
+             if rws != old_sets.get(primary)
             }
     subtracted_sets = {
         primary: old_sets[primary]
         for primary in set(old_sets) - set(new_sets)
-        if not any(fps.includes(primary) for fps in new_sets.values())
+        if not any(rws.includes(primary) for rws in new_sets.values())
     }
     return diff_sets, subtracted_sets
 
 
 def main():
     args = sys.argv[1:]
-    input_file = 'first_party_sets.JSON'
+    input_file = 'related_website_sets.JSON'
     input_prefix = ''
     with_diff = False
     opts, _ = getopt.getopt(args, "i:", ["data_directory=", "with_diff"])
@@ -61,7 +61,7 @@ def main():
     # Open and load the json of the new list
     with open(input_file) as f:
         try:
-            fps_sites = json.load(f)
+            rws_sites = json.load(f)
         except Exception as inst:
         # If the file cannot be loaded, we will not run any other checks
             print("There was an error when loading "+ input_file + 
@@ -78,11 +78,11 @@ def main():
             l = line.strip()
             icanns.add(l)
 
-    fps_checker = FpsCheck(fps_sites, etlds, icanns)
+    rws_checker = RwsCheck(rws_sites, etlds, icanns)
     error_texts = []
 
     try:
-        fps_checker.validate_schema(os.path.join(input_prefix,'SCHEMA.json'))
+        rws_checker.validate_schema(os.path.join(input_prefix,'SCHEMA.json'))
     except Exception as inst:
         # If the schema is invalid, we will not run any other checks
         print(inst)
@@ -90,7 +90,7 @@ def main():
     
     # Check for exclusivity among all sets in the updated version
     try:
-        fps_checker.check_exclusivity(fps_checker.load_sets())
+        rws_checker.check_exclusivity(rws_checker.load_sets())
     except Exception as inst:
             error_texts.append(inst)
 
@@ -100,35 +100,35 @@ def main():
     # If called with with_diff, we must determine the sets that are different 
     # to properly construct our check_sets
     if with_diff:   
-        with open(os.path.join(input_prefix,'first_party_sets.JSON')) as f:
+        with open(os.path.join(input_prefix,'related_website_sets.JSON')) as f:
             try:
                 old_sites = json.load(f)
             except Exception as inst:
             # If the file cannot be loaded, we will not run any other checks
                 print("There was an error when loading " +
-                    os.path.join(input_prefix,'first_party_sets.JSON') + 
+                    os.path.join(input_prefix,'related_website_sets.JSON') + 
                     "\nerror was: " + inst)
                 return
-        old_checker = FpsCheck(old_sites, etlds, icanns)
-        check_sets, subtracted_sets = find_diff_sets(old_checker.load_sets(), fps_checker.load_sets())
+        old_checker = RwsCheck(old_sites, etlds, icanns)
+        check_sets, subtracted_sets = find_diff_sets(old_checker.load_sets(), rws_checker.load_sets())
         # TODO: add variable and check for subtracted_sets in case of user 
         # removing old set from the list
     else:
-        check_sets = fps_checker.load_sets()
+        check_sets = rws_checker.load_sets()
 
     # Run check on subtracted sets
-    fps_checker.find_invalid_removal(subtracted_sets)
+    rws_checker.find_invalid_removal(subtracted_sets)
 
     # Run rest of checks
     check_list = [
-        fps_checker.has_all_rationales,
-        fps_checker.find_non_https_urls, 
-        fps_checker.find_invalid_eTLD_Plus1,
-        fps_checker.find_invalid_well_known, 
-        fps_checker.find_invalid_alias_eSLDs, 
-        fps_checker.find_robots_txt, 
-        fps_checker.find_ads_txt, 
-        fps_checker.check_for_service_redirect
+        rws_checker.has_all_rationales,
+        rws_checker.find_non_https_urls, 
+        rws_checker.find_invalid_eTLD_Plus1,
+        rws_checker.find_invalid_well_known, 
+        rws_checker.find_invalid_alias_eSLDs, 
+        rws_checker.find_robots_txt, 
+        rws_checker.find_ads_txt, 
+        rws_checker.check_for_service_redirect
         ]
 
     for check in check_list:
@@ -137,8 +137,8 @@ def main():
         except Exception as inst:
             error_texts.append(inst)
     # This message allows us to check the succes of our action
-    if fps_checker.error_list or error_texts:
-        for checker_error in fps_checker.error_list:
+    if rws_checker.error_list or error_texts:
+        for checker_error in rws_checker.error_list:
             print(checker_error)
         for error_text in error_texts:
             print(error_text)

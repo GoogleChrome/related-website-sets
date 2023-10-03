@@ -1,21 +1,21 @@
 # **Getting Started**
 
-Please read the [First-Party Sets Submission Guidelines](https://github.com/GoogleChrome/first-party-sets/blob/main/FPS-Submission_Guidelines.md) 
+Please read the [Related Website Sets Submission Guidelines](https://github.com/GoogleChrome/first-party-sets/blob/main/RWS-Submission_Guidelines.md) 
 for full instructions and guidance on how to submit a set. This Getting Started guide will provide general guidance on navigating this repo.
 
 Changes are made by creating a Pull Request (PR) from your branch to the main 
 branch. When this occurs, a Github Action will trigger, visible in 
-[.github/workflows/fps-submissions-checks.yml](https://github.com/GoogleChrome/first-party-sets/blob/main/.github/workflows/fps-submissions-checks.yml)
+[.github/workflows/rws-submissions-checks.yml](https://github.com/GoogleChrome/first-party-sets/blob/main/.github/workflows/rws-submissions-checks.yml)
 . This action will run [check_sites.py](https://github.com/GoogleChrome/first-party-sets/blob/main/check_sites.py)
 , which calls a number of submission checks visible in 
-[FpsCheck.py](https://github.com/GoogleChrome/first-party-sets/blob/main/FpsCheck.py)
+[RwsCheck.py](https://github.com/GoogleChrome/first-party-sets/blob/main/RwsCheck.py)
 . Once it has run its action, you can see any errors in the "Actions" tab of the 
 repository.
 
 <b>Note:</b> All contributors to the GoogleChrome repo will need to sign a [Contributor's License Agreement](https://cla.developers.google.com/about/google-corporate).
 
 # Creating your Submission #
-To create or revise a submission, you will first need to create a local copy of the repo. To do this, follow [this GitHub guide on cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository). Once you've you cloned the repo, you can create a new branch by using the call "git checkout -b your-branch-name -t origin/main". When making your changes to  first_party_sets.JSON, follow the <a href = "https://github.com/GoogleChrome/first-party-sets/blob/main/FPS-Submission_Guidelines.md#set-submissions">schema in the Submission Guidelines.</a>
+To create or revise a submission, you will first need to create a local copy of the repo. To do this, follow [this GitHub guide on cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository). Once you've you cloned the repo, you can create a new branch by using the call "git checkout -b your-branch-name -t origin/main". When making your changes to  related_website_sets.JSON, follow the <a href = "https://github.com/GoogleChrome/first-party-sets/blob/main/RWS-Submission_Guidelines.md#set-submissions">schema in the Submission Guidelines.</a>
 
 # Testing your Submission Locally #
 

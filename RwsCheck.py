@@ -13,7 +13,7 @@
 # limitations under the License.
 import json
 import requests
-from FpsSet import FpsSet
+from RwsSet import RwsSet
 from jsonschema import validate
 from urllib.request import urlopen
 from urllib.request import Request
@@ -21,13 +21,13 @@ from publicsuffix2 import PublicSuffixList
 
 WELL_KNOWN = "/.well-known/related-website-set.json"
 
-class FpsCheck:
+class RwsCheck:
 
-    """Stores and runs checks on the list of fps sites
+    """Stores and runs checks on the list of rws sites
 
   Attributes:
-    fps_sites: A json file read from canonical_sites that should contain all 
-    submitted first party sets
+    rws_sites: A json file read from canonical_sites that should contain all 
+    submitted related website sets
     etlds: A string of effective top level domains read from public suffix list
     icanns: A set of domains associated with country codes
     schema: Static. Stores schema for format the canonical_sites should follow
@@ -38,10 +38,10 @@ class FpsCheck:
   """
     
 
-    def __init__(self, fps_sites: json, etlds: PublicSuffixList, icanns: set):
+    def __init__(self, rws_sites: json, etlds: PublicSuffixList, icanns: set):
         """Stores the input from canonical_sites, effective_tld_names.dat, and 
-        ICANN_domains into the FpsCheck object"""
-        self.fps_sites = fps_sites
+        ICANN_domains into the RwsCheck object"""
+        self.rws_sites = rws_sites
         self.etlds = etlds
         self.icanns = icanns
         self.error_list = []
@@ -62,33 +62,33 @@ class FpsCheck:
         """
         with open(schema_file) as f:
             SCHEMA = json.loads(f.read())
-        validate(self.fps_sites, schema = SCHEMA)
+        validate(self.rws_sites, schema = SCHEMA)
 
     def load_sets(self):
-        """Loads sets from the JSON file into a dictionary of primary->FpsSet
+        """Loads sets from the JSON file into a dictionary of primary->RwsSet
 
-        Loads the sets from fps_list into check_sets, a dictionary of 
-        string->FpSet, where the key is the primary of the FpsSet
+        Loads the sets from rws_list into check_sets, a dictionary of 
+        string->RwsSet, where the key is the primary of the RwsSet
         If any given primary is listed multiple times, will append an error to 
         the error_list for any primary past the first
 
         Args:
             None
         Returns:
-            Dict[string, FpsSet]
+            Dict[string, RwsSet]
         """
         check_sets = {}
         load_sets_errors = []
-        for fpset in self.fps_sites['sets']:
-            primary = fpset.get('primary')
-            ccTLDs = fpset.get('ccTLDs')
-            associated_sites = fpset.get('associatedSites')
-            service_sites = fpset.get('serviceSites')
+        for rwset in self.rws_sites['sets']:
+            primary = rwset.get('primary')
+            ccTLDs = rwset.get('ccTLDs')
+            associated_sites = rwset.get('associatedSites')
+            service_sites = rwset.get('serviceSites')
             if primary in check_sets.keys():
                 load_sets_errors.append(
                     f"{primary} is already a primary of another site")
             else:
-                check_sets[primary] = FpsSet(
+                check_sets[primary] = RwsSet(
                     ccTLDs, primary, associated_sites, service_sites)
         self.error_list += load_sets_errors
         return check_sets
@@ -96,22 +96,22 @@ class FpsCheck:
     def has_all_rationales(self, check_sets):
         """Checks for the presence of all rationaleBySite elements in schema
 
-        Reads the associated sites and service sites from all FpsSets, and 
-        checks that they have a corresponding entry in their Fps' 
+        Reads the associated sites and service sites from all RwsSets, and 
+        checks that they have a corresponding entry in their Rws' 
         rationaleBysites field. If any given site does not have a rationale, 
         or the field is not present when it should be, appends an error to the 
         error_list
 
         Args:
-            Dict[string, FpsSet]
+            Dict[string, RwsSet]
         Returns:
             None
         """
-        for fpset in self.fps_sites['sets']:
-            if fpset['primary'] not in  check_sets:
+        for rwset in self.rws_sites['sets']:
+            if rwset['primary'] not in  check_sets:
                 continue
-            sites = fpset.get("associatedSites", []) + fpset.get("serviceSites", [])
-            rationales = fpset.get('rationaleBySite', None)
+            sites = rwset.get("associatedSites", []) + rwset.get("serviceSites", [])
+            rationales = rwset.get('rationaleBySite', None)
             if sites and rationales!=None:
                 for site in sites:
                     if site not in rationales.keys():
@@ -123,50 +123,50 @@ class FpsCheck:
                     + " none is provided. ")
 
     def check_exclusivity(self, check_sets):
-        """This method checks for exclusivity of each field in a set of FpsSets
+        """This method checks for exclusivity of each field in a set of RwsSets
 
-        Ensures that no FpsSets intersect, e.g. a primary of one set cannot be 
+        Ensures that no RwsSets intersect, e.g. a primary of one set cannot be 
         an associated site of another, nor can it be the primary of another set
         etc. If any sets intersect, information about the intersections is 
         added to the error_list.
 
         Args:
-            check_sets: Dict[string, FpsSet]
+            check_sets: Dict[string, RwsSet]
         Returns:
             None
         """
         site_list = set()
-        for primary, fps in check_sets.items():
+        for primary, rws in check_sets.items():
             # Check the primary
             if primary in site_list:
                 self.error_list.append(
-                    "This primary is already registered in another first party"
+                    "This primary is already registered in another related website"
                     + f" set: {primary}")
             else:
                 site_list.update(primary)
             # Check the associated sites
-            associated_overlap = set(fps.associated_sites) & site_list
+            associated_overlap = set(rws.associated_sites) & site_list
             if associated_overlap:
                 self.error_list.append(
                     "These associated sites are already registered in " + 
-                    f"another first party set: {associated_overlap}")
+                    f"another related website set: {associated_overlap}")
             else:
-                site_list.update(fps.associated_sites)
+                site_list.update(rws.associated_sites)
             # Check the service sites
-            service_overlap = set(fps.service_sites) & site_list
+            service_overlap = set(rws.service_sites) & site_list
             if service_overlap:
                 self.error_list.append(
                     "These service sites are already registered in another"
-                    + f" first party set: {service_overlap}")
+                    + f" related website set: {service_overlap}")
             else:
-                site_list.update(fps.service_sites)
+                site_list.update(rws.service_sites)
             # Check the ccTLDs
-            for aliases in fps.ccTLDs.values():
+            for aliases in rws.ccTLDs.values():
                 alias_overlap = set(aliases) & site_list
                 if alias_overlap:
                     self.error_list.append(
                         "These ccTLD sites are already registered in "
-                        + f"another first party set: {alias_overlap}")
+                        + f"another related website set: {alias_overlap}")
                 else:
                     site_list.update(aliases)
 
@@ -185,11 +185,11 @@ class FpsCheck:
     def find_non_https_urls(self, check_sets):
         """Checks for https:// in all sites. 
 
-        Calls url_is_https on all sites in each FpsSet contained in check_sets,
+        Calls url_is_https on all sites in each RwsSet contained in check_sets,
         and appends errors to the error list for any that return false
 
         Args:
-            check_sets: Dict[string, FpsSet]
+            check_sets: Dict[string, RwsSet]
         Returns:
             None
         """
@@ -240,11 +240,11 @@ class FpsCheck:
     def find_invalid_eTLD_Plus1(self, check_sets):
         """Checks if all domains are etld+1 compliant
 
-        Calls is_eTLD_Plus1 on all sites in each FpsSet contained in check_sets
+        Calls is_eTLD_Plus1 on all sites in each RwsSet contained in check_sets
         and appends errors to the error list for any that return false
 
         Args:
-            check_sets: Dict[string, FpsSet]
+            check_sets: Dict[string, RwsSet]
         Returns:
             None
         """
@@ -340,9 +340,9 @@ class FpsCheck:
                 f"\tDiff was: {diff}."]
 
     def find_invalid_well_known(self, check_sets):
-        """Checks for and validates well-known pages for FPS sets
+        """Checks for and validates well-known pages for RWS sets
 
-        Checks for a ./well-known page for first party sets under each
+        Checks for a ./well-known page for related website sets under each
         domain, and checks that the format of the file aligns with the provided
         pages in the canonical list.
         Calls check_list_sites on all ccTLDs, associated, and service sites.
@@ -350,42 +350,42 @@ class FpsCheck:
         format, or its contents do no match what is expected.
 
         Args:
-            check_sets: Dict[string, FpsSet]
+            check_sets: Dict[string, RwsSet]
         Returns:
             None
         """
         # Check the schema to ensure consistency
-        for primary, curr_fps_set in check_sets.items():
+        for primary, curr_rws_set in check_sets.items():
             # First we check the primary sites
             url = primary + WELL_KNOWN
             # Read the well-known files and check them against the schema we 
             # have stored
             try:
                 json_schema = self.open_and_load_json(url)
-                well_known_set = FpsSet(
+                well_known_set = RwsSet(
                     json_schema.get('ccTLDs'), 
                     json_schema.get('primary'), 
                     json_schema.get('associatedSites'), 
                     json_schema.get('serviceSites'))
-                if well_known_set.primary != curr_fps_set.primary:
+                if well_known_set.primary != curr_rws_set.primary:
                     self.error_list.append(f"The {WELL_KNOWN} set's primary ({well_known_set.primary}) did not equal " +
-                    f"the PR set's primary ({curr_fps_set.primary})")
+                    f"the PR set's primary ({curr_rws_set.primary})")
                 self.error_list.extend(self.check_well_known_list(
                     "associatedSites",
-                    curr_fps_set.associated_sites, 
+                    curr_rws_set.associated_sites, 
                     well_known_set.associated_sites
                     )
                 )
                 self.error_list.extend(self.check_well_known_list(
                     "serviceSites",
-                    curr_fps_set.service_sites, 
+                    curr_rws_set.service_sites, 
                     well_known_set.service_sites
                     )
                 )
-                for aliased_site in curr_fps_set.ccTLDs | well_known_set.ccTLDs:
+                for aliased_site in curr_rws_set.ccTLDs | well_known_set.ccTLDs:
                     self.error_list.extend(self.check_well_known_list(
                         aliased_site + " alias list",
-                        curr_fps_set.ccTLDs.get(aliased_site, []),
+                        curr_rws_set.ccTLDs.get(aliased_site, []),
                         well_known_set.ccTLDs.get(aliased_site, [])
                         )
                     )
@@ -395,10 +395,10 @@ class FpsCheck:
             # Check the member sites.
             self.check_list_sites(
                 primary,
-                curr_fps_set.associated_sites +
-                    curr_fps_set.service_sites +
+                curr_rws_set.associated_sites +
+                    curr_rws_set.service_sites +
                     [alias
-                     for aliases in curr_fps_set.ccTLDs.values()
+                     for aliases in curr_rws_set.ccTLDs.values()
                      for alias in aliases
                     ]
             )
@@ -406,10 +406,10 @@ class FpsCheck:
     def find_invalid_removal(self, subtracted_sets):
         """Checks that any sets being removed were properly removed by owner
         
-        Checks that the /.well-known page for the primary of any FPS removed
+        Checks that the /.well-known page for the primary of any RWS removed
         from the list returns an error 404.
         Args:
-            subtracted_sets: Dict[string, FpsSet]
+            subtracted_sets: Dict[string, RwsSet]
         Returns:
             None"""
         for primary in subtracted_sets:
@@ -431,14 +431,14 @@ class FpsCheck:
         Note: A site may list a variant with "com" as its eTLD IFF the site 
         being aliased has an eTLD on ICANN's list of countrycodes. 
         Args:
-            check_sets: Dict[string, FpsSet]
+            check_sets: Dict[string, RwsSet]
         Returns:
             None
         """
         for primary, curr_set in check_sets.items():
             for aliased_site, aliases in curr_set.ccTLDs.items():
                 # first check if the aliased site is actually anywhere else
-                # in the fps
+                # in the rws
                 if not curr_set.includes(aliased_site, False):
                     self.error_list.append(
                         f"The aliased site {aliased_site} contained within the ccTLDs must be a " +
@@ -465,7 +465,7 @@ class FpsCheck:
         """Checks service sites to see if they have a robots.txt subdomain.
 
 
-        Iterates through all service_sites in each FpsSet provided, and makes
+        Iterates through all service_sites in each RwsSet provided, and makes
         a get request to site/robots.txt for each. This request should return
         an error 4xx, 5xx, or a timeout error. If it does not, and the page 
         does exist, then it is expected that the site contains a X-Robots-Tag
@@ -473,7 +473,7 @@ class FpsCheck:
         to the error list.
 
         Args:
-            check_sets: Dict[string, FpsSet]
+            check_sets: Dict[string, RwsSet]
         Returns:
             None
         """
@@ -504,13 +504,13 @@ class FpsCheck:
     def find_ads_txt(self, check_sets):
         """Checks to see if service sites have an ads.txt subdomain. 
 
-        Iterates through all service_sites in each FpsSet provided, and makes
+        Iterates through all service_sites in each RwsSet provided, and makes
         a get request to site/ads.txt for each. Appends errors to the error 
         list for any that do not return an error 4xx or 5xx or if the site
         does not cause a timeout error. 
 
         Args:
-            check_sets: Dict[string, FpsSet]
+            check_sets: Dict[string, RwsSet]
         Returns:
             None
         """
@@ -536,13 +536,13 @@ class FpsCheck:
         """Checks to see if service sites redirect to another site
         or return a user/server error.
         
-        Makes a get request to all service sites in each FpsSet contained in 
+        Makes a get request to all service sites in each RwsSet contained in 
         check_sets, and appends errors to the error list for any that do not 
         return an error 4xx or 5xx or if the site does not cause a timeout 
         error. 
 
         Args:
-            check_sets: Dict[string, FpsSet]
+            check_sets: Dict[string, RwsSet]
         Returns:
             None
         """
