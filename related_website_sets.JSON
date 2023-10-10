@@ -76,7 +76,7 @@
       ],
       "rationaleBySite": {
         "https://livemint.com": "Specialized Platform for economics"
-      }  
+      }
     },
     {
       "contact": "alexey@landyrev.com",
@@ -86,6 +86,65 @@
       ],
       "rationaleBySite": {
         "https://landyrev.ru": "Same publisher's website in a different region"
+      }
+    },
+    {
+      "contact": "infraestructura@mercadolibre.com",
+      "primary": "https://mercadolibre.com",
+      "associatedSites": [
+        "https://mercadolivre.com",
+        "https://mercadopago.com",
+        "https://mercadoshops.com",
+        "https://portalinmobiliario.com",
+        "https://tucarro.com"
+      ],
+      "rationaleBySite": {
+        "https://mercadolivre.com": "Mercado Libre in Brazil",
+        "https://mercadopago.com": "Mercado Libre's payments ecosystem",
+        "https://mercadoshops.com": "Mercado Libre's online ecommerce store builder",
+        "https://portalinmobiliario.com": "Mercado Libre's brand for real estate ecommerce in Chile",
+        "https://tucarro.com": "Mercado Libre's brand for motors ecommerce in Colombia and Venezuela"
+      },
+      "ccTLDs": {
+        "https://mercadolibre.com": [
+          "https://mercadolibre.com.ar",
+          "https://mercadolibre.com.mx",
+          "https://mercadolibre.com.bo",
+          "https://mercadolibre.cl",
+          "https://mercadolibre.com.co",
+          "https://mercadolibre.co.cr",
+          "https://mercadolibre.com.do",
+          "https://mercadolibre.com.ec",
+          "https://mercadolibre.com.gt",
+          "https://mercadolibre.com.hn",
+          "https://mercadolibre.com.ni",
+          "https://mercadolibre.com.pa",
+          "https://mercadolibre.com.py",
+          "https://mercadolibre.com.pe",
+          "https://mercadolibre.com.sv",
+          "https://mercadolibre.com.uy",
+          "https://mercadolibre.com.ve"
+        ],
+        "https://mercadolivre.com": ["https://mercadolivre.com.br"],
+        "https://mercadopago.com": [
+          "https://mercadopago.com.ar",
+          "https://mercadopago.com.br",
+          "https://mercadopago.com.mx",
+          "https://mercadopago.com.uy",
+          "https://mercadopago.com.co",
+          "https://mercadopago.cl",
+          "https://mercadopago.com.pe",
+          "https://mercadopago.com.ec",
+          "https://mercadopago.com.ve"
+        ],
+        "https://mercadoshops.com": [
+          "https://mercadoshops.com.ar",
+          "https://mercadoshops.com.br",
+          "https://mercadoshops.com.mx",
+          "https://mercadoshops.cl",
+          "https://mercadoshops.com.co"
+        ],
+        "https://tucarro.com": ["https://tucarro.com.co", "https://tucarro.com.ve"]
       }
     }
   ]
