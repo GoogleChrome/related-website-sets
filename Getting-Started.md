@@ -19,9 +19,16 @@ To create or revise a submission, you will first need to create a local copy of 
 
 # Testing your Submission Locally #
 
-Once you've made your changes to your local branch, you can open a terminal and run the command "python3 check_sites.py". 
-When this command has finished you will either see "success" meaning your submission passed all of the checks, or you will see a 
-list of failed checks. 
+Once you've made your changes to your local branch, you can open a terminal and run the command `python3 check_sites.py`. 
+Currently, this will produce a number of check failures due to older submissions in the set failing recent changes to checks. If no members of your set
+are mentioned in the list of failed checks, then your submission should be fine. If you would like a cleaner way of looking for problems in your set,
+follow these steps: 
+<ol>
+ <li>Run `cp related_website_sets.JSON my_rws.JSON` in your shell</li>
+<li>Make your changes to `my_rws.JSON` and make sure `related_website_sets.JSON` is identical to the version in main.</li>
+<li>To test your local changes, run `python3 check_sites.py -i my_rws.JSON --with_diff`</li>
+<li>When you are ready to submit, copy your changes from `my_rws.JSON` into `related_website_sets.JSON` and delete `my_rws.JSON`</li>
+</ol>
 
 
 # Creating your Pull Request #
