@@ -79,6 +79,20 @@
       }
     },
     {
+      "contact": "jai.sharma@jagrannewmedia.com",
+      "primary": "https://www.jagran.com",
+      "associatedSites": [
+        "https://english.jagran.com",
+        "https://www.gujaratijagran.com",
+        "https://www.punjabijagran.com"
+      ],
+      "rationaleBySite": {
+        "https://english.jagran.com": "News Website English Jagran",
+        "https://www.gujaratijagran.com": "News Website Gujarati Jagran",
+        "https://www.punjabijagran.com": "News Website Punjabi Jagran"
+      }
+    },
+    {
       "contact": "alexey@landyrev.com",
       "primary": "https://landyrev.com",
       "associatedSites": [
