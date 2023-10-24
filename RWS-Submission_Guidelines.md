@@ -134,6 +134,7 @@ Upon submission of a PR, a series of technical checks will run on GitHub to veri
 	<ul>
 <li>Each domain must be prefixed by the https:// scheme. Sets may only include domains served over secure (https://) schemes. </li>
 <li>Each domain must be a <a href="https://github.com/publicsuffix/list/wiki/Format#:~:text=The%20registered%20or%20registrable%20domain%20is%20the%20public%20suffix%20plus%20one%20additional%20label.">registrable domain</a> (i.e., eTLD+1 using a snapshot (refreshed every 6 months) of the <a href="https://publicsuffix.org/">Public Suffix List (PSL)</a> to determine eTLD) at the time of submission. </li>
+<li>Note that subdomains (websites that share the same root structure) are not considered “third-party” by the browser, and do not need to be specified in a set to have access to cookies. For example, shop.example.com and pay.example.com share example.com as the root, and do not need to be in a set to have cookie access. Given that the root example.com is an eTLD+1, if subdomains (shop.example.com, pay.example.com) are added to a set, the eTLD+1 technical checks will fail.</li>
 		<li>Each domain must not already be present in the <a href="https://github.com/googlechrome/first-party-sets/blob/main/related_website_sets.JSON">canonical RWS list.</a></li>
 		<li>Each domain must satisfy the /.well-known/ metadata requirement:</li>
 		<ul>
