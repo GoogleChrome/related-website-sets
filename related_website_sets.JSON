@@ -89,6 +89,18 @@
       }
     },
     {
+      "contact": "jai.sharma@jagrannewmedia.com",
+      "primary": "https://jagran.com",
+      "associatedSites": [
+        "https://gujaratijagran.com",
+        "https://punjabijagran.com"
+      ],
+      "rationaleBySite": {
+        "https://gujaratijagran.com": "News Website for Gujarati audience",
+        "https://punjabijagran.com": "News Website for Punjabi audience"
+      }
+    },
+    {
       "contact": "infraestructura@mercadolibre.com",
       "primary": "https://mercadolibre.com",
       "associatedSites": [
