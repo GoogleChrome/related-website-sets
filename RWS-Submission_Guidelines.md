@@ -138,7 +138,7 @@ Upon submission of a PR, a series of technical checks will run on GitHub to veri
 		<li>Each domain must satisfy the /.well-known/ metadata requirement:</li>
 		<ul>
 <li>The /.well-known/ metadata requirement demonstrates that the submitter has administrative access to the domains present in the set, since administrative access is required to modify the /.well-known/ file. This will help prevent unauthorized actors from adding domains to a set. </li>
-<li>The primary domain must serve a JSON file at /.well-known/related-website-set.json (Note: list entries merged before September 15th 2023 may serve their well-known file at /.well-known/related-website-set.json instead; however, any changes to those entries will require that the primary and all members of the set must be served at /.well-known/related-website-set.json like any other entry). The contents of the file must be identical to the submission. Each member domain must serve a JSON file at /.well-known/related-website-set.json. The contents of the file must name the primary domain. These files must be maintained for the duration of the domain’s inclusion in the set.</li>
+<li>The primary domain must serve a JSON file at /.well-known/related-website-set.json (Note: list entries merged before September 15th 2023 may serve their well-known file at /.well-known/first-party-set.json instead; however, any changes to those entries will require that the primary and all members of the set must be served at /.well-known/related-website-set.json like any other entry). The contents of the file must be identical to the submission. Each member domain must serve a JSON file at /.well-known/related-website-set.json. The contents of the file must name the primary domain. These files must be maintained for the duration of the domain’s inclusion in the set.</li>
 			<li>Example for  primary.com/.well-known/related-website-set.json:</li>
 		</ul></ul>
 	
@@ -280,4 +280,3 @@ Chrome will continue to evaluate how best to maintain the appropriate guardrails
 Chrome is committed to engaging and receiving feedback from the broader ecosystem, including through the W3C (World Wide Web Consortium), on the future development of the Related Website Sets standard and this version of the Related Website Sets Submission Guidelines.
 
 For feedback on the Related Website Sets standard, please engage on GitHub or on [WICG calls](https://docs.google.com/document/d/10dMVqt2x8otohdJx4AZYccdX5Hp_lrxlT7QAO2adcfE/edit#heading=h.uc5qyqdrhfhv). For feedback or questions on these Guidelines, please file an issue in this repository.
-
