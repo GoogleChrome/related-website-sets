@@ -148,17 +148,13 @@
       }
     },
     {
-       "contact": "tech@vwo.com",
+       "contact": "support@vwo.com",
        "primary": "https://vwo.com",
        "associatedSites": [
           "https://wingify.com"
        ],
-       "serviceSites": [
-          "https://dev.visualwebsiteoptimizer.com"
-       ],
        "rationaleBySite": {
-          "https://wingify.com": "Alias",
-          "https://dev.visualwebsiteoptimizer.com": "jsLib"
+          "https://wingify.com": "Alias"
        }
     }
   ]
