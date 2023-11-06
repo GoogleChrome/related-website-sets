@@ -146,6 +146,20 @@
         ],
         "https://tucarro.com": ["https://tucarro.com.co", "https://tucarro.com.ve"]
       }
+    },
+    {
+       "contact": "tech@vwo.com",
+       "primary": "https://vwo.com",
+       "associatedSites": [
+          "https://wingify.com"
+       ],
+       "serviceSites": [
+          "https://dev.visualwebsiteoptimizer.com"
+       ],
+       "rationaleBySite": {
+          "https://wingify.com": "Alias",
+          "https://dev.visualwebsiteoptimizer.com": "jsLib"
+       }
     }
   ]
 }
