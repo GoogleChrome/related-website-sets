@@ -282,4 +282,3 @@ Chrome will continue to evaluate how best to maintain the appropriate guardrails
 Chrome is committed to engaging and receiving feedback from the broader ecosystem, including through the W3C (World Wide Web Consortium), on the future development of the Related Website Sets standard and this version of the Related Website Sets Submission Guidelines.
 
 For feedback on the Related Website Sets standard, please engage on GitHub or on [WICG calls](https://docs.google.com/document/d/10dMVqt2x8otohdJx4AZYccdX5Hp_lrxlT7QAO2adcfE/edit#heading=h.uc5qyqdrhfhv). For feedback or questions on these Guidelines, please file an issue in this repository.
-
