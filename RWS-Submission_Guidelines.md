@@ -131,17 +131,18 @@ It is important that users' interests are protected from invalid submissions, an
 ## Set-level technical validation ##
 
 Upon submission of a PR, a series of technical checks will run on GitHub to verify the following: 
-	<ul>
+<ul>
 <li>Each domain must be prefixed by the https:// scheme. Sets may only include domains served over secure (https://) schemes. </li>
 <li>Each domain must be a <a href="https://github.com/publicsuffix/list/wiki/Format#:~:text=The%20registered%20or%20registrable%20domain%20is%20the%20public%20suffix%20plus%20one%20additional%20label.">registrable domain</a> (i.e., eTLD+1 using a snapshot (refreshed every 6 months) of the <a href="https://publicsuffix.org/">Public Suffix List (PSL)</a> to determine eTLD) at the time of submission. </li>
-<li>Note that subdomains (websites that share the same root structure) are not considered “third-party” by the browser, and do not need to be specified in a set to have access to cookies. For example, shop.example.com and pay.example.com share example.com as the root, and do not need to be in a set to have cookie access. Given that the root example.com is an eTLD+1, if subdomains (shop.example.com, pay.example.com) are added to a set, the eTLD+1 technical checks will fail.</li>
-		<li>Each domain must not already be present in the <a href="https://github.com/googlechrome/first-party-sets/blob/main/related_website_sets.JSON">canonical RWS list.</a></li>
-		<li>Each domain must satisfy the /.well-known/ metadata requirement:</li>
-		<ul>
-<li>The /.well-known/ metadata requirement demonstrates that the submitter has administrative access to the domains present in the set, since administrative access is required to modify the /.well-known/ file. This will help prevent unauthorized actors from adding domains to a set. </li>
-<li>The primary domain must serve a JSON file at /.well-known/related-website-set.json (Note: list entries merged before September 15th 2023 may serve their well-known file at /.well-known/related-website-set.json instead; however, any changes to those entries will require that the primary and all members of the set must be served at /.well-known/related-website-set.json like any other entry). The contents of the file must be identical to the submission. Each member domain must serve a JSON file at /.well-known/related-website-set.json. The contents of the file must name the primary domain. These files must be maintained for the duration of the domain’s inclusion in the set.</li>
-			<li>Example for  primary.com/.well-known/related-website-set.json:</li>
-		</ul></ul>
+<li>Note that RWS uses the qualification of "eTLD+1 with a secure transport scheme" to determine the boundaries of an entry, meaning that `https://example.com` and `https://a.example.com` should not both exist on `related_website_sets.JSON`as they share the same eTLD+1: `example.com`. However, this should not be an issue for the owner of `https://example.com`, as its and `https://a.example.com`'s cookies are not considered third party to each other. Cookies are bounded on same-site, and since `https://a.example.com` is a subdomain of `https://example.com`, it's cookies are not considered cross-site. To learn more about what is considered cross-site vs same-site, [please read this article.](https://web.dev/articles/same-site-same-origin).</li>
+<li>Each domain must not already be present in the <a href="https://github.com/googlechrome/first-party-sets/blob/main/related_website_sets.JSON">canonical RWS list.</a></li>
+<li>Each domain must satisfy the /.well-known/ metadata requirement:</li>
+  <ul>
+    <li>The /.well-known/ metadata requirement demonstrates that the submitter has administrative access to the domains present in the set, since administrative access is required to modify the /.well-known/ file. This will help prevent unauthorized actors from adding domains to a set. </li>
+    <li>The primary domain must serve a JSON file at /.well-known/related-website-set.json (Note: list entries merged before September 15th 2023 may serve their well-known file at /.well-known/related-website-set.json instead; however, any changes to those entries will require that the primary and all members of the set must be served at /.well-known/related-website-set.json like any other entry). The contents of the file must be identical to the submission. Each member domain must serve a JSON file at /.well-known/related-website-set.json. The contents of the file must name the primary domain. These files must be maintained for the duration of the domain’s inclusion in the set.</li>
+		<li>Example for  primary.com/.well-known/related-website-set.json:</li>
+  </ul>
+</ul>
 	
 ```json
 {
