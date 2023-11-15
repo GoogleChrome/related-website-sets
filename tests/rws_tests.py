@@ -967,7 +967,9 @@ def mock_open_and_load_json(*args, **kwargs):
         }
     elif args[0] == 'https://associated3.com' + WELL_KNOWN:
         return {
-            "primary": "https://primary4.com"
+            "primary": "https://primary4.com",
+            "associatedSites": ["https://associated3.com"],
+            "unchecked": "some unchecked field"
         }
     elif args[0] == 'https://primary5.com' + WELL_KNOWN:
         return {
