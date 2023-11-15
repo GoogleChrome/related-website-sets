@@ -1,16 +1,15 @@
 # The "related-website-set.json" Well-Known Resource Identifier
 
-This page describes the use and content of URIs having the path 
+This page describes the use and content of URIs with the path
 `/.well-known/related-website-set.json`.
 ## Use
 
-A page may be hosted at the URI having the path of 
-`/.well-known/related-website-set.json` in order to demonstrate
-administrative access to the site when submitted as an entry in a Related 
-Website Site (RWS).  
+A site may demonstrate intentional opt-in to participation in a Related Website
+Set (RWS) by hosting a specific JSON file at the URI with a path of
+`/.well-known/related-website-set.json`.
 ## Content
 
-The `/.well-known/related-website-set.json` file for the set primary of an RWS 
+The `/.well-known/related-website-set.json` file for the set primary of an RWS
 must follow the schema specified below:
 ```json
 {
@@ -55,8 +54,8 @@ must follow the schema specified below:
   }
 }
 ```
-The `/.well-known/related-website-set.json` file for set members of an RWS 
-must follow the schema specified below:
+The `/.well-known/related-website-set.json` file for non-primary members of an
+RWS must follow the schema specified below:
 ```json
 {
   "type": "object",
