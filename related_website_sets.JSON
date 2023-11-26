@@ -158,6 +158,23 @@
         ],
         "https://tucarro.com": ["https://tucarro.com.co", "https://tucarro.com.ve"]
       }
+    },
+    {
+      "contact": "admin@idwrx.com",
+      "primary": "https://joyreactor.cc",
+      "associatedSites": [
+        "https://reactor.cc",
+        "https://cookreactor.com"
+      ],
+      "rationaleBySite": {
+        "https://reactor.cc": "Domain for fandomes, old version of site and mirror",
+        "https://cookreactor.com": "Cooking fandome"
+      },
+      "ccTLDs": {
+        "https://joyreactor.cc": [
+          "https://joyreactor.com"
+        ]
+      }
     }
   ]
 }
