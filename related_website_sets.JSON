@@ -2,18 +2,14 @@
   "sets": [
     {
       "contact": "wojciech.bialy@grupawp.pl",
-      "primary": "https://www.wp.pl",
+      "primary": "https://wp.pl",
       "associatedSites": [
         "https://money.pl",
         "https://autokult.pl"
       ],
-      "serviceSites": [
-        "https://wpext.pl"
-      ],
       "rationaleBySite": {
         "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
-        "https://autokult.pl": "Special Interest Website - automotive",
-        "https://wpext.pl": "Technical website - in-frame adserving and CDN"
+        "https://autokult.pl": "Special Interest Website - automotive"
       }
     },
     {
