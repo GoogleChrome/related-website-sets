@@ -1,6 +1,18 @@
 {
   "sets": [
     {
+      "contact": "alicia.bonilla@nacion.com",
+      "primary": "https://nacion.com",
+      "associatedSites": [
+         "https://lateja.cr",
+         "https://elfinancierocr.com"
+      ],
+      "rationaleBySite": {
+         "https://lateja.cr": "Newspaper owned by Grupo Nación",
+         "https://elfinancierocr.com": "Newspaper owned by Grupo Nación"
+      }
+   },
+    {
       "contact": "dmarti@raptive.com",
       "primary": "https://cafemedia.com",
       "associatedSites": [
