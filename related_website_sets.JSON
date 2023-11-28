@@ -1,6 +1,18 @@
 {
   "sets": [
     {
+      "contact": "wojciech.bialy@grupawp.pl",
+      "primary": "https://wp.pl",
+      "associatedSites": [
+        "https://money.pl",
+        "https://autokult.pl"
+      ],
+      "rationaleBySite": {
+        "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
+        "https://autokult.pl": "Special Interest Website - automotive"
+      }
+    },
+    {
       "contact": "dmarti@raptive.com",
       "primary": "https://cafemedia.com",
       "associatedSites": [
@@ -41,7 +53,7 @@
         "https://salemovetravel.com"
       ],
       "rationaleBySite": {
-        "https://salemoveadvisor.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works" ,
+        "https://salemoveadvisor.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works",
         "https://salemovefinancial.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works",
         "https://salemovetravel.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works"
       }
@@ -137,7 +149,9 @@
           "https://mercadolibre.com.uy",
           "https://mercadolibre.com.ve"
         ],
-        "https://mercadolivre.com": ["https://mercadolivre.com.br"],
+        "https://mercadolivre.com": [
+          "https://mercadolivre.com.br"
+        ],
         "https://mercadopago.com": [
           "https://mercadopago.com.ar",
           "https://mercadopago.com.br",
@@ -156,7 +170,10 @@
           "https://mercadoshops.cl",
           "https://mercadoshops.com.co"
         ],
-        "https://tucarro.com": ["https://tucarro.com.co", "https://tucarro.com.ve"]
+        "https://tucarro.com": [
+          "https://tucarro.com.co",
+          "https://tucarro.com.ve"
+        ]
       }
     },
     {
