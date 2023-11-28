@@ -158,6 +158,16 @@
         ],
         "https://tucarro.com": ["https://tucarro.com.co", "https://tucarro.com.ve"]
       }
+    },
+    {
+       "contact": "support@vwo.com",
+       "primary": "https://vwo.com",
+       "associatedSites": [
+          "https://wingify.com"
+       ],
+       "rationaleBySite": {
+          "https://wingify.com": "Alias"
+       }
     }
   ]
 }
