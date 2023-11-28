@@ -158,6 +158,20 @@
         ],
         "https://tucarro.com": ["https://tucarro.com.co", "https://tucarro.com.ve"]
       }
+    },
+    {
+      "contact": "cmidata@cmi.mx",
+      "primary": "https://unotv.com",
+      "associatedSites": [
+        "https://clarosports.com"
+      ],
+      "serviceSites": [
+        "https://cmxd.com.mx"
+      ],
+      "rationaleBySite": {
+        "https://clarosports.com": "Member of AMX Contenido websites, as unotv",
+        "https://cmxd.com.mx": "Used for personalization purposes across AMX Contenido websites."
+      }
     }
   ]
 }
