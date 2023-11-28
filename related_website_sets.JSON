@@ -158,6 +158,18 @@
         ],
         "https://tucarro.com": ["https://tucarro.com.co", "https://tucarro.com.ve"]
       }
+    },
+    {
+      "contact": "mighty-devops@mightytext.net",
+      "primary": "https://mightytext.net",
+      "serviceSites": [
+        "https://textyserver.appspot.com",
+        "https://mighty-app.appspot.com"
+      ],
+      "rationaleBySite": {
+        "https://textyserver.appspot.com": "API service for mightytext.net",
+        "https://mighty-app.appspot.com": "alternative domain for API service for mightytext.net"
+      }
     }
   ]
 }
