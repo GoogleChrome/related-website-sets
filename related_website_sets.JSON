@@ -206,6 +206,18 @@
         "https://clarosports.com": "Member of AMX Contenido websites, as unotv",
         "https://cmxd.com.mx": "Used for personalization purposes across AMX Contenido websites."
       }
+    },
+    {
+      "contact": "mighty-devops@mightytext.net",
+      "primary": "https://mightytext.net",
+      "serviceSites": [
+        "https://textyserver.appspot.com",
+        "https://mighty-app.appspot.com"
+      ],
+      "rationaleBySite": {
+        "https://textyserver.appspot.com": "API service for mightytext.net",
+        "https://mighty-app.appspot.com": "alternative domain for API service for mightytext.net"
+      }
     }
   ]
 }
