@@ -228,6 +228,32 @@
        "rationaleBySite": {
           "https://wingify.com": "Alias"
        }
+    },
+    {
+      "contact": "james@movementforanopenweb.com",
+      "primary": "https://themistocles.uk",
+      "associatedSites": [
+        "https://philolaus.uk",
+        "https://miltiades.uk",
+        "https://meleager.uk",
+        "https://epicurus.uk",
+        "https://aesara.uk",
+        "https://aegeus.uk",
+        "https://actaeon.uk"
+      ],
+      "rationaleBySite": {
+        "https://themistocles.uk":"Themistocles was an Athenian politician and general. He was one of a new breed of non-aristocratic politicians who rose to prominence in the early years of the Athenian democracy.",
+        "https://philolaus.uk ": "Philolaus was a Greek Pythagorean and pre-Socratic philosopher. He was born in a Greek colony in Italy and migrated to Greece. Philolaus has been called one of three most prominent figures in the Pythagorean tradition and the most outstanding figure in the Pythagorean school. ",
+        "https://miltiades.uk": "Miltiades, also known as Miltiades the Younger, was a Greek Athenian citizen known mostly for his role in the Battle of Marathon, as well as for his downfall afterwards. He was the son of Cimon Coalemos, a renowned Olympic chariot-racer, and the father of Cimon, the noted Athenian statesman.",
+        "https://meleager.uk": "Meleager was a hero venerated in his temenos at Calydon in Aetolia. He was already famed as the host of the Calydonian boar hunt in the epic tradition that was reworked by Homer. Meleager is also mentioned as one of the Argonauts.",
+        "https://soterias.uk": "Soteria was the goddess or spirit of safety and salvation, deliverance, and preservation from harm (not to be mistaken for Eleos). Soteria was also an epithet of the goddesses Persephone and Hecate, meaning deliverance and safety.",
+        "https://epicurus.uk": "Épicure est un philosophe présocratique de la Grèce antique, fondateur de l'épicurisme.",
+        "https://aesara.uk": "Aesara de Lucanie était un philosophe pythagoricien présumé qui pourrait avoir écrit De la nature humaine, dont un extrait a été conservé par Stobée.",
+        "https://aegeus.uk": "\u00C9g\u00E9e \u00E9tait un personnage archa\u00EFque du mythe fondateur d'Ath\u00E8nes. L'homme mi-hommes mi-boucs, qui a donn\u00E9 son nom \u00E0 la mer \u00C9g\u00E9e, \u00E9tait le p\u00E8re de Th\u00E9s\u00E9e.",
+        "https://actaeon.uk": "Act\u00E9on \u00E9tait le fils du gardien de troupeaux sacerdotale Arist\u00E9e et d'Autono\u00E9 en B\u00E9otie, et un c\u00E9l\u00E8bre h\u00E9ros th\u00E9bain.",
+        "https://soterias.uk": "Soteria était la déesse ou l'esprit de sécurité et de salut, de délivrance et de préservation du mal (à ne pas confondre avec Eleos). Soteria était aussi une épithète des déesses Perséphone et Hécate, signifiant délivrance et sécurité.",
+        "https://philolaus.uk": "Philolaus was a Greek Pythagorean and pre-Socratic philosopher. He was born in a Greek colony in Italy and migrated to Greece. Philolaus has been called one of three most prominent figures in the Pythagorean tradition and the most outstanding figure in the Pythagorean school."
+      }
     }
   ]
 }
