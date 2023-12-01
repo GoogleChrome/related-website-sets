@@ -79,30 +79,30 @@ Per the Submission Guidelines, approved PRs will be manually merged in batches t
 FAQs
 ====
 
-Q. How can I sign the CLA?
+### Q. How can I sign the CLA?
 
 Answer: 
 
 You can visit [Google's page about the Contributor License Agreement](https://cla.developers.google.com/about/google-individual) to sign the CLA, or check if you already have a CLA on file.
 
-Q. What is the /.well-known/ file?
+### Q. What is the /.well-known/ file?
 
 Answer: 
 
 The /.well-known/ directory is commonly used by different services to fetch different metadata relating to a domain. In the case of RWS submission checks, we will be checking that your domains are all hosting a file at /.well-known/related-website-sets.json in order to prove ownership of the domain.
 
-Q. Can I change the set primary domain?
+### Q. Can I change the set primary domain?
 
 Answer: Yes, technically, you can change the set primary domain. However, when you change the set primary domain, Chrome's implementation will register this change as a set change, and clear site data for all the sites in this set, even if the new primary used to be a member in this set.
 
-Q. What should I put in the rationale field?
+### Q. What should I put in the rationale field?
 
 Answer: The rationale field is where you provide an explanation as to why or how the domain you've added meets the use case the subset is designed for. For service domains, you must provide an explanation of how each domain in this subset supports functionality or security needs. For associated domains, you must provide an explanation of how you clearly present the affiliation across domains to users and why users would expect your domains to be affiliated (e.g., an About page, header or footer, shared branding or logo, etc).
 
-Q. Since anyone can contribute to the RWS list, can someone else modify or delete my RWS?
+### Q. Since anyone can contribute to the RWS list, can someone else modify or delete my RWS?
 
 Answer: A key component to the technical checks that run upon submission is the [/.well-known/ metadata requirement](https://github.com/GoogleChrome/first-party-sets/blob/main/RWS-Submission_Guidelines.md#set-level-technical-validation). This requirement demonstrates that the submitter has administrative access to the domains present in the set, since administrative access is required to modify the /.well-known/ file. This will help prevent unauthorized actors from adding domains to a set.
 
-Q. Can I make pull requests against files other than related_website_sets.JSON (e.g., the Submission Guidelines or the technical checks)?
+### Q. Can I make pull requests against files other than related_website_sets.JSON (e.g., the Submission Guidelines or the technical checks)?
 
 Answer: Please refrain from making suggestions in the form of pull requests to files in the GitHub repository other than related_website_sets.JSON. We welcome feedback to any of the content, but would prefer feedback to be submitted as issues to the repository instead.The purpose of this document is to provide a companion guide to the [Related Website Sets Submission Guidelines](https://github.com/GoogleChrome/related-website-sets/blob/main/RWS-Submission_Guidelines.md), which details the full requirements for Related Website Sets creation and submission.
