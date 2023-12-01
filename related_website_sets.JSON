@@ -228,6 +228,15 @@
        "rationaleBySite": {
           "https://wingify.com": "Alias"
        }
+    },
+    {
+      "contact": "operations@hc1.com",
+      "primary": "https://hc1cas.com",
+      "serviceSites": ["https://hc1.com", "https://hc1-test2.com"],
+      "rationaleBySite": {
+        "https://hc1.com": "hc1 Insights Lab platform production website.",
+        "https://hc1-test2.com": "hc1 Insights Lab platform test website."
+      }
     }
   ]
 }
