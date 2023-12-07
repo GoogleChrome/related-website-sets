@@ -228,6 +228,16 @@
        "rationaleBySite": {
           "https://wingify.com": "Alias"
        }
+    },
+    {
+       "contact": "support@wildix.com",
+       "primary": "https://wildix.com",
+       "associatedSites": [
+          "https://wildixin.com"
+       ],
+       "rationaleBySite": {
+          "https://wildixin.com": "Wildix PBX's domain"
+       }
     }
   ]
 }
