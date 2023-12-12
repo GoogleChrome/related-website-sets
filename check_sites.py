@@ -47,9 +47,11 @@ def find_diff_sets(old_sets, new_sets):
 def main():
     args = sys.argv[1:]
     input_file = 'related_website_sets.JSON'
+    single_set = ''
     input_prefix = ''
     with_diff = False
-    opts, _ = getopt.getopt(args, "i:", ["data_directory=", "with_diff"])
+    opts, _ = getopt.getopt(args, "i:", ["data_directory=", "with_diff", 
+                                         "single_set="])
     for opt, arg in opts:
         if opt == '-i':
             input_file = arg
@@ -57,6 +59,8 @@ def main():
             input_prefix = arg
         if opt == '--with_diff':
             with_diff = True
+        if opt == '--single_set':
+            single_set = arg
 
     # Open and load the json of the new list
     with open(input_file) as f:
@@ -111,10 +115,14 @@ def main():
                 return
         old_checker = RwsCheck(old_sites, etlds, icanns)
         check_sets, subtracted_sets = find_diff_sets(old_checker.load_sets(), rws_checker.load_sets())
-        # TODO: add variable and check for subtracted_sets in case of user 
-        # removing old set from the list
     else:
         check_sets = rws_checker.load_sets()
+        if single_set:
+            if single_set not in check_sets:
+                print("There was an error loading the set:\n" + single_set +
+                      " could not be found in related_website_sets.JSON")
+                return
+            check_sets = {single_set: check_sets[single_set]}
 
     # Run check on subtracted sets
     rws_checker.find_invalid_removal(subtracted_sets)

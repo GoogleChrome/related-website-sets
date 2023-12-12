@@ -39,15 +39,7 @@ Step 3: Ensuring your RWS meets the technical requirements
 Step 4: Testing your RWS locally
 --------------------------------
 
-Once you've made your changes to your local branch, you can open a terminal and run the command `python3 check_sites.py`. Currently, this will produce a number of check failures due to older submissions in the set failing recent changes to checks. If no members of your set are mentioned in the list of failed checks, then your submission should be fine. If you would like a cleaner way of looking for problems in your set, follow these steps:
-
-1.  Run `cp related_website_sets.JSON my_rws.JSON` in your shell
-
-2.  Make your changes to `my_rws.JSON` and make sure `related_website_sets.JSON` is identical to the version in main.
-
-3.  To test your local changes, run `python3 check_sites.py -i my_rws.JSON --with_diff`. When this command finishes running, you will either see "success" (meaning your submission passed all of the checks) or you will see a list of failed checks.
-
-4.  When you are ready to submit, copy your changes from `my_rws.JSON` into `related_website_sets.JSON` and delete `my_rws.JSON`
+Once you've made your changes to your local branch, you can open a terminal and run the command `python3 check_sites.py --single_set=<your primary site>`. You will get the restults of any failed tests on the command line. otherwise you will see "success" if your changes are passing all of the checks. Make sure that the text of the primary site you're passing into the command line is identical to the primary site you have listed in the related_website_sets.JSON file, or the tests will fail. You can also run the command `python3 check_sites.py`, without the `single_set` argument if you would like, but this will run the checks on the entire document, meaning you may see some failures related to other sets from your own. 
 
 Step 5: Submitting your RWS
 ---------------------------
