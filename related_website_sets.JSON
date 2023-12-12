@@ -12,6 +12,18 @@
          "https://elfinancierocr.com": "Newspaper owned by Grupo Nación"
       }
    },
+   {
+     "contact": "wojciech.bialy@grupawp.pl",
+     "primary": "https://wp.pl",
+     "associatedSites": [
+       "https://money.pl",
+       "https://autokult.pl"
+     ],
+     "rationaleBySite": {
+       "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
+       "https://autokult.pl": "Special Interest Website - automotive"
+     }
+   },
     {
       "contact": "dmarti@raptive.com",
       "primary": "https://cafemedia.com",
@@ -53,7 +65,7 @@
         "https://salemovetravel.com"
       ],
       "rationaleBySite": {
-        "https://salemoveadvisor.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works" ,
+        "https://salemoveadvisor.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works",
         "https://salemovefinancial.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works",
         "https://salemovetravel.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works"
       }
@@ -149,7 +161,9 @@
           "https://mercadolibre.com.uy",
           "https://mercadolibre.com.ve"
         ],
-        "https://mercadolivre.com": ["https://mercadolivre.com.br"],
+        "https://mercadolivre.com": [
+          "https://mercadolivre.com.br"
+        ],
         "https://mercadopago.com": [
           "https://mercadopago.com.ar",
           "https://mercadopago.com.br",
@@ -168,8 +182,74 @@
           "https://mercadoshops.cl",
           "https://mercadoshops.com.co"
         ],
-        "https://tucarro.com": ["https://tucarro.com.co", "https://tucarro.com.ve"]
+        "https://tucarro.com": [
+          "https://tucarro.com.co",
+          "https://tucarro.com.ve"
+        ]
       }
+    },
+    {
+      "contact": "admin@idwrx.com",
+      "primary": "https://joyreactor.cc",
+      "associatedSites": [
+        "https://reactor.cc",
+        "https://cookreactor.com"
+      ],
+      "rationaleBySite": {
+        "https://reactor.cc": "Domain for fandomes, old version of site and mirror",
+        "https://cookreactor.com": "Cooking fandome"
+      },
+      "ccTLDs": {
+        "https://joyreactor.cc": [
+          "https://joyreactor.com"
+        ]
+      }
+     },
+     {
+      "contact": "cmidata@cmi.mx",
+      "primary": "https://unotv.com",
+      "associatedSites": [
+        "https://clarosports.com"
+      ],
+      "serviceSites": [
+        "https://cmxd.com.mx"
+      ],
+      "rationaleBySite": {
+        "https://clarosports.com": "Member of AMX Contenido websites, as unotv",
+        "https://cmxd.com.mx": "Used for personalization purposes across AMX Contenido websites."
+      }
+    },
+    {
+      "contact": "mighty-devops@mightytext.net",
+      "primary": "https://mightytext.net",
+      "serviceSites": [
+        "https://textyserver.appspot.com",
+        "https://mighty-app.appspot.com"
+      ],
+      "rationaleBySite": {
+        "https://textyserver.appspot.com": "API service for mightytext.net",
+        "https://mighty-app.appspot.com": "alternative domain for API service for mightytext.net"
+      }
+    },
+    {
+       "contact": "support@vwo.com",
+       "primary": "https://vwo.com",
+       "associatedSites": [
+          "https://wingify.com"
+       ],
+       "rationaleBySite": {
+          "https://wingify.com": "Alias"
+       }
+    },
+    {
+       "contact": "support@wildix.com",
+       "primary": "https://wildix.com",
+       "associatedSites": [
+          "https://wildixin.com"
+       ],
+       "rationaleBySite": {
+          "https://wildixin.com": "Wildix PBX's domain"
+       }
     }
   ]
 }

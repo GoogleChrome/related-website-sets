@@ -7,7 +7,7 @@ read the [Related Website Sets explainer](https://github.com/WICG/first-party-se
 The following is a description of the contents of this repository:
 
 
-
+* Information on how to get started with the RWS submission process and an FAQ: [Getting-Started.md](https://github.com/GoogleChrome/related-website-sets/blob/main/Getting-Started.md)
 * Guidance on submitting Related Website Sets: [RWS-Submission_Guidelines.md](https://github.com/GoogleChrome/first-party-sets/blob/main/RWS-Submission_Guidelines.md)
 * A JSON document of Related Website Sets: [related_website_sets.JSON](https://github.com/GoogleChrome/first-party-sets/blob/main/related_website_sets.JSON)
 * Various submission checks visible in [RwsCheck.py](https://github.com/GoogleChrome/first-party-sets/blob/main/RwsCheck.py)
