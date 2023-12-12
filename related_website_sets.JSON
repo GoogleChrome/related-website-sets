@@ -1,17 +1,29 @@
 {
   "sets": [
     {
-      "contact": "wojciech.bialy@grupawp.pl",
-      "primary": "https://wp.pl",
+      "contact": "alicia.bonilla@nacion.com",
+      "primary": "https://nacion.com",
       "associatedSites": [
-        "https://money.pl",
-        "https://autokult.pl"
+         "https://lateja.cr",
+         "https://elfinancierocr.com"
       ],
       "rationaleBySite": {
-        "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
-        "https://autokult.pl": "Special Interest Website - automotive"
+         "https://lateja.cr": "Newspaper owned by Grupo Nación",
+         "https://elfinancierocr.com": "Newspaper owned by Grupo Nación"
       }
-    },
+   },
+   {
+     "contact": "wojciech.bialy@grupawp.pl",
+     "primary": "https://wp.pl",
+     "associatedSites": [
+       "https://money.pl",
+       "https://autokult.pl"
+     ],
+     "rationaleBySite": {
+       "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
+       "https://autokult.pl": "Special Interest Website - automotive"
+     }
+   },
     {
       "contact": "dmarti@raptive.com",
       "primary": "https://cafemedia.com",
