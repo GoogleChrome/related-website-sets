@@ -47,11 +47,11 @@ def find_diff_sets(old_sets, new_sets):
 def main():
     args = sys.argv[1:]
     input_file = 'related_website_sets.JSON'
-    testing_sets = []
+    cli_primaries = []
     input_prefix = ''
     with_diff = False
-    opts, _ = getopt.getopt(args, "i:", ["data_directory=", "with_diff", 
-                                         "testing_sets="])
+    opts, _ = getopt.getopt(args, "i:p:", ["data_directory=", "with_diff", 
+                                         "primaries="])
     for opt, arg in opts:
         if opt == '-i':
             input_file = arg
@@ -59,8 +59,8 @@ def main():
             input_prefix = arg
         if opt == '--with_diff':
             with_diff = True
-        if opt == '--testing_sets':
-            testing_sets = arg.split(',')
+        if opt == '--primaries' or opt == '-p':
+            cli_primaries.extend(arg.split(','))
 
     # Open and load the json of the new list
     with open(input_file) as f:
@@ -117,15 +117,12 @@ def main():
         check_sets, subtracted_sets = find_diff_sets(old_checker.load_sets(), rws_checker.load_sets())
     else:
         check_sets = rws_checker.load_sets()
-        if testing_sets:
-            temp_sets = {}
-            for testing_set in testing_sets:
-                if testing_set not in check_sets:
-                    error_texts.append("There was an error loading the set:\n" + testing_set +
-                        " could not be found in related_website_sets.JSON")
-                else:
-                    temp_sets.update({testing_set: check_sets[testing_set]})
-            check_sets = temp_sets
+        if cli_primaries:
+            absent_primaries = [p for p in cli_primaries if p not in check_sets]
+            for p in absent_primaries:
+                error_texts.append("There was an error loading the set:\n" + 
+                    p + " could not be found in related_website_sets.JSON")  
+            check_sets = {p: check_sets[p] for p in cli_primaries if p not in absent_primaries}
 
     # Run check on subtracted sets
     rws_checker.find_invalid_removal(subtracted_sets)
