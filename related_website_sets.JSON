@@ -220,6 +220,24 @@
       }
     },
     {
+      "contact": "dnsadmin@idbs.com",
+      "primary": "https://idbs-cloud.com",
+      "associatedSites": [
+          "https://idbs-dev.com",
+          "https://idbs-staging.com",
+          "https://idbs-eworkbook.com",
+          "https://eworkbookcloud.com",
+          "https://eworkbookrequest.com"
+      ],
+      "rationaleBySite": {
+          "https://idbs-dev.com": "Dev version of main application IDBS-cloud",
+          "https://idbs-staging.com": "Staging version of main application IDBS-cloud",
+          "https://idbs-eworkbook.com": "E-workbook services part of IDBS-cloud product",
+          "https://eworkbookcloud.com": "E-workbook services part of IDBS-cloud product",
+          "https://eworkbookrequest.com": "E-workbook request part of IDBS-cloud product"
+      }
+     },
+    {
       "contact": "mighty-devops@mightytext.net",
       "primary": "https://mightytext.net",
       "serviceSites": [
