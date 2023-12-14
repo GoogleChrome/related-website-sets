@@ -121,8 +121,8 @@ def main():
             absent_primaries = [p for p in cli_primaries if p not in check_sets]
             for p in absent_primaries:
                 error_texts.append("There was an error loading the set:\n" + 
-                    p + " could not be found in related_website_sets.JSON")  
-            check_sets = {p: check_sets[p] for p in cli_primaries if p not in absent_primaries}
+                    "could not find set with primary site " + p)  
+            check_sets = {p: check_sets[p] for p in cli_primaries if p in check_sets}
 
     # Run check on subtracted sets
     rws_checker.find_invalid_removal(subtracted_sets)
