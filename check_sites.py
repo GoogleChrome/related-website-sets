@@ -47,9 +47,11 @@ def find_diff_sets(old_sets, new_sets):
 def main():
     args = sys.argv[1:]
     input_file = 'related_website_sets.JSON'
+    cli_primaries = []
     input_prefix = ''
     with_diff = False
-    opts, _ = getopt.getopt(args, "i:", ["data_directory=", "with_diff"])
+    opts, _ = getopt.getopt(args, "i:p:", ["data_directory=", "with_diff", 
+                                         "primaries="])
     for opt, arg in opts:
         if opt == '-i':
             input_file = arg
@@ -57,6 +59,8 @@ def main():
             input_prefix = arg
         if opt == '--with_diff':
             with_diff = True
+        if opt == '--primaries' or opt == '-p':
+            cli_primaries.extend(arg.split(','))
 
     # Open and load the json of the new list
     with open(input_file) as f:
@@ -111,10 +115,14 @@ def main():
                 return
         old_checker = RwsCheck(old_sites, etlds, icanns)
         check_sets, subtracted_sets = find_diff_sets(old_checker.load_sets(), rws_checker.load_sets())
-        # TODO: add variable and check for subtracted_sets in case of user 
-        # removing old set from the list
     else:
         check_sets = rws_checker.load_sets()
+        if cli_primaries:
+            absent_primaries = [p for p in cli_primaries if p not in check_sets]
+            for p in absent_primaries:
+                error_texts.append("There was an error loading the set:\n" + 
+                    f"could not find set with primary site \"{p}\"")  
+            check_sets = {p: check_sets[p] for p in cli_primaries if p in check_sets}
 
     # Run check on subtracted sets
     rws_checker.find_invalid_removal(subtracted_sets)
