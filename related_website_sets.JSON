@@ -260,6 +260,24 @@
       "rationaleBySite": {
         "https://hc1cas.com": "hc1 Insights Lab platform authentication service."
       }
+    },
+    {
+      "contact": "andri.nurdiansah@kgmedia.id",
+      "primary": "https://www.kgmedia.id",
+      "associatedSites": [
+        "https://kompas.com",
+        "https://tribunnews.com",
+        "https://grid.id",
+        "https://bolasport.com",
+        "https://www.motorplus-online.com"
+      ],
+      "rationaleBySite": {
+        "https://kompas.com": "KG Media General News provider",
+        "https://tribunnews.com": "KG Media Local News provider",
+        "https://grid.id": "KG Media Lifestyle platform provider",
+        "https://bolasport.com": "KG Media Soccer and sport news provider",
+        "https://www.motorplus-online.com": "KG Media Automotive & Motorbike News provider"
+      }
     }
   ]
 }
