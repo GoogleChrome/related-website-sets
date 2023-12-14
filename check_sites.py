@@ -121,7 +121,7 @@ def main():
             absent_primaries = [p for p in cli_primaries if p not in check_sets]
             for p in absent_primaries:
                 error_texts.append("There was an error loading the set:\n" + 
-                    "could not find set with primary site " + p)  
+                    f"could not find set with primary site \"{p}\"")  
             check_sets = {p: check_sets[p] for p in cli_primaries if p in check_sets}
 
     # Run check on subtracted sets

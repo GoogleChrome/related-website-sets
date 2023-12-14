@@ -41,11 +41,11 @@ Step 4: Testing your RWS locally
 
 Once you've made your changes to your local branch, you can open a terminal and run the command 
 
-`python3 check_sites.py --primaries=<your primary site>`
+`python3 check_sites.py --primaries=https://yourprimary.example`
 
 or, equivalently, run
 
-`python3 check_sites.py -p <your primary site>`
+`python3 check_sites.py -p https://yourprimary.example`
 
 You will get the results of any failed tests in the terminal. Otherwise, you will see "success" if your changes are passing all of the checks. Make sure that the text of the primary site you're passing into the command line is identical to the primary site you have listed in the related_website_sets.JSON file, or the tests will fail. If you would like to test multiple Related Website Sets at once, you can run the command above with multiple primaries in a comma separated list. 
 
