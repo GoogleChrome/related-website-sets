@@ -241,7 +241,7 @@ ccTLD variants must satisfy the following conditions:
 
 <b>Validation success</b>
 
-If a set submission passes all technical checks successfully, the submitter will be notified that their PR was successful on GitHub. At this time, approved PRs will be manually merged in batches to the canonical RWS list once per week (Tuesdays at 12pm Eastern Time (ET)). 
+If a set submission passes all technical checks successfully, the submitter will be notified that their PR was successful on GitHub. At this time, approved PRs will be manually merged in batches to the canonical RWS list once per week (Tuesdays at 12pm Eastern Time (ET)), excluding during holidays. 
 
 <b>Validation failure</b>
 
