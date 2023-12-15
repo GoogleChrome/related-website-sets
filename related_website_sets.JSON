@@ -3,27 +3,21 @@
     {
       "contact": "alicia.bonilla@nacion.com",
       "primary": "https://nacion.com",
-      "associatedSites": [
-         "https://lateja.cr",
-         "https://elfinancierocr.com"
-      ],
+      "associatedSites": ["https://lateja.cr", "https://elfinancierocr.com"],
       "rationaleBySite": {
-         "https://lateja.cr": "Newspaper owned by Grupo Nación",
-         "https://elfinancierocr.com": "Newspaper owned by Grupo Nación"
+        "https://lateja.cr": "Newspaper owned by Grupo Nación",
+        "https://elfinancierocr.com": "Newspaper owned by Grupo Nación"
       }
-   },
-   {
-     "contact": "wojciech.bialy@grupawp.pl",
-     "primary": "https://wp.pl",
-     "associatedSites": [
-       "https://money.pl",
-       "https://autokult.pl"
-     ],
-     "rationaleBySite": {
-       "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
-       "https://autokult.pl": "Special Interest Website - automotive"
-     }
-   },
+    },
+    {
+      "contact": "wojciech.bialy@grupawp.pl",
+      "primary": "https://wp.pl",
+      "associatedSites": ["https://money.pl", "https://autokult.pl"],
+      "rationaleBySite": {
+        "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
+        "https://autokult.pl": "Special Interest Website - automotive"
+      }
+    },
     {
       "contact": "dmarti@raptive.com",
       "primary": "https://cafemedia.com",
@@ -45,9 +39,7 @@
         "https://computerbild.de",
         "https://wieistmeineip.de"
       ],
-      "serviceSites": [
-        "https://www.asadcdn.com"
-      ],
+      "serviceSites": ["https://www.asadcdn.com"],
       "rationaleBySite": {
         "https://welt.de": "News Website welt.de",
         "https://autobild.de": "Special Interest Website Autobild",
@@ -85,9 +77,7 @@
     {
       "contact": "support@songstats.com",
       "primary": "https://songstats.com",
-      "associatedSites": [
-        "https://songshare.com"
-      ],
+      "associatedSites": ["https://songshare.com"],
       "rationaleBySite": {
         "https://songshare.com": "Specialized Platform for Music Smart Links"
       }
@@ -95,9 +85,7 @@
     {
       "contact": "prashant.tiwari@htdigital.in",
       "primary": "https://hindustantimes.com",
-      "associatedSites": [
-        "https://livemint.com"
-      ],
+      "associatedSites": ["https://livemint.com"],
       "rationaleBySite": {
         "https://livemint.com": "Specialized Platform for economics"
       }
@@ -105,9 +93,7 @@
     {
       "contact": "alexey@landyrev.com",
       "primary": "https://landyrev.com",
-      "associatedSites": [
-        "https://landyrev.ru"
-      ],
+      "associatedSites": ["https://landyrev.ru"],
       "rationaleBySite": {
         "https://landyrev.ru": "Same publisher's website in a different region"
       }
@@ -161,9 +147,7 @@
           "https://mercadolibre.com.uy",
           "https://mercadolibre.com.ve"
         ],
-        "https://mercadolivre.com": [
-          "https://mercadolivre.com.br"
-        ],
+        "https://mercadolivre.com": ["https://mercadolivre.com.br"],
         "https://mercadopago.com": [
           "https://mercadopago.com.ar",
           "https://mercadopago.com.br",
@@ -191,29 +175,20 @@
     {
       "contact": "admin@idwrx.com",
       "primary": "https://joyreactor.cc",
-      "associatedSites": [
-        "https://reactor.cc",
-        "https://cookreactor.com"
-      ],
+      "associatedSites": ["https://reactor.cc", "https://cookreactor.com"],
       "rationaleBySite": {
         "https://reactor.cc": "Domain for fandomes, old version of site and mirror",
         "https://cookreactor.com": "Cooking fandome"
       },
       "ccTLDs": {
-        "https://joyreactor.cc": [
-          "https://joyreactor.com"
-        ]
+        "https://joyreactor.cc": ["https://joyreactor.com"]
       }
-     },
-     {
+    },
+    {
       "contact": "cmidata@cmi.mx",
       "primary": "https://unotv.com",
-      "associatedSites": [
-        "https://clarosports.com"
-      ],
-      "serviceSites": [
-        "https://cmxd.com.mx"
-      ],
+      "associatedSites": ["https://clarosports.com"],
+      "serviceSites": ["https://cmxd.com.mx"],
       "rationaleBySite": {
         "https://clarosports.com": "Member of AMX Contenido websites, as unotv",
         "https://cmxd.com.mx": "Used for personalization purposes across AMX Contenido websites."
@@ -232,49 +207,50 @@
       }
     },
     {
-       "contact": "support@vwo.com",
-       "primary": "https://vwo.com",
-       "associatedSites": [
-          "https://wingify.com"
-       ],
-       "rationaleBySite": {
-          "https://wingify.com": "Alias"
-       }
+      "contact": "support@vwo.com",
+      "primary": "https://vwo.com",
+      "associatedSites": ["https://wingify.com"],
+      "rationaleBySite": {
+        "https://wingify.com": "Alias"
+      }
     },
     {
-       "contact": "support@wildix.com",
-       "primary": "https://wildix.com",
-       "associatedSites": [
-          "https://wildixin.com"
-       ],
-       "rationaleBySite": {
-          "https://wildixin.com": "Wildix PBX's domain"
-       }
+      "contact": "support@wildix.com",
+      "primary": "https://wildix.com",
+      "associatedSites": ["https://wildixin.com"],
+      "rationaleBySite": {
+        "https://wildixin.com": "Wildix PBX's domain"
+      }
     },
     {
       "contact": "operations@hc1.com",
       "primary": "https://hc1.com",
-      "serviceSites": [
-        "https://hc1cas.com"
-      ],
+      "serviceSites": ["https://hc1cas.com"],
       "rationaleBySite": {
         "https://hc1cas.com": "hc1 Insights Lab platform authentication service."
       }
     },
     {
       "contact": "nchandra@demandbase.com",
-      "primary": "https://web.stg.demandbase.com",
-      "associatedSites": [
-        "https://my.staging.insideview.com",
-        "https://gateway.stg.demandbase.com",
-        "https://login.staging.insideview.com",
-        "https://authentication-dev.demandbase.com"
-      ],
+      "primary": "https://demandbase.com",
+      "associatedSites": ["https://insideview.com"],
       "rationaleBySite": {
-        "https://authentication-dev.demandbase.com": "Demandbase platform authentication related for stage environment.",
-        "https://my.staging.insideview.com": "Specialized demandbase platform for sales intelligence customers  - stage environment",
-        "https://login.staging.insideview.com": "Specialized login related demandbase platform for sales intelligence customers - stage environment",
-        "https://gateway.stg.demandbase.com": "Specialized gaeway related demandbase platform for sales intelligence customers and abx could customers -stage environment"
+        "https://insideview.com": "Specialized demandbase platform for sales intelligence customers"
+      },
+      "ccTLDs": {
+        "https://demandbase.com": [
+          "https://web.stg.demandbase.com",
+          "https://web.demandbase.com",
+          "https://gateway.stg.demandbase.com",
+          "https://authentication-dev.demandbase.com"
+        ],
+        "https://insideview.com": [
+          "https://my.staging.insideview.com",
+          "https://my.insideview.com",
+          "https://my.dev.insideview.com",
+          "https://login.insideview.com",
+          "https://login.staging.insideview.com"
+        ]
       }
     }
   ]
