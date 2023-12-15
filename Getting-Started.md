@@ -75,13 +75,16 @@ Once you've confirmed that your set is passing checks in your local branch, you 
 
 2.  [Create a PR](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) to pull your branch into the master.
 
-1.  You may need to resolve merge conflicts.
+3.  You may need to resolve merge conflicts.
 
 4.  Wait for all actions to finish running to confirm whether your PR has passed or failed the checks. 
 
-1.  Sometimes, especially if you had merge conflicts that you had to squash, a checkmark will appear before the action has actually run.
+5.  Sometimes, especially if you had merge conflicts that you had to squash, a checkmark will appear before the action has actually run.
 
-2.  Check the "Actions" tab to confirm the status of the run triggered by your request.
+6.  Check the "Actions" tab to confirm the status of the run triggered by your request.
+
+7. [Enable upstream repository maintainer permissions on your pull request.](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/allowing-changes-to-a-pull-request-branch-created-from-a-fork#enabling-repository-maintainer-permissions-on-existing-pull-requests)
+This will allow the maintainers of the RWS repo to resolve any conflicts and merge your pull request when the time comes. If you do not do this and a conflict exists at time of merge, the maintainers will have to wait for <b>you</b> to resolve this before they can merge it, even if it is otherwise passing the checks. 
 
 Per the Submission Guidelines, approved PRs will be manually merged in batches to the canonical RWS list once per week (Tuesdays at 12pm Eastern Time).
 
