@@ -269,14 +269,14 @@
         "https://linternaute.com",
         "https://journaldunet.com",
         "https://phonandroid.com",
-        "https://jeux-gratuits.com"
+        "https://commentcamarche.com"
       ],
       "rationaleBySite": {
         "https://commentcamarche.net": "Centralized account for redactors, forums & real-time messages",
         "https://linternaute.com": "Centralized account for redactors, forums & real-time messages",
         "https://journaldunet.com": "Centralized account for redactors, forums & real-time messages",
         "https://phonandroid.com": "Centralized account for redactors, forums & real-time messages",
-        "https://jeux-gratuits.com": "Centralized account for redactors, forums & real-time messages"
+        "https://commentcamarche.com": "Centralized account for redactors, forums & real-time messages"
       },
       "ccTLDs": {
         "https://journaldesfemmes.com": [
