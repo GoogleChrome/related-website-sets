@@ -73,18 +73,18 @@ Once you've confirmed that your set is passing checks in your local branch, you 
 
 1.  [Push](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository) your local changes to your remote branch by using the command `git push origin your-branch-name`.
 
-2.  [Create a PR](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) to pull your branch into the master.
+1.  [Create a PR](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) to pull your branch into the master.
 
-3.  You may need to resolve merge conflicts.
+1.  You may need to resolve merge conflicts.
 
-4.  Wait for all actions to finish running to confirm whether your PR has passed or failed the checks. 
+1.  Wait for all actions to finish running to confirm whether your PR has passed or failed the checks. 
 
-5.  Sometimes, especially if you had merge conflicts that you had to squash, a checkmark will appear before the action has actually run.
+1.  Sometimes, especially if you had merge conflicts that you had to squash, a checkmark will appear before the action has actually run.
 
-6.  Check the "Actions" tab to confirm the status of the run triggered by your request.
+1.  Check the "Actions" tab to confirm the status of the run triggered by your request.
 
-7. [Enable upstream repository maintainer permissions on your pull request.](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/allowing-changes-to-a-pull-request-branch-created-from-a-fork#enabling-repository-maintainer-permissions-on-existing-pull-requests)
-This will allow the maintainers of the RWS repo to resolve any conflicts and merge your pull request when the time comes. If you do not do this and a conflict exists at time of merge, the maintainers will have to wait for <b>you</b> to resolve this before they can merge it, even if it is otherwise passing the checks. 
+1.  If you want your PR to be merged in a timely manner, please [enable repository maintainer permissions on your pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/allowing-changes-to-a-pull-request-branch-created-from-a-fork#enabling-repository-maintainer-permissions-on-existing-pull-requests).
+This allows the maintainers of the RWS repository to resolve merge conflicts on your behalf. Without this permission, the maintainers must wait for **you** to resolve any conflicts before they can merge your PR, even if it is otherwise passing the checks. This will delay your submission; maintainers will not revisit your PR until the next regular review.
 
 Per the Submission Guidelines, approved PRs will be manually merged in batches to the canonical RWS list once per week (Tuesdays at 12pm Eastern Time).
 
