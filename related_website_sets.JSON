@@ -260,6 +260,22 @@
       "rationaleBySite": {
         "https://hc1cas.com": "hc1 Insights Lab platform authentication service."
       }
+    },
+    {
+      "contact": "nchandra@demandbase.com",
+      "primary": "https://web.stg.demandbase.com",
+      "associatedSites": [
+        "https://my.staging.insideview.com",
+        "https://gateway.stg.demandbase.com",
+        "https://login.staging.insideview.com",
+        "https://authentication-dev.demandbase.com"
+      ],
+      "rationaleBySite": {
+        "https://authentication-dev.demandbase.com": "Demandbase platform authentication related for stage environment.",
+        "https://my.staging.insideview.com": "Specialized demandbase platform for sales intelligence customers  - stage environment",
+        "https://login.staging.insideview.com": "Specialized login related demandbase platform for sales intelligence customers - stage environment",
+        "https://gateway.stg.demandbase.com": "Specialized gaeway related demandbase platform for sales intelligence customers and abx could customers -stage environment"
+      }
     }
   ]
 }
