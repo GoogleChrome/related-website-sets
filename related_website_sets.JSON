@@ -1,6 +1,21 @@
 {
   "sets": [
     {
+      "contact": "tech@olxbr.com",
+      "primary": "https://olxbrasil.com.br",
+      "associatedSites": [
+          "https://olx.com.br",
+          "https://zapimoveis.com.br",
+          "https://www.vivareal.com.br"
+      ],
+      "rationaleBySite": {
+          "https://olxbrasil.com.br": "OLX Brasil group landing page",
+          "https://olx.com.br": "The largest buying and selling site in Brazil with a focus on C2C",
+          "https://zapimoveis.com.br": "Marketplace with the largest number of real estate property ads in Brazil",
+          "https://www.vivareal.com.br": "The most consolidated online classifieds portal in Brazil, focusing on real estate"
+      }
+     },
+    {
       "contact": "alicia.bonilla@nacion.com",
       "primary": "https://nacion.com",
       "associatedSites": [
