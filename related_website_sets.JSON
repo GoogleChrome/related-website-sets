@@ -260,6 +260,35 @@
       "rationaleBySite": {
         "https://hc1cas.com": "hc1 Insights Lab platform authentication service."
       }
+    },
+    {
+      "contact": "psb@ccmbenchmark.com",
+      "primary": "https://journaldesfemmes.com",
+      "associatedSites": [
+        "https://commentcamarche.net",
+        "https://linternaute.com",
+        "https://journaldunet.com",
+        "https://phonandroid.com",
+        "https://jeux-gratuits.com"
+      ],
+      "rationaleBySite": {
+        "https://commentcamarche.net": "Centralized account for redactors, forums & real-time messages",
+        "https://linternaute.com": "Centralized account for redactors, forums & real-time messages",
+        "https://journaldunet.com": "Centralized account for redactors, forums & real-time messages",
+        "https://phonandroid.com": "Centralized account for redactors, forums & real-time messages",
+        "https://jeux-gratuits.com": "Centralized account for redactors, forums & real-time messages"
+      },
+      "ccTLDs": {
+        "https://journaldesfemmes.com": [
+          "https://journaldesfemmes.fr"
+        ],
+        "https://linternaute.com": [
+          "https://linternaute.fr"
+        ],
+        "https://journaldunet.com": [
+          "https://journaldunet.fr"
+        ]
+      }
     }
   ]
 }
