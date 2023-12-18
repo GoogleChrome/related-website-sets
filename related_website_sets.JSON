@@ -4,12 +4,12 @@
       "contact": "hari.annapureddy@ttecdigital.com",
       "primary": "https://dp64193796owg.cloudfront.net",
       "associatedSites": [
-         "https://lateja.cr",
-         "https://elfinancierocr.com"
+         "https://d23lggrmt9y1ux.cloudfront.net",
+         "https://customer-aws-develop.my.connect.aws/connect/ccp-v2"
       ],
       "rationaleBySite": {
-         "https://lateja.cr": "Newspaper owned by Grupo Nación",
-         "https://elfinancierocr.com": "Newspaper owned by Grupo Nación"
+         "https://d23lggrmt9y1ux.cloudfront.net": "Newspaper owned by Grupo Nación",
+         "https://customer-aws-develop.my.connect.aws/connect/ccp-v2": "Newspaper owned by Grupo Nación"
       }
    },
    {
