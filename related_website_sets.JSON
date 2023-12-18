@@ -1,6 +1,267 @@
 {
-"sets": [
-{
+  "sets": [
+    {
+      "contact": "alicia.bonilla@nacion.com",
+      "primary": "https://nacion.com",
+      "associatedSites": [
+         "https://lateja.cr",
+         "https://elfinancierocr.com"
+      ],
+      "rationaleBySite": {
+         "https://lateja.cr": "Newspaper owned by Grupo Nación",
+         "https://elfinancierocr.com": "Newspaper owned by Grupo Nación"
+      }
+   },
+   {
+     "contact": "wojciech.bialy@grupawp.pl",
+     "primary": "https://wp.pl",
+     "associatedSites": [
+       "https://money.pl",
+       "https://autokult.pl"
+     ],
+     "rationaleBySite": {
+       "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
+       "https://autokult.pl": "Special Interest Website - automotive"
+     }
+   },
+    {
+      "contact": "dmarti@raptive.com",
+      "primary": "https://cafemedia.com",
+      "associatedSites": [
+        "https://cardsayings.net",
+        "https://nourishingpursuits.com"
+      ],
+      "rationaleBySite": {
+        "https://cardsayings.net": "Co-branded content site",
+        "https://nourishingpursuits.com": "Co-branded content site"
+      }
+    },
+    {
+      "primary": "https://bild.de",
+      "contact": "robert.blanck@axelspringer.com",
+      "associatedSites": [
+        "https://welt.de",
+        "https://autobild.de",
+        "https://computerbild.de",
+        "https://wieistmeineip.de"
+      ],
+      "serviceSites": [
+        "https://www.asadcdn.com"
+      ],
+      "rationaleBySite": {
+        "https://welt.de": "News Website welt.de",
+        "https://autobild.de": "Special Interest Website Autobild",
+        "https://computerbild.de": "Special Interest Website Computerbild",
+        "https://wieistmeineip.de": "Internet speed Measurement Website of Computerbild",
+        "https://www.asadcdn.com": "CDN for Ad Files - Frequency Capping"
+      }
+    },
+    {
+      "primary": "https://gliadomain.com",
+      "contact": "carlos.paniagua@glia.com",
+      "associatedSites": [
+        "https://salemoveadvisor.com",
+        "https://salemovefinancial.com",
+        "https://salemovetravel.com"
+      ],
+      "rationaleBySite": {
+        "https://salemoveadvisor.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works",
+        "https://salemovefinancial.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works",
+        "https://salemovetravel.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works"
+      }
+    },
+    {
+      "primary": "https://hapara.com",
+      "contact": "support@hapara.com",
+      "associatedSites": [
+        "https://teacherdashboard.com",
+        "https://mystudentdashboard.com"
+      ],
+      "rationaleBySite": {
+        "https://teacherdashboard.com": "Portal for Hapara teachers",
+        "https://mystudentdashboard.com": "Portal for Hapara students"
+      }
+    },
+    {
+      "contact": "support@songstats.com",
+      "primary": "https://songstats.com",
+      "associatedSites": [
+        "https://songshare.com"
+      ],
+      "rationaleBySite": {
+        "https://songshare.com": "Specialized Platform for Music Smart Links"
+      }
+    },
+    {
+      "contact": "prashant.tiwari@htdigital.in",
+      "primary": "https://hindustantimes.com",
+      "associatedSites": [
+        "https://livemint.com"
+      ],
+      "rationaleBySite": {
+        "https://livemint.com": "Specialized Platform for economics"
+      }
+    },
+    {
+      "contact": "alexey@landyrev.com",
+      "primary": "https://landyrev.com",
+      "associatedSites": [
+        "https://landyrev.ru"
+      ],
+      "rationaleBySite": {
+        "https://landyrev.ru": "Same publisher's website in a different region"
+      }
+    },
+    {
+      "contact": "jai.sharma@jagrannewmedia.com",
+      "primary": "https://jagran.com",
+      "associatedSites": [
+        "https://gujaratijagran.com",
+        "https://punjabijagran.com"
+      ],
+      "rationaleBySite": {
+        "https://gujaratijagran.com": "News Website for Gujarati audience",
+        "https://punjabijagran.com": "News Website for Punjabi audience"
+      }
+    },
+    {
+      "contact": "infraestructura@mercadolibre.com",
+      "primary": "https://mercadolibre.com",
+      "associatedSites": [
+        "https://mercadolivre.com",
+        "https://mercadopago.com",
+        "https://mercadoshops.com",
+        "https://portalinmobiliario.com",
+        "https://tucarro.com"
+      ],
+      "rationaleBySite": {
+        "https://mercadolivre.com": "Mercado Libre in Brazil",
+        "https://mercadopago.com": "Mercado Libre's payments ecosystem",
+        "https://mercadoshops.com": "Mercado Libre's online ecommerce store builder",
+        "https://portalinmobiliario.com": "Mercado Libre's brand for real estate ecommerce in Chile",
+        "https://tucarro.com": "Mercado Libre's brand for motors ecommerce in Colombia and Venezuela"
+      },
+      "ccTLDs": {
+        "https://mercadolibre.com": [
+          "https://mercadolibre.com.ar",
+          "https://mercadolibre.com.mx",
+          "https://mercadolibre.com.bo",
+          "https://mercadolibre.cl",
+          "https://mercadolibre.com.co",
+          "https://mercadolibre.co.cr",
+          "https://mercadolibre.com.do",
+          "https://mercadolibre.com.ec",
+          "https://mercadolibre.com.gt",
+          "https://mercadolibre.com.hn",
+          "https://mercadolibre.com.ni",
+          "https://mercadolibre.com.pa",
+          "https://mercadolibre.com.py",
+          "https://mercadolibre.com.pe",
+          "https://mercadolibre.com.sv",
+          "https://mercadolibre.com.uy",
+          "https://mercadolibre.com.ve"
+        ],
+        "https://mercadolivre.com": [
+          "https://mercadolivre.com.br"
+        ],
+        "https://mercadopago.com": [
+          "https://mercadopago.com.ar",
+          "https://mercadopago.com.br",
+          "https://mercadopago.com.mx",
+          "https://mercadopago.com.uy",
+          "https://mercadopago.com.co",
+          "https://mercadopago.cl",
+          "https://mercadopago.com.pe",
+          "https://mercadopago.com.ec",
+          "https://mercadopago.com.ve"
+        ],
+        "https://mercadoshops.com": [
+          "https://mercadoshops.com.ar",
+          "https://mercadoshops.com.br",
+          "https://mercadoshops.com.mx",
+          "https://mercadoshops.cl",
+          "https://mercadoshops.com.co"
+        ],
+        "https://tucarro.com": [
+          "https://tucarro.com.co",
+          "https://tucarro.com.ve"
+        ]
+      }
+    },
+    {
+      "contact": "admin@idwrx.com",
+      "primary": "https://joyreactor.cc",
+      "associatedSites": [
+        "https://reactor.cc",
+        "https://cookreactor.com"
+      ],
+      "rationaleBySite": {
+        "https://reactor.cc": "Domain for fandomes, old version of site and mirror",
+        "https://cookreactor.com": "Cooking fandome"
+      },
+      "ccTLDs": {
+        "https://joyreactor.cc": [
+          "https://joyreactor.com"
+        ]
+      }
+     },
+     {
+      "contact": "cmidata@cmi.mx",
+      "primary": "https://unotv.com",
+      "associatedSites": [
+        "https://clarosports.com"
+      ],
+      "serviceSites": [
+        "https://cmxd.com.mx"
+      ],
+      "rationaleBySite": {
+        "https://clarosports.com": "Member of AMX Contenido websites, as unotv",
+        "https://cmxd.com.mx": "Used for personalization purposes across AMX Contenido websites."
+      }
+    },
+    {
+      "contact": "mighty-devops@mightytext.net",
+      "primary": "https://mightytext.net",
+      "serviceSites": [
+        "https://textyserver.appspot.com",
+        "https://mighty-app.appspot.com"
+      ],
+      "rationaleBySite": {
+        "https://textyserver.appspot.com": "API service for mightytext.net",
+        "https://mighty-app.appspot.com": "alternative domain for API service for mightytext.net"
+      }
+    },
+    {
+       "contact": "support@vwo.com",
+       "primary": "https://vwo.com",
+       "associatedSites": [
+          "https://wingify.com"
+       ],
+       "rationaleBySite": {
+          "https://wingify.com": "Alias"
+       }
+    },
+    {
+       "contact": "support@wildix.com",
+       "primary": "https://wildix.com",
+       "associatedSites": [
+          "https://wildixin.com"
+       ],
+       "rationaleBySite": {
+          "https://wildixin.com": "Wildix PBX's domain"
+       }
+    },
+    {
+      "contact": "operations@hc1.com",
+      "primary": "https://hc1.com",
+      "serviceSites": [
+        "https://hc1cas.com"
+      ],
+      "rationaleBySite": {
+        "https://hc1cas.com": "hc1 Insights Lab platform authentication service."
+      }
+    },
+	{
    "contact": "hari.annapureddy@ttecdigital.com",
    "primary": "https://dp64193796owg.cloudfront.net",
    "serviceSites": [
@@ -12,5 +273,5 @@
       "https://customer-aws-develop.my.connect.aws/connect/ccp-v2": "CCP"
    }
 }
-]
+  ]
 }
