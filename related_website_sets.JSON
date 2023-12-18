@@ -1,16 +1,12 @@
 {
-  "sets": [
-    {
-      "contact": "hari.annapureddy@ttecdigital.com",
-      "primary": "https://dp64193796owg.cloudfront.net",
-      "serviceSites": [
-        "https://d23lggrmt9y1ux.cloudfront.net",
-        "https://customer-aws-develop.my.connect.aws/connect/ccp-v2"
-      ],
-      "rationaleBySite": {
-        "https://d23lggrmt9y1ux.cloudfront.net": "CCM URL",
-        "https://customer-aws-develop.my.connect.aws/connect/ccp-v2": "CCP DEV URL"
-      }
-    }
-  ]
+   "contact": "hari.annapureddy@ttecdigital.com",
+   "primary": "https://dp64193796owg.cloudfront.net",
+   "serviceSites": [
+      "https://d23lggrmt9y1ux.cloudfront.net",
+      "https://customer-aws-develop.my.connect.aws/connect/ccp-v2"
+   ],
+   "rationaleBySite": {
+      "https://d23lggrmt9y1ux.cloudfront.net": "CCM",
+      "https://customer-aws-develop.my.connect.aws/connect/ccp-v2": "CCP"
+   }
 }
