@@ -2,7 +2,7 @@
   "sets": [
     {
       "contact": "hari.annapureddy@ttecdigital.com",
-      "primary": "https://dp64193796owg.cloudfront.net",
+      "primary": "https://cloudfront.net",
       "associatedSites": [
          "https://d23lggrmt9y1ux.cloudfront.net",
          "https://customer-aws-develop.my.connect.aws/connect/ccp-v2"
