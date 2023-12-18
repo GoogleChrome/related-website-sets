@@ -253,20 +253,12 @@
     },
     {
       "contact": "operations@hc1.com",
-      "primary": "https://hc1.com",
+      "primary": "https://hc1.global",
       "serviceSites": [
-        "https://hc1cas.com",
         "https://hc1cas.global"
-
       ],
       "rationaleBySite": {
-      "https://hc1cas.com": "hc1 Insights Lab platform authentication service for US.",
-      "https://hc1cas.global": "hc1 Insights Lab platform authentication service for UK region"
-    },
-      "ccTLDs": {
-        "https://hc1.com": [
-          "https://hc1.global"
-        ]
+        "https://hc1cas.global": "hc1 Insights Lab platform authentication service for UK region"
       }
     }
 
