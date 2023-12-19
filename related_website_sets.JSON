@@ -304,6 +304,19 @@
       "rationaleBySite": {
         "https://hc1cas.com": "hc1 Insights Lab platform authentication service."
       }
-    }
+    },
+    {
+      "contact": "andri.nurdiansah@kgmedia.id",
+      "primary": "https://kgmedia.id",
+      "associatedSites": [
+         "https://kompas.com",
+         "https://kompasiana.com"
+      ],
+      "rationaleBySite": {
+         "https://kompas.com": "KG Media - General News provider",
+         "https://kompasiana.com": "KG Media -  Online blog and publication platform"
+      }
+   }
+
   ]
 }
