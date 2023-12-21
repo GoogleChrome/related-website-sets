@@ -346,6 +346,16 @@
           "https://journaldunet.fr"
         ]
       }
+    },
+    {
+      "contact": "jquintana@lanacion.com.ar",
+      "primary": "https://lanacion.com.ar",
+      "associatedSites": [
+        "https://bonvivir.com"
+      ],
+      "rationaleBySite": {
+        "https://bonvivir.com": "Wine club for sell wine by La Nación"
+      }
     }
   ]
 }
