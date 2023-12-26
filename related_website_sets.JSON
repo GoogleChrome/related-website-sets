@@ -24,7 +24,25 @@
        "https://autokult.pl": "Special Interest Website - automotive"
      }
    },
-    {
+   {
+    "contact": "tech@olxbr.com",
+    "primary": "https://olx.com.br",
+    "associatedSites": [
+      "https://olx.com.br",
+      "https://zapimoveis.com.br",
+      "https://vivareal.com.br"
+    ],
+    "serviceSites": [
+      "https://grupozap.com"
+    ],
+    "rationaleBySite": {
+      "https://olx.com.br": "The largest buying and selling site in Brazil with a focus on C2C",
+      "https://zapimoveis.com.br": "Marketplace with the largest number of real estate property ads in Brazil",
+      "https://vivareal.com.br": "The most consolidated online classifieds portal in Brazil, focusing on real estate",
+      "https://grupozap.com": "The authentication service of ZapImoveis and Vivareal"
+    }
+   },
+   {
       "contact": "dmarti@raptive.com",
       "primary": "https://cafemedia.com",
       "associatedSites": [
