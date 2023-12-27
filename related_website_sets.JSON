@@ -346,6 +346,22 @@
           "https://journaldunet.fr"
         ]
       }
+    }, 
+    {
+    	"contact": "admin@hearty.me", 
+    	"primary": "https://hearty.me", 
+    	"associatedSites": [
+    		"https://hearty.app", 
+    		"https://hearty.gift", 
+    		"https://hj.rs", 
+    		"https://miss.com.tw"
+    	], 
+    	"rationaleBySite": {
+    		"https://hearty.app": "API endpoints for Hearty Journal", 
+    		"https://hearty.gift": "Campaign pages for Hearty Journal",  
+    		"https://hj.rs": "URL shortener for Hearty Journal", 
+    		"https://miss.com.tw": "Company website"
+    	}
     }
   ]
 }
