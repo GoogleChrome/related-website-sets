@@ -361,7 +361,21 @@
     		"https://hearty.gift": "Campaign pages for Hearty Journal",  
     		"https://hj.rs": "URL shortener for Hearty Journal", 
     		"https://miss.com.tw": "Company website"
-    	}
+    	}, 
+      {
+      	"contact": "domain@nien.com", 
+      	"primary": "https://nien.com", 
+      	"associatedSites": [
+      		"https://chennien.com", 
+      		"https://nien.org", 
+      		"https://nien.co"
+      	], 
+      	"rationaleBySite": {
+      		"https://chennien.com": "Alias domain for Nien Studio", 
+      		"https://nien.org": "Campaign pages for Nien Studio",  
+      		"https://nien.co": "URL shortener for Nien Studio"
+      	}
+      }
     }
   ]
 }
