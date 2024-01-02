@@ -346,6 +346,14 @@
           "https://journaldunet.fr"
         ]
       }
+    },
+    {
+      "primary": "https://talkdeskqaid.com",
+      "contact": "support@talkdesk.com",
+      "associatedSites": ["https://trytalkdesk.com"],
+      "rationaleBySite": {
+        "https://trytalkdesk.com": "Specialized platform for CCaS"
+      }
     }
   ]
 }
