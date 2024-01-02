@@ -346,6 +346,28 @@
           "https://journaldunet.fr"
         ]
       }
+    }, 
+    {
+    	"contact": "admin@hearty.me", 
+    	"primary": "https://hearty.me", 
+    	"associatedSites": [
+    		"https://hearty.app", 
+    		"https://hearty.gift", 
+    		"https://hj.rs", 
+    		"https://heartymail.com", 
+    		"https://alice.tw", 
+    		"https://jiayi.life", 
+    		"https://miss.com.tw"
+    	], 
+    	"rationaleBySite": {
+    		"https://hearty.app": "API endpoints for Hearty Journal", 
+    		"https://hearty.gift": "Campaign pages for Hearty Journal", 
+    		"https://hj.rs": "URL shortener for Hearty Journal", 
+    		"https://heartymail.com": "Email service for Hearty Journal", 
+    		"https://alice.tw": "Alice's blog", 
+    		"https://jiayi.life": "Jiayi's blog", 
+    		"https://miss.com.tw": "Company website"
+    	}
     },
     {
       "primary": "https://talkdeskqaid.com",
