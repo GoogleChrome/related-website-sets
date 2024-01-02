@@ -368,6 +368,14 @@
     		"https://jiayi.life": "Jiayi's blog", 
     		"https://miss.com.tw": "Company website"
     	}
+    },
+    {
+      "primary": "https://talkdeskqaid.com",
+      "contact": "support@talkdesk.com",
+      "associatedSites": ["https://trytalkdesk.com"],
+      "rationaleBySite": {
+        "https://trytalkdesk.com": "Specialized platform for CCaS"
+      }
     }
   ]
 }
