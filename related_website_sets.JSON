@@ -346,40 +346,40 @@
           "https://journaldunet.fr"
         ]
       }
-    }, 
+    },
     {
-    	"contact": "domain@nien.com", 
-    	"primary": "https://nien.com", 
+    	"contact": "domain@nien.com",
+    	"primary": "https://nien.com",
     	"associatedSites": [
-    		"https://chennien.com", 
-    		"https://nien.org", 
+    		"https://chennien.com",
+    		"https://nien.org",
     		"https://nien.co"
-    	], 
+    	],
     	"rationaleBySite": {
-    		"https://chennien.com": "Alias domain for Nien Studio", 
-    		"https://nien.org": "Campaign pages for Nien Studio", 
+    		"https://chennien.com": "Alias domain for Nien Studio",
+    		"https://nien.org": "Campaign pages for Nien Studio",
     		"https://nien.co": "URL shortener for Nien Studio"
     	}
     },
     {
-    	"contact": "admin@hearty.me", 
-    	"primary": "https://hearty.me", 
+    	"contact": "admin@hearty.me",
+    	"primary": "https://hearty.me",
     	"associatedSites": [
-    		"https://hearty.app", 
-    		"https://hearty.gift", 
-    		"https://hj.rs", 
-    		"https://heartymail.com", 
-    		"https://alice.tw", 
-    		"https://jiayi.life", 
+    		"https://hearty.app",
+    		"https://hearty.gift",
+    		"https://hj.rs",
+    		"https://heartymail.com",
+    		"https://alice.tw",
+    		"https://jiayi.life",
     		"https://miss.com.tw"
-    	], 
+    	],
     	"rationaleBySite": {
-    		"https://hearty.app": "API endpoints for Hearty Journal", 
-    		"https://hearty.gift": "Campaign pages for Hearty Journal", 
-    		"https://hj.rs": "URL shortener for Hearty Journal", 
-    		"https://heartymail.com": "Email service for Hearty Journal", 
-    		"https://alice.tw": "Alice's blog", 
-    		"https://jiayi.life": "Jiayi's blog", 
+    		"https://hearty.app": "API endpoints for Hearty Journal",
+    		"https://hearty.gift": "Campaign pages for Hearty Journal",
+    		"https://hj.rs": "URL shortener for Hearty Journal",
+    		"https://heartymail.com": "Email service for Hearty Journal",
+    		"https://alice.tw": "Alice's blog",
+    		"https://jiayi.life": "Jiayi's blog",
     		"https://miss.com.tw": "Company website"
     	}
     },
@@ -389,6 +389,14 @@
       "associatedSites": ["https://trytalkdesk.com"],
       "rationaleBySite": {
         "https://trytalkdesk.com": "Specialized platform for CCaS"
+      }
+    },
+    {
+      "primary": "https://talkdeskstgid.com",
+      "contact": "support@talkdesk.com",
+      "associatedSites": ["https://gettalkdesk.com"],
+      "rationaleBySite": {
+        "https://gettalkdesk.com": "Specialized platform for CCaS"
       }
     }
   ]
