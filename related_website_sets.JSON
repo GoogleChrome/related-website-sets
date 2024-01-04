@@ -1,17 +1,29 @@
 {
   "sets": [
     {
-      "contact": "wojciech.bialy@grupawp.pl",
-      "primary": "https://wp.pl",
+      "contact": "alicia.bonilla@nacion.com",
+      "primary": "https://nacion.com",
       "associatedSites": [
-        "https://money.pl",
-        "https://autokult.pl"
+         "https://lateja.cr",
+         "https://elfinancierocr.com"
       ],
       "rationaleBySite": {
-        "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
-        "https://autokult.pl": "Special Interest Website - automotive"
+         "https://lateja.cr": "Newspaper owned by Grupo Nación",
+         "https://elfinancierocr.com": "Newspaper owned by Grupo Nación"
       }
-    },
+   },
+   {
+     "contact": "wojciech.bialy@grupawp.pl",
+     "primary": "https://wp.pl",
+     "associatedSites": [
+       "https://money.pl",
+       "https://autokult.pl"
+     ],
+     "rationaleBySite": {
+       "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
+       "https://autokult.pl": "Special Interest Website - automotive"
+     }
+   },
     {
       "contact": "dmarti@raptive.com",
       "primary": "https://cafemedia.com",
@@ -208,6 +220,24 @@
       }
     },
     {
+      "contact": "dnsadmin@idbs.com",
+      "primary": "https://idbs-cloud.com",
+      "associatedSites": [
+          "https://idbs-dev.com",
+          "https://idbs-staging.com",
+          "https://idbs-eworkbook.com",
+          "https://eworkbookcloud.com",
+          "https://eworkbookrequest.com"
+      ],
+      "rationaleBySite": {
+          "https://idbs-dev.com": "Dev version of main application IDBS-cloud",
+          "https://idbs-staging.com": "Staging version of main application IDBS-cloud",
+          "https://idbs-eworkbook.com": "E-workbook services part of IDBS-cloud product",
+          "https://eworkbookcloud.com": "E-workbook services part of IDBS-cloud product",
+          "https://eworkbookrequest.com": "E-workbook request part of IDBS-cloud product"
+      }
+     },
+    {
       "contact": "mighty-devops@mightytext.net",
       "primary": "https://mightytext.net",
       "serviceSites": [
@@ -245,7 +275,7 @@
         "https://soterias.uk"
       ],
       "rationaleBySite": {
-        "https://themistocles.uk":"Themistocles (c. 524 – c. 459 BCE) was a prominent Athenian politician and general who played a pivotal role in Athenian history, particularly during the Greco-Persian Wars.",
+        "https://themistocles.uk": "Themistocles (c. 524 – c. 459 BCE) was a prominent Athenian politician and general who played a pivotal role in Athenian history, particularly during the Greco-Persian Wars.",
         "https://philolaus.uk": "Philolaus (born around 470 BCE, died around 385 BCE) was a fascinating figure in ancient Greek philosophy and science. He belonged to the Pythagorean school, a group with strong ties to both mathematics and mysticism. He's considered one of the most prominent figures within the school and is credited with many interesting ideas.",
         "https://miltiades.uk": "Miltiades lived from around 550 to 489 BC and is primarily remembered for his pivotal role in the Battle of Marathon in 490 BC.",
         "https://meleager.uk": "In Greek mythology, Meleager was a renowned hero, primarily known for leading the legendary Calydonian boar hunt and being entangled in a tragic fate due to a cursed family history.",
@@ -254,6 +284,138 @@
         "https://aegeus.uk": "Aegeus ascended the throne after his father, Pandion II, and is credited with establishing various Athenian political and religious institutions. These included the Panathenaic Games, a unification of Attica under Athenian rule, and the creation of the six phyle (tribes) of Athens.",
         "https://actaeon.uk": "He was the son of Aristaeus, a minor god, and Autonoe, daughter of Cadmus, the founder of Thebes. He was trained by the wise centaur Chiron, who instilled in him exceptional hunting skills.",
         "https://soterias.uk": "Soteria, sometimes personified as a goddess or spirit (daimona), embodied the concept of safety and deliverance."
+      }
+    },
+    {
+       "contact": "support@wildix.com",
+       "primary": "https://wildix.com",
+       "associatedSites": [
+          "https://wildixin.com"
+       ],
+       "rationaleBySite": {
+          "https://wildixin.com": "Wildix PBX's domain"
+       }
+    },
+    {
+      "contact": "amit.chouhan@timesinternet.in",
+      "primary": "https://timesinternet.in",
+      "associatedSites": [
+        "https://indiatimes.com",
+        "https://timesofindia.com",
+        "https://economictimes.com",
+        "https://samayam.com",
+        "https://cricbuzz.com"
+      ],
+      "serviceSites": [
+        "https://growthrx.in",
+        "https://clmbtech.com",
+        "https://tvid.in"
+      ],
+      "rationaleBySite": {
+        "https://indiatimes.com": "Indiatimes.com is primary domain for Times Internet which publish stories on Indian Lifestyle, Culture, Relationships, Food, Travel, Entertainment, News and New Technology News",
+        "https://timesofindia.com": "Times of India (TOI) is Indias largest and most influential news publisher in English. Its digital platform timesofindia.com is powered by Times Internet Limited",
+        "https://economictimes.com": "Economic Times is India's top business news platform, providing comprehensive coverage of the economy, stock markets, and personal finance to inspire and empower business leaders and entrepreneurs. This digital platform is powered by Times Internet Limited",
+        "https://samayam.com": "Samayam is a Regional News publisher powered by Times Internet Limited",
+        "https://cricbuzz.com": "Cricbuzz is an Indian cricket news & live score platform owned by Times Internet Limited",
+        "https://growthrx.in": "GrowthRx is a customer engagement platform powered by Times Internet",
+        "https://clmbtech.com": "This is a times-internet data and customer management platform for managing publisher data.",
+        "https://tvid.in": "TVID is an in-house video management platform powered by Times Internet"
+      }
+    },
+    {
+      "contact": "operations@hc1.com",
+      "primary": "https://hc1.com",
+      "associatedSites": ["https://hc1.global"],
+      "serviceSites": ["https://hc1cas.com", "https://hc1cas.global"],
+      "rationaleBySite": {
+        "https://hc1.global": "hc1 Insights Lab platform for UK.",
+        "https://hc1cas.com": "hc1 Insights Lab platform authentication service for US.",
+        "https://hc1cas.global": "hc1 Insight Lab platform authentication service for UK."
+      }
+    },
+    {
+      "contact": "andri.nurdiansah@kgmedia.id",
+      "primary": "https://kgmedia.id",
+      "associatedSites": [
+         "https://kompas.com",
+         "https://kompasiana.com"
+      ],
+      "rationaleBySite": {
+         "https://kompas.com": "KG Media - General News provider",
+         "https://kompasiana.com": "KG Media -  Online blog and publication platform"
+      }
+    },
+    {
+      "contact": "psb@ccmbenchmark.com",
+      "primary": "https://journaldesfemmes.com",
+      "associatedSites": [
+        "https://commentcamarche.net",
+        "https://linternaute.com",
+        "https://journaldunet.com",
+        "https://phonandroid.com",
+        "https://commentcamarche.com"
+      ],
+      "rationaleBySite": {
+        "https://commentcamarche.net": "Centralized account for redactors, forums & real-time messages",
+        "https://linternaute.com": "Centralized account for redactors, forums & real-time messages",
+        "https://journaldunet.com": "Centralized account for redactors, forums & real-time messages",
+        "https://phonandroid.com": "Centralized account for redactors, forums & real-time messages",
+        "https://commentcamarche.com": "Centralized account for redactors, forums & real-time messages"
+      },
+      "ccTLDs": {
+        "https://journaldesfemmes.com": [
+          "https://journaldesfemmes.fr"
+        ],
+        "https://linternaute.com": [
+          "https://linternaute.fr"
+        ],
+        "https://journaldunet.com": [
+          "https://journaldunet.fr"
+        ]
+      }
+    }, 
+    {
+    	"contact": "domain@nien.com", 
+    	"primary": "https://nien.com", 
+    	"associatedSites": [
+    		"https://chennien.com", 
+    		"https://nien.org", 
+    		"https://nien.co"
+    	], 
+    	"rationaleBySite": {
+    		"https://chennien.com": "Alias domain for Nien Studio", 
+    		"https://nien.org": "Campaign pages for Nien Studio", 
+    		"https://nien.co": "URL shortener for Nien Studio"
+    	}
+    },
+    {
+    	"contact": "admin@hearty.me", 
+    	"primary": "https://hearty.me", 
+    	"associatedSites": [
+    		"https://hearty.app", 
+    		"https://hearty.gift", 
+    		"https://hj.rs", 
+    		"https://heartymail.com", 
+    		"https://alice.tw", 
+    		"https://jiayi.life", 
+    		"https://miss.com.tw"
+    	], 
+    	"rationaleBySite": {
+    		"https://hearty.app": "API endpoints for Hearty Journal", 
+    		"https://hearty.gift": "Campaign pages for Hearty Journal", 
+    		"https://hj.rs": "URL shortener for Hearty Journal", 
+    		"https://heartymail.com": "Email service for Hearty Journal", 
+    		"https://alice.tw": "Alice's blog", 
+    		"https://jiayi.life": "Jiayi's blog", 
+    		"https://miss.com.tw": "Company website"
+    	}
+    },
+    {
+      "primary": "https://talkdeskqaid.com",
+      "contact": "support@talkdesk.com",
+      "associatedSites": ["https://trytalkdesk.com"],
+      "rationaleBySite": {
+        "https://trytalkdesk.com": "Specialized platform for CCaS"
       }
     }
   ]

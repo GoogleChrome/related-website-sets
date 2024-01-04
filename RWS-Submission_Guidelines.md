@@ -241,7 +241,7 @@ ccTLD variants must satisfy the following conditions:
 
 <b>Validation success</b>
 
-If a set submission passes all technical checks successfully, the submitter will be notified that their PR was successful on GitHub. At this time, approved PRs will be manually merged in batches to the canonical RWS list once per week (Tuesdays at 12pm Eastern Time (ET)). 
+If a set submission passes all technical checks successfully, the submitter will be notified that their PR was successful on GitHub. At this time, approved PRs will be manually merged in batches to the canonical RWS list once per week (Tuesdays at 12pm Eastern Time (ET)), excluding during holidays. 
 
 <b>Validation failure</b>
 
@@ -260,10 +260,10 @@ In addition to the formation requirements and validation requirements above, set
 
 | Subset Type | Browser Behavior |
 | ----------- | ----------------- |
-|   Service   | <ul><li>No limit on number of domains.</li><li>Only other domains in the same set may call requestStorageAccessFor on behalf of a service domain. </li><ul><li>This access will be auto-granted. </li><li>A service domain calling requestStorageAccess for itself, or calling requestStorageAccessFor for any other domain, will be auto-rejected.</li>|
-|   Associated   | <ul><li>requestStorageAccess and requestStorageAccessFor will be auto-granted for up to five domains in the order listed within the associated subset category.</li><li>requestStorageAccess and requestStorageAccessFor will be auto-rejected for any domain beyond the fifth listed. </li>|
+|   Service   | <ul><li>No limit on number of domains.</li><li>If a service domain calls [`requestStorageAccessFor(origin)`](https://github.com/privacycg/requestStorageAccessFor), the call is automatically rejected.</li><li>If an associated site or primary site calls [`requestStorageAccess()`](https://github.com/privacycg/storage-access) while embedded under a service domain, the call is handled as a normal authenticated embed scenario (and may prompt).</li><li>If a service domain calls `requestStorageAccess()` while embedded under any site, the call is handled as a normal authenticated embed scenario (and may prompt).</li>|
+|   Associated   | <ul><li>`requestStorageAccess()` and `requestStorageAccessFor(origin)` will be auto-granted for up to five domains in the order listed within the associated subset category.</li><li>`requestStorageAccess()` and `requestStorageAccessFor(origin)` will be auto-rejected for any domain beyond the fifth listed. </li>|
 
-While there is no limit on the number of ccTLDs that may be associated with a single associated or service domain in the same set, a ccTLD variant inherits the restrictions imposed on its equivalent domain. For example, [requestStorageAccess](https://privacycg.github.io/storage-access/) calls will be auto-rejected when called by a ccTLD variant which is an alias of a service domain.
+While there is no limit on the number of ccTLDs that may be associated with a single associated or service domain in the same set, a ccTLD variant inherits the restrictions imposed on its equivalent domain. For example, `requestStorageAccessFor(origin)` calls will be auto-rejected when called by a ccTLD variant which is an alias of a service domain.
 To test this behavior in Chrome, please consult the [Related Website Sets integration guide](https://developer.chrome.com/en/docs/privacy-sandbox/first-party-sets-integration/).
 # Set Lifetime 
 As a best practice, submitters should plan to review their sets periodically (e.g., annually).
