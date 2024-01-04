@@ -390,6 +390,18 @@
       "rationaleBySite": {
         "https://trytalkdesk.com": "Specialized platform for CCaS"
       }
+    },
+    {
+    	"primary": "https://ibm.com", 
+      "contact": "dipendu.roy@ibm.com", 
+    	"associatedSites": [
+    		"https://secsupportprd.service-now.com", 
+    		"https://portal.sec.ibm.com"
+    	], 
+    	"rationaleBySite": {
+    		"https://secsupportprd.service-now.com": "IBM Security - MSS - BOSS Portal", 
+    		"https://portal.sec.ibm.com": "IBM Security - MSS - VSOC Portal"
+    	}
     }
   ]
 }
