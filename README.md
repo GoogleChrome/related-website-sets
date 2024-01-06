@@ -14,7 +14,7 @@ The following is a description of the contents of this repository:
     * [RwsSet.py](https://github.com/GoogleChrome/first-party-sets/blob/main/RwsSet.py) 
     defines an object type used by [RwsCheck.py](https://github.com/GoogleChrome/first-party-sets/blob/main/RwsCheck.py)
     * [Check_sites.py](https://github.com/GoogleChrome/first-party-sets/blob/main/check_sites.py) 
-    calls a number of submission checks visible in 
+    calls several submission checks visible in 
     [RwsCheck.py](https://github.com/GoogleChrome/first-party-sets/blob/main/RwsCheck.py)
     * [tests/rws_tests.py](https://github.com/GoogleChrome/first-party-sets/blob/main/tests/rws_tests.py) 
     includes examples of failing set submissions and which checks 
