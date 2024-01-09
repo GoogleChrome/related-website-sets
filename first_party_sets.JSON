@@ -1,18 +1,6 @@
 {
   "sets": [
-{
-      "contact": "selya@google.com",
-      "primary": "https://cafemedia2.com",
-      "associatedSites": [
-        "https://cardsayings2.net",
-      ],
-      "rationaleBySite": {
-        "https://cardsayings2.net": 
-                   "Co-branded content site",
-        "https://nourishingpursuits2.com": "Co-branded content site"
-    }
-                },
-    {
+          {
       "contact": "dmarti@raptive.com",
       "primary": "https://cafemedia.com",
       "associatedSites": [
