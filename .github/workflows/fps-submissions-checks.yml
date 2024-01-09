@@ -37,11 +37,10 @@ jobs:
         uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with: 
-            node-version: 10
+            node-version: 16
       - name: Install prettier
         run: npm install -g prettier
-      - name: Run Prettier Check
-        run: prettier --check pull-request/first_party_sets.JSON
+      - run: npx prettier --check pull-request/first_party_sets.JSON
       - name: Update file if prettier check fails
         if: ${{failure()}}
         run: cat "Prettier check failed" > results.txt
