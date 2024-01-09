@@ -39,7 +39,7 @@ jobs:
         with: 
             node-version: 16
       - name: Install prettier
-        run: npm install prettier
+        run: npm install -g prettier
       - name: Run Prettier Check
         run: prettier --check pull-request/first_party_sets.JSON
       - name: Update file if prettier check fails
