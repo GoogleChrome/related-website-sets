@@ -400,6 +400,14 @@
       "rationaleBySite": {
         "https://trytalkdesk.com": "Specialized platform for CCaS"
       }
+    },
+    {
+      "primary": "https://talkdeskstgid.com",
+      "contact": "support@talkdesk.com",
+      "associatedSites": ["https://gettalkdesk.com"],
+      "rationaleBySite": {
+        "https://gettalkdesk.com": "Specialized platform for CCaS"
+      }
     }
   ]
 }
