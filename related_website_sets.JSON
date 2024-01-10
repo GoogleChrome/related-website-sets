@@ -408,6 +408,25 @@
       "rationaleBySite": {
         "https://gettalkdesk.com": "Specialized platform for CCaS"
       }
+    },
+    {
+       "contact": "dacostaylara@elpais.com.uy",
+       "primary": "https://elpais.com.uy",
+       "associatedSites": [
+          "https://clubelpais.com.uy",
+          "https://paula.com.uy",
+          "https://gallito.com.uy"
+       ],
+       "rationaleBySite": {
+          "https://clubelpais.com.uy": "Domain from El Pais Uruguay",
+          "https://paula.com.uy": "Domain from El Pais Uruguay",
+          "https://gallito.com.uy": "Domain from El Pais Uruguay"
+       },
+       "ccTLDs": {
+          "https://elpais.com.uy": [
+             "https://elpais.uy"
+          ]
+       }
     }
   ]
 }
