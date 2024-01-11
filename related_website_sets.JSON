@@ -1,6 +1,30 @@
 {
   "sets": [
     {
+      "contact": "alicia.bonilla@nacion.com",
+      "primary": "https://nacion.com",
+      "associatedSites": [
+         "https://lateja.cr",
+         "https://elfinancierocr.com"
+      ],
+      "rationaleBySite": {
+         "https://lateja.cr": "Newspaper owned by Grupo Nación",
+         "https://elfinancierocr.com": "Newspaper owned by Grupo Nación"
+      }
+   },
+   {
+     "contact": "wojciech.bialy@grupawp.pl",
+     "primary": "https://wp.pl",
+     "associatedSites": [
+       "https://money.pl",
+       "https://autokult.pl"
+     ],
+     "rationaleBySite": {
+       "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
+       "https://autokult.pl": "Special Interest Website - automotive"
+     }
+   },
+    {
       "contact": "dmarti@raptive.com",
       "primary": "https://cafemedia.com",
       "associatedSites": [
@@ -41,7 +65,7 @@
         "https://salemovetravel.com"
       ],
       "rationaleBySite": {
-        "https://salemoveadvisor.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works" ,
+        "https://salemoveadvisor.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works",
         "https://salemovefinancial.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works",
         "https://salemovetravel.com": "The domains are very clear that they are all a part of the SaleMove family of sites. These sites are used as demo sites to show how multiple sites can be linked together for the purpose of live chat linking across multiple domains. A user would expect the sites to be linked as they are all a part of the same demo family of sites to show how it works"
       }
@@ -137,7 +161,9 @@
           "https://mercadolibre.com.uy",
           "https://mercadolibre.com.ve"
         ],
-        "https://mercadolivre.com": ["https://mercadolivre.com.br"],
+        "https://mercadolivre.com": [
+          "https://mercadolivre.com.br"
+        ],
         "https://mercadopago.com": [
           "https://mercadopago.com.ar",
           "https://mercadopago.com.br",
@@ -156,7 +182,231 @@
           "https://mercadoshops.cl",
           "https://mercadoshops.com.co"
         ],
-        "https://tucarro.com": ["https://tucarro.com.co", "https://tucarro.com.ve"]
+        "https://tucarro.com": [
+          "https://tucarro.com.co",
+          "https://tucarro.com.ve"
+        ]
+      }
+    },
+    {
+      "contact": "admin@idwrx.com",
+      "primary": "https://joyreactor.cc",
+      "associatedSites": [
+        "https://reactor.cc",
+        "https://cookreactor.com"
+      ],
+      "rationaleBySite": {
+        "https://reactor.cc": "Domain for fandomes, old version of site and mirror",
+        "https://cookreactor.com": "Cooking fandome"
+      },
+      "ccTLDs": {
+        "https://joyreactor.cc": [
+          "https://joyreactor.com"
+        ]
+      }
+     },
+     {
+      "contact": "cmidata@cmi.mx",
+      "primary": "https://unotv.com",
+      "associatedSites": [
+        "https://clarosports.com"
+      ],
+      "serviceSites": [
+        "https://cmxd.com.mx"
+      ],
+      "rationaleBySite": {
+        "https://clarosports.com": "Member of AMX Contenido websites, as unotv",
+        "https://cmxd.com.mx": "Used for personalization purposes across AMX Contenido websites."
+      }
+    },
+    {
+      "contact": "dnsadmin@idbs.com",
+      "primary": "https://idbs-cloud.com",
+      "associatedSites": [
+          "https://idbs-dev.com",
+          "https://idbs-staging.com",
+          "https://idbs-eworkbook.com",
+          "https://eworkbookcloud.com",
+          "https://eworkbookrequest.com"
+      ],
+      "rationaleBySite": {
+          "https://idbs-dev.com": "Dev version of main application IDBS-cloud",
+          "https://idbs-staging.com": "Staging version of main application IDBS-cloud",
+          "https://idbs-eworkbook.com": "E-workbook services part of IDBS-cloud product",
+          "https://eworkbookcloud.com": "E-workbook services part of IDBS-cloud product",
+          "https://eworkbookrequest.com": "E-workbook request part of IDBS-cloud product"
+      }
+     },
+    {
+      "contact": "mighty-devops@mightytext.net",
+      "primary": "https://mightytext.net",
+      "serviceSites": [
+        "https://textyserver.appspot.com",
+        "https://mighty-app.appspot.com"
+      ],
+      "rationaleBySite": {
+        "https://textyserver.appspot.com": "API service for mightytext.net",
+        "https://mighty-app.appspot.com": "alternative domain for API service for mightytext.net"
+      }
+    },
+    {
+       "contact": "support@vwo.com",
+       "primary": "https://vwo.com",
+       "associatedSites": [
+          "https://wingify.com"
+       ],
+       "rationaleBySite": {
+          "https://wingify.com": "Alias"
+       }
+    },
+    {
+       "contact": "support@wildix.com",
+       "primary": "https://wildix.com",
+       "associatedSites": [
+          "https://wildixin.com"
+       ],
+       "rationaleBySite": {
+          "https://wildixin.com": "Wildix PBX's domain"
+       }
+    },
+    {
+      "contact": "amit.chouhan@timesinternet.in",
+      "primary": "https://timesinternet.in",
+      "associatedSites": [
+        "https://indiatimes.com",
+        "https://timesofindia.com",
+        "https://economictimes.com",
+        "https://samayam.com",
+        "https://cricbuzz.com"
+      ],
+      "serviceSites": [
+        "https://growthrx.in",
+        "https://clmbtech.com",
+        "https://tvid.in"
+      ],
+      "rationaleBySite": {
+        "https://indiatimes.com": "Indiatimes.com is primary domain for Times Internet which publish stories on Indian Lifestyle, Culture, Relationships, Food, Travel, Entertainment, News and New Technology News",
+        "https://timesofindia.com": "Times of India (TOI) is Indias largest and most influential news publisher in English. Its digital platform timesofindia.com is powered by Times Internet Limited",
+        "https://economictimes.com": "Economic Times is India's top business news platform, providing comprehensive coverage of the economy, stock markets, and personal finance to inspire and empower business leaders and entrepreneurs. This digital platform is powered by Times Internet Limited",
+        "https://samayam.com": "Samayam is a Regional News publisher powered by Times Internet Limited",
+        "https://cricbuzz.com": "Cricbuzz is an Indian cricket news & live score platform owned by Times Internet Limited",
+        "https://growthrx.in": "GrowthRx is a customer engagement platform powered by Times Internet",
+        "https://clmbtech.com": "This is a times-internet data and customer management platform for managing publisher data.",
+        "https://tvid.in": "TVID is an in-house video management platform powered by Times Internet"
+      }
+    },
+    {
+      "contact": "operations@hc1.com",
+      "primary": "https://hc1.com",
+      "associatedSites": ["https://hc1.global"],
+      "serviceSites": ["https://hc1cas.com", "https://hc1cas.global"],
+      "rationaleBySite": {
+        "https://hc1.global": "hc1 Insights Lab platform for UK.",
+        "https://hc1cas.com": "hc1 Insights Lab platform authentication service for US.",
+        "https://hc1cas.global": "hc1 Insight Lab platform authentication service for UK."
+      }
+    },
+    {
+      "contact": "andri.nurdiansah@kgmedia.id",
+      "primary": "https://kgmedia.id",
+      "associatedSites": [
+         "https://kompas.com",
+         "https://kompasiana.com"
+      ],
+      "rationaleBySite": {
+         "https://kompas.com": "KG Media - General News provider",
+         "https://kompasiana.com": "KG Media -  Online blog and publication platform"
+      }
+    },
+    {
+      "contact": "psb@ccmbenchmark.com",
+      "primary": "https://journaldesfemmes.com",
+      "associatedSites": [
+        "https://commentcamarche.net",
+        "https://linternaute.com",
+        "https://journaldunet.com",
+        "https://phonandroid.com",
+        "https://commentcamarche.com"
+      ],
+      "rationaleBySite": {
+        "https://commentcamarche.net": "Centralized account for redactors, forums & real-time messages",
+        "https://linternaute.com": "Centralized account for redactors, forums & real-time messages",
+        "https://journaldunet.com": "Centralized account for redactors, forums & real-time messages",
+        "https://phonandroid.com": "Centralized account for redactors, forums & real-time messages",
+        "https://commentcamarche.com": "Centralized account for redactors, forums & real-time messages"
+      },
+      "ccTLDs": {
+        "https://journaldesfemmes.com": [
+          "https://journaldesfemmes.fr"
+        ],
+        "https://linternaute.com": [
+          "https://linternaute.fr"
+        ],
+        "https://journaldunet.com": [
+          "https://journaldunet.fr"
+        ]
+      }
+    },
+    {
+      "contact": "jquintana@lanacion.com.ar",
+      "primary": "https://lanacion.com.ar",
+      "associatedSites": [
+        "https://bonvivir.com"
+      ],
+      "rationaleBySite": {
+        "https://bonvivir.com": "Wine club for sell wine by La Nación"
+      }
+    },
+    {
+    	"contact": "domain@nien.com", 
+    	"primary": "https://nien.com", 
+    	"associatedSites": [
+    		"https://chennien.com", 
+    		"https://nien.org", 
+    		"https://nien.co"
+    	], 
+    	"rationaleBySite": {
+    		"https://chennien.com": "Alias domain for Nien Studio", 
+    		"https://nien.org": "Campaign pages for Nien Studio", 
+    		"https://nien.co": "URL shortener for Nien Studio"
+    	}
+    },
+    {
+    	"contact": "admin@hearty.me", 
+    	"primary": "https://hearty.me", 
+    	"associatedSites": [
+    		"https://hearty.app", 
+    		"https://hearty.gift", 
+    		"https://hj.rs", 
+    		"https://heartymail.com", 
+    		"https://alice.tw", 
+    		"https://jiayi.life", 
+    		"https://miss.com.tw"
+    	], 
+    	"rationaleBySite": {
+    		"https://hearty.app": "API endpoints for Hearty Journal", 
+    		"https://hearty.gift": "Campaign pages for Hearty Journal", 
+    		"https://hj.rs": "URL shortener for Hearty Journal", 
+    		"https://heartymail.com": "Email service for Hearty Journal", 
+    		"https://alice.tw": "Alice's blog", 
+    		"https://jiayi.life": "Jiayi's blog", 
+    		"https://miss.com.tw": "Company website"
+    	}
+    },
+    {
+      "primary": "https://talkdeskqaid.com",
+      "contact": "support@talkdesk.com",
+      "associatedSites": ["https://trytalkdesk.com"],
+      "rationaleBySite": {
+        "https://trytalkdesk.com": "Specialized platform for CCaS"
+      }
+    },
+    {
+      "primary": "https://talkdeskstgid.com",
+      "contact": "support@talkdesk.com",
+      "associatedSites": ["https://gettalkdesk.com"],
+      "rationaleBySite": {
+        "https://gettalkdesk.com": "Specialized platform for CCaS"
       }
     }
   ]
