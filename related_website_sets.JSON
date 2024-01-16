@@ -4,26 +4,26 @@
       "contact": "alicia.bonilla@nacion.com",
       "primary": "https://nacion.com",
       "associatedSites": [
-         "https://lateja.cr",
-         "https://elfinancierocr.com"
+        "https://lateja.cr",
+        "https://elfinancierocr.com"
       ],
       "rationaleBySite": {
-         "https://lateja.cr": "Newspaper owned by Grupo Nación",
-         "https://elfinancierocr.com": "Newspaper owned by Grupo Nación"
+        "https://lateja.cr": "Newspaper owned by Grupo Nación",
+        "https://elfinancierocr.com": "Newspaper owned by Grupo Nación"
       }
-   },
-   {
-     "contact": "wojciech.bialy@grupawp.pl",
-     "primary": "https://wp.pl",
-     "associatedSites": [
-       "https://money.pl",
-       "https://autokult.pl"
-     ],
-     "rationaleBySite": {
-       "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
-       "https://autokult.pl": "Special Interest Website - automotive"
-     }
-   },
+    },
+    {
+      "contact": "wojciech.bialy@grupawp.pl",
+      "primary": "https://wp.pl",
+      "associatedSites": [
+        "https://money.pl",
+        "https://autokult.pl"
+      ],
+      "rationaleBySite": {
+        "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
+        "https://autokult.pl": "Special Interest Website - automotive"
+      }
+    },
     {
       "contact": "dmarti@raptive.com",
       "primary": "https://cafemedia.com",
@@ -204,8 +204,8 @@
           "https://joyreactor.com"
         ]
       }
-     },
-     {
+    },
+    {
       "contact": "cmidata@cmi.mx",
       "primary": "https://unotv.com",
       "associatedSites": [
@@ -223,20 +223,20 @@
       "contact": "dnsadmin@idbs.com",
       "primary": "https://idbs-cloud.com",
       "associatedSites": [
-          "https://idbs-dev.com",
-          "https://idbs-staging.com",
-          "https://idbs-eworkbook.com",
-          "https://eworkbookcloud.com",
-          "https://eworkbookrequest.com"
+        "https://idbs-dev.com",
+        "https://idbs-staging.com",
+        "https://idbs-eworkbook.com",
+        "https://eworkbookcloud.com",
+        "https://eworkbookrequest.com"
       ],
       "rationaleBySite": {
-          "https://idbs-dev.com": "Dev version of main application IDBS-cloud",
-          "https://idbs-staging.com": "Staging version of main application IDBS-cloud",
-          "https://idbs-eworkbook.com": "E-workbook services part of IDBS-cloud product",
-          "https://eworkbookcloud.com": "E-workbook services part of IDBS-cloud product",
-          "https://eworkbookrequest.com": "E-workbook request part of IDBS-cloud product"
+        "https://idbs-dev.com": "Dev version of main application IDBS-cloud",
+        "https://idbs-staging.com": "Staging version of main application IDBS-cloud",
+        "https://idbs-eworkbook.com": "E-workbook services part of IDBS-cloud product",
+        "https://eworkbookcloud.com": "E-workbook services part of IDBS-cloud product",
+        "https://eworkbookrequest.com": "E-workbook request part of IDBS-cloud product"
       }
-     },
+    },
     {
       "contact": "mighty-devops@mightytext.net",
       "primary": "https://mightytext.net",
@@ -250,24 +250,24 @@
       }
     },
     {
-       "contact": "support@vwo.com",
-       "primary": "https://vwo.com",
-       "associatedSites": [
-          "https://wingify.com"
-       ],
-       "rationaleBySite": {
-          "https://wingify.com": "Alias"
-       }
+      "contact": "support@vwo.com",
+      "primary": "https://vwo.com",
+      "associatedSites": [
+        "https://wingify.com"
+      ],
+      "rationaleBySite": {
+        "https://wingify.com": "Alias"
+      }
     },
     {
-       "contact": "support@wildix.com",
-       "primary": "https://wildix.com",
-       "associatedSites": [
-          "https://wildixin.com"
-       ],
-       "rationaleBySite": {
-          "https://wildixin.com": "Wildix PBX's domain"
-       }
+      "contact": "support@wildix.com",
+      "primary": "https://wildix.com",
+      "associatedSites": [
+        "https://wildixin.com"
+      ],
+      "rationaleBySite": {
+        "https://wildixin.com": "Wildix PBX's domain"
+      }
     },
     {
       "contact": "amit.chouhan@timesinternet.in",
@@ -298,8 +298,13 @@
     {
       "contact": "operations@hc1.com",
       "primary": "https://hc1.com",
-      "associatedSites": ["https://hc1.global"],
-      "serviceSites": ["https://hc1cas.com", "https://hc1cas.global"],
+      "associatedSites": [
+        "https://hc1.global"
+      ],
+      "serviceSites": [
+        "https://hc1cas.com",
+        "https://hc1cas.global"
+      ],
       "rationaleBySite": {
         "https://hc1.global": "hc1 Insights Lab platform for UK.",
         "https://hc1cas.com": "hc1 Insights Lab platform authentication service for US.",
@@ -310,12 +315,12 @@
       "contact": "andri.nurdiansah@kgmedia.id",
       "primary": "https://kgmedia.id",
       "associatedSites": [
-         "https://kompas.com",
-         "https://kompasiana.com"
+        "https://kompas.com",
+        "https://kompasiana.com"
       ],
       "rationaleBySite": {
-         "https://kompas.com": "KG Media - General News provider",
-         "https://kompasiana.com": "KG Media -  Online blog and publication platform"
+        "https://kompas.com": "KG Media - General News provider",
+        "https://kompasiana.com": "KG Media -  Online blog and publication platform"
       }
     },
     {
@@ -358,45 +363,47 @@
       }
     },
     {
-    	"contact": "domain@nien.com", 
-    	"primary": "https://nien.com", 
-    	"associatedSites": [
-    		"https://chennien.com", 
-    		"https://nien.org", 
-    		"https://nien.co"
-    	], 
-    	"rationaleBySite": {
-    		"https://chennien.com": "Alias domain for Nien Studio", 
-    		"https://nien.org": "Campaign pages for Nien Studio", 
-    		"https://nien.co": "URL shortener for Nien Studio"
-    	}
+      "contact": "domain@nien.com",
+      "primary": "https://nien.com",
+      "associatedSites": [
+        "https://chennien.com",
+        "https://nien.org",
+        "https://nien.co"
+      ],
+      "rationaleBySite": {
+        "https://chennien.com": "Alias domain for Nien Studio",
+        "https://nien.org": "Campaign pages for Nien Studio",
+        "https://nien.co": "URL shortener for Nien Studio"
+      }
     },
     {
-    	"contact": "admin@hearty.me", 
-    	"primary": "https://hearty.me", 
-    	"associatedSites": [
-    		"https://hearty.app", 
-    		"https://hearty.gift", 
-    		"https://hj.rs", 
-    		"https://heartymail.com", 
-    		"https://alice.tw", 
-    		"https://jiayi.life", 
-    		"https://miss.com.tw"
-    	], 
-    	"rationaleBySite": {
-    		"https://hearty.app": "API endpoints for Hearty Journal", 
-    		"https://hearty.gift": "Campaign pages for Hearty Journal", 
-    		"https://hj.rs": "URL shortener for Hearty Journal", 
-    		"https://heartymail.com": "Email service for Hearty Journal", 
-    		"https://alice.tw": "Alice's blog", 
-    		"https://jiayi.life": "Jiayi's blog", 
-    		"https://miss.com.tw": "Company website"
-    	}
+      "contact": "admin@hearty.me",
+      "primary": "https://hearty.me",
+      "associatedSites": [
+        "https://hearty.app",
+        "https://hearty.gift",
+        "https://hj.rs",
+        "https://heartymail.com",
+        "https://alice.tw",
+        "https://jiayi.life",
+        "https://miss.com.tw"
+      ],
+      "rationaleBySite": {
+        "https://hearty.app": "API endpoints for Hearty Journal",
+        "https://hearty.gift": "Campaign pages for Hearty Journal",
+        "https://hj.rs": "URL shortener for Hearty Journal",
+        "https://heartymail.com": "Email service for Hearty Journal",
+        "https://alice.tw": "Alice's blog",
+        "https://jiayi.life": "Jiayi's blog",
+        "https://miss.com.tw": "Company website"
+      }
     },
     {
       "primary": "https://talkdeskqaid.com",
       "contact": "support@talkdesk.com",
-      "associatedSites": ["https://trytalkdesk.com"],
+      "associatedSites": [
+        "https://trytalkdesk.com"
+      ],
       "rationaleBySite": {
         "https://trytalkdesk.com": "Specialized platform for CCaS"
       }
@@ -404,7 +411,9 @@
     {
       "primary": "https://talkdeskstgid.com",
       "contact": "support@talkdesk.com",
-      "associatedSites": ["https://gettalkdesk.com"],
+      "associatedSites": [
+        "https://gettalkdesk.com"
+      ],
       "rationaleBySite": {
         "https://gettalkdesk.com": "Specialized platform for CCaS"
       }
@@ -427,6 +436,25 @@
         "https://medonet.pl": "Special interest news website within the Ringier Axel Springer Polska media group dedicated to health and medical topics. It offers a wide range of articles, news, and features related to various aspects of health, wellness, medical research, treatments, and lifestyle. Medonet.pl aims to provide reliable and accurate information to its readers, promoting healthy living and informed decision-making.",
         "https://ocdn.eu": "Service dedicated to processing events that occur on websites, assists in managing and optimizing multimedia content, including images, videos, or other resources, for websites that rely on event-related functionality.",
         "https://plejada.pl": "Special interest news website within the Ringier Axel Springer Polska media group dedicated to exclusive information, interviews, videos, and galleries from the world of show business."
+      }
+    },
+    {
+      "contact": "dacostaylara@elpais.com.uy",
+      "primary": "https://elpais.com.uy",
+      "associatedSites": [
+        "https://clubelpais.com.uy",
+        "https://paula.com.uy",
+        "https://gallito.com.uy"
+      ],
+      "rationaleBySite": {
+        "https://clubelpais.com.uy": "Domain from El Pais Uruguay",
+        "https://paula.com.uy": "Domain from El Pais Uruguay",
+        "https://gallito.com.uy": "Domain from El Pais Uruguay"
+      },
+      "ccTLDs": {
+        "https://elpais.com.uy": [
+          "https://elpais.uy"
+        ]
       }
     }
   ]
