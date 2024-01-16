@@ -13,17 +13,23 @@
       }
    },
    {
-     "contact": "wojciech.bialy@grupawp.pl",
-     "primary": "https://wp.pl",
-     "associatedSites": [
-       "https://money.pl",
-       "https://autokult.pl"
-     ],
-     "rationaleBySite": {
-       "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
-       "https://autokult.pl": "Special Interest Website - automotive"
-     }
-   },
+      "contact": "wojciech.bialy@grupawp.pl",
+      "primary": "https://wp.pl",
+      "associatedSites": [
+          "https://o2.pl",
+          "https://pudelek.pl",
+          "https://money.pl",
+          "https://abczdrowie.pl",
+          "https://wpext.pl"
+      ],
+      "rationaleBySite": {
+          "https://o2.pl": "News portal and email service",
+          "https://pudelek.pl": "Special Interest Website - celebrity news and gossip",
+          "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
+          "https://abczdrowie.pl": "Special Interest Website - healthy living and medical health",
+          "https://wpext.pl": "Content delivery domain for sensitive content websites"
+      }
+    },
     {
       "contact": "dmarti@raptive.com",
       "primary": "https://cafemedia.com",
