@@ -453,6 +453,17 @@
              "https://elpais.uy"
           ]
        }
+    },
+    {
+      "contact": "alertlogic-ui@fortra.com",
+      "primary": "https://alertlogic.com",
+      "associatedSites": ["https://alertlogic.net"],
+      "rationaleBySite": {
+        "https://alertlogic.net": "Site used to show embedded content"
+      },
+      "ccTLDs": {
+        "https://alertlogic.com": ["https://alertlogic.co.uk"]
+      }
     }
   ]
 }
