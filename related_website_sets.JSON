@@ -453,6 +453,25 @@
              "https://elpais.uy"
           ]
        }
+    },
+    {
+      "contact": "sritejakumar.samudrala@skyhighsecurity.com",
+      "primary": "https://trellix.com",
+      "associatedSites": [
+        "https://myshn.net",
+        "https://skyhigh.cloud",
+        "https://shn.io"
+      ],
+      "rationaleBySite": {
+        "https://myshn.net": "Domain for Skyhigh Security Product",
+        "https://skyhigh.cloud": "Domain for Skyhigh Security Web Product",
+        "https://shn.io": "Domain for testing fabrics"
+      },
+      "ccTLDs": {
+        "https://myshn.net": [
+          "https://myshn.eu"
+        ]
+      }
     }
   ]
 }
