@@ -453,6 +453,17 @@
              "https://elpais.uy"
           ]
        }
-    }
+    },
+    {
+      "contact": "admin@stripe.com",
+      "primary": "https://stripe.com",
+      "serviceSites": [
+          "https://stripecdn.com",
+          "https://stripe.network"
+      ],
+      "rationaleBySite": {
+          "https://stripecdn.com": "Serves static assets accelerating page loads and sandboxes select Javascript",
+          "https://stripe.network": "Receives telemetry preventing fraud across Stripe services"
+      }
   ]
 }
