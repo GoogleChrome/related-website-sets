@@ -13,17 +13,23 @@
       }
    },
    {
-     "contact": "wojciech.bialy@grupawp.pl",
-     "primary": "https://wp.pl",
-     "associatedSites": [
-       "https://money.pl",
-       "https://autokult.pl"
-     ],
-     "rationaleBySite": {
-       "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
-       "https://autokult.pl": "Special Interest Website - automotive"
-     }
-   },
+      "contact": "wojciech.bialy@grupawp.pl",
+      "primary": "https://wp.pl",
+      "associatedSites": [
+          "https://o2.pl",
+          "https://pudelek.pl",
+          "https://money.pl",
+          "https://abczdrowie.pl",
+          "https://wpext.pl"
+      ],
+      "rationaleBySite": {
+          "https://o2.pl": "News portal and email service",
+          "https://pudelek.pl": "Special Interest Website - celebrity news and gossip",
+          "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
+          "https://abczdrowie.pl": "Special Interest Website - healthy living and medical health",
+          "https://wpext.pl": "Content delivery domain for sensitive content websites"
+      }
+    },
     {
       "contact": "dmarti@raptive.com",
       "primary": "https://cafemedia.com",
@@ -408,6 +414,45 @@
       "rationaleBySite": {
         "https://gettalkdesk.com": "Specialized platform for CCaS"
       }
+    },
+    {
+      "contact": "tst@ringieraxelspringer.pl",
+      "primary": "https://onet.pl",
+      "associatedSites": [
+        "https://fakt.pl",
+        "https://businessinsider.com.pl",
+        "https://medonet.pl",
+        "https://plejada.pl"
+      ],
+      "serviceSites": [
+        "https://ocdn.eu"
+      ],
+      "rationaleBySite": {
+        "https://fakt.pl": "Special interest news website that is part of the Ringier Axel Springer Polska media group. It provides up-to-date news and covers a wide range of topics including politics, sports, entertainment, and lifestyle. Fakt.pl aims to deliver reliable and engaging content to its readers, keeping them informed about the latest events and trends.",
+        "https://businessinsider.com.pl": "Special interest news website within the Ringier Axel Springer Polska media group. It focuses on business, finance, technology, and related topics. The website provides in-depth analysis, market insights, and news articles tailored for professionals, entrepreneurs, and those interested in the business world.",
+        "https://medonet.pl": "Special interest news website within the Ringier Axel Springer Polska media group dedicated to health and medical topics. It offers a wide range of articles, news, and features related to various aspects of health, wellness, medical research, treatments, and lifestyle. Medonet.pl aims to provide reliable and accurate information to its readers, promoting healthy living and informed decision-making.",
+        "https://ocdn.eu": "Service dedicated to processing events that occur on websites, assists in managing and optimizing multimedia content, including images, videos, or other resources, for websites that rely on event-related functionality.",
+        "https://plejada.pl": "Special interest news website within the Ringier Axel Springer Polska media group dedicated to exclusive information, interviews, videos, and galleries from the world of show business."
+      }
+    },
+    {
+       "contact": "dacostaylara@elpais.com.uy",
+       "primary": "https://elpais.com.uy",
+       "associatedSites": [
+          "https://clubelpais.com.uy",
+          "https://paula.com.uy",
+          "https://gallito.com.uy"
+       ],
+       "rationaleBySite": {
+          "https://clubelpais.com.uy": "Domain from El Pais Uruguay",
+          "https://paula.com.uy": "Domain from El Pais Uruguay",
+          "https://gallito.com.uy": "Domain from El Pais Uruguay"
+       },
+       "ccTLDs": {
+          "https://elpais.com.uy": [
+             "https://elpais.uy"
+          ]
+       }
     },
     {
       "primary":"https://rws1nvtvt.com",
