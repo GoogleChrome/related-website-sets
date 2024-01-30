@@ -456,22 +456,22 @@
     },
     {
       "contact": "kujiale-sec@qunhemail.com",
-      "primary": "https://www.kujiale.com",
+      "primary": "https://kujiale.com",
       "associatedSites": [
-        "https://www.modaiyun.com",
-        "https://www.meijian.com",
-        "https://www.kukongjian.com",
-        "https://www.kudashi.com"
+        "https://modaiyun.com",
+        "https://meijian.com",
+        "https://kukongjian.com",
+        "https://kudashi.com"
       ],
       "rationaleBySite": {
-        "https://www.modaiyun.com": "The domain of Modaiyun, a product of Kujiale",
-        "https://www.meijian.com": "The domain of Meijian, a product of Kujiale",
-        "https://www.kukongjian.com": "The domain of Kukongjian, a product of Kujiale",
-        "https://www.kudashi.com": "The domain of Kudashi, a product of Kujiale"
+        "https://modaiyun.com": "The domain of Modaiyun, a product of Kujiale",
+        "https://meijian.com": "The domain of Meijian, a product of Kujiale",
+        "https://kukongjian.com": "The domain of Kukongjian, a product of Kujiale",
+        "https://kudashi.com": "The domain of Kudashi, a product of Kujiale"
       },
       "ccTLDs": {
-        "https://www.kujiale.com": [
-          "https://www.kujiale.cn"
+        "https://kujiale.com": [
+          "https://kujiale.cn"
         ]
       }
     }
