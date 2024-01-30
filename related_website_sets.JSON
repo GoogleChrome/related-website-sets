@@ -453,6 +453,21 @@
              "https://elpais.uy"
           ]
        }
+    },
+    {
+      "primary": "https://libero.it",
+      "contact": "support-rws@italiaonline.it",
+      "associatedSites": [
+        "https://supereva.it"
+      ],
+      "serviceSites": [
+        "https://iolam.it"
+      ],
+      "rationaleBySite": {
+        "https://libero.it": "Web portal",
+        "https://supereva.it": "Gossip web site",
+        "https://iolam.it": "Used for personalization purposes"
+      }
     }
   ]
 }
