@@ -464,10 +464,10 @@
         "https://kudashi.com"
       ],
       "rationaleBySite": {
-        "https://modaiyun.com": "The domain of Modaiyun, a product of Kujiale",
-        "https://meijian.com": "The domain of Meijian, a product of Kujiale",
-        "https://kukongjian.com": "The domain of Kukongjian, a product of Kujiale",
-        "https://kudashi.com": "The domain of Kudashi, a product of Kujiale"
+        "https://modaiyun.com": "The domain of Modaiyun, a product of Kujiale.",
+        "https://meijian.com": "The domain of Meijian, a product of Kujiale.",
+        "https://kukongjian.com": "The domain of Kukongjian, a product of Kujiale.",
+        "https://kudashi.com": "The domain of Kudashi, a product of Kujiale."
       },
       "ccTLDs": {
         "https://kujiale.com": [
