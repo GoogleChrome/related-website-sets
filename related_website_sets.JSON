@@ -456,3 +456,13 @@
     }
   ]
 }
+{
+   "contact": "mfranco@agea.com.ar",
+   "primary": "https://clarin.com",
+   "associatedSites": [
+      "https://ole.com.ar"
+   ],
+   "rationaleBySite": {
+      "https://ole.com.ar": "Sports portal owned by Grupo Clarín"
+   }
+}
