@@ -1,6 +1,14 @@
 {
   "sets": [
     {
+      "contact": "ronen.cohen@poalim.xyz",
+      "primary": "https://poalim.xyz",
+      "serviceSites": ["https://poalim.site"],
+      "rationaleBySite": {
+        "https://poalim.site": "Each domain in this subset supports functionality or security needs."
+      }
+    },
+    {
       "contact": "alicia.bonilla@nacion.com",
       "primary": "https://nacion.com",
       "associatedSites": [
