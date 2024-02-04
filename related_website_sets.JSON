@@ -1,6 +1,16 @@
 {
   "sets": [
     {
+      "contact": "il.mrbit@gmail.com",
+      "primary": "https://poalim.xyz",
+      "associatedSites": [
+         "https://poalim.site",
+      ],
+      "rationaleBySite": {
+         "https://poalim.site": "one of 3rd party cookie solutions option",
+      }
+   },
+    {
       "contact": "alicia.bonilla@nacion.com",
       "primary": "https://nacion.com",
       "associatedSites": [
