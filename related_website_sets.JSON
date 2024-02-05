@@ -13,17 +13,23 @@
       }
    },
    {
-     "contact": "wojciech.bialy@grupawp.pl",
-     "primary": "https://wp.pl",
-     "associatedSites": [
-       "https://money.pl",
-       "https://autokult.pl"
-     ],
-     "rationaleBySite": {
-       "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
-       "https://autokult.pl": "Special Interest Website - automotive"
-     }
-   },
+      "contact": "wojciech.bialy@grupawp.pl",
+      "primary": "https://wp.pl",
+      "associatedSites": [
+          "https://o2.pl",
+          "https://pudelek.pl",
+          "https://money.pl",
+          "https://abczdrowie.pl",
+          "https://wpext.pl"
+      ],
+      "rationaleBySite": {
+          "https://o2.pl": "News portal and email service",
+          "https://pudelek.pl": "Special Interest Website - celebrity news and gossip",
+          "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
+          "https://abczdrowie.pl": "Special Interest Website - healthy living and medical health",
+          "https://wpext.pl": "Content delivery domain for sensitive content websites"
+      }
+    },
     {
       "contact": "dmarti@raptive.com",
       "primary": "https://cafemedia.com",
@@ -220,6 +226,24 @@
       }
     },
     {
+      "contact": "dnsadmin@idbs.com",
+      "primary": "https://idbs-cloud.com",
+      "associatedSites": [
+          "https://idbs-dev.com",
+          "https://idbs-staging.com",
+          "https://idbs-eworkbook.com",
+          "https://eworkbookcloud.com",
+          "https://eworkbookrequest.com"
+      ],
+      "rationaleBySite": {
+          "https://idbs-dev.com": "Dev version of main application IDBS-cloud",
+          "https://idbs-staging.com": "Staging version of main application IDBS-cloud",
+          "https://idbs-eworkbook.com": "E-workbook services part of IDBS-cloud product",
+          "https://eworkbookcloud.com": "E-workbook services part of IDBS-cloud product",
+          "https://eworkbookrequest.com": "E-workbook request part of IDBS-cloud product"
+      }
+     },
+    {
       "contact": "mighty-devops@mightytext.net",
       "primary": "https://mightytext.net",
       "serviceSites": [
@@ -252,27 +276,193 @@
        }
     },
     {
-      "contact": "operations@hc1.com",
-      "primary": "https://hc1.com",
+      "contact": "amit.chouhan@timesinternet.in",
+      "primary": "https://timesinternet.in",
+      "associatedSites": [
+        "https://indiatimes.com",
+        "https://timesofindia.com",
+        "https://economictimes.com",
+        "https://samayam.com",
+        "https://cricbuzz.com"
+      ],
       "serviceSites": [
-        "https://hc1cas.com"
+        "https://growthrx.in",
+        "https://clmbtech.com",
+        "https://tvid.in"
       ],
       "rationaleBySite": {
-        "https://hc1cas.com": "hc1 Insights Lab platform authentication service."
+        "https://indiatimes.com": "Indiatimes.com is primary domain for Times Internet which publish stories on Indian Lifestyle, Culture, Relationships, Food, Travel, Entertainment, News and New Technology News",
+        "https://timesofindia.com": "Times of India (TOI) is Indias largest and most influential news publisher in English. Its digital platform timesofindia.com is powered by Times Internet Limited",
+        "https://economictimes.com": "Economic Times is India's top business news platform, providing comprehensive coverage of the economy, stock markets, and personal finance to inspire and empower business leaders and entrepreneurs. This digital platform is powered by Times Internet Limited",
+        "https://samayam.com": "Samayam is a Regional News publisher powered by Times Internet Limited",
+        "https://cricbuzz.com": "Cricbuzz is an Indian cricket news & live score platform owned by Times Internet Limited",
+        "https://growthrx.in": "GrowthRx is a customer engagement platform powered by Times Internet",
+        "https://clmbtech.com": "This is a times-internet data and customer management platform for managing publisher data.",
+        "https://tvid.in": "TVID is an in-house video management platform powered by Times Internet"
       }
     },
     {
-      "contact": "andri.nurdiansah@kgmedia.id",
-      "primary": "https://kgmedia.id",
+      "contact": "operations@hc1.com",
+      "primary": "https://hc1.com",
+      "associatedSites": ["https://hc1.global"],
+      "serviceSites": ["https://hc1cas.com", "https://hc1cas.global"],
+      "rationaleBySite": {
+        "https://hc1.global": "hc1 Insights Lab platform for UK.",
+        "https://hc1cas.com": "hc1 Insights Lab platform authentication service for US.",
+        "https://hc1cas.global": "hc1 Insight Lab platform authentication service for UK."
+      }
+    },
+    {
+      "contact": "cs@kgmedia.id",
+      "primary": "https://kompas.com",
       "associatedSites": [
-         "https://kompas.com",
-         "https://kompasiana.com"
+        "https://tribunnews.com",
+        "https://grid.id",
+        "https://bolasport.com",
+        "https://kompasiana.com",
+        "https://kompas.tv"
+      ],
+      "serviceSites": [
+        "https://oval.id"
+     ],
+      "rationaleBySite": {
+        "https://tribunnews.com": "Indonesian local news by KG Media",
+        "https://grid.id": "Indonesian entertainment & lifestyle news by KG Media ",
+        "https://bolasport.com": "Indonesian sport news by KG Media ",
+        "https://kompasiana.com": "Indonesian largest blog community by KG Media ",
+        "https://kompas.tv": "Indonesian national news by KG Media ",
+        "https://oval.id": "Technology & Data provider by KG Media"
+      }
+    },
+    {
+      "contact": "psb@ccmbenchmark.com",
+      "primary": "https://journaldesfemmes.com",
+      "associatedSites": [
+        "https://commentcamarche.net",
+        "https://linternaute.com",
+        "https://journaldunet.com",
+        "https://phonandroid.com",
+        "https://commentcamarche.com"
       ],
       "rationaleBySite": {
-         "https://kompas.com": "KG Media - General News provider",
-         "https://kompasiana.com": "KG Media -  Online blog and publication platform"
+        "https://commentcamarche.net": "Centralized account for redactors, forums & real-time messages",
+        "https://linternaute.com": "Centralized account for redactors, forums & real-time messages",
+        "https://journaldunet.com": "Centralized account for redactors, forums & real-time messages",
+        "https://phonandroid.com": "Centralized account for redactors, forums & real-time messages",
+        "https://commentcamarche.com": "Centralized account for redactors, forums & real-time messages"
+      },
+      "ccTLDs": {
+        "https://journaldesfemmes.com": [
+          "https://journaldesfemmes.fr"
+        ],
+        "https://linternaute.com": [
+          "https://linternaute.fr"
+        ],
+        "https://journaldunet.com": [
+          "https://journaldunet.fr"
+        ]
       }
-   }
-
+    },
+    {
+      "contact": "jquintana@lanacion.com.ar",
+      "primary": "https://lanacion.com.ar",
+      "associatedSites": [
+        "https://bonvivir.com"
+      ],
+      "rationaleBySite": {
+        "https://bonvivir.com": "Wine club for sell wine by La Nación"
+      }
+    },
+    {
+    	"contact": "domain@nien.com", 
+    	"primary": "https://nien.com", 
+    	"associatedSites": [
+    		"https://chennien.com", 
+    		"https://nien.org", 
+    		"https://nien.co"
+    	], 
+    	"rationaleBySite": {
+    		"https://chennien.com": "Alias domain for Nien Studio", 
+    		"https://nien.org": "Campaign pages for Nien Studio", 
+    		"https://nien.co": "URL shortener for Nien Studio"
+    	}
+    },
+    {
+    	"contact": "admin@hearty.me", 
+    	"primary": "https://hearty.me", 
+    	"associatedSites": [
+    		"https://hearty.app", 
+    		"https://hearty.gift", 
+    		"https://hj.rs", 
+    		"https://heartymail.com", 
+    		"https://alice.tw", 
+    		"https://jiayi.life", 
+    		"https://miss.com.tw"
+    	], 
+    	"rationaleBySite": {
+    		"https://hearty.app": "API endpoints for Hearty Journal", 
+    		"https://hearty.gift": "Campaign pages for Hearty Journal", 
+    		"https://hj.rs": "URL shortener for Hearty Journal", 
+    		"https://heartymail.com": "Email service for Hearty Journal", 
+    		"https://alice.tw": "Alice's blog", 
+    		"https://jiayi.life": "Jiayi's blog", 
+    		"https://miss.com.tw": "Company website"
+    	}
+    },
+    {
+      "primary": "https://talkdeskqaid.com",
+      "contact": "support@talkdesk.com",
+      "associatedSites": ["https://trytalkdesk.com"],
+      "rationaleBySite": {
+        "https://trytalkdesk.com": "Specialized platform for CCaS"
+      }
+    },
+    {
+      "primary": "https://talkdeskstgid.com",
+      "contact": "support@talkdesk.com",
+      "associatedSites": ["https://gettalkdesk.com"],
+      "rationaleBySite": {
+        "https://gettalkdesk.com": "Specialized platform for CCaS"
+      }
+    },
+    {
+      "contact": "tst@ringieraxelspringer.pl",
+      "primary": "https://onet.pl",
+      "associatedSites": [
+        "https://fakt.pl",
+        "https://businessinsider.com.pl",
+        "https://medonet.pl",
+        "https://plejada.pl"
+      ],
+      "serviceSites": [
+        "https://ocdn.eu"
+      ],
+      "rationaleBySite": {
+        "https://fakt.pl": "Special interest news website that is part of the Ringier Axel Springer Polska media group. It provides up-to-date news and covers a wide range of topics including politics, sports, entertainment, and lifestyle. Fakt.pl aims to deliver reliable and engaging content to its readers, keeping them informed about the latest events and trends.",
+        "https://businessinsider.com.pl": "Special interest news website within the Ringier Axel Springer Polska media group. It focuses on business, finance, technology, and related topics. The website provides in-depth analysis, market insights, and news articles tailored for professionals, entrepreneurs, and those interested in the business world.",
+        "https://medonet.pl": "Special interest news website within the Ringier Axel Springer Polska media group dedicated to health and medical topics. It offers a wide range of articles, news, and features related to various aspects of health, wellness, medical research, treatments, and lifestyle. Medonet.pl aims to provide reliable and accurate information to its readers, promoting healthy living and informed decision-making.",
+        "https://ocdn.eu": "Service dedicated to processing events that occur on websites, assists in managing and optimizing multimedia content, including images, videos, or other resources, for websites that rely on event-related functionality.",
+        "https://plejada.pl": "Special interest news website within the Ringier Axel Springer Polska media group dedicated to exclusive information, interviews, videos, and galleries from the world of show business."
+      }
+    },
+    {
+       "contact": "dacostaylara@elpais.com.uy",
+       "primary": "https://elpais.com.uy",
+       "associatedSites": [
+          "https://clubelpais.com.uy",
+          "https://paula.com.uy",
+          "https://gallito.com.uy"
+       ],
+       "rationaleBySite": {
+          "https://clubelpais.com.uy": "Domain from El Pais Uruguay",
+          "https://paula.com.uy": "Domain from El Pais Uruguay",
+          "https://gallito.com.uy": "Domain from El Pais Uruguay"
+       },
+       "ccTLDs": {
+          "https://elpais.com.uy": [
+             "https://elpais.uy"
+          ]
+       }
+    }
   ]
 }
