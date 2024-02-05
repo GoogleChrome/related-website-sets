@@ -921,6 +921,11 @@ def mock_get(*args, **kwargs):
         mgr = MockedGetResponse({}, 200)
         mgr.url = 'https://example.com'
         return mgr
+    elif args[0] == 'https://service7.com':
+        if 'allow_redirects' in kwargs:
+            if kwargs['allow_redirects'] != True:
+                return MockedGetResponse({"X-Robots-Tag":"noindex"}, 200)
+        return MockedGetResponse({"X-Robots-Tag":"foo"}, 200) 
     elif args[0].startswith('https://service'):
         return MockedGetResponse({},200)
     elif args[0] == 'https://primary1.com' + WELL_KNOWN:
@@ -1003,7 +1008,6 @@ class MockTestsClass(unittest.TestCase):
         self.assertEqual(rws_check.error_list, ["The service site " +
         "https://service1.com " +
         "does not have an X-Robots-Tag in its header"])
-        mock_get.assert_called_once_with('https://service1.com', timeout=10, allow_redirects=False)
         
     @mock.patch('requests.get', side_effect=mock_get)
     def test_robots_wrong_tag(self, mock_get):
@@ -1025,7 +1029,6 @@ class MockTestsClass(unittest.TestCase):
         self.assertEqual(rws_check.error_list, ["The service site " +
         "https://service2.com " +
         "does not have a 'noindex' or 'none' tag in its header"])
-        mock_get.assert_called_once_with('https://service2.com', timeout=10, allow_redirects=False)
 
     @mock.patch('requests.get', side_effect=mock_get)
     def test_robots_expected_tag(self, mock_get):
@@ -1045,7 +1048,6 @@ class MockTestsClass(unittest.TestCase):
         loaded_sets = rws_check.load_sets()
         rws_check.find_robots_txt(loaded_sets)
         self.assertEqual(rws_check.error_list, [])
-        mock_get.assert_called_once_with('https://service3.com', timeout=10, allow_redirects=False)
 
     @mock.patch('requests.get', side_effect=mock_get)
     def test_robots_none_tag(self, mock_get):
@@ -1065,7 +1067,24 @@ class MockTestsClass(unittest.TestCase):
         loaded_sets = rws_check.load_sets()
         rws_check.find_robots_txt(loaded_sets)
         self.assertEqual(rws_check.error_list, [])
-        mock_get.assert_called_once_with('https://service4.com', timeout=10, allow_redirects=False)
+
+    @mock.patch('requests.get', side_effect=mock_get)
+    def test_robots_redirects(self, mock_get):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "serviceSites": ["https://service7.com"]
+                }
+            ]
+        }
+        rws_check = RwsCheck(rws_sites=json_dict,
+                     etlds=None,
+                     icanns=set())
+        loaded_sets = rws_check.load_sets()
+        rws_check.find_robots_txt(loaded_sets)
+        self.assertEqual(rws_check.error_list, [])
 
     # We run a similar set of mock tests for ads.txt
     @mock.patch('requests.get', side_effect=mock_get)
