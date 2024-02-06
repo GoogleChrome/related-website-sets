@@ -453,6 +453,18 @@
              "https://elpais.uy"
           ]
        }
+    },
+    {
+       "contact": "rqadir@myintellirent.com",
+       "primary": "https://myintellirent.com",
+       "associatedSites": [
+          "https://internalrent.com",
+          "https://irapi.co"
+       ],
+       "rationaleBySite": {
+          "https://internalrent.com": "Web application owned by Intellirent, used for new version of Intellirent application",
+          "https://irapi.co": "Web application owned by Intellirent, used for API services"
+       }
     }
   ]
 }
