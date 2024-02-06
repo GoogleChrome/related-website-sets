@@ -482,7 +482,7 @@ class RwsCheck:
         for curr_set in check_sets.values():
             for service_site in curr_set.service_sites:
                 try:
-                    r_service = requests.get(service_site, timeout=10)
+                    r_service = requests.get(service_site, timeout=10, allow_redirects=False)
                     if 'X-Robots-Tag' not in r_service.headers:
                         self.error_list.append(f"The service site {service_site} does not have an X-Robots-Tag in its "
                          + "header")
