@@ -453,7 +453,23 @@
              "https://elpais.uy"
           ]
        }
-    },{
+    },
+    {
+      "primary": "https://libero.it",
+      "contact": "support-rws@italiaonline.it",
+      "associatedSites": [
+        "https://supereva.it"
+      ],
+      "serviceSites": [
+        "https://iolam.it"
+      ],
+      "rationaleBySite": {
+        "https://libero.it": "Web portal",
+        "https://supereva.it": "Gossip web site",
+        "https://iolam.it": "Used for personalization purposes"
+      }
+    },
+    {
       "primary":"https://rws1nvtvt.com",
       "contact": "przemyslaw.jaskierny@wbd.com",
       "associatedSites": ["https://rws2nvtvt.com", "https://rws3nvtvt.com"],
