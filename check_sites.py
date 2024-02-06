@@ -68,8 +68,8 @@ def main():
             rws_sites = json.load(f)
         except Exception as inst:
         # If the file cannot be loaded, we will not run any other checks
-            print("There was an error when loading "+ input_file + 
-                  "\nerror was: " + inst)
+            print(f"There was an error when loading {input_file};" 
+                  f"\nerror was:  {inst}")
             return  
      
 
