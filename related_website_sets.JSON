@@ -487,6 +487,16 @@
           "https://rws2nvtvt.com": "Test 1",
           "https://rws3nvtvt.com": "Test 2"
       }
+    },
+    {
+      "primary":"https://system.insideone.net",
+      "contact": "pablo.brown@nybblegroup.com",
+      "associatedSites": ["https://x-28-odoo-dev01.eastus.cloudapp.azure.com", "https://x-28-odoo-uat01.eastus.cloudapp.azure.com", "https://x-28-odoo.eastus.cloudapp.azure.com"],
+      "rationaleBySite": {
+          "https://x-28-odoo-dev01.eastus.cloudapp.azure.com": "Iframe dev environment",
+          "https://x-28-odoo-uat01.eastus.cloudapp.azure.com": "Iframe uat environment",
+          "https://x-28-odoo.eastus.cloudapp.azure.com": "Iframe prod environment"
+      }
     }
   ]
 }
