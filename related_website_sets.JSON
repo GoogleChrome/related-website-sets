@@ -487,6 +487,24 @@
           "https://rws2nvtvt.com": "Test 1",
           "https://rws3nvtvt.com": "Test 2"
       }
+    },{
+    "contact": "sanjay.nagpal@aajtak.in",
+    "primary": "https://indiatoday.in",
+    "associatedSites": [
+        "https://aajtak.in",
+        "https://businesstoday.in",
+        "https://intoday.in",
+        "https://gnttv.com",
+        "https://indiatodayne.in"
+    ],
+    "rationaleBySite": {
+        "https://intoday.in": "The one-stop destination for all of India Today Group's digital properties.",
+        "https://aajtak.in": "aajtak.in is the fastest, most reliable, and most popular website of news in Hindi. It provides readers with the news of India and worldwide along with every significant information related to everyday life with complete authenticity",
+        "https://businesstoday.in": "Top destination for business news, markets,  economy and more",
+        "https://indiatoday.in": "IndiaToday.in brings you news, analysis, explainers and opinion on a variety of subjects including politics, crime, civic issues, business, sports, technology, science, heatlh, lifestyle, and much more",        
+        "https://gnttv.com": " Good News Today is a website that focuses on the bright side of life and showcases stories of triumphs and positivity.",
+        "https://indiatodayne.in": "India Today NE is dedicated to covering news and views of India’s north-eastern region which includes eight states—Assam, Arunachal Pradesh, Nagaland, Manipur, Mizoram, Tripura, Meghalaya and Sikkim"
     }
+}
   ]
 }
