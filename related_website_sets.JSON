@@ -490,7 +490,7 @@
     },
     {
       "primary": "https://nvent.com",
-      "contact: "jaideepsingh.kandari@nvent.com"
+      "contact: "jaideepsingh.kandari@nvent.com",
       "associatedSites": [
         "https://nvent.my.site.com", 
         "https://nvent--staging.sandbox.my.site.com",
