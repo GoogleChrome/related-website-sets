@@ -487,6 +487,18 @@
           "https://rws2nvtvt.com": "Test 1",
           "https://rws3nvtvt.com": "Test 2"
       }
+    },
+    {
+      "primary": "https://nvent.com",
+      "contact: "jaideepsingh.kandari@nvent.com"
+      "associatedSites": [
+        "https://nvent.my.site.com", 
+        "https://nvent--staging.sandbox.my.site.com",
+        "https://nventdev.prod.acquia-sites.com",
+        "https://nventstg.prod.acquia-sites.com",
+        "https://schroff.test-nvent.acsitefactory.com",
+        "https://hoffman.test-nvent.acsitefactory.com"
+      ],
     }
   ]
 }
