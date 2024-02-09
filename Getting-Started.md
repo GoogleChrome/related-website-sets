@@ -105,6 +105,23 @@ Answer: 
 
 You can visit [Google's page about the Contributor License Agreement](https://cla.developers.google.com/about/google-individual) to sign the CLA, or check if you already have a CLA on file.
 
+Here is a brief step-by-step overview of how to fill it out:
+1) Go to https://cla.developers.google.com/clas
+
+
+2) Click on "Only Yourself"
+
+<img src="images/CLA-step-2.png" alt="Only yourself" width="300"/>
+
+3) Enter your name and GitHub Username. Click on "I agree". 
+
+<img src="images/CLA-step-3.jpeg" alt="I agree" width="300"/>
+
+4) Sign in to GitHub with the same username you used to sign the Google CLA.
+
+
+5) Make sure all contributors to your submission follow these steps!
+
 ### Q. What is the /.well-known/ file?
 
 Answer: 
@@ -126,22 +143,3 @@ Answer: A key component to the technical checks that run upon submission is the 
 ### Q. Can I make pull requests against files other than related_website_sets.JSON (e.g., the Submission Guidelines or the technical checks)?
 
 Answer: Please refrain from making suggestions in the form of pull requests to files in the GitHub repository other than related_website_sets.JSON. We welcome feedback to any of the content, but would prefer feedback to be submitted as issues to the repository instead.The purpose of this document is to provide a companion guide to the [Related Website Sets Submission Guidelines](https://github.com/GoogleChrome/related-website-sets/blob/main/RWS-Submission_Guidelines.md), which details the full requirements for Related Website Sets creation and submission.
-
-### Q. How do I fill out the CLA?
-
-Answer: Follow these steps
-1) Go to https://cla.developers.google.com/clas
-
-
-2) Click on "Only Yourself"
-
-<img src="images/CLA-step-2.png" alt="Only yourself" width="300"/>
-
-3) Enter your name and GitHub Username. Click on "I agree". 
-
-<img src="images/CLA-step-3.jpeg" alt="I agree" width="300"/>
-
-4) Sign in to GitHub with the same username you used to sign the Google CLA.
-
-
-5) Make sure all contributors to your submission follow these steps!
