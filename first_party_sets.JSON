@@ -69,13 +69,21 @@
       }
     },
     {
-      "contact": "prashant.tiwari@htdigital.in",
+      "contact": "himanshu.agrawal@htdigital.in",
       "primary": "https://hindustantimes.com",
       "associatedSites": [
-        "https://livemint.com"
+        "https://livemint.com",
+        "https://livehindustan.com",
+        "https://healthshots.com",
+        "https://ottplay.com",
+        "https://desimartini.com"
       ],
       "rationaleBySite": {
-        "https://livemint.com": "Specialized Platform for economics"
+        "https://livemint.com":	"https://livemint.com",
+        "https://livehindustan.com":	"https://livehindustan.com",
+        "https://healthshots.com" :	"https://healthshots.com",
+        "https://ottplay.com" :	"https://ottplay.com",
+        "https://desimartini.com" :	"https://desimartini.com"
       }  
     },
     {
