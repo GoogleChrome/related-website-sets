@@ -1,22 +1,22 @@
-# **First-Party Sets**
-For full instructions and guidance on how to submit a set, please read the [First-Party Sets Submission Guidelines](https://github.com/GoogleChrome/first-party-sets/blob/main/FPS-Submission_Guidelines.md).
+# **Related Website Sets**
+For full instructions and guidance on how to submit a set, please read the [Related Website Sets Submission Guidelines](https://github.com/GoogleChrome/first-party-sets/blob/main/RWS-Submission_Guidelines.md).
 
-For clarity on the First-Party Sets proposal being incubated in WICG, please 
-read the [First-Party Sets explainer](https://github.com/WICG/first-party-sets/).
+For clarity on the Related Website Sets proposal being incubated in WICG, please 
+read the [Related Website Sets explainer](https://github.com/WICG/first-party-sets/).
 
 The following is a description of the contents of this repository:
 
 
-
-* Guidance on submitting First-Party Sets: [FPS-Submission_Guidelines.md](https://github.com/GoogleChrome/first-party-sets/blob/main/FPS-Submission_Guidelines.md)
-* A JSON document of First-Party Sets: [first_party_sets.JSON](https://github.com/GoogleChrome/first-party-sets/blob/main/first_party_sets.JSON)
-* Various submission checks visible in [FpsCheck.py](https://github.com/GoogleChrome/first-party-sets/blob/main/FpsCheck.py)
-    * [FpsSet.py](https://github.com/GoogleChrome/first-party-sets/blob/main/FpsSet.py) 
-    defines an object type used by [FpsCheck.py](https://github.com/GoogleChrome/first-party-sets/blob/main/FpsCheck.py)
+* Information on how to get started with the RWS submission process and an FAQ: [Getting-Started.md](https://github.com/GoogleChrome/related-website-sets/blob/main/Getting-Started.md)
+* Guidance on submitting Related Website Sets: [RWS-Submission_Guidelines.md](https://github.com/GoogleChrome/first-party-sets/blob/main/RWS-Submission_Guidelines.md)
+* A JSON document of Related Website Sets: [related_website_sets.JSON](https://github.com/GoogleChrome/first-party-sets/blob/main/related_website_sets.JSON)
+* Various submission checks visible in [RwsCheck.py](https://github.com/GoogleChrome/first-party-sets/blob/main/RwsCheck.py)
+    * [RwsSet.py](https://github.com/GoogleChrome/first-party-sets/blob/main/RwsSet.py) 
+    defines an object type used by [RwsCheck.py](https://github.com/GoogleChrome/first-party-sets/blob/main/RwsCheck.py)
     * [Check_sites.py](https://github.com/GoogleChrome/first-party-sets/blob/main/check_sites.py) 
     calls a number of submission checks visible in 
-    [FpsCheck.py](https://github.com/GoogleChrome/first-party-sets/blob/main/FpsCheck.py)
-    * [tests/fps_tests.py](https://github.com/GoogleChrome/first-party-sets/blob/main/tests/fps_tests.py) 
+    [RwsCheck.py](https://github.com/GoogleChrome/first-party-sets/blob/main/RwsCheck.py)
+    * [tests/rws_tests.py](https://github.com/GoogleChrome/first-party-sets/blob/main/tests/rws_tests.py) 
     includes examples of failing set submissions and which checks 
     they will fail
 * Reference files like 
