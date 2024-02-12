@@ -505,6 +505,26 @@
           "https://stripecdn.com": "Serves static assets accelerating page loads and sandboxes select Javascript",
           "https://stripe.network": "Receives telemetry preventing fraud across Stripe services"
       }
+    },
+    {
+      "contact": "noc@yandex-team.ru",
+      "primary": "https://ya.ru",
+      "associatedSites": ["https://yandex.ru", "https://yandex.net", "https://turbopages.org", "https://auto.ru", "https://kinopoisk.ru", "https://clck.ru", "https://edadeal.ru", "https://webvisor.com", "https://yastatic.net"],
+      "rationaleBySite": {
+        "https://yandex.ru": "Yandex owned website",
+        "https://yandex.net": "Yandex owned website",
+        "https://yastatic.net": "Yandex owned website",
+        "https://auto.ru": "Yandex owned website",
+        "https://kinopoisk.ru": "Yandex owned website",
+        "https://clck.ru": "Yandex owned website",
+        "https://webvisor.com": "Yandex owned website",
+        "https://turbopages.org": "Yandex owned website",
+        "https://edadeal.ru": "Yandex owned website"
+      },
+      "ccTLDs": {
+        "https://ya.ru": ["https://ya.cc"],
+        "https://yandex.ru": ["https://yandex.az", "https://yandex.by", "https://yandex.kz", "https://yandex.md", "https://yandex.tj", "https://yandex.tm", "https://yandex.uz", "https://yandex.st", "https://yandex.com", "https://yandex.com.am", "https://yandex.com.ru"]
+      }
     }
   ]
 }
