@@ -921,6 +921,11 @@ def mock_get(*args, **kwargs):
         mgr = MockedGetResponse({}, 200)
         mgr.url = 'https://example.com'
         return mgr
+    elif args[0] == 'https://service7.com':
+        if 'allow_redirects' in kwargs:
+            if kwargs['allow_redirects'] != True:
+                return MockedGetResponse({"X-Robots-Tag":"noindex"}, 200)
+        return MockedGetResponse({"X-Robots-Tag":"foo"}, 200) 
     elif args[0].startswith('https://service'):
         return MockedGetResponse({},200)
     elif args[0] == 'https://primary1.com' + WELL_KNOWN:
@@ -1053,6 +1058,24 @@ class MockTestsClass(unittest.TestCase):
                 {
                     "primary": "https://primary.com",
                     "serviceSites": ["https://service4.com"]
+                }
+            ]
+        }
+        rws_check = RwsCheck(rws_sites=json_dict,
+                     etlds=None,
+                     icanns=set())
+        loaded_sets = rws_check.load_sets()
+        rws_check.find_robots_txt(loaded_sets)
+        self.assertEqual(rws_check.error_list, [])
+
+    @mock.patch('requests.get', side_effect=mock_get)
+    def test_robots_redirects(self, mock_get):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "serviceSites": ["https://service7.com"]
                 }
             ]
         }
