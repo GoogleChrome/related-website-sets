@@ -323,15 +323,21 @@
       }
     },
     {
-      "contact": "andri.nurdiansah@kgmedia.id",
-      "primary": "https://kgmedia.id",
+      "contact": "cs@kgmedia.id",
+      "primary": "https://kompas.com",
       "associatedSites": [
-         "https://kompas.com",
-         "https://kompasiana.com"
+        "https://tribunnews.com",
+        "https://grid.id",
+        "https://bolasport.com",
+        "https://kompasiana.com",
+        "https://kompas.tv"
       ],
       "rationaleBySite": {
-         "https://kompas.com": "KG Media - General News provider",
-         "https://kompasiana.com": "KG Media -  Online blog and publication platform"
+        "https://tribunnews.com": "Indonesian local news by KG Media",
+        "https://grid.id": "Indonesian entertainment & lifestyle news by KG Media ",
+        "https://bolasport.com": "Indonesian sport news by KG Media ",
+        "https://kompasiana.com": "Indonesian largest blog community by KG Media ",
+        "https://kompas.tv": "Indonesian national news by KG Media "
       }
     },
     {
