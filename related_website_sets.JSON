@@ -505,6 +505,24 @@
           "https://stripecdn.com": "Serves static assets accelerating page loads and sandboxes select Javascript",
           "https://stripe.network": "Receives telemetry preventing fraud across Stripe services"
       }
+    },
+    {
+      "contact": "himanshu.agrawal@htdigital.in",
+      "primary": "https://hindustantimes.com",
+      "associatedSites": [
+        "https://livemint.com",
+        "https://livehindustan.com",
+        "https://healthshots.com",
+        "https://ottplay.com",
+        "https://desimartini.com"
+      ],
+      "rationaleBySite": {
+        "https://livemint.com": "https://livemint.com",
+        "https://livehindustan.com":  "https://livehindustan.com",
+        "https://healthshots.com" : "https://healthshots.com",
+        "https://ottplay.com" : "https://ottplay.com",
+        "https://desimartini.com" : "https://desimartini.com"
+      }  
     }
   ]
 }
