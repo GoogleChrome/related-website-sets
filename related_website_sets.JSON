@@ -511,13 +511,11 @@
       "primary": "https://repid.org",
       "associatedSites": [
         "https://reshim.org",
-        "https://human-talk.org",
-        "https://community.reshim.org"
+        "https://human-talk.org"
       ],
       "rationaleBySite": {
         "https://reshim.org": "Silent login",
-        "https://human-talk.org": "Silent login",
-        "https://community.reshim.org": "Silent login"
+        "https://human-talk.org": "Silent login"
       }
     }
   ]
