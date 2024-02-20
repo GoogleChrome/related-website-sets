@@ -507,6 +507,18 @@
       }
     },
     {
+      "contact": "support@coch.org",
+      "primary": "https://repid.org",
+      "associatedSites": [
+        "https://reshim.org",
+        "https://human-talk.org"
+      ],
+      "rationaleBySite": {
+        "https://reshim.org": "Silent login",
+        "https://human-talk.org": "Silent login"
+      }
+    },
+    {
       "contact": "noc@yandex-team.ru",
       "primary": "https://ya.ru",
       "associatedSites": ["https://yandex.ru", "https://yandex.net", "https://turbopages.org", "https://auto.ru", "https://kinopoisk.ru", "https://clck.ru", "https://edadeal.ru", "https://webvisor.com", "https://yastatic.net"],
