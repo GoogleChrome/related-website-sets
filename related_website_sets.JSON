@@ -505,6 +505,20 @@
           "https://stripecdn.com": "Serves static assets accelerating page loads and sandboxes select Javascript",
           "https://stripe.network": "Receives telemetry preventing fraud across Stripe services"
       }
+    },
+    {
+      "contact": "support@coch.org",
+      "primary": "https://repid.org",
+      "associatedSites": [
+        "https://reshim.org",
+        "https://human-talk.org",
+        "https://community.reshim.org"
+      ],
+      "rationaleBySite": {
+        "https://reshim.org": "Silent login",
+        "https://human-talk.org": "Silent login",
+        "https://community.reshim.org": "Silent login"
+      }
     }
   ]
 }
