@@ -14,7 +14,7 @@
 name: RWS submission checks
 on: 
   schedule:
-  - cron: '0 14 * * *' #triggers job at 9am EST each day
+  - cron: '0 14 * * 2' # 2pm UTC each Tuesday
   pull_request_target:
 jobs:
   PR-Actions:
