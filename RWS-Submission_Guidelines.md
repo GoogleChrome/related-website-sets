@@ -102,7 +102,7 @@ A hypothetical example of the RWS canonical list is provided below for reference
 {
   "sets": [
     {
-      "contact": "email address or group alias if available"
+      "contact": "email address or group alias if available",
       "primary": "https://primary1.com",
 
       "associatedSites": ["https://associateA.com", "https://associateB.com", "https://associateC.com"],
