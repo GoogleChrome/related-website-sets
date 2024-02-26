@@ -323,15 +323,21 @@
       }
     },
     {
-      "contact": "andri.nurdiansah@kgmedia.id",
-      "primary": "https://kgmedia.id",
+      "contact": "cs@kgmedia.id",
+      "primary": "https://kompas.com",
       "associatedSites": [
-         "https://kompas.com",
-         "https://kompasiana.com"
+        "https://tribunnews.com",
+        "https://grid.id",
+        "https://bolasport.com",
+        "https://kompasiana.com",
+        "https://kompas.tv"
       ],
       "rationaleBySite": {
-         "https://kompas.com": "KG Media - General News provider",
-         "https://kompasiana.com": "KG Media -  Online blog and publication platform"
+        "https://tribunnews.com": "Indonesian local news by KG Media",
+        "https://grid.id": "Indonesian entertainment & lifestyle news by KG Media ",
+        "https://bolasport.com": "Indonesian sport news by KG Media ",
+        "https://kompasiana.com": "Indonesian largest blog community by KG Media ",
+        "https://kompas.tv": "Indonesian national news by KG Media "
       }
     },
     {
@@ -487,8 +493,9 @@
           "https://rws2nvtvt.com": "Test 1",
           "https://rws3nvtvt.com": "Test 2"
       }
+
     },{
-    "contact": "sanjay.nagpal@aajtak.in",
+    "contact": "sanjay.nagpal@aajtak.com",
     "primary": "https://indiatoday.in",
     "associatedSites": [
         "https://aajtak.in",
@@ -504,6 +511,52 @@
         "https://indiatoday.in": "IndiaToday.in brings you news, analysis, explainers and opinion on a variety of subjects including politics, crime, civic issues, business, sports, technology, science, heatlh, lifestyle, and much more",        
         "https://gnttv.com": " Good News Today is a website that focuses on the bright side of life and showcases stories of triumphs and positivity.",
         "https://indiatodayne.in": "India Today NE is dedicated to covering news and views of India’s north-eastern region which includes eight states—Assam, Arunachal Pradesh, Nagaland, Manipur, Mizoram, Tripura, Meghalaya and Sikkim"
+
+    },
+    {
+      "contact": "admin@stripe.com",
+      "primary": "https://stripe.com",
+      "serviceSites": [
+          "https://stripecdn.com",
+          "https://stripe.network"
+      ],
+      "rationaleBySite": {
+          "https://stripecdn.com": "Serves static assets accelerating page loads and sandboxes select Javascript",
+          "https://stripe.network": "Receives telemetry preventing fraud across Stripe services"
+      }
+    },
+    {
+      "contact": "support@coch.org",
+      "primary": "https://repid.org",
+      "associatedSites": [
+        "https://reshim.org",
+        "https://human-talk.org"
+      ],
+      "rationaleBySite": {
+        "https://reshim.org": "Silent login",
+        "https://human-talk.org": "Silent login"
+      }
+    },
+    {
+      "contact": "noc@yandex-team.ru",
+      "primary": "https://ya.ru",
+      "associatedSites": ["https://yandex.ru", "https://yandex.net", "https://turbopages.org", "https://auto.ru", "https://kinopoisk.ru", "https://clck.ru", "https://edadeal.ru", "https://webvisor.com", "https://yastatic.net"],
+      "rationaleBySite": {
+        "https://yandex.ru": "Yandex owned website",
+        "https://yandex.net": "Yandex owned website",
+        "https://yastatic.net": "Yandex owned website",
+        "https://auto.ru": "Yandex owned website",
+        "https://kinopoisk.ru": "Yandex owned website",
+        "https://clck.ru": "Yandex owned website",
+        "https://webvisor.com": "Yandex owned website",
+        "https://turbopages.org": "Yandex owned website",
+        "https://edadeal.ru": "Yandex owned website"
+      },
+      "ccTLDs": {
+        "https://ya.ru": ["https://ya.cc"],
+        "https://yandex.ru": ["https://yandex.az", "https://yandex.by", "https://yandex.kz", "https://yandex.md", "https://yandex.tj", "https://yandex.tm", "https://yandex.uz", "https://yandex.st", "https://yandex.com", "https://yandex.com.am", "https://yandex.com.ru"]
+      }
+
     }
 }
   ]
