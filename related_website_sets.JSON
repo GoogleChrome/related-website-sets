@@ -559,6 +559,18 @@
         "https://standardsandpraiserepurpose.com": "Publisher #1 for RWS Test",
         "https://technology-revealed.com": "Frequency Capping Domain #1 for RWS Test"
       }
+    }, 
+    {
+    	"contact": "nien@startupislandtaiwan.com", 
+    	"primary": "https://startupislandtaiwan.com", 
+    	"associatedSites": [
+    		"https://startupislandtaiwan.net", 
+    		"https://startupislandtaiwan.org"
+    	], 
+    	"rationaleBySite": {
+    		"https://startupislandtaiwan.net": "Domain alias", 
+    		"https://startupislandtaiwan.org": "Domain alias"
+    	}
     }
   ]
 }
