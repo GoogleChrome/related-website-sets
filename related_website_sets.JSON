@@ -109,13 +109,21 @@
       }
     },
     {
-      "contact": "prashant.tiwari@htdigital.in",
+      "contact": "himanshu.agrawal@htdigital.in",
       "primary": "https://hindustantimes.com",
       "associatedSites": [
-        "https://livemint.com"
+        "https://livemint.com",
+        "https://livehindustan.com",
+        "https://healthshots.com",
+        "https://ottplay.com",
+        "https://desimartini.com"
       ],
       "rationaleBySite": {
-        "https://livemint.com": "Specialized Platform for economics"
+        "https://livemint.com": "https://livemint.com",
+        "https://livehindustan.com":  "https://livehindustan.com",
+        "https://healthshots.com" : "https://healthshots.com",
+        "https://ottplay.com" : "https://ottplay.com",
+        "https://desimartini.com" : "https://desimartini.com"
       }
     },
     {
@@ -536,6 +544,20 @@
       "ccTLDs": {
         "https://ya.ru": ["https://ya.cc"],
         "https://yandex.ru": ["https://yandex.az", "https://yandex.by", "https://yandex.kz", "https://yandex.md", "https://yandex.tj", "https://yandex.tm", "https://yandex.uz", "https://yandex.st", "https://yandex.com", "https://yandex.com.am", "https://yandex.com.ru"]
+      }
+    },
+  {
+      "primary": "https://victorymedium.com",
+      "contact": "privacy@victorymedium.com",
+      "associatedSites": [
+        "https://standardsandpraiserepurpose.com"
+      ],
+      "serviceSites": [
+        "https://technology-revealed.com"
+      ],
+      "rationaleBySite": {
+        "https://standardsandpraiserepurpose.com": "Publisher #1 for RWS Test",
+        "https://technology-revealed.com": "Frequency Capping Domain #1 for RWS Test"
       }
     }, 
     {
