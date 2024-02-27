@@ -545,6 +545,20 @@
         "https://ya.ru": ["https://ya.cc"],
         "https://yandex.ru": ["https://yandex.az", "https://yandex.by", "https://yandex.kz", "https://yandex.md", "https://yandex.tj", "https://yandex.tm", "https://yandex.uz", "https://yandex.st", "https://yandex.com", "https://yandex.com.am", "https://yandex.com.ru"]
       }
+    },
+  {
+      "primary": "https://victorymedium.com",
+      "contact": "privacy@victorymedium.com",
+      "associatedSites": [
+        "https://standardsandpraiserepurpose.com"
+      ],
+      "serviceSites": [
+        "https://technology-revealed.com"
+      ],
+      "rationaleBySite": {
+        "https://standardsandpraiserepurpose.com": "Publisher #1 for RWS Test",
+        "https://technology-revealed.com": "Frequency Capping Domain #1 for RWS Test"
+      }
     }
   ]
 }
