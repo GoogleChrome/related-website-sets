@@ -571,6 +571,20 @@
     		"https://startupislandtaiwan.net": "Domain alias", 
     		"https://startupislandtaiwan.org": "Domain alias"
     	}
+    },
+    {
+      "contact": "k.vermote@eurofleet-consult.com",
+      "primary": "https://carcostadvisor.com",
+      "associatedSites": [],
+      "serviceSites": [],
+      "rationaleBySite": {},
+      "ccTLDs": {
+        "https://carcostadvisor.com": [
+          "https://macadam.test.carcostadvisor.be",
+          "https://carcostadvisor.be",
+          "https://carcostadvisor.fr"
+        ]
+      }
     }
   ]
 }
