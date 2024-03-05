@@ -574,24 +574,15 @@
     },
     {
       "contact": "k.vermote@eurofleet-consult.com",
-      "primary": "https://login.test.carcostadvisor.com",
-      "associatedSites": [
-        "https://macadam.test.carcostadvisor.be",
-        "https://bmw.test.carcostadvisor.be",
-        "https://vcl.test.carcostadvisor.be",
-        "https://vcl.test.carcostadvisor.fr"
-      ],
+      "primary": "https://carcostadvisor.com",
+      "associatedSites": [],
       "serviceSites": [],
-      "rationaleBySite": {
-        "https://macadam.test.carcostadvisor.be": "Domain for authenticated Macadam tenant",
-        "https://bmw.test.carcostadvisor.be": "Domain for authenticated BMW tenant",
-        "https://vcl.test.carcostadvisor.be": "Domain for authenticated Vancia Car Lease Belgium tenant",
-        "https://vcl.test.carcostadvisor.fr": "Domain for authenticated Vancia Car Lease France tenant"
-      },
+      "rationaleBySite": {},
       "ccTLDs": {
-        "https://test.carcostadvisor.com": [
-          "https://test.carcostadvisor.be",
-          "https://test.carcostadvisor.fr"
+        "https://carcostadvisor.com": [
+		  "https://macadam.test.carcostadvisor.be",
+          "https://carcostadvisor.be",
+          "https://carcostadvisor.fr"
         ]
       }
     }
