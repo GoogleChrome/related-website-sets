@@ -584,6 +584,24 @@
           "https://carcostadvisor.fr"
         ]
       }
+    },
+    {
+      "contact": "addigital@caracoltv.com.co",
+      "primary": "https://caracoltv.com",
+      "associatedSites": [
+        "https://noticiascaracol.com",
+        "https://bluradio.com",
+        "https://shock.co",
+        "https://bumbox.com",
+        "https://hjck.com"
+      ],
+      "rationaleBySite": {
+        "https://noticiascaracol.com": "Informative news show that covers the most important events in Colombia and around the world, owned by Valorem business group.",
+        "https://bluradio.com": "Blu Radio is a Colombian radio network, owned by Valorem business group.",
+        "https://shock.co": "It is a media outlet that publishes specialized content daily about music, movies, and television series. Owned by Valorem business group.",
+        "https://bumbox.com": "Podcast platform from the media group of Caracol Televisión, El Espectador, and Blu Radio. Owned by Valorem business group.",
+        "https://hjck.com": "It's a private Colombian radio station with a cultural programming. It belongs to the Valorem business group."
+      }
     }
   ]
 }
