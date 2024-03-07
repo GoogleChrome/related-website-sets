@@ -563,7 +563,7 @@
     {
       "contact": "always@zhangsifan.com",
       "primary": "https://zhangsifan.com",
-      "associatedSites": ["https://oa.haoxianggroup.cn"],
+      "associatedSites": ["https://haoxianggroup.cn"],
       "rationaleBySite": {
         "https://haoxianggroup.cn": "Domain alias"
       }
