@@ -589,6 +589,16 @@
         "https://bumbox.com": "Podcast platform from the media group of Caracol Televisión, El Espectador, and Blu Radio. Owned by Valorem business group.",
         "https://hjck.com": "It's a private Colombian radio station with a cultural programming. It belongs to the Valorem business group."
       }
+    },
+    {
+      "contact": "maxvendorsupport@acvauctions.com",
+      "primary": "https://max.auto",
+      "associatedSites": [
+        "https://firstlook.biz"
+      ],
+      "rationaleBySite": {
+        "https://firstlook.biz": "Presents core reports and SSO auth flow"
+      }
     }
   ]
 }
