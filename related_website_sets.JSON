@@ -547,6 +547,70 @@
       }
     },
     {
+      "primary": "https://victorymedium.com",
+      "contact": "privacy@victorymedium.com",
+      "associatedSites": [
+        "https://standardsandpraiserepurpose.com"
+      ],
+      "serviceSites": [
+        "https://technology-revealed.com"
+      ],
+      "rationaleBySite": {
+        "https://standardsandpraiserepurpose.com": "Publisher #1 for RWS Test",
+        "https://technology-revealed.com": "Frequency Capping Domain #1 for RWS Test"
+      }
+    }, 
+    {
+    	"contact": "nien@startupislandtaiwan.com", 
+    	"primary": "https://startupislandtaiwan.com", 
+    	"associatedSites": [
+    		"https://startupislandtaiwan.net", 
+    		"https://startupislandtaiwan.org"
+    	], 
+    	"rationaleBySite": {
+    		"https://startupislandtaiwan.net": "Domain alias", 
+    		"https://startupislandtaiwan.org": "Domain alias"
+    	}
+    },
+    {
+      "contact": "addigital@caracoltv.com.co",
+      "primary": "https://caracoltv.com",
+      "associatedSites": [
+        "https://noticiascaracol.com",
+        "https://bluradio.com",
+        "https://shock.co",
+        "https://bumbox.com",
+        "https://hjck.com"
+      ],
+      "rationaleBySite": {
+        "https://noticiascaracol.com": "Informative news show that covers the most important events in Colombia and around the world, owned by Valorem business group.",
+        "https://bluradio.com": "Blu Radio is a Colombian radio network, owned by Valorem business group.",
+        "https://shock.co": "It is a media outlet that publishes specialized content daily about music, movies, and television series. Owned by Valorem business group.",
+        "https://bumbox.com": "Podcast platform from the media group of Caracol Televisión, El Espectador, and Blu Radio. Owned by Valorem business group.",
+        "https://hjck.com": "It's a private Colombian radio station with a cultural programming. It belongs to the Valorem business group."
+      }
+    },
+    {
+      "contact": "maxvendorsupport@acvauctions.com",
+      "primary": "https://max.auto",
+      "associatedSites": [
+        "https://firstlook.biz"
+      ],
+      "rationaleBySite": {
+        "https://firstlook.biz": "Presents core reports and SSO auth flow"
+      }
+    },
+    {
+      "contact": "info@gridgames.app",
+      "primary": "https://gridgames.app",
+      "associatedSites": [
+         "https://wordle.at"
+      ],
+      "rationaleBySite": {
+         "https://wordle.at": "We are migrating our domain and will soon redirect all traffic from here to the primary, both of which we own. The two sites are almost identical. For convenience we want to transfer session cookies so users stay logged in."
+      }
+    },
+    {
       "contact": "ewelina.salamonik@wbd.com",
       "primary": "https://tvn.pl",
       "associatedSites": [
