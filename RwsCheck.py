@@ -465,19 +465,15 @@ class RwsCheck:
         """Checks service sites to see if they have a robots.txt subdomain.
 
 
-        Iterates through all service_sites in each RwsSet provided, and makes
-        a get request to site/robots.txt for each. This request should return
-        an error 4xx, 5xx, or a timeout error. If it does not, and the page 
-        does exist, then it is expected that the site contains a X-Robots-Tag
-        in its header. If none of these conditions is met, an error is appended
-        to the error list.
+        Iterates through all service_sites in each RwsSet provided, and checks 
+        that the returned page contains an X-Robots-Tag in its header. If not, 
+        an error is appended to the error list.
 
         Args:
             check_sets: Dict[string, RwsSet]
         Returns:
             None
         """
-        exception_retries = "Max retries exceeded with url: /robots.txt"
         exception_timeout = "Read timed out. (read timeout=10)"
         for curr_set in check_sets.values():
             for service_site in curr_set.service_sites:
@@ -496,10 +492,9 @@ class RwsCheck:
                                         "'noindex' or 'none' tag in its header"
                                         )
                 except Exception as inst:
-                    if exception_retries not in str(inst):
-                        if exception_timeout not in str(inst):
-                            self.error_list.append(
-                                f"Unexpected error for service site: {service_site}; Received error: {inst}")
+                    if exception_timeout not in str(inst):
+                        self.error_list.append(
+                            f"Unexpected error for service site: {service_site}; Received error: {inst}")
 
     def find_ads_txt(self, check_sets):
         """Checks to see if service sites have an ads.txt subdomain. 
