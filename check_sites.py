@@ -134,7 +134,7 @@ def main():
         rws_checker.find_invalid_eTLD_Plus1,
         rws_checker.find_invalid_well_known, 
         rws_checker.find_invalid_alias_eSLDs, 
-        rws_checker.find_robots_txt, 
+        rws_checker.find_robots_tag, 
         rws_checker.find_ads_txt, 
         rws_checker.check_for_service_redirect
         ]

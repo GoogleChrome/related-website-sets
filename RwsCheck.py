@@ -461,7 +461,7 @@ class RwsCheck:
                         self.error_list.append(
                             f"The provided country code: {tld}, in: {site} is not a ICANN registered country code")
 
-    def find_robots_txt(self, check_sets):
+    def find_robots_tag(self, check_sets):
         """Checks service sites to see if they have a robots.txt subdomain.
 
 
