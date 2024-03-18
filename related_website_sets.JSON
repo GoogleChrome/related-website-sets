@@ -609,6 +609,16 @@
       "rationaleBySite": {
          "https://wordle.at": "We are migrating our domain and will soon redirect all traffic from here to the primary, both of which we own. The two sites are almost identical. For convenience we want to transfer session cookies so users stay logged in."
       }
+    },
+    {
+      "contact": "TBD",
+      "primary": "https://alta.avigilon.com",
+      "associatedSites": [
+        "https://avasecurity.com"
+      ],
+      "rationaleBySite": {
+        "https://avasecurity.com": "TBD: Ava Security has been rebranded as Avigilon Alta. Shared cookie access is required during the migration period."
+      }
     }
   ]
 }
