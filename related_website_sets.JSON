@@ -600,6 +600,22 @@
         "https://firstlook.biz": "Presents core reports and SSO auth flow"
       }
     },
+{
+      "primary": "https://elle.de",
+      "contact": "nadeem.qureshi@bcn.group",
+      "associatedSites": [
+        "https://harpersbazaar.de/",
+        "https://esquire.de"
+      ],
+      "serviceSites": [
+        "http://cdn.atf-tagmanager.de"
+      ],
+      "rationaleBySite": {
+        "https://harpersbazaar.de/": "Special Interest Website Harpers Bazaar",
+        "https://esquire.de": "Special Interest Website Esquire",
+        "http://cdn.atf-tagmanager.de": "CDN for formats and sizes"
+      }
+    },
     {
       "contact": "info@gridgames.app",
       "primary": "https://gridgames.app",
