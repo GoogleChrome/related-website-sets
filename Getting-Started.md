@@ -105,6 +105,23 @@ Answer: 
 
 You can visit [Google's page about the Contributor License Agreement](https://cla.developers.google.com/about/google-individual) to sign the CLA, or check if you already have a CLA on file.
 
+Here is a brief step-by-step overview of how to fill it out:
+1) Go to https://cla.developers.google.com/clas
+
+
+2) Click on "Only Yourself"
+
+<img src="images/CLA-step-2.png" alt="Only yourself" width="300"/>
+
+3) Enter your name and GitHub Username. Click on "I agree". 
+
+<img src="images/CLA-step-3.jpeg" alt="I agree" width="300"/>
+
+4) Sign in to GitHub with the same username you used to sign the Google CLA.
+
+
+5) Make sure all contributors to your submission follow these steps!
+
 ### Q. What is the /.well-known/ file?
 
 Answer: 
