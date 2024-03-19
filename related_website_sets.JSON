@@ -614,13 +614,11 @@
       "contact": "nadeerax@gmail.com",
       "primary": "https://nodejsapi1.vercel.app",
       "associatedSites": [
-         "https://nadeeraweerasinghe.github.io",
-         "https://local.poc.io"
+         "https://dev.diagnostic.pearsonplaces.com.au"
       ],
       "rationaleBySite": {
-         "https://nadeeraweerasinghe.github.io": "Testing how to calll https://nodejsapi1.vercel.app to create an authentication cookie from https://nadeeraweerasinghe.github.io",
-         "https://local.poc.io": "Testing how to calll https://nodejsapi1.vercel.app to create an authentication cookie from https://local.poc.io"
+         "https://dev.diagnostic.pearsonplaces.com.au": "Testing how to calll https://nodejsapi1.vercel.app to create an authentication cookie from https://dev.diagnostic.pearsonplaces.com.au"
       }
-    }
+   }
   ]
 }
