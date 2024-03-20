@@ -573,6 +573,19 @@
     	}
     },
     {
+      "contact": "k.vermote@eurofleet-consult.com",
+      "primary": "https://carcostadvisor.com",
+      "associatedSites": [],
+      "serviceSites": [],
+      "rationaleBySite": {},
+      "ccTLDs": {
+        "https://carcostadvisor.com": [
+          "https://carcostadvisor.be",
+          "https://carcostadvisor.fr"
+        ]
+      }
+    }, 
+    {
       "contact": "addigital@caracoltv.com.co",
       "primary": "https://caracoltv.com",
       "associatedSites": [
