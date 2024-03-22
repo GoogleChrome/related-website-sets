@@ -546,7 +546,7 @@
         "https://yandex.ru": ["https://yandex.az", "https://yandex.by", "https://yandex.kz", "https://yandex.md", "https://yandex.tj", "https://yandex.tm", "https://yandex.uz", "https://yandex.st", "https://yandex.com", "https://yandex.com.am", "https://yandex.com.ru"]
       }
     },
-  {
+    {
       "primary": "https://victorymedium.com",
       "contact": "privacy@victorymedium.com",
       "associatedSites": [
@@ -621,6 +621,18 @@
       ],
       "rationaleBySite": {
          "https://wordle.at": "We are migrating our domain and will soon redirect all traffic from here to the primary, both of which we own. The two sites are almost identical. For convenience we want to transfer session cookies so users stay logged in."
+      }
+    },
+    {
+      "contact": "ewelina.salamonik@wbd.com",
+      "primary": "https://tvn.pl",
+      "associatedSites": [
+            "https://tvn24.pl", 
+            "https://zdrowietvn.pl"
+      ],
+      "rationaleBySite": {
+          "https://zdrowietvn.pl":  "Educational service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website",
+          "https://tvn24.pl": "News service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website"
       }
     }
   ]
