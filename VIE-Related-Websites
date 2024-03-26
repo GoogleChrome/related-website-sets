@@ -1,0 +1,21 @@
+{
+  "sets": [
+    {
+      "contact": "adam@arsdigitalmarketing.com",
+      "primary": "https://viemagazine.com",
+
+      "associatedSites": ["https://www.google-analytics.com", "https://theideaboutique.maghub.com", "https://theideaboutique.adorbit.com", "https://www.google.com/recaptcha"],
+
+      "serviceSites": ["https://theideaboutique.com"],
+
+      "rationaleBySite": {
+        "https://www.google-analytics.com": "Google analytics is needed for obvious reasons, tracking website traffic, interactions, etc.",
+        "https://theideaboutique.maghub.com": "The Idea Boutique is the parent company of viemagazine.com. They have forms created using Maghub/AdOrbit that are being used on VIEMagazine.com. For example the magazine subscription form on https://viemagazine.com/subscribe-vie/",
+	    "https://theideaboutique.adorbit.com": "The Idea Boutique is the parent company of viemagazine.com. They have forms created using Maghub/AdOrbit that are being used on VIEMagazine.com. For example the magazine subscription form on https://viemagazine.com/subscribe-vie/",
+		"https://www.google.com/recaptcha": "reCaptcha is used to protect the website forms and login from malicious login/submission attempts.",
+        "https://theideaboutique.com": "TheIdeaBoutique is the parent company of VIEMagazine. The two will be seen/used together often."
+      },
+
+    }
+  ]
+}
