@@ -1004,7 +1004,7 @@ class MockTestsClass(unittest.TestCase):
                      etlds=None,
                      icanns=set())
         loaded_sets = rws_check.load_sets()
-        rws_check.find_robots_txt(loaded_sets)
+        rws_check.find_robots_tag(loaded_sets)
         self.assertEqual(rws_check.error_list, ["The service site " +
         "https://service1.com " +
         "does not have an X-Robots-Tag in its header"])
@@ -1025,7 +1025,7 @@ class MockTestsClass(unittest.TestCase):
                      etlds=None,
                      icanns=set())
         loaded_sets = rws_check.load_sets()
-        rws_check.find_robots_txt(loaded_sets)
+        rws_check.find_robots_tag(loaded_sets)
         self.assertEqual(rws_check.error_list, ["The service site " +
         "https://service2.com " +
         "does not have a 'noindex' or 'none' tag in its header"])
@@ -1046,7 +1046,7 @@ class MockTestsClass(unittest.TestCase):
                      etlds=None,
                      icanns=set())
         loaded_sets = rws_check.load_sets()
-        rws_check.find_robots_txt(loaded_sets)
+        rws_check.find_robots_tag(loaded_sets)
         self.assertEqual(rws_check.error_list, [])
 
     @mock.patch('requests.get', side_effect=mock_get)
@@ -1065,7 +1065,7 @@ class MockTestsClass(unittest.TestCase):
                      etlds=None,
                      icanns=set())
         loaded_sets = rws_check.load_sets()
-        rws_check.find_robots_txt(loaded_sets)
+        rws_check.find_robots_tag(loaded_sets)
         self.assertEqual(rws_check.error_list, [])
 
     @mock.patch('requests.get', side_effect=mock_get)
@@ -1083,7 +1083,7 @@ class MockTestsClass(unittest.TestCase):
                      etlds=None,
                      icanns=set())
         loaded_sets = rws_check.load_sets()
-        rws_check.find_robots_txt(loaded_sets)
+        rws_check.find_robots_tag(loaded_sets)
         self.assertEqual(rws_check.error_list, [])
 
     # We run a similar set of mock tests for ads.txt
