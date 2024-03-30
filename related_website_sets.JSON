@@ -643,7 +643,8 @@
   },
   {
     "contact": "kanishk.gupta@cleartrip.com",
-    "primary": "https://ctdrive.cleartripcorp.com"
+    "primary": "https://ctdrive.cleartripcorp.com",
+    "rationaleBySite": {}
   }
   ]
 }
