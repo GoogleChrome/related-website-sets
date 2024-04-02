@@ -642,14 +642,14 @@
       }
     },
     {
-       "contact": "ewelina.salamonik@wbd.com",
+      "contact": "ewelina.salamonik@wbd.com",
       "primary": "https://tvn.pl",
       "associatedSites": [
             "https://tvn24.pl", 
             "https://zdrowietvn.pl"
       ],
       "rationaleBySite": {
-          "https://zdrowietvn.pl":  "Educational service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website",
+          "https://zdrowietvn.pl": "Educational service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website",
           "https://tvn24.pl": "News service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website"
       }
     }
