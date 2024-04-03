@@ -491,8 +491,8 @@ class RwsCheck:
                                         "'noindex' or 'none' tag in its header"
                                         )
                 except Exception as inst:
-                        self.error_list.append(
-                            f"Unexpected error for service site: {service_site}; Received error: {inst}")
+                    self.error_list.append(
+                        f"Unexpected error for service site: {service_site}; Received error: {inst}")
 
     def find_ads_txt(self, check_sets):
         """Checks to see if service sites have an ads.txt subdomain. 
