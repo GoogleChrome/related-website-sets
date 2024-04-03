@@ -474,7 +474,6 @@ class RwsCheck:
         Returns:
             None
         """
-        exception_timeout = "Read timed out. (read timeout=10)"
         for curr_set in check_sets.values():
             for service_site in curr_set.service_sites:
                 try:
@@ -492,7 +491,6 @@ class RwsCheck:
                                         "'noindex' or 'none' tag in its header"
                                         )
                 except Exception as inst:
-                    if exception_timeout not in str(inst):
                         self.error_list.append(
                             f"Unexpected error for service site: {service_site}; Received error: {inst}")
 
