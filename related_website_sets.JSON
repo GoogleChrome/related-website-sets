@@ -546,7 +546,7 @@
         "https://yandex.ru": ["https://yandex.az", "https://yandex.by", "https://yandex.kz", "https://yandex.md", "https://yandex.tj", "https://yandex.tm", "https://yandex.uz", "https://yandex.st", "https://yandex.com", "https://yandex.com.am", "https://yandex.com.ru"]
       }
     },
-  {
+    {
       "primary": "https://victorymedium.com",
       "contact": "privacy@victorymedium.com",
       "associatedSites": [
@@ -639,7 +639,19 @@
         "https://efront.com": "eFront is BlackRock's alternative solutions platform. The BlackRock branding is clearly visible on the site.",
         "https://etfacademy.it": "An Italian language education site about ETFs. The iShares by BlackRock branding is clearly visible on the site.",
         "https://ishares.com": "iShares is BlackRock's ETF brand. The branding is clearly visible on the site." 
+      }
+    },
+    {
+      "contact": "ewelina.salamonik@wbd.com",
+      "primary": "https://tvn.pl",
+      "associatedSites": [
+            "https://tvn24.pl", 
+            "https://zdrowietvn.pl"
+      ],
+      "rationaleBySite": {
+          "https://zdrowietvn.pl": "Educational service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website",
+          "https://tvn24.pl": "News service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website"
+      }
     }
-  }
   ]
 }
