@@ -652,6 +652,28 @@
           "https://zdrowietvn.pl": "Educational service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website",
           "https://tvn24.pl": "News service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website"
       }
+    },
+    {
+      "primary": "https://chunmyung.com",
+      "contact": "dev@chunmyung.com",
+      "associatedSites": [
+        "https://junmojum.com",
+        "https://chunman.li"
+      ],
+      "serviceSites": [
+        "https://api.chunmyung.com",
+        "https://api.platform.chunmyung.com",
+        "https://api.junmojum.com",
+        "https://api.chunman.li"
+      ],
+      "rationaleBySite": {
+        "https://junmojum.com": "Junmojum is a subsidiary of Chunmyung and shares common branding and functionality.",
+        "https://chunman.li": "Chunman.li is a project under the Chunmyung umbrella and presents clear affiliation on its About page.",
+        "https://api.chunmyung.com": "This domain supports Chunmyung by handling all API requests related to core services.",
+        "https://api.platform.chunmyung.com": "This domain manages API requests for extended platform services, ensuring smooth and secure functionality.",
+        "https://api.junmojum.com": "This domain provides dedicated API services for Junmojum, maintaining site functionality and security.",
+        "https://api.chunman.li": "API services for Chunman.li, ensuring secure and efficient data handling."
+      }
     }
   ]
 }
