@@ -652,6 +652,20 @@
           "https://zdrowietvn.pl": "Educational service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website",
           "https://tvn24.pl": "News service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website"
       }
+    },
+    {
+      "primary": "https://zalo.me",
+      "contact": "zalo.platform.operation@vng.com.vn",
+      "associatedSites": [
+        "https://zingmp3.vn",
+        "https://baomoi.com",
+        "https://smoney.vn"
+      ],
+      "rationaleBySite": {
+        "https://zingmp3.vn": "Music Website owned by Zalo Group, VNG",
+        "https://baomoi.com": "News Website owned by Zalo Group, VNG",
+        "https://smoney.vn": "News Website owned by Zalo Group, VNG"
+      }
     }
   ]
 }
