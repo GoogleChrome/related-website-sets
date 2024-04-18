@@ -666,6 +666,22 @@
         "https://baomoi.com": "News Website owned by Zalo Group, VNG",
         "https://smoney.vn": "News Website owned by Zalo Group, VNG"
       }
+    },
+    {
+      "primary": "https://finn.no",
+      "contact": "rws-admin@schibsted.com",
+      "associatedSites": [
+        "https://prisjakt.no",
+        "https://mittanbud.no"
+      ],
+      "serviceSites": [
+        "https://pdmp-apis.no"
+      ],
+      "rationaleBySite": {
+        "https://prisjakt.no": "Site owned by Schibsted with shared SSO across Schibsted Norway's sites and common branding that clearly shows the relation between the sites.",
+        "https://mittanbud.no": "Site owned by Schibsted with shared SSO across Schibsted Norway's sites and common branding that clearly shows the relation between the sites.",
+        "https://pdmp-apis.no": "Site owned by Schibsted that provides APIs for users across Schibsted's sites."
+      }
     }
   ]
 }
