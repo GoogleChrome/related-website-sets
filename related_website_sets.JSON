@@ -682,6 +682,22 @@
         "https://mittanbud.no": "Site owned by Schibsted with shared SSO across Schibsted Norway's sites and common branding that clearly shows the relation between the sites.",
         "https://pdmp-apis.no": "Site owned by Schibsted that provides APIs for users across Schibsted's sites."
       }
-    }
+    },
+  {
+   "contact": "asagrera@grupolpg.sv",
+   "primary": "https://laprensagrafica.com",
+   "associatedSites": [
+      "https://elgrafico.com",
+      "https://eleconomista.net",
+      "https://ella.sv",
+      "https://grupolpg.sv"
+   ],
+   "rationaleBySite": {
+      "https://elgrafico.com": "News portal owned by La Prensa Grafica Group",
+      "https://eleconomista.net": "News portal owned by La Prensa Grafica Group",
+      "https://ella.sv": "News portal owned by La Prensa Grafica Group",
+      "https://grupolpg.sv": "Domain owned by La Prensa Grafica Group"
+   }
+  }
   ]
 }
