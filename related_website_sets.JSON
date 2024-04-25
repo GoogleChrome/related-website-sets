@@ -727,6 +727,16 @@
        "https://radio2.be": "sub brand site",
        "https://radio1.be": "sub brand site"
     }
- }
+ },
+ {
+    "contact": "support@tolteck.com",
+    "primary": "https://tolteck.com",
+    "associatedSites": [
+      "https://tolteck.app"
+    ],
+    "rationaleBySite": {
+      "https://tolteck.app": "Tolteck application"
+    }
+  }
   ]
 }
