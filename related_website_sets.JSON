@@ -652,6 +652,25 @@
           "https://zdrowietvn.pl": "Educational service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website",
           "https://tvn24.pl": "News service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website"
       }
+    },
+    {
+      "contact": "operations@expandigroup.com",
+      "primary": "https://dev.expandicloud.com/jabmo-new",
+      "associatedSites": [
+      "https://dev.expandicloud.com/cyance",
+      "https://www.accountinsight.ai",
+      "https://dev.expandicloud.com/media"
+      ],
+      "serviceSites": [
+      "https://dev.expandicloud.com/cyance",
+      "https://www.accountinsight.ai",
+      "https://dev.expandicloud.com/media"
+      ],
+      "rationaleBySite": {
+      "https://dev.expandicloud.com/cyance": "It is embedded in the primary website",
+      "https://www.accountinsight.ai": "It is embedded in the primary website",
+      "https://dev.expandicloud.com/media": "It is embedded in the primary website"
+      }
     }
   ]
 }
