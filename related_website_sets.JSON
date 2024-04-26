@@ -654,6 +654,52 @@
       }
     },
     {
+      "primary": "https://zalo.me",
+      "contact": "zalo.platform.operation@vng.com.vn",
+      "associatedSites": [
+        "https://zingmp3.vn",
+        "https://baomoi.com",
+        "https://smoney.vn"
+      ],
+      "rationaleBySite": {
+        "https://zingmp3.vn": "Music Website owned by Zalo Group, VNG",
+        "https://baomoi.com": "News Website owned by Zalo Group, VNG",
+        "https://smoney.vn": "News Website owned by Zalo Group, VNG"
+      }
+    },
+    {
+      "primary": "https://finn.no",
+      "contact": "rws-admin@schibsted.com",
+      "associatedSites": [
+        "https://prisjakt.no",
+        "https://mittanbud.no"
+      ],
+      "serviceSites": [
+        "https://pdmp-apis.no"
+      ],
+      "rationaleBySite": {
+        "https://prisjakt.no": "Site owned by Schibsted with shared SSO across Schibsted Norway's sites and common branding that clearly shows the relation between the sites.",
+        "https://mittanbud.no": "Site owned by Schibsted with shared SSO across Schibsted Norway's sites and common branding that clearly shows the relation between the sites.",
+        "https://pdmp-apis.no": "Site owned by Schibsted that provides APIs for users across Schibsted's sites."
+      }
+    },
+  {
+   "contact": "asagrera@grupolpg.sv",
+   "primary": "https://laprensagrafica.com",
+   "associatedSites": [
+      "https://elgrafico.com",
+      "https://eleconomista.net",
+      "https://ella.sv",
+      "https://grupolpg.sv"
+   ],
+   "rationaleBySite": {
+      "https://elgrafico.com": "News portal owned by La Prensa Grafica Group",
+      "https://eleconomista.net": "News portal owned by La Prensa Grafica Group",
+      "https://ella.sv": "News portal owned by La Prensa Grafica Group",
+      "https://grupolpg.sv": "Domain owned by La Prensa Grafica Group"
+   }
+    },
+    {
       "contact": "operations@expandigroup.com",
       "primary": "https://dev.expandicloud.com/jabmo-new",
       "associatedSites": [
@@ -671,6 +717,6 @@
       "https://www.accountinsight.ai": "It is embedded in the primary website",
       "https://dev.expandicloud.com/media": "It is embedded in the primary website"
       }
-    }
+  }
   ]
 }
