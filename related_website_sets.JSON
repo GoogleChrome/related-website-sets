@@ -488,25 +488,22 @@
           "https://rws3nvtvt.com": "Test 2"
       }
     },
-    {
-      "contact": "operations@expandigroup.com",
-      "primary": "https://dev.expandicloud.com/jabmo-new",
-      "associatedSites": [
-         "https://intent.cyance.com",
-         "https://audience.cyance.com",
-         "https://accountinsight.ai"
-      ],
-      "serviceSites": [
-         "https://intent.cyance.com",
-         "https://audience.cyance.com",
-         "https://accountinsight.ai"
-      ],
-      "rationaleBySite": {
-         "https://intent.cyance.com": "it is embedded as part of features",
-         "https://audience.cyance.com": "it is embedded as part of features",
-         "https://accountinsight.ai": "it is embedded as part of features"
-      }
-   }
+   {
+    "contact": "operations@expandigroup.com",
+    "primary": "https://dev.expandicloud.com/jabmo-new",
+    "associatedSites": [
+       "https://dev.expandicloud.com/cyance",
+       "https://dev.expandicloud.com/media"
+    ],
+    "serviceSites": [
+       "https://dev.expandicloud.com/cyance",
+       "https://dev.expandicloud.com/media"
+    ],
+    "rationaleBySite": {
+       "https://dev.expandicloud.com/cyance": "It is embedded in the primary website",
+       "https://dev.expandicloud.com/media": "It is embedded in the primary website"
+    }
+ }
    
   ]
 }
