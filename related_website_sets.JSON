@@ -4,40 +4,40 @@
       "contact": "il.mrbit@gmail.com",
       "primary": "https://poalim.xyz",
       "associatedSites": [
-         "https://poalim.site"
+        "https://poalim.site"
       ],
       "rationaleBySite": {
-         "https://poalim.site": "one of 3rd party cookie solutions option"
+        "https://poalim.site": "one of 3rd party cookie solutions option"
       }
-   },
+    },
     {
       "contact": "alicia.bonilla@nacion.com",
       "primary": "https://nacion.com",
       "associatedSites": [
-         "https://lateja.cr",
-         "https://elfinancierocr.com"
+        "https://lateja.cr",
+        "https://elfinancierocr.com"
       ],
       "rationaleBySite": {
-         "https://lateja.cr": "Newspaper owned by Grupo Nación",
-         "https://elfinancierocr.com": "Newspaper owned by Grupo Nación"
+        "https://lateja.cr": "Newspaper owned by Grupo Nación",
+        "https://elfinancierocr.com": "Newspaper owned by Grupo Nación"
       }
-   },
-   {
+    },
+    {
       "contact": "wojciech.bialy@grupawp.pl",
       "primary": "https://wp.pl",
       "associatedSites": [
-          "https://o2.pl",
-          "https://pudelek.pl",
-          "https://money.pl",
-          "https://abczdrowie.pl",
-          "https://wpext.pl"
+        "https://o2.pl",
+        "https://pudelek.pl",
+        "https://money.pl",
+        "https://abczdrowie.pl",
+        "https://wpext.pl"
       ],
       "rationaleBySite": {
-          "https://o2.pl": "News portal and email service",
-          "https://pudelek.pl": "Special Interest Website - celebrity news and gossip",
-          "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
-          "https://abczdrowie.pl": "Special Interest Website - healthy living and medical health",
-          "https://wpext.pl": "Content delivery domain for sensitive content websites"
+        "https://o2.pl": "News portal and email service",
+        "https://pudelek.pl": "Special Interest Website - celebrity news and gossip",
+        "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
+        "https://abczdrowie.pl": "Special Interest Website - healthy living and medical health",
+        "https://wpext.pl": "Content delivery domain for sensitive content websites"
       }
     },
     {
@@ -228,8 +228,8 @@
           "https://joyreactor.com"
         ]
       }
-     },
-     {
+    },
+    {
       "contact": "cmidata@cmi.mx",
       "primary": "https://unotv.com",
       "associatedSites": [
@@ -247,20 +247,20 @@
       "contact": "dnsadmin@idbs.com",
       "primary": "https://idbs-cloud.com",
       "associatedSites": [
-          "https://idbs-dev.com",
-          "https://idbs-staging.com",
-          "https://idbs-eworkbook.com",
-          "https://eworkbookcloud.com",
-          "https://eworkbookrequest.com"
+        "https://idbs-dev.com",
+        "https://idbs-staging.com",
+        "https://idbs-eworkbook.com",
+        "https://eworkbookcloud.com",
+        "https://eworkbookrequest.com"
       ],
       "rationaleBySite": {
-          "https://idbs-dev.com": "Dev version of main application IDBS-cloud",
-          "https://idbs-staging.com": "Staging version of main application IDBS-cloud",
-          "https://idbs-eworkbook.com": "E-workbook services part of IDBS-cloud product",
-          "https://eworkbookcloud.com": "E-workbook services part of IDBS-cloud product",
-          "https://eworkbookrequest.com": "E-workbook request part of IDBS-cloud product"
+        "https://idbs-dev.com": "Dev version of main application IDBS-cloud",
+        "https://idbs-staging.com": "Staging version of main application IDBS-cloud",
+        "https://idbs-eworkbook.com": "E-workbook services part of IDBS-cloud product",
+        "https://eworkbookcloud.com": "E-workbook services part of IDBS-cloud product",
+        "https://eworkbookrequest.com": "E-workbook request part of IDBS-cloud product"
       }
-     },
+    },
     {
       "contact": "mighty-devops@mightytext.net",
       "primary": "https://mightytext.net",
@@ -274,24 +274,24 @@
       }
     },
     {
-       "contact": "support@vwo.com",
-       "primary": "https://vwo.com",
-       "associatedSites": [
-          "https://wingify.com"
-       ],
-       "rationaleBySite": {
-          "https://wingify.com": "Alias"
-       }
+      "contact": "support@vwo.com",
+      "primary": "https://vwo.com",
+      "associatedSites": [
+        "https://wingify.com"
+      ],
+      "rationaleBySite": {
+        "https://wingify.com": "Alias"
+      }
     },
     {
-       "contact": "support@wildix.com",
-       "primary": "https://wildix.com",
-       "associatedSites": [
-          "https://wildixin.com"
-       ],
-       "rationaleBySite": {
-          "https://wildixin.com": "Wildix PBX's domain"
-       }
+      "contact": "support@wildix.com",
+      "primary": "https://wildix.com",
+      "associatedSites": [
+        "https://wildixin.com"
+      ],
+      "rationaleBySite": {
+        "https://wildixin.com": "Wildix PBX's domain"
+      }
     },
     {
       "contact": "amit.chouhan@timesinternet.in",
@@ -388,40 +388,40 @@
       }
     },
     {
-    	"contact": "domain@nien.com", 
-    	"primary": "https://nien.com", 
-    	"associatedSites": [
-    		"https://chennien.com", 
-    		"https://nien.org", 
-    		"https://nien.co"
-    	], 
-    	"rationaleBySite": {
-    		"https://chennien.com": "Alias domain for Nien Studio", 
-    		"https://nien.org": "Campaign pages for Nien Studio", 
-    		"https://nien.co": "URL shortener for Nien Studio"
-    	}
+      "contact": "domain@nien.com",
+      "primary": "https://nien.com",
+      "associatedSites": [
+        "https://chennien.com",
+        "https://nien.org",
+        "https://nien.co"
+      ],
+      "rationaleBySite": {
+        "https://chennien.com": "Alias domain for Nien Studio",
+        "https://nien.org": "Campaign pages for Nien Studio",
+        "https://nien.co": "URL shortener for Nien Studio"
+      }
     },
     {
-    	"contact": "admin@hearty.me", 
-    	"primary": "https://hearty.me", 
-    	"associatedSites": [
-    		"https://hearty.app", 
-    		"https://hearty.gift", 
-    		"https://hj.rs", 
-    		"https://heartymail.com", 
-    		"https://alice.tw", 
-    		"https://jiayi.life", 
-    		"https://miss.com.tw"
-    	], 
-    	"rationaleBySite": {
-    		"https://hearty.app": "API endpoints for Hearty Journal", 
-    		"https://hearty.gift": "Campaign pages for Hearty Journal", 
-    		"https://hj.rs": "URL shortener for Hearty Journal", 
-    		"https://heartymail.com": "Email service for Hearty Journal", 
-    		"https://alice.tw": "Alice's blog", 
-    		"https://jiayi.life": "Jiayi's blog", 
-    		"https://miss.com.tw": "Company website"
-    	}
+      "contact": "admin@hearty.me",
+      "primary": "https://hearty.me",
+      "associatedSites": [
+        "https://hearty.app",
+        "https://hearty.gift",
+        "https://hj.rs",
+        "https://heartymail.com",
+        "https://alice.tw",
+        "https://jiayi.life",
+        "https://miss.com.tw"
+      ],
+      "rationaleBySite": {
+        "https://hearty.app": "API endpoints for Hearty Journal",
+        "https://hearty.gift": "Campaign pages for Hearty Journal",
+        "https://hj.rs": "URL shortener for Hearty Journal",
+        "https://heartymail.com": "Email service for Hearty Journal",
+        "https://alice.tw": "Alice's blog",
+        "https://jiayi.life": "Jiayi's blog",
+        "https://miss.com.tw": "Company website"
+      }
     },
     {
       "primary": "https://talkdeskqaid.com",
@@ -460,23 +460,23 @@
       }
     },
     {
-       "contact": "dacostaylara@elpais.com.uy",
-       "primary": "https://elpais.com.uy",
-       "associatedSites": [
-          "https://clubelpais.com.uy",
-          "https://paula.com.uy",
-          "https://gallito.com.uy"
-       ],
-       "rationaleBySite": {
-          "https://clubelpais.com.uy": "Domain from El Pais Uruguay",
-          "https://paula.com.uy": "Domain from El Pais Uruguay",
-          "https://gallito.com.uy": "Domain from El Pais Uruguay"
-       },
-       "ccTLDs": {
-          "https://elpais.com.uy": [
-             "https://elpais.uy"
-          ]
-       }
+      "contact": "dacostaylara@elpais.com.uy",
+      "primary": "https://elpais.com.uy",
+      "associatedSites": [
+        "https://clubelpais.com.uy",
+        "https://paula.com.uy",
+        "https://gallito.com.uy"
+      ],
+      "rationaleBySite": {
+        "https://clubelpais.com.uy": "Domain from El Pais Uruguay",
+        "https://paula.com.uy": "Domain from El Pais Uruguay",
+        "https://gallito.com.uy": "Domain from El Pais Uruguay"
+      },
+      "ccTLDs": {
+        "https://elpais.com.uy": [
+          "https://elpais.uy"
+        ]
+      }
     },
     {
       "primary": "https://libero.it",
@@ -498,20 +498,20 @@
       "contact": "przemyslaw.jaskierny@wbd.com",
       "associatedSites": ["https://rws2nvtvt.com", "https://rws3nvtvt.com"],
       "rationaleBySite": {
-          "https://rws2nvtvt.com": "Test 1",
-          "https://rws3nvtvt.com": "Test 2"
+        "https://rws2nvtvt.com": "Test 1",
+        "https://rws3nvtvt.com": "Test 2"
       }
     },
     {
       "contact": "admin@stripe.com",
       "primary": "https://stripe.com",
       "serviceSites": [
-          "https://stripecdn.com",
-          "https://stripe.network"
+        "https://stripecdn.com",
+        "https://stripe.network"
       ],
       "rationaleBySite": {
-          "https://stripecdn.com": "Serves static assets accelerating page loads and sandboxes select Javascript",
-          "https://stripe.network": "Receives telemetry preventing fraud across Stripe services"
+        "https://stripecdn.com": "Serves static assets accelerating page loads and sandboxes select Javascript",
+        "https://stripe.network": "Receives telemetry preventing fraud across Stripe services"
       }
     },
     {
@@ -559,18 +559,18 @@
         "https://standardsandpraiserepurpose.com": "Publisher #1 for RWS Test",
         "https://technology-revealed.com": "Frequency Capping Domain #1 for RWS Test"
       }
-    }, 
+    },
     {
-    	"contact": "nien@startupislandtaiwan.com", 
-    	"primary": "https://startupislandtaiwan.com", 
-    	"associatedSites": [
-    		"https://startupislandtaiwan.net", 
-    		"https://startupislandtaiwan.org"
-    	], 
-    	"rationaleBySite": {
-    		"https://startupislandtaiwan.net": "Domain alias", 
-    		"https://startupislandtaiwan.org": "Domain alias"
-    	}
+      "contact": "nien@startupislandtaiwan.com",
+      "primary": "https://startupislandtaiwan.com",
+      "associatedSites": [
+        "https://startupislandtaiwan.net",
+        "https://startupislandtaiwan.org"
+      ],
+      "rationaleBySite": {
+        "https://startupislandtaiwan.net": "Domain alias",
+        "https://startupislandtaiwan.org": "Domain alias"
+      }
     },
     {
       "contact": "k.vermote@eurofleet-consult.com",
@@ -584,7 +584,7 @@
           "https://carcostadvisor.fr"
         ]
       }
-    }, 
+    },
     {
       "contact": "addigital@caracoltv.com.co",
       "primary": "https://caracoltv.com",
@@ -617,10 +617,10 @@
       "contact": "info@gridgames.app",
       "primary": "https://gridgames.app",
       "associatedSites": [
-         "https://wordle.at"
+        "https://wordle.at"
       ],
       "rationaleBySite": {
-         "https://wordle.at": "We are migrating our domain and will soon redirect all traffic from here to the primary, both of which we own. The two sites are almost identical. For convenience we want to transfer session cookies so users stay logged in."
+        "https://wordle.at": "We are migrating our domain and will soon redirect all traffic from here to the primary, both of which we own. The two sites are almost identical. For convenience we want to transfer session cookies so users stay logged in."
       }
     },
     {
@@ -638,19 +638,19 @@
         "https://cachematrix.com": "Cachematrix is a cash management firm acquired by BlackRock. The relationship is described on the About Us page.",
         "https://efront.com": "eFront is BlackRock's alternative solutions platform. The BlackRock branding is clearly visible on the site.",
         "https://etfacademy.it": "An Italian language education site about ETFs. The iShares by BlackRock branding is clearly visible on the site.",
-        "https://ishares.com": "iShares is BlackRock's ETF brand. The branding is clearly visible on the site." 
+        "https://ishares.com": "iShares is BlackRock's ETF brand. The branding is clearly visible on the site."
       }
     },
     {
       "contact": "ewelina.salamonik@wbd.com",
       "primary": "https://tvn.pl",
       "associatedSites": [
-            "https://tvn24.pl", 
-            "https://zdrowietvn.pl"
+        "https://tvn24.pl",
+        "https://zdrowietvn.pl"
       ],
       "rationaleBySite": {
-          "https://zdrowietvn.pl": "Educational service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website",
-          "https://tvn24.pl": "News service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website"
+        "https://zdrowietvn.pl": "Educational service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website",
+        "https://tvn24.pl": "News service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website"
       }
     },
     {
@@ -683,21 +683,29 @@
         "https://pdmp-apis.no": "Site owned by Schibsted that provides APIs for users across Schibsted's sites."
       }
     },
-  {
-   "contact": "asagrera@grupolpg.sv",
-   "primary": "https://laprensagrafica.com",
-   "associatedSites": [
-      "https://elgrafico.com",
-      "https://eleconomista.net",
-      "https://ella.sv",
-      "https://grupolpg.sv"
-   ],
-   "rationaleBySite": {
-      "https://elgrafico.com": "News portal owned by La Prensa Grafica Group",
-      "https://eleconomista.net": "News portal owned by La Prensa Grafica Group",
-      "https://ella.sv": "News portal owned by La Prensa Grafica Group",
-      "https://grupolpg.sv": "Domain owned by La Prensa Grafica Group"
-   }
-  }
+    {
+      "contact": "asagrera@grupolpg.sv",
+      "primary": "https://laprensagrafica.com",
+      "associatedSites": [
+        "https://elgrafico.com",
+        "https://eleconomista.net",
+        "https://ella.sv",
+        "https://grupolpg.sv"
+      ],
+      "rationaleBySite": {
+        "https://elgrafico.com": "News portal owned by La Prensa Grafica Group",
+        "https://eleconomista.net": "News portal owned by La Prensa Grafica Group",
+        "https://ella.sv": "News portal owned by La Prensa Grafica Group",
+        "https://grupolpg.sv": "Domain owned by La Prensa Grafica Group"
+      }
+    },
+    {
+      "primary": "https://kaksya.in",
+      "associatedSites": ["https://nidhiacademyonline.com"],
+      "serviceSites": [],
+      "rationaleBySite": {
+        "https://nidhiacademyonline.com": "This website is a subpart of kaksya.in and is used to host Nidhi Academy educational content."
+      }
+    }
   ]
 }
