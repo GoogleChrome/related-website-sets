@@ -700,7 +700,8 @@
    }
   },
   {
-    "primary": "https://kaksya.in",
+  "primary": "https://kaksya.in",
+    "contact": "kaksya.org@gmail.com",
     "associatedSites": ["https://nidhiacademyonline.com"],
     "serviceSites": [],
     "rationaleBySite": {
