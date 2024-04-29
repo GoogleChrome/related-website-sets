@@ -700,12 +700,12 @@
    }
   },
   {
-  "primary": "https://kaksya.in",
+    "primary": "https://kaksya.in",
     "contact": "kaksya.org@gmail.com",
     "associatedSites": ["https://nidhiacademyonline.com"],
     "serviceSites": [],
     "rationaleBySite": {
-      "https://nidhiacademyonline.com": "This website is a subpart of kaksya.in and is used to host Nidhi Academy educational content."
+      "https://nidhiacademyonline.com": "This website is a subpart of kaksya.in and is used to host Nidhi Academy educational content videos/notes and more."
     }
   }
   ]
