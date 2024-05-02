@@ -20,6 +20,7 @@ from urllib.request import Request
 from publicsuffix2 import PublicSuffixList
 
 WELL_KNOWN = "/.well-known/related-website-set.json"
+ASSOCIATED_LIMIT = 5
 
 class RwsCheck:
 
@@ -45,6 +46,7 @@ class RwsCheck:
         self.etlds = etlds
         self.icanns = icanns
         self.error_list = []
+        self.associated_warning = []
 
     def validate_schema(self, schema_file):
         """Validates the canonical sites list
@@ -169,6 +171,23 @@ class RwsCheck:
                         + f"another related website set: {alias_overlap}")
                 else:
                     site_list.update(aliases)
+
+    def check_associated_count(self, check_sets):
+        """This method checks for RwsSets that exceed the associated limit
+
+        Creates a warning for each set passed in the check_sets list that has 
+        more associatedSites than the ASSOCIATED_LIMIT
+
+        Args:
+            check_sets: Dict[string, RwsSet]
+        Returns:
+            None
+        """
+        for primary, rws in check_sets.items():
+            if len(rws.associated_sites) > ASSOCIATED_LIMIT:
+                self.associated_warning.append(
+                    f"Warning: the set for {primary} contains more than {ASSOCIATED_LIMIT} associated sites."
+                )
 
     def url_is_https(self, site):
         """A function that checks for https://

@@ -276,6 +276,84 @@ class TestHasRationales(unittest.TestCase):
         loaded_sets = rws_check.load_sets()
         self.assertEqual(rws_check.error_list, [])  
 
+class TestCheckAssociatedCount(unittest.TestCase):
+    def test_within_limit(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "associatedSites": ["https://associated1.com"],
+                    "rationaleBySite": {}
+                }
+            ]
+        }
+        rws_check = RwsCheck(rws_sites=json_dict,
+                      etlds=None,
+                       icanns=set())
+        loaded_sets = rws_check.load_sets()
+        rws_check.check_associated_count(loaded_sets)
+        self.assertEqual(rws_check.associated_warning, [])
+        
+    def test_over_limit(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "associatedSites": ["https://associated1.com",
+                                        "https://associated2.com",
+                                        "https://associated3.com",
+                                        "https://associated4.com",
+                                        "https://associated5.com",
+                                        "https://associated6.com"],
+                    "rationaleBySite": {}
+                }
+            ]
+        }
+        rws_check = RwsCheck(rws_sites=json_dict,
+                      etlds=None,
+                       icanns=set())
+        loaded_sets = rws_check.load_sets()
+        rws_check.check_associated_count(loaded_sets)
+        self.assertEqual(rws_check.associated_warning, 
+         ["Warning: the set for https://primary.com contains more than 5 associated sites."])
+        
+    def test_multi_over_limit(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "associatedSites": ["https://associated1.com",
+                                        "https://associated2.com",
+                                        "https://associated3.com",
+                                        "https://associated4.com",
+                                        "https://associated5.com",
+                                        "https://associated6.com"],
+                    "rationaleBySite": {}
+                },
+                {
+                  "primary": "https://primary2.com",
+                    "associatedSites": ["https://associated7.com",
+                                        "https://associated8.com",
+                                        "https://associated9.com",
+                                        "https://associated10.com",
+                                        "https://associated11.com",
+                                        "https://associated12.com"],
+                    "rationaleBySite": {}  
+                }
+            ]
+        }
+        rws_check = RwsCheck(rws_sites=json_dict,
+                      etlds=None,
+                       icanns=set())
+        loaded_sets = rws_check.load_sets()
+        rws_check.check_associated_count(loaded_sets)
+        self.assertEqual(rws_check.associated_warning, 
+         ["Warning: the set for https://primary.com contains more than 5 associated sites.",
+          "Warning: the set for https://primary2.com contains more than 5 associated sites."])
+
 class TestCheckExclusivity(unittest.TestCase):
     def test_servicesets_overlap(self):
         json_dict = {

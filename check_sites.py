@@ -130,7 +130,8 @@ def main():
     # Run rest of checks
     check_list = [
         rws_checker.has_all_rationales,
-        rws_checker.find_non_https_urls, 
+        rws_checker.find_non_https_urls,
+        rws_checker.check_associated_count,
         rws_checker.find_invalid_eTLD_Plus1,
         rws_checker.find_invalid_well_known, 
         rws_checker.find_invalid_alias_eSLDs, 
@@ -150,7 +151,10 @@ def main():
             print(checker_error)
         for error_text in error_texts:
             print(error_text)
-    else:
+    elif rws_checker.associated_warning:
+        for warning in rws_checker.associated_warning:
+            print(warning)
+    else:   
         print("success", end='')
 
 

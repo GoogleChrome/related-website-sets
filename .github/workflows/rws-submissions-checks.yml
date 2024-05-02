@@ -46,13 +46,18 @@ jobs:
           CONTENTS: ${{ steps.read_results.outputs.contents }}
         run: echo "$CONTENTS"
       - name: Create Comment
-        if: steps.read_results.outputs.contents != 'success'
+        if: steps.read_results.outputs.contents != 'success' && ${{ !startsWith(steps.read_results.outputs.contents, 'Warning')}}
         run: |
          echo "It appears you have failed some tests. Here are your results:" > message.txt
          cat results.txt >> message.txt
-      - name: Comment if sucess
+      - name: Comment if success
         if: steps.read_results.outputs.contents == 'success'
         run: echo "Looks like you've passed all of the checks!" >> message.txt
+      - name: Comment if warning
+        if: startsWith(steps.read_results.outputs.contents, 'Warning')
+        run: |
+          echo "You have passed all of the checks, but there are one or more warnings associated with your submission." > message.txt
+          cat results.txt >> message.txt
       - name: Write Comment on PR
         uses: mshick/add-pr-comment@v2
         with:   
