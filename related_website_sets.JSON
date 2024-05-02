@@ -715,7 +715,6 @@
        "https://dewarmsteweek.be",
        "https://sporza.be",
        "https://een.be",
-       "https://klara.be",
        "https://radio2.be",
        "https://radio1.be"
     ],
@@ -723,7 +722,6 @@
        "https://dewarmsteweek.be": "domain for a yearly campaign",
        "https://sporza.be": "sub brand for sports news",
        "https://een.be": "sub brand site",
-       "https://klara.be": "sub brand site",
        "https://radio2.be": "sub brand site",
        "https://radio1.be": "sub brand site"
     }
