@@ -707,6 +707,26 @@
     "rationaleBySite": {
       "https://nidhiacademyonline.com": "This website is a subpart of kaksya.in and is used to host Nidhi Academy educational content videos/notes and more."
     }
-  }
+  },
+  {
+    "contact": "profiel@vrt.be",
+    "primary": "https://vrt.be",
+    "associatedSites": [
+       "https://dewarmsteweek.be",
+       "https://sporza.be",
+       "https://een.be",
+       "https://klara.be",
+       "https://radio2.be",
+       "https://radio1.be"
+    ],
+    "rationaleBySite": {
+       "https://dewarmsteweek.be": "domain for a yearly campaign",
+       "https://sporza.be": "sub brand for sports news",
+       "https://een.be": "sub brand site",
+       "https://klara.be": "sub brand site",
+       "https://radio2.be": "sub brand site",
+       "https://radio1.be": "sub brand site"
+    }
+ }
   ]
 }
