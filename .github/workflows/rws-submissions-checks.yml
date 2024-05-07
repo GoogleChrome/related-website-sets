@@ -64,7 +64,7 @@ jobs:
           message-path: "message.txt" 
           refresh-message-position: true
       - name: Fail or Succeed
-        if: steps.read_results.outputs.contents != 'success'
+        if: startsWith(steps.read_results.outputs.contents, 'It appears you have failed')
         uses: actions/github-script@v3
         with:
           script: |

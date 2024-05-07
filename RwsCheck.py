@@ -46,7 +46,7 @@ class RwsCheck:
         self.etlds = etlds
         self.icanns = icanns
         self.error_list = []
-        self.associated_warning = []
+        self.warning_texts = []
 
     def validate_schema(self, schema_file):
         """Validates the canonical sites list
@@ -185,7 +185,7 @@ class RwsCheck:
         """
         for primary, rws in check_sets.items():
             if len(rws.associated_sites) > ASSOCIATED_LIMIT:
-                self.associated_warning.append(
+                self.warning_texts.append(
                     f"Warning: the set for {primary} contains more than {ASSOCIATED_LIMIT} associated sites."
                 )
 

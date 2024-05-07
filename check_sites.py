@@ -146,13 +146,12 @@ def main():
         except Exception as inst:
             error_texts.append(inst)
     # This message allows us to check the succes of our action
-    if rws_checker.error_list or error_texts:
+    if rws_checker.error_list or error_texts or rws_checker.warning_texts:
         for checker_error in rws_checker.error_list:
             print(checker_error)
         for error_text in error_texts:
             print(error_text)
-    elif rws_checker.associated_warning:
-        for warning in rws_checker.associated_warning:
+        for warning in rws_checker.warning_texts:
             print(warning)
     else:   
         print("success", end='')
