@@ -645,10 +645,12 @@
       "contact": "ewelina.salamonik@wbd.com",
       "primary": "https://tvn.pl",
       "associatedSites": [
+            "https://player.pl",
             "https://tvn24.pl", 
             "https://zdrowietvn.pl"
       ],
       "rationaleBySite": {
+          "https://player.pl":  "Streaming service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website",
           "https://zdrowietvn.pl": "Educational service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website",
           "https://tvn24.pl": "News service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website"
       }
@@ -707,6 +709,41 @@
     "rationaleBySite": {
       "https://nidhiacademyonline.com": "This website is a subpart of kaksya.in and is used to host Nidhi Academy educational content videos/notes and more."
     }
-  }
+  },
+  {
+    "contact": "jsteam@intra.sapo.pt",
+    "primary": "https://sapo.pt",
+    "associatedSites": [
+      "https://sapo.pt",
+      "https://meo.pt"
+    ],
+    "rationaleBySite": {
+      "https://sapo.pt": "SAPO is Portugal's leading online platform offering a diverse range of news, information, and services catering to various interests including news, entertainment, sports, technology, and lifestyle.",
+      "https://meo.pt": "MEO is a prominent telecommunications and entertainment provider in Portugal, offering a wide range of services including television, internet, phone, and mobile."
+    },
+    "ccTLDs": {
+      "https://sapo.pt": [
+        "https://sapo.io"
+      ]
+    }
+  },
+  {
+    "contact": "profiel@vrt.be",
+    "primary": "https://vrt.be",
+    "associatedSites": [
+       "https://dewarmsteweek.be",
+       "https://sporza.be",
+       "https://een.be",
+       "https://radio2.be",
+       "https://radio1.be"
+    ],
+    "rationaleBySite": {
+       "https://dewarmsteweek.be": "domain for a yearly campaign",
+       "https://sporza.be": "sub brand for sports news",
+       "https://een.be": "sub brand site",
+       "https://radio2.be": "sub brand site",
+       "https://radio1.be": "sub brand site"
+    }
+   }
   ]
 }
