@@ -724,6 +724,24 @@
         "https://sapo.io"
       ]
     }
-  }
+  },
+  {
+    "contact": "profiel@vrt.be",
+    "primary": "https://vrt.be",
+    "associatedSites": [
+       "https://dewarmsteweek.be",
+       "https://sporza.be",
+       "https://een.be",
+       "https://radio2.be",
+       "https://radio1.be"
+    ],
+    "rationaleBySite": {
+       "https://dewarmsteweek.be": "domain for a yearly campaign",
+       "https://sporza.be": "sub brand for sports news",
+       "https://een.be": "sub brand site",
+       "https://radio2.be": "sub brand site",
+       "https://radio1.be": "sub brand site"
+    }
+   }
   ]
 }
