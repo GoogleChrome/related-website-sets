@@ -727,6 +727,16 @@
        "https://radio2.be": "sub brand site",
        "https://radio1.be": "sub brand site"
     }
- }
+ },
+ {
+    "contact": "abatahi@nvidia.com",
+    "primary": "https://nvidia.com",
+    "associatedSites": [
+      "https://geforcenow.com"
+    ],
+    "rationaleBySite": {
+      "https://geforcenow.com": "A site that represents the WEB client for NVIDIA GEFORCE NOW service. Players are able to instantly stream their PC game library. NVIDIA branding is clearly visible on this site."
+    }
+  }
   ]
 }
