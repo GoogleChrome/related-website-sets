@@ -727,6 +727,18 @@
        "https://radio2.be": "sub brand site",
        "https://radio1.be": "sub brand site"
     }
- }
+ },
+{
+   "contact": "mapan@lixiang.com",
+   "primary": "https://lixiang.com",
+   "associatedSites": [
+      "https://chehejia.com",
+      "https://chj.cloud"
+   ],
+   "rationaleBySite": {
+      "https://chehejia.com": "Business management related sites",
+      "https://chj.cloud": "Business management related sites"
+   }
+}
   ]
 }
