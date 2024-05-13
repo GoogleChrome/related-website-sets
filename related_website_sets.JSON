@@ -309,11 +309,11 @@
         "https://tvid.in"
       ],
       "rationaleBySite": {
-        "https://indiatimes.com": "Indiatimes.com is primary domain for Times Internet which publish stories on Indian Lifestyle, Culture, Relationships, Food, Travel, Entertainment, News and New Technology News",
-        "https://timesofindia.com": "Times of India (TOI) is Indias largest and most influential news publisher in English. Its digital platform timesofindia.com is powered by Times Internet Limited",
-        "https://economictimes.com": "Economic Times is India's top business news platform, providing comprehensive coverage of the economy, stock markets, and personal finance to inspire and empower business leaders and entrepreneurs. This digital platform is powered by Times Internet Limited",
-        "https://samayam.com": "Samayam is a Regional News publisher powered by Times Internet Limited",
-        "https://cricbuzz.com": "Cricbuzz is an Indian cricket news & live score platform owned by Times Internet Limited",
+        "https://indiatimes.com": "Indiatimes.com is primary domain for Times Internet which publish stories on Indian Lifestyle, Culture, Relationships, Food, Travel, Entertainment, News and New Technology News. The connection to Times Internet Limited is reflected in the About Us Section and the footer of the website.",
+        "https://timesofindia.com": "Times of India (TOI) is Indias largest and most influential news publisher in English. Its digital platform timesofindia.com is powered by Times Internet Limited, aptly represented in the About Us section and footer of the website.",
+        "https://economictimes.com": "Economic Times is India's top business news platform, providing comprehensive coverage of the economy, stock markets, and personal finance to inspire and empower business leaders and entrepreneurs. This digital platform is powered by Times Internet Limited as is clear from the About Us section of the website.",
+        "https://samayam.com": "Samayam is a Regional News publisher powered by Times Internet Limited. Its relationship to Times Internet is reflected in the footer of the website.",
+        "https://cricbuzz.com": "Cricbuzz is an Indian cricket news & live score platform owned by Times Internet Limited which is aptly reflected in the footer on the website.",
         "https://growthrx.in": "GrowthRx is a customer engagement platform powered by Times Internet",
         "https://clmbtech.com": "This is a times-internet data and customer management platform for managing publisher data.",
         "https://tvid.in": "TVID is an in-house video management platform powered by Times Internet"
