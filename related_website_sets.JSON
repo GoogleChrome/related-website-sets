@@ -645,10 +645,12 @@
       "contact": "ewelina.salamonik@wbd.com",
       "primary": "https://tvn.pl",
       "associatedSites": [
+            "https://player.pl",
             "https://tvn24.pl", 
             "https://zdrowietvn.pl"
       ],
       "rationaleBySite": {
+          "https://player.pl":  "Streaming service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website",
           "https://zdrowietvn.pl": "Educational service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website",
           "https://tvn24.pl": "News service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website"
       }
@@ -707,6 +709,24 @@
     "rationaleBySite": {
       "https://nidhiacademyonline.com": "This website is a subpart of kaksya.in and is used to host Nidhi Academy educational content videos/notes and more."
     }
-  }
+  },
+  {
+    "contact": "profiel@vrt.be",
+    "primary": "https://vrt.be",
+    "associatedSites": [
+       "https://dewarmsteweek.be",
+       "https://sporza.be",
+       "https://een.be",
+       "https://radio2.be",
+       "https://radio1.be"
+    ],
+    "rationaleBySite": {
+       "https://dewarmsteweek.be": "domain for a yearly campaign",
+       "https://sporza.be": "sub brand for sports news",
+       "https://een.be": "sub brand site",
+       "https://radio2.be": "sub brand site",
+       "https://radio1.be": "sub brand site"
+    }
+ }
   ]
 }
