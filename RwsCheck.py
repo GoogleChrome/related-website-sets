@@ -143,7 +143,7 @@ class RwsCheck:
                     "This primary is already registered in another related website"
                     + f" set: {primary}")
             else:
-                site_list.update(primary)
+                site_list.add(primary)
             # Check the associated sites
             associated_overlap = set(rws.associated_sites) & site_list
             if associated_overlap:
