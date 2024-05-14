@@ -739,6 +739,21 @@
     }
  },
  {
+  "contact": "jsteam@intra.sapo.pt",
+  "primary": "https://sapo.pt",
+  "associatedSites": [
+   "https://meo.pt"
+  ],
+  "rationaleBySite": {
+   "https://meo.pt": "MEO is a prominent telecommunications and entertainment provider in Portugal, offering a wide range of services including television, internet, phone, and mobile."
+  },
+  "ccTLDs": {
+   "https://sapo.pt": [
+   "https://sapo.io"
+   ]
+  }
+ },
+ {
     "contact": "support@tolteck.com",
     "primary": "https://tolteck.com",
     "associatedSites": [
