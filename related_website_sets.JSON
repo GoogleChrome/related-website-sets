@@ -772,6 +772,16 @@
     "rationaleBySite": {
       "https://tolteck.app": "Tolteck application"
     }
-  }
+  },
+ {
+      "contact": "sijia.zhang@zoom.com",
+      "primary": "https://dev-integration.zoomdev.us",
+      "associatedSites": [
+        "https://int.zoom.com"
+      ],
+      "rationaleBySite": {
+        "https://int.zoom.com": "marketing pages for SEO purposes"
+      }
+    }
   ]
 }
