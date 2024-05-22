@@ -772,6 +772,16 @@
     "rationaleBySite": {
       "https://tolteck.app": "Tolteck application"
     }
+  },
+  {
+    "contact": "alejandro.cornejo@vacasa.com",
+	"primary": "https://vacasa.com",
+	"serviceSites": [
+	  "https://accounts.vacasa.io"
+	],
+	"rationaleBySite": {
+		"https://accounts.vacasa.io": "Domain for supporting authentication within Vacasa applications"
+	}
   }
   ]
 }
