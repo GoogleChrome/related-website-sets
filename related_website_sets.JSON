@@ -772,6 +772,24 @@
     "rationaleBySite": {
       "https://tolteck.app": "Tolteck application"
     }
+  },
+  {
+      "contact": "datateam@centralmediacsoport.hu",
+      "primary": "https://p24.hu",
+      "associatedSites": [
+          "https://24.hu",
+          "https://www.startlap.hu",
+          "https://nlc.hu",
+          "https://www.hazipatika.com",
+          "https://www.nosalty.hu"
+      ],
+      "rationaleBySite": {
+          "https://24.hu": "Hungarian news portal",
+          "https://www.startlap.hu": "Hungarian news aggregator site and link collection",
+          "https://nlc.hu": "Hungarian women's online magazine",
+          "https://www.hazipatika.com": "Hungarian health portal",
+          "https://www.nosalty.hu": "Hungarian recipe portal"
+      }
   }
   ]
 }
