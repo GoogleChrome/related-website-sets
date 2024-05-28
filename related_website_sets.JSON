@@ -734,21 +734,11 @@
     "associatedSites": [
        "https://aqferproducts.com",
        "https://pxcel.net",
-       "https://aqfer.net"
-    ],
-    "serviceSites": [
-       "https://demoping-aut-prod.aqfer.com",
-       "https://t.retail.aqfer.com",
-       "https://t3.aqfer.com"
     ],
     "rationaleBySite": {
        "https://aqfer.com": "Company website",
        "https://aqferproducts.com": "Demo publisher website",
        "https://pxcel.net": "IDR Demo website",
-       "https://aqfer.net": "Web application portal",
-       "https://demoping-aut-prod.aqfer.com": "aUT analytics",
-       "https://t.retail.aqfer.com": "Demo analytics",
-       "https://t3.aqfer.com": "aUT analytics"
     }
  }
   ]
