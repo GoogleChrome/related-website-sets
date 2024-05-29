@@ -796,7 +796,7 @@
     "primary": "https://cognitiveai.ru",
     "associatedSites": ["https://cognitive-ai.ru"],
     "rationaleBySite": {
-        "https://cognitive-ai.ru": "This domain is our backend service that needs to share cookies with the main user-facing domain for authentication and session management."
+      "https://cognitive-ai.ru": "This domain is our backend service that needs to share cookies with the main user-facing domain for authentication and session management."
     }
   }
   ]
