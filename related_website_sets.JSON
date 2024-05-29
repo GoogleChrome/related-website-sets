@@ -790,6 +790,14 @@
           "https://hazipatika.com": "Hungarian health portal",
           "https://nosalty.hu": "Hungarian recipe portal"
       }
+  },
+  {
+    "contact": "info@cognitiveai.ru",
+    "primary": "https://lk.cognitiveai.ru",
+    "associatedSites": ["https://cognitive-ai.ru"],
+    "rationaleBySite": {
+        "https://cognitive-ai.ru": "This domain is our backend service that needs to share cookies with the main user-facing domain for authentication and session management."
+    }
   }
   ]
 }
