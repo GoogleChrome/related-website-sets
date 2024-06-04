@@ -790,6 +790,14 @@
           "https://hazipatika.com": "Hungarian health portal",
           "https://nosalty.hu": "Hungarian recipe portal"
       }
+  },
+  {
+    "contact": "technical@citybibleforum.org",
+    "primary": "https://citybibleforum.org",
+    "associatedSites": ["https://thirdspace.org.au"],
+    "rationaleBySite": {
+      "https://thirdspace.org.au": "Similar content served in slightly different formats to different audiences"
+    }
   }
   ]
 }
