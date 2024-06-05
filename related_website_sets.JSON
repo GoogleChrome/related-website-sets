@@ -798,6 +798,17 @@
     "rationaleBySite": {
       "https://thirdspace.org.au": "Similar content served in slightly different formats to different audiences"
     }
-  }
+  },
+{
+   "contact": "admin@smpn106jkt.sch.id",
+   "primary": "https://p106.net",
+   "associatedSites": [
+      "https://smpn106jkt.sch.id"
+   ],
+   "rationaleBySite": {
+      "https://p106.net": "Indonesia Junior High School",
+      "https://smpn106jkt.sch.id": "Indonesia Junior High School"
+   }
+}
   ]
 }
