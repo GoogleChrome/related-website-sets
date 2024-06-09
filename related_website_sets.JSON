@@ -798,6 +798,79 @@
     "rationaleBySite": {
       "https://thirdspace.org.au": "Similar content served in slightly different formats to different audiences"
     }
+  },
+  {
+    "contact": "l.powazka@text.com",
+    "primary": "https://text.com",
+    "associatedSites": [
+      "https://livechat.com",
+      "https://helpdesk.com",
+      "https://chatbot.com",
+      "https://openwidget.com",
+      "https://knowledgebase.com"
+    ],
+    "serviceSites": [
+      "https://lc.chat",
+      "https://livechatinc.com",
+      "https://livechatinc.net",
+      "https://files-text.com",
+      "https://livechat-files.com"
+    ],
+    "rationaleBySite": {
+      "https://livechat.com": "LiveChat - leading live chat software for business",
+      "https://helpdesk.com": "HelpDesk - leading help desk software for business",
+      "https://openwidget.com": "OpenWidget - free widgets for websites",
+      "https://chatbot.com": "ChatBot - leading automation software and chatbot platform",
+      "https://knowledgebase.com": "Knowledge base software for customer support and self-service",
+      "https://lc.chat": "lc.chat - short URL service providing direct access to LiveChat",
+      "https://livechatinc.com": "Services supporting LiveChat",
+      "https://livechatinc.net": "Services supporting LiveChat",
+      "https://files-text.com": "Services supporting LiveChat",
+      "https://livechat-files.com": "Services supporting LiveChat"
+    },
+    "ccTLDs": {
+      "https://livechat.com": [
+        "https://livechat.app",
+        "https://live-chat.app",
+        "https://livechat.ar",
+        "https://livechat.au",
+        "https://livechat.be",
+        "https://livechat.ca",
+        "https://livechat.cn",
+        "https://livechat.co.il",
+        "https://livechat.co.in",
+        "https://livechat.co.jp",
+        "https://livechat.co.nz",
+        "https://livechat.co.th",
+        "https://livechat.co.za",
+        "https://livechat.com.ar",
+        "https://livechat.com.au",
+        "https://livechat.com.hk",
+        "https://livechat.com.kh",
+        "https://livechat.com.ph",
+        "https://livechat.com.tr",
+        "https://livechat.dev",
+        "https://livechat.dk",
+        "https://livechat.ee",
+        "https://livechat.es",
+        "https://livechat.eu",
+        "https://livechat.gr",
+        "https://livechat.hr",
+        "https://livechat.id",
+        "https://livechat.ie",
+        "https://livechat.in",
+        "https://livechat.inc",
+        "https://livechat.is",
+        "https://livechat.mt",
+        "https://livechat.mx",
+        "https://livechat.nl",
+        "https://livechat.nz",
+        "https://livechat.org",
+        "https://livechat.pt",
+        "https://livechat.se",
+        "https://livechat.design"
+      ]
+    }
   }
   ]
 }
