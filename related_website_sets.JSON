@@ -798,6 +798,14 @@
     "rationaleBySite": {
       "https://cognitive-ai.ru": "This domain is our backend service that needs to share cookies with the main user-facing domain for authentication and session management."
     }
+  },
+  {
+    "contact": "technical@citybibleforum.org",
+    "primary": "https://citybibleforum.org",
+    "associatedSites": ["https://thirdspace.org.au"],
+    "rationaleBySite": {
+      "https://thirdspace.org.au": "Similar content served in slightly different formats to different audiences"
+    }
   }
   ]
 }
