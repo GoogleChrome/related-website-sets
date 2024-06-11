@@ -792,6 +792,14 @@
       }
   },
   {
+    "contact": "info@cognitiveai.ru",
+    "primary": "https://cognitiveai.ru",
+    "associatedSites": ["https://cognitive-ai.ru"],
+    "rationaleBySite": {
+      "https://cognitive-ai.ru": "This domain is our backend service that needs to share cookies with the main user-facing domain for authentication and session management."
+    }
+  },
+  {
     "contact": "technical@citybibleforum.org",
     "primary": "https://citybibleforum.org",
     "associatedSites": ["https://thirdspace.org.au"],
