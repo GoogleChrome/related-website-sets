@@ -839,14 +839,14 @@
   },
  {
         "contact": "naukri.comapp@gmail.com",
-        "primary": "https://www.naukri.com",
+        "primary": "https://naukri.com",
         "associatedSites": [
-           "https://www.ambitionbox.com",
-           "https://www.infoedgeindia.com"
+           "https://ambitionbox.com",
+           "https://infoedgeindia.com"
         ],
         "rationaleBySite": {
-           "https://www.ambitionbox.com": "Ambition box associated url",
-           "https://www.infoedgeindia.com": "InfoEdge India website"
+           "https://ambitionbox.com": "Ambition box associated url",
+           "https://infoedgeindia.com": "InfoEdge India website"
         }
  }
   ]
