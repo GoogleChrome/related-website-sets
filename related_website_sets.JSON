@@ -836,6 +836,18 @@
         "https://gnttv.com": " Good News Today is a website that focuses on the bright side of life and showcases stories of triumphs and positivity.",
         "https://indiatodayne.in": "India Today NE is dedicated to covering news and views of India’s north-eastern region which includes eight states—Assam, Arunachal Pradesh, Nagaland, Manipur, Mizoram, Tripura, Meghalaya and Sikkim"
     }
-  }
+  },
+ {
+        "contact": "naukri.comapp@gmail.com",
+        "primary": "https://naukri.com",
+        "associatedSites": [
+           "https://ambitionbox.com",
+           "https://infoedgeindia.com"
+        ],
+        "rationaleBySite": {
+           "https://ambitionbox.com": "Ambition box associated url",
+           "https://infoedgeindia.com": "InfoEdge India website"
+        }
+ }
   ]
 }
