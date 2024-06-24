@@ -858,6 +858,31 @@
            "https://ambitionbox.com": "Ambition box associated url",
            "https://infoedgeindia.com": "InfoEdge India website"
         }
- }
+ },
+  {
+    "contact": "l.powazka@text.com",
+    "primary": "https://text.com",
+    "associatedSites": [
+      "https://livechat.com",
+      "https://helpdesk.com",
+      "https://chatbot.com",
+      "https://openwidget.com",
+      "https://knowledgebase.com"
+    ],
+    "serviceSites": [
+      "https://livechatinc.com",
+      "https://livechat-files.com"
+    ],
+    "rationaleBySite": {
+      "https://livechat.com": "LiveChat - leading live chat software for business",
+      "https://helpdesk.com": "HelpDesk - leading help desk software for business",
+      "https://openwidget.com": "OpenWidget - free widgets for websites",
+      "https://chatbot.com": "ChatBot - leading automation software and chatbot platform",
+      "https://knowledgebase.com": "Knowledge base software for customer support and self-service",
+      "https://lc.chat": "lc.chat - short URL service providing direct access to LiveChat",
+      "https://livechatinc.com": "Services supporting LiveChat",
+      "https://livechat-files.com": "Services supporting LiveChat"
+    }
+  }
   ]
 }
