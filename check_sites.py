@@ -130,7 +130,8 @@ def main():
     # Run rest of checks
     check_list = [
         rws_checker.has_all_rationales,
-        rws_checker.find_non_https_urls, 
+        rws_checker.find_non_https_urls,
+        rws_checker.check_associated_count,
         rws_checker.find_invalid_eTLD_Plus1,
         rws_checker.find_invalid_well_known, 
         rws_checker.find_invalid_alias_eSLDs, 
@@ -145,12 +146,14 @@ def main():
         except Exception as inst:
             error_texts.append(inst)
     # This message allows us to check the succes of our action
-    if rws_checker.error_list or error_texts:
+    if rws_checker.error_list or error_texts or rws_checker.warning_texts:
         for checker_error in rws_checker.error_list:
             print(checker_error)
         for error_text in error_texts:
             print(error_text)
-    else:
+        for warning in rws_checker.warning_texts:
+            print(warning)
+    else:   
         print("success", end='')
 
 
