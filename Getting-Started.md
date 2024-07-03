@@ -14,7 +14,7 @@ RWS Submission
 Step 1: Identifying your RWS
 ----------------------------
 
-1.  Identify which domains you want to declare in your RWS, and decide on the set primary and set members. Set members have a defined relationship with the set primary. Make sure your set members meet the relationship requirements under "[Set Formation Requirements](https://github.com/GoogleChrome/related-website-sets/blob/main/RWS-Submission_Guidelines.md#set-formation-requirements)."
+1.  Identify which domains you want to declare in your RWS, and decide on the set primary and set members. Set members have a defined relationship with the set primary. Make sure your set members meet the relationship requirements under "[Set ion Requirements](https://github.com/GoogleChrome/related-website-sets/blob/main/RWS-Submission_Guidelines.md#set-formation-requirements)."
 
 Step 2: Creating (or updating) your RWS submission
 --------------------------------------------------
@@ -23,7 +23,7 @@ Step 2: Creating (or updating) your RWS submission
 
 2.  Create a new branch by using the command `git checkout -b your-branch-name -t origin/main` or [via the UI](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository).
 
-3.  Create your JSON resources in the correct [format](https://github.com/GoogleChrome/first-party-sets/blob/main/FPS-Submission_Guidelines.md#set-submissions). You can use the [RWS JSON Generator tool](https://goo.gle/rws-json-generator) to easily do this.
+3.  Create your JSON resources in the correct [format](https://github.com/GoogleChrome/related-website-sets/blob/main/RWS-Submission_Guidelines.md#set-submissions). You can use the [RWS JSON Generator tool](https://goo.gle/rws-json-generator) to easily do this.
 
 4.  Make changes to the [related_website_sets.JSON file](https://github.com/GoogleChrome/related-website-sets/blob/main/related_website_sets.JSON) to reflect your new or modified RWS.
 
@@ -90,7 +90,7 @@ Per the Submission Guidelines, approved PRs will be manually merged in batches t
 
 ### Debugging failures
 
--   If your PR fails, an error message will provide additional information on why the submission may have failed. Here is an [example](https://github.com/GoogleChrome/first-party-sets/pull/26#issuecomment-1533661609).
+-   If your PR fails, an error message will provide additional inion on why the submission may have failed. Here is an [example](https://github.com/GoogleChrome/first-party-sets/pull/26#issuecomment-1533661609).
 
 -   You can also investigate the details of the failure by clicking on "PR-Actions" then clicking the drop-down labeled "File contents."
 
