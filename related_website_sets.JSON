@@ -880,21 +880,49 @@
     }
   },
   {
+    "contact": "tech@thejournal.ie",
+    "primary": "https://thejournal.ie",
+    "associatedSites": [
+      "https://the42.ie"
+    ],
+    "rationaleBySite": {
+      "https://the42.ie": "Sports publication of TheJournal"
+    }
+  },
+  {
+    "contact": "dev@ad-shield.io",
+    "primary": "https://html-load.com",
+    "associatedSites": [
+      "https://css-load.com",
+      "https://img-load.com",
+      "https://content-loader.com",
+      "https://07c225f3.online",
+      "https://html-load.cc"
+    ],
+    "rationaleBySite": {
+      "https://css-load.com": "This domain is designated for the Pro version.",
+      "https://img-load.com": "This domain is designated for the Enterprise version.",
+      "https://content-loader.com": "This domain is designated for the Legacy version.",
+      "https://07c225f3.online": "This domain is designated for the Legacy version.",
+      "https://html-load.cc": "This domain is designated for the Essential version."
+    }
+  },
+  {
     "contact": "jakub.lasecki@firma.interia.pl",
     "primary": "https://interia.pl",
     "associatedSites": [
-        "https://pomponik.pl",
-        "https://deccoria.pl",
-        "https://top.pl",
-        "https://smaker.pl",
-        "https://terazgotuje.pl"
+      "https://pomponik.pl",
+      "https://deccoria.pl",
+      "https://top.pl",
+      "https://smaker.pl",
+      "https://terazgotuje.pl"
     ],
     "rationaleBySite": {
-        "https://pomponik.pl": "Special Interest Website - celebrity news and gossip",
-        "https://deccoria.pl": "Special Interest Website - advice and inspirations foron interior design and garden care",
-        "https://top.pl": "Special Interest Website - wide range of articles, news and tips ",
-        "https://smaker.pl": "Special Interest Website - recipes, cooking, diet and everything for home cooks",
-        "https://terazgotuje.pl": "Special Interest Website - cooking news, tips and recipes"
+      "https://pomponik.pl": "Special Interest Website - celebrity news and gossip",
+      "https://deccoria.pl": "Special Interest Website - advice and inspirations foron interior design and garden care",
+      "https://top.pl": "Special Interest Website - wide range of articles, news and tips ",
+      "https://smaker.pl": "Special Interest Website - recipes, cooking, diet and everything for home cooks",
+      "https://terazgotuje.pl": "Special Interest Website - cooking news, tips and recipes"
     }
   }
   ]
