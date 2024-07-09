@@ -878,6 +878,16 @@
       "https://knowledgebase.com": "Knowledge base software for customer support and self-service",
       "https://livechatinc.com": "Services supporting LiveChat"
     }
+  },
+  {
+    "contact": "tech@thejournal.ie",
+    "primary": "https://thejournal.ie",
+    "associatedSites": [
+      "https://the42.ie"
+    ],
+    "rationaleBySite": {
+      "https://the42.ie": "Sports publication of TheJournal"
+    }
   }
   ]
 }
