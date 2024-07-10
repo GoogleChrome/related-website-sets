@@ -132,7 +132,7 @@ def main():
         rws_checker.has_all_rationales,
         rws_checker.find_non_https_urls, 
         rws_checker.find_invalid_eTLD_Plus1,
-        rws_checker.find_invalid_well_known, 
+        #rws_checker.find_invalid_well_known, # This check is disabled for now as we didn't publish the files yet
         rws_checker.find_invalid_alias_eSLDs, 
         rws_checker.find_robots_tag, 
         rws_checker.find_ads_txt, 

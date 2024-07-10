@@ -1,5 +1,36 @@
 {
   "sets": [
+      {
+        "contact": "contact@rakuten.com",
+        "primary": "https://rakuten.co.jp",
+        "associatedSites": [
+          "https://rakuten-card.co.jp",
+          "https://rakuten-sec.co.jp",
+          "https://rakuten-bank.co.jp",
+          "https://rakuten-insurance.co.jp",
+          "https://fril.jp"
+        ],
+        "serviceSites": [
+          "https://rakuten.net"
+        ],
+        "rationaleBySite": {
+          "https://rakuten-card.co.jp": "Rakuten Card",
+          "https://rakuten-sec.co.jp": "Rakuten Securities",
+          "https://rakuten-bank.co.jp": "Rakuten Bank",
+          "https://rakuten-insurance.co.jp": "Rakuten Insurance",
+          "https://fril.jp": "Rakuten Rakuma",
+          "https://r10s.jp": "CDN"
+        },
+        "ccTLDs": {
+          "https://rakuten.co.jp": [
+              "https://rakuten.com",
+              "https://rakuten.ne.jp",
+              "https://rakuten.co.uk",
+              "https://rakuten.es",
+              "https://rakuten.fr"
+          ]
+        }
+    },
     {
       "contact": "oterrell28@gmail.com",
       "primary": "https://sackrace.ai",

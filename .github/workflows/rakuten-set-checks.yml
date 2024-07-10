@@ -1,0 +1,28 @@
+name: RWS submission checks
+on: 
+  pull_request:
+    branches:
+      - main
+jobs:
+  PR-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip' # caching pip dependencies
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check site
+        run: |
+          python check_sites.py -p https://rakuten.co.jp > result.txt
+          if grep -q 'success' result.txt; then
+            echo "Check successful"
+          else
+            echo "Check failed, see message below:"
+            cat result.txt
