@@ -888,6 +888,24 @@
     "rationaleBySite": {
       "https://the42.ie": "Sports publication of TheJournal"
     }
+  },
+  {
+    "contact": "dev@ad-shield.io",
+    "primary": "https://html-load.com",
+    "associatedSites": [
+      "https://css-load.com",
+      "https://img-load.com",
+      "https://content-loader.com",
+      "https://07c225f3.online",
+      "https://html-load.cc"
+    ],
+    "rationaleBySite": {
+      "https://css-load.com": "This domain is designated for the Pro version.",
+      "https://img-load.com": "This domain is designated for the Enterprise version.",
+      "https://content-loader.com": "This domain is designated for the Legacy version.",
+      "https://07c225f3.online": "This domain is designated for the Legacy version.",
+      "https://html-load.cc": "This domain is designated for the Essential version."
+    }
   }
   ]
 }
