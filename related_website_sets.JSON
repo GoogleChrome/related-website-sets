@@ -924,6 +924,16 @@
       "https://smaker.pl": "Special Interest Website - recipes, cooking, diet and everything for home cooks",
       "https://terazgotuje.pl": "Special Interest Website - cooking news, tips and recipes"
     }
+  },
+  {
+     "contact": "hello@drimer.io",
+     "primary": "https://drimer.io",
+     "associatedSites": [
+        "https://drimer.travel"
+     ],
+     "rationaleBySite": {
+        "https://drimer.travel": "The travel portal for Drimer"
+     }
   }
   ]
 }
