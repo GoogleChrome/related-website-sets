@@ -942,6 +942,16 @@
   		"https://motherandbaby.com": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains.",
   		"https://takeabreak.co.uk": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains."
   	}
+   },
+   {
+     "contact": "hello@drimer.io",
+     "primary": "https://drimer.io",
+     "associatedSites": [
+        "https://drimer.travel"
+     ],
+     "rationaleBySite": {
+        "https://drimer.travel": "The travel portal for Drimer"
+     }
   }
   ]
 }
