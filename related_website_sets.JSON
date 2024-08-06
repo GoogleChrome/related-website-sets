@@ -924,6 +924,24 @@
       "https://smaker.pl": "Special Interest Website - recipes, cooking, diet and everything for home cooks",
       "https://terazgotuje.pl": "Special Interest Website - cooking news, tips and recipes"
     }
+  },
+  {
+  	"contact": "david.molloy@bauermedia.co.uk",
+  	"primary": "https://graziadaily.co.uk",
+  	"associatedSites": [
+  		"https://heatworld.com",
+  		"https://closeronline.co.uk",
+  		"https://www.yours.co.uk",
+  		"https://www.motherandbaby.com",
+  		"https://takeabreak.co.uk"
+  	],
+  	"rationaleBySite": {
+  		"https://heatworld.com": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains",
+  		"https://closeronline.co.uk": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains",
+  		"https://www.yours.co.uk": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains",
+  		"https://www.motherandbaby.com": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains",
+  		"https://takeabreak.co.uk": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains"
+  	}
   }
   ]
 }
