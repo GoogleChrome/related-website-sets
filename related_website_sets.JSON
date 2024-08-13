@@ -952,6 +952,16 @@
      "rationaleBySite": {
         "https://drimer.travel": "The travel portal for Drimer"
      }
+  },
+  {
+    "contact": "thomas.drake@ngic.com",
+    "primary": "https://ngahagents.ngic.com",
+    "associatedSites": [
+      "https://enroll.natgenhealth.com"
+    ],
+    "rationaleBySite": {
+      "https://enroll.natgenhealth.com": "Both part of the same platform for enrolling and managing insurance policies. This domain is our enrollment service that needs to share cookies with ngahagents.ngic.com for authentication and session management."
+    }
   }
   ]
 }
