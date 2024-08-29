@@ -4,10 +4,9 @@
         "contact": "vbiblij@gmail.com",
         "primary": "https://favorit-kiev.com.ua",
         "associatedSites": [
-            "https://www.youtube.com",
-            "https://td.doubleclick.net",
-            "https://.google.com",
-            "https://google.com"
+          "https://youtube.com",
+          "https://doubleclick.net",
+          "https://google.com"
         ]
     }
   ]
