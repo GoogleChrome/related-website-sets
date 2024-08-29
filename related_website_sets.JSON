@@ -1,14 +1,14 @@
 {
   "sets": [
-{
-    "contact": "vbiblij@gmail.com",
-    "primary": "https://favorit-kiev.com.ua",
-    "associatedSites": [
-        "https://www.youtube.com",
-        "https://td.doubleclick.net",
-        "https://.google.com",
-        "https://google.com"
-    ]
-}
-]
+    {
+        "contact": "vbiblij@gmail.com",
+        "primary": "https://favorit-kiev.com.ua",
+        "associatedSites": [
+            "https://www.youtube.com",
+            "https://td.doubleclick.net",
+            "https://.google.com",
+            "https://google.com"
+        ]
+    }
+  ]
 }
