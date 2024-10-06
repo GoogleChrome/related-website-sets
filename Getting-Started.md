@@ -23,7 +23,7 @@ Step 2: Creating (or updating) your RWS submission
 
 2.  Create a new branch by using the command `git checkout -b your-branch-name -t origin/main` or [via the UI](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-and-deleting-branches-within-your-repository).
 
-3.  Create your JSON resources in the correct [format](https://github.com/GoogleChrome/first-party-sets/blob/main/FPS-Submission_Guidelines.md#set-submissions). You can use the [RWS JSON Generator tool](https://goo.gle/rws-json-generator) to easily do this.
+3.  Create your JSON resources in the correct [format](https://github.com/GoogleChrome/related-website-sets/blob/main/RWS-Submission_Guidelines.md#set-submissions). You can use the [RWS JSON Generator tool](https://goo.gle/rws-json-generator) to easily do this.
 
 4.  Make changes to the [related_website_sets.JSON file](https://github.com/GoogleChrome/related-website-sets/blob/main/related_website_sets.JSON) to reflect your new or modified RWS.
 

@@ -408,6 +408,35 @@ class TestCheckExclusivity(unittest.TestCase):
         self.assertEqual(rws_check.error_list, 
          ["This primary is already registered in another"
                         + " related website set: https://primary2.com"])
+        
+    def test_primary_overlap(self):
+        json_dict = {
+            "sets":
+            [
+                {
+                    "primary": "https://primary.com",
+                    "associatedSites": ["https://associated1.com"],
+                    "serviceSites": ["https://primary.com"],
+                    "rationaleBySite": {}
+                },
+                {
+                    "primary": "https://primary2.com",
+                    "associatedSites": ["https://primary.com"],
+                    "serviceSites": ["https://service2.com"],
+                    "rationaleBySite": {}
+                }
+            ]
+        }
+        rws_check = RwsCheck(rws_sites=json_dict,
+                      etlds=None,
+                       icanns=set())
+        loaded_sets = rws_check.load_sets()
+        rws_check.check_exclusivity(loaded_sets)
+        self.assertEqual(rws_check.error_list, 
+         ["These service sites are already registered in another"
+                        + " related website set: {'https://primary.com'}",
+          "These associated sites are already registered in another" 
+                        + " related website set: {'https://primary.com'}"])
                 
     def test_expected_case(self):
         json_dict = {

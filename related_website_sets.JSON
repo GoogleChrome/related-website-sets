@@ -1,6 +1,16 @@
 {
   "sets": [
     {
+      "contact": "oterrell28@gmail.com",
+      "primary": "https://sackrace.ai",
+      "serviceSites": [
+        "https://socket-to-me.vip"
+      ],
+      "rationaleBySite": {
+        "https://socket-to-me.vip": "A headless server to augment application that has a primary serverless architecture."
+      }
+    },
+    {
       "contact": "il.mrbit@gmail.com",
       "primary": "https://poalim.xyz",
       "associatedSites": [
@@ -309,11 +319,11 @@
         "https://tvid.in"
       ],
       "rationaleBySite": {
-        "https://indiatimes.com": "Indiatimes.com is primary domain for Times Internet which publish stories on Indian Lifestyle, Culture, Relationships, Food, Travel, Entertainment, News and New Technology News",
-        "https://timesofindia.com": "Times of India (TOI) is Indias largest and most influential news publisher in English. Its digital platform timesofindia.com is powered by Times Internet Limited",
-        "https://economictimes.com": "Economic Times is India's top business news platform, providing comprehensive coverage of the economy, stock markets, and personal finance to inspire and empower business leaders and entrepreneurs. This digital platform is powered by Times Internet Limited",
-        "https://samayam.com": "Samayam is a Regional News publisher powered by Times Internet Limited",
-        "https://cricbuzz.com": "Cricbuzz is an Indian cricket news & live score platform owned by Times Internet Limited",
+        "https://indiatimes.com": "Indiatimes.com is primary domain for Times Internet which publish stories on Indian Lifestyle, Culture, Relationships, Food, Travel, Entertainment, News and New Technology News. The connection to Times Internet Limited is reflected in the About Us Section and the footer of the website.",
+        "https://timesofindia.com": "Times of India (TOI) is Indias largest and most influential news publisher in English. Its digital platform timesofindia.com is powered by Times Internet Limited, aptly represented in the About Us section and footer of the website.",
+        "https://economictimes.com": "Economic Times is India's top business news platform, providing comprehensive coverage of the economy, stock markets, and personal finance to inspire and empower business leaders and entrepreneurs. This digital platform is powered by Times Internet Limited as is clear from the About Us section of the website.",
+        "https://samayam.com": "Samayam is a Regional News publisher powered by Times Internet Limited. Its relationship to Times Internet is reflected in the footer of the website.",
+        "https://cricbuzz.com": "Cricbuzz is an Indian cricket news & live score platform owned by Times Internet Limited which is aptly reflected in the footer on the website.",
         "https://growthrx.in": "GrowthRx is a customer engagement platform powered by Times Internet",
         "https://clmbtech.com": "This is a times-internet data and customer management platform for managing publisher data.",
         "https://tvid.in": "TVID is an in-house video management platform powered by Times Internet"
@@ -375,6 +385,16 @@
         "https://journaldunet.com": [
           "https://journaldunet.fr"
         ]
+      }
+    },
+    {
+      "contact": "bergmanpatrickr@johndeere.com",
+      "primary": "https://johndeere.com",
+
+      "associatedSites": ["https://deere.com"],
+
+      "rationaleBySite": {
+         "https://deere.com": "Both johndeere.com and deere.com share branding, logos, and terms and conditions. They are used interchangeably. The names themselves are associated to Deere & Company in the marketplace."
       }
     },
     {
@@ -711,23 +731,6 @@
     }
   },
   {
-    "contact": "jsteam@intra.sapo.pt",
-    "primary": "https://sapo.pt",
-    "associatedSites": [
-      "https://sapo.pt",
-      "https://meo.pt"
-    ],
-    "rationaleBySite": {
-      "https://sapo.pt": "SAPO is Portugal's leading online platform offering a diverse range of news, information, and services catering to various interests including news, entertainment, sports, technology, and lifestyle.",
-      "https://meo.pt": "MEO is a prominent telecommunications and entertainment provider in Portugal, offering a wide range of services including television, internet, phone, and mobile."
-    },
-    "ccTLDs": {
-      "https://sapo.pt": [
-        "https://sapo.io"
-      ]
-    }
-  },
-  {
     "contact": "profiel@vrt.be",
     "primary": "https://vrt.be",
     "associatedSites": [
@@ -744,6 +747,211 @@
        "https://radio2.be": "sub brand site",
        "https://radio1.be": "sub brand site"
     }
-   }
+ },
+ {
+    "contact": "abatahi@nvidia.com",
+    "primary": "https://nvidia.com",
+    "associatedSites": [
+      "https://geforcenow.com"
+    ],
+    "rationaleBySite": {
+      "https://geforcenow.com": "A site that represents the WEB client for NVIDIA GEFORCE NOW service. Players are able to instantly stream their PC game library. NVIDIA branding is clearly visible on this site."
+    }
+ },
+ {
+  "contact": "jsteam@intra.sapo.pt",
+  "primary": "https://sapo.pt",
+  "associatedSites": [
+   "https://meo.pt"
+  ],
+  "rationaleBySite": {
+   "https://meo.pt": "MEO is a prominent telecommunications and entertainment provider in Portugal, offering a wide range of services including television, internet, phone, and mobile."
+  },
+  "ccTLDs": {
+   "https://sapo.pt": [
+   "https://sapo.io"
+   ]
+  }
+ },
+ {
+    "contact": "support@tolteck.com",
+    "primary": "https://tolteck.com",
+    "associatedSites": [
+      "https://tolteck.app"
+    ],
+    "rationaleBySite": {
+      "https://tolteck.app": "Tolteck application"
+    }
+  },
+  {
+      "contact": "datateam@centralmediacsoport.hu",
+      "primary": "https://p24.hu",
+      "associatedSites": [
+          "https://24.hu",
+          "https://startlap.hu",
+          "https://nlc.hu",
+          "https://hazipatika.com",
+          "https://nosalty.hu"
+      ],
+      "rationaleBySite": {
+          "https://24.hu": "Hungarian news portal",
+          "https://startlap.hu": "Hungarian news aggregator site and link collection",
+          "https://nlc.hu": "Hungarian women's online magazine",
+          "https://hazipatika.com": "Hungarian health portal",
+          "https://nosalty.hu": "Hungarian recipe portal"
+      }
+  },
+  {
+    "contact": "info@cognitiveai.ru",
+    "primary": "https://cognitiveai.ru",
+    "associatedSites": ["https://cognitive-ai.ru"],
+    "rationaleBySite": {
+      "https://cognitive-ai.ru": "This domain is our backend service that needs to share cookies with the main user-facing domain for authentication and session management."
+    }
+  },
+  {
+    "contact": "technical@citybibleforum.org",
+    "primary": "https://citybibleforum.org",
+    "associatedSites": ["https://thirdspace.org.au"],
+    "rationaleBySite": {
+      "https://thirdspace.org.au": "Similar content served in slightly different formats to different audiences"
+    }
+  },
+  {
+    "contact": "admin@smpn106jkt.sch.id",
+    "primary": "https://p106.net",
+    "associatedSites": [
+      "https://smpn106jkt.sch.id"
+    ],
+    "rationaleBySite": {
+      "https://p106.net": "Indonesia Junior High School",
+      "https://smpn106jkt.sch.id": "Indonesia Junior High School"
+    }
+  },
+  {
+    "contact": "sanjay.nagpal@aajtak.com",
+    "primary": "https://indiatoday.in",
+    "associatedSites": [
+        "https://aajtak.in",
+        "https://businesstoday.in",
+        "https://intoday.in",
+        "https://gnttv.com",
+        "https://indiatodayne.in"
+    ],
+    "rationaleBySite": {
+        "https://intoday.in": "The one-stop destination for all of India Today Group's digital properties.",
+        "https://aajtak.in": "aajtak.in is the fastest, most reliable, and most popular website of news in Hindi. It provides readers with the news of India and worldwide along with every significant information related to everyday life with complete authenticity",
+        "https://businesstoday.in": "Top destination for business news, markets,  economy and more",
+        "https://indiatoday.in": "IndiaToday.in brings you news, analysis, explainers and opinion on a variety of subjects including politics, crime, civic issues, business, sports, technology, science, heatlh, lifestyle, and much more",        
+        "https://gnttv.com": " Good News Today is a website that focuses on the bright side of life and showcases stories of triumphs and positivity.",
+        "https://indiatodayne.in": "India Today NE is dedicated to covering news and views of India’s north-eastern region which includes eight states—Assam, Arunachal Pradesh, Nagaland, Manipur, Mizoram, Tripura, Meghalaya and Sikkim"
+    }
+  },
+ {
+        "contact": "naukri.comapp@gmail.com",
+        "primary": "https://naukri.com",
+        "associatedSites": [
+           "https://ambitionbox.com",
+           "https://infoedgeindia.com"
+        ],
+        "rationaleBySite": {
+           "https://ambitionbox.com": "Ambition box associated url",
+           "https://infoedgeindia.com": "InfoEdge India website"
+        }
+ },
+  {
+    "contact": "l.powazka@text.com",
+    "primary": "https://text.com",
+    "associatedSites": [
+      "https://livechat.com",
+      "https://helpdesk.com",
+      "https://chatbot.com",
+      "https://livechatinc.com",  
+      "https://knowledgebase.com",
+      "https://openwidget.com"
+    ],
+    "rationaleBySite": {
+      "https://livechat.com": "LiveChat - leading live chat software for business",
+      "https://helpdesk.com": "HelpDesk - leading help desk software for business",
+      "https://openwidget.com": "OpenWidget - free widgets for websites",
+      "https://chatbot.com": "ChatBot - leading automation software and chatbot platform",
+      "https://knowledgebase.com": "Knowledge base software for customer support and self-service",
+      "https://livechatinc.com": "Services supporting LiveChat"
+    }
+  },
+  {
+    "contact": "tech@thejournal.ie",
+    "primary": "https://thejournal.ie",
+    "associatedSites": [
+      "https://the42.ie"
+    ],
+    "rationaleBySite": {
+      "https://the42.ie": "Sports publication of TheJournal"
+    }
+  },
+  {
+    "contact": "dev@ad-shield.io",
+    "primary": "https://html-load.com",
+    "associatedSites": [
+      "https://css-load.com",
+      "https://img-load.com",
+      "https://content-loader.com",
+      "https://07c225f3.online",
+      "https://html-load.cc"
+    ],
+    "rationaleBySite": {
+      "https://css-load.com": "This domain is designated for the Pro version.",
+      "https://img-load.com": "This domain is designated for the Enterprise version.",
+      "https://content-loader.com": "This domain is designated for the Legacy version.",
+      "https://07c225f3.online": "This domain is designated for the Legacy version.",
+      "https://html-load.cc": "This domain is designated for the Essential version."
+    }
+  },
+  {
+    "contact": "jakub.lasecki@firma.interia.pl",
+    "primary": "https://interia.pl",
+    "associatedSites": [
+      "https://pomponik.pl",
+      "https://deccoria.pl",
+      "https://top.pl",
+      "https://smaker.pl",
+      "https://terazgotuje.pl"
+    ],
+    "rationaleBySite": {
+      "https://pomponik.pl": "Special Interest Website - celebrity news and gossip",
+      "https://deccoria.pl": "Special Interest Website - advice and inspirations foron interior design and garden care",
+      "https://top.pl": "Special Interest Website - wide range of articles, news and tips ",
+      "https://smaker.pl": "Special Interest Website - recipes, cooking, diet and everything for home cooks",
+      "https://terazgotuje.pl": "Special Interest Website - cooking news, tips and recipes"
+    }
+  },
+  {
+  	"contact": "david.molloy@bauermedia.co.uk",
+  	"primary": "https://graziadaily.co.uk",
+  	"associatedSites": [
+  		"https://heatworld.com",
+  		"https://closeronline.co.uk",
+  		"https://yours.co.uk",
+  		"https://motherandbaby.com",
+  		"https://takeabreak.co.uk"
+  	],
+  	"rationaleBySite": {
+  		"https://heatworld.com": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains.",
+  		"https://closeronline.co.uk": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains.",
+  		"https://yours.co.uk": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains.",
+  		"https://motherandbaby.com": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains.",
+  		"https://takeabreak.co.uk": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains."
+  	}
+   },
+   {
+     "contact": "hello@drimer.io",
+     "primary": "https://drimer.io",
+     "associatedSites": [
+        "https://drimer.travel"
+     ],
+     "rationaleBySite": {
+        "https://drimer.travel": "The travel portal for Drimer"
+     }
+  }
   ]
 }
