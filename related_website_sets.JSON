@@ -1,6 +1,15 @@
 {
   "sets": [
     {
+        "contact": "vbiblij@gmail.com",
+        "primary": "https://favorit-kiev.com.ua",
+        "associatedSites": [
+          "https://youtube.com",
+          "https://doubleclick.net",
+          "https://google.com"
+        ]
+    },
+    {
       "contact": "oterrell28@gmail.com",
       "primary": "https://sackrace.ai",
       "serviceSites": [
