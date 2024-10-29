@@ -952,6 +952,21 @@
      "rationaleBySite": {
         "https://drimer.travel": "The travel portal for Drimer"
      }
+  },
+  {
+    "contact": "chrome-rws@amazon.com",
+    "primary": "https://amazon.com",
+    "serviceSites": ["https://amazon-adsystem.com"],
+    "associatedSites": ["https://imdb.com", "https://twitch.tv"],
+    "rationaleBySite": {
+      "https://amazon-adsystem.com": "Amazon owned Advertising service.",
+      "https://imdb.com": "Amazon owned and operated service for information on movies, TV shows, and celebrities",
+      "https://twitch.tv": "Amazon owned and commonly branded interactive livestream service."
+    },
+    "ccTLDs": {
+      "https://amazon.com": ["https://amazon.de", "https://amazon.ca", "https://amazon.com.au", "https://amazon.com.br", "https://amazon.co.jp", "https://amazon.com.mx", "https://amazon.co.uk", "https://amazon.de", "https://amazon.in", "https://amazon.ae", "https://amazon.com.tr", "https://amazon.es", "https://amazon.fr", "https://amazon.it", "https://amazon.nl", "https://amazon.sa", "https://amazon.sg", "https://amazon.com.be", "https://amazon.se", "https://amazon.pl", "https://amazon.eg", "https://amazon.co.za"],
+      "https://twitch.tv": ["https://twitch.tech"]
+    }
   }
   ]
 }
