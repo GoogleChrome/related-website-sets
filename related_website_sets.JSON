@@ -952,6 +952,16 @@
      "rationaleBySite": {
         "https://drimer.travel": "The travel portal for Drimer"
      }
-  }
+  },
+   {
+      "contact": "homepage_migration_engineers@zoom.us",
+      "primary": "https://zoom.us",
+      "associatedSites": [
+        "https://zoom.com"
+      ],
+      "rationaleBySite": {
+        "https://zoom.com": "marketing new homepages for SEO purposes"
+      }
+    }
   ]
 }
