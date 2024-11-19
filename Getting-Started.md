@@ -125,6 +125,11 @@ Answer: The rationale field is where you provide an explanation as to why or how
 
 Answer: A key component to the technical checks that run upon submission is the [/.well-known/ metadata requirement](https://github.com/GoogleChrome/first-party-sets/blob/main/RWS-Submission_Guidelines.md#set-level-technical-validation). This requirement demonstrates that the submitter has administrative access to the domains present in the set, since administrative access is required to modify the /.well-known/ file. This will help prevent unauthorized actors from adding domains to a set.
 
+### Q. What if I would like to modify or delete my RWS?
+
+Answer: 
+To modify an RWS that you own, simply submit a Pull Request that makes the changes you wish to make to your set, and ensure that the `/.well-known/related-website-set.json` endpoint for your set's primary reflects these changes, as do the `/.well-known/related-website-set.json` endpoints of any sites changed within your subsets. To remove a set entirely from the [canonical RWS list](https://github.com/googlechrome/first-party-sets/blob/main/related_website_sets.JSON) you must change the `/.well-known/related-website-set.json` endpoint for your set's primary so that it serves a `404 (Not Found)` status code, then submit a pull request that removes your RWS set from the list.
+
 ### Q. Can I make pull requests against files other than related_website_sets.JSON (e.g., the Submission Guidelines or the technical checks)?
 
 Answer: Please refrain from making suggestions in the form of pull requests to files in the GitHub repository other than related_website_sets.JSON. We welcome feedback to any of the content, but would prefer feedback to be submitted as issues to the repository instead.The purpose of this document is to provide a companion guide to the [Related Website Sets Submission Guidelines](https://github.com/GoogleChrome/related-website-sets/blob/main/RWS-Submission_Guidelines.md), which details the full requirements for Related Website Sets creation and submission.
