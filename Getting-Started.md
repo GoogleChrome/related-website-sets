@@ -128,7 +128,7 @@ Answer: A key component to the technical checks that run upon submission is the 
 ### Q. What if I would like to modify or delete my RWS?
 
 Answer: 
-To modify an RWS that you own, simply submit a Pull Request that makes the changes you wish to make to your set, and ensure that the `/.well-known/related-website-set.json` endpoint for your set's primary reflects these changes, as do the `/.well-known/related-website-set.json` endpoints of any sites changed within your subsets. To remove a set entirely from the <a href="https://github.com/googlechrome/first-party-sets/blob/main/related_website_sets.JSON">canonical RWS list,</a> you must change the `/.well-known/related-website-set.json` endpoint for your set's primary so that it serves a `404(Not Found)` status code, then submit a pull request that removes your RWS set from the list.
+To modify an RWS that you own, simply submit a Pull Request that makes the changes you wish to make to your set, and ensure that the `/.well-known/related-website-set.json` endpoint for your set's primary reflects these changes, as do the `/.well-known/related-website-set.json` endpoints of any sites changed within your subsets. To remove a set entirely from the [canonical RWS list](https://github.com/googlechrome/first-party-sets/blob/main/related_website_sets.JSON) you must change the `/.well-known/related-website-set.json` endpoint for your set's primary so that it serves a `404 (Not Found)` status code, then submit a pull request that removes your RWS set from the list.
 
 ### Q. Can I make pull requests against files other than related_website_sets.JSON (e.g., the Submission Guidelines or the technical checks)?
 
