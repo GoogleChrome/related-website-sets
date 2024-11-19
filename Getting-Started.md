@@ -94,7 +94,9 @@ Per the Submission Guidelines, approved PRs will be manually merged in batches t
 
 -   You can also investigate the details of the failure by clicking on "PR-Actions" then clicking the drop-down labeled "File contents."
 
--   If your PR is failing because of changes you made to related_website_sets.JSON, you can fix those issues in your local copy of the repository, push them to your branch as previously described, and the action will run again once you've finished. The comment should update with any changes to the error message or it will change to say that you've passed all of the tests. 
+-   If your PR is failing because of changes you made to related_website_sets.JSON, you can fix those issues in your local copy of the repository, push them to your branch as previously described, and the action will run again once you've finished. The comment should update with any changes to the error message or it will change to say that you've passed all of the tests.
+
+-   If your PR is failing validation and has been not updated after 30 days, you will be reminded with a comment to take action. Failing any action taken within 14 days of the reminder, the PR will be closed. Once the PR is closed, you will need to submit a new PR to restart the submission process.
 
 FAQs
 ====
@@ -131,3 +133,7 @@ To modify an RWS that you own, simply submit a Pull Request that makes the chang
 ### Q. Can I make pull requests against files other than related_website_sets.JSON (e.g., the Submission Guidelines or the technical checks)?
 
 Answer: Please refrain from making suggestions in the form of pull requests to files in the GitHub repository other than related_website_sets.JSON. We welcome feedback to any of the content, but would prefer feedback to be submitted as issues to the repository instead.The purpose of this document is to provide a companion guide to the [Related Website Sets Submission Guidelines](https://github.com/GoogleChrome/related-website-sets/blob/main/RWS-Submission_Guidelines.md), which details the full requirements for Related Website Sets creation and submission.
+
+### Q. What should I do if my PR fails validation?
+
+Answer: If your PR fails, an error message will provide additional information on why the submission may have failed. Here is an [example](https://github.com/GoogleChrome/related-website-sets/pull/26#issuecomment-1533661609). If the PR that fails validation is not updated after 30 days, you will be reminded with a comment to take action. Failing any action taken within 14 days of the reminder, the PR will be closed. Once the PR is closed, you can either create a new PR to restart the process, or click the button at the bottom of your old PR marked "Reopen pull request."

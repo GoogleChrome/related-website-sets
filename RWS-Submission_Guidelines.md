@@ -263,6 +263,8 @@ In the case of submission failure, the submitter will be notified through a PR f
 
 If you feel that a specific technical check has mistakenly caused a submission failure, leave a comment on the failed PR after consulting the error log. The Chrome team will investigate and reach out if further action is required.
 
+If a failing PR is not updated after 30 days, you will be reminded with a comment to take action. If no action is taken within 14 days of the reminder, the PR will be closed. If you would still like to proceed with the RWS submission process, you may choose to reopen your closed PR, or to restart by creating a new PR.
+
 ## Browser Behavior
 
 Chrome consumes the canonical RWS list on a regular basis (every 2 weeks) and ships it to clients as an updateable component. Individual clients (with internet access) will refresh the list they apply each time they restart, or on start-up, if newly downloaded.
