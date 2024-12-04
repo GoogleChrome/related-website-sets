@@ -408,38 +408,38 @@
       }
     },
     {
-    	"contact": "domain@nien.com", 
-    	"primary": "https://nien.com", 
+    	"contact": "domain@nien.com",
+    	"primary": "https://nien.com",
     	"associatedSites": [
-    		"https://chennien.com", 
-    		"https://nien.org", 
+    		"https://chennien.com",
+    		"https://nien.org",
     		"https://nien.co"
-    	], 
+    	],
     	"rationaleBySite": {
-    		"https://chennien.com": "Alias domain for Nien Studio", 
-    		"https://nien.org": "Campaign pages for Nien Studio", 
+    		"https://chennien.com": "Alias domain for Nien Studio",
+    		"https://nien.org": "Campaign pages for Nien Studio",
     		"https://nien.co": "URL shortener for Nien Studio"
     	}
     },
     {
-    	"contact": "admin@hearty.me", 
-    	"primary": "https://hearty.me", 
+    	"contact": "admin@hearty.me",
+    	"primary": "https://hearty.me",
     	"associatedSites": [
-    		"https://hearty.app", 
-    		"https://hearty.gift", 
-    		"https://hj.rs", 
-    		"https://heartymail.com", 
-    		"https://alice.tw", 
-    		"https://jiayi.life", 
+    		"https://hearty.app",
+    		"https://hearty.gift",
+    		"https://hj.rs",
+    		"https://heartymail.com",
+    		"https://alice.tw",
+    		"https://jiayi.life",
     		"https://miss.com.tw"
-    	], 
+    	],
     	"rationaleBySite": {
-    		"https://hearty.app": "API endpoints for Hearty Journal", 
-    		"https://hearty.gift": "Campaign pages for Hearty Journal", 
-    		"https://hj.rs": "URL shortener for Hearty Journal", 
-    		"https://heartymail.com": "Email service for Hearty Journal", 
-    		"https://alice.tw": "Alice's blog", 
-    		"https://jiayi.life": "Jiayi's blog", 
+    		"https://hearty.app": "API endpoints for Hearty Journal",
+    		"https://hearty.gift": "Campaign pages for Hearty Journal",
+    		"https://hj.rs": "URL shortener for Hearty Journal",
+    		"https://heartymail.com": "Email service for Hearty Journal",
+    		"https://alice.tw": "Alice's blog",
+    		"https://jiayi.life": "Jiayi's blog",
     		"https://miss.com.tw": "Company website"
     	}
     },
@@ -579,16 +579,16 @@
         "https://standardsandpraiserepurpose.com": "Publisher #1 for RWS Test",
         "https://technology-revealed.com": "Frequency Capping Domain #1 for RWS Test"
       }
-    }, 
+    },
     {
-    	"contact": "nien@startupislandtaiwan.com", 
-    	"primary": "https://startupislandtaiwan.com", 
+    	"contact": "nien@startupislandtaiwan.com",
+    	"primary": "https://startupislandtaiwan.com",
     	"associatedSites": [
-    		"https://startupislandtaiwan.net", 
+    		"https://startupislandtaiwan.net",
     		"https://startupislandtaiwan.org"
-    	], 
+    	],
     	"rationaleBySite": {
-    		"https://startupislandtaiwan.net": "Domain alias", 
+    		"https://startupislandtaiwan.net": "Domain alias",
     		"https://startupislandtaiwan.org": "Domain alias"
     	}
     },
@@ -604,7 +604,7 @@
           "https://carcostadvisor.fr"
         ]
       }
-    }, 
+    },
     {
       "contact": "addigital@caracoltv.com.co",
       "primary": "https://caracoltv.com",
@@ -658,7 +658,7 @@
         "https://cachematrix.com": "Cachematrix is a cash management firm acquired by BlackRock. The relationship is described on the About Us page.",
         "https://efront.com": "eFront is BlackRock's alternative solutions platform. The BlackRock branding is clearly visible on the site.",
         "https://etfacademy.it": "An Italian language education site about ETFs. The iShares by BlackRock branding is clearly visible on the site.",
-        "https://ishares.com": "iShares is BlackRock's ETF brand. The branding is clearly visible on the site." 
+        "https://ishares.com": "iShares is BlackRock's ETF brand. The branding is clearly visible on the site."
       }
     },
     {
@@ -666,7 +666,7 @@
       "primary": "https://tvn.pl",
       "associatedSites": [
             "https://player.pl",
-            "https://tvn24.pl", 
+            "https://tvn24.pl",
             "https://zdrowietvn.pl"
       ],
       "rationaleBySite": {
@@ -842,7 +842,7 @@
         "https://intoday.in": "The one-stop destination for all of India Today Group's digital properties.",
         "https://aajtak.in": "aajtak.in is the fastest, most reliable, and most popular website of news in Hindi. It provides readers with the news of India and worldwide along with every significant information related to everyday life with complete authenticity",
         "https://businesstoday.in": "Top destination for business news, markets,  economy and more",
-        "https://indiatoday.in": "IndiaToday.in brings you news, analysis, explainers and opinion on a variety of subjects including politics, crime, civic issues, business, sports, technology, science, heatlh, lifestyle, and much more",        
+        "https://indiatoday.in": "IndiaToday.in brings you news, analysis, explainers and opinion on a variety of subjects including politics, crime, civic issues, business, sports, technology, science, heatlh, lifestyle, and much more",
         "https://gnttv.com": " Good News Today is a website that focuses on the bright side of life and showcases stories of triumphs and positivity.",
         "https://indiatodayne.in": "India Today NE is dedicated to covering news and views of India’s north-eastern region which includes eight states—Assam, Arunachal Pradesh, Nagaland, Manipur, Mizoram, Tripura, Meghalaya and Sikkim"
     }
@@ -866,7 +866,7 @@
       "https://livechat.com",
       "https://helpdesk.com",
       "https://chatbot.com",
-      "https://livechatinc.com",  
+      "https://livechatinc.com",
       "https://knowledgebase.com",
       "https://openwidget.com"
     ],
@@ -961,6 +961,20 @@
       ],
       "rationaleBySite": {
         "https://zoom.com": "marketing new homepages for SEO purposes"
+      }
+    },
+    {
+      "primary": "https://gfk.com",
+      "serviceSites": ["https://sensic.net"],
+      "rationaleBySite": {
+        "https://sensic.net": "The primary page for media measurement of GfK"
+      }
+    },
+    {
+      "primary": "https://sensic.net",
+      "serviceSites": ["https://gfk.com"],
+      "rationaleBySite": {
+        "https://gfk.com": "The public homepage for Gfk."
       }
     }
   ]
