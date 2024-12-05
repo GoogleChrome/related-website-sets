@@ -964,6 +964,7 @@
       }
     },
     {
+      "contact": "dimitar.andonov@gfk.com",
       "primary": "https://gfk.com",
       "serviceSites": ["https://sensic.net"],
       "rationaleBySite": {
@@ -971,10 +972,11 @@
       }
     },
     {
+      "contact": "dimitar.andonov@gfk.com",
       "primary": "https://sensic.net",
       "serviceSites": ["https://gfk.com"],
       "rationaleBySite": {
-        "https://gfk.com": "The public homepage for Gfk."
+        "https://gfk.com": "The public homepage for GfK."
       }
     }
   ]
