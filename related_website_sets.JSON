@@ -976,7 +976,7 @@
       "primary": "https://sensic.net",
       "serviceSites": ["https://development.sensic-demo.gfk.com"],
       "rationaleBySite": {
-        "https://gfk.com": "The public homepage for GfK."
+        "https://development.sensic-demo.gfk.com": "The public homepage for GfK."
       }
     }
   ]
