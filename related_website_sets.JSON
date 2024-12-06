@@ -965,16 +965,16 @@
     },
     {
       "contact": "dimitar.andonov@gfk.com",
-      "primary": "https://gfk.com",
+      "primary": "https://development.sensic-demo.gfk.com",
       "serviceSites": ["https://sensic.net"],
       "rationaleBySite": {
-        "https://sensic.net": "The primary page for media measurement of GfK"
+        "https://sensic.net": "The demo website for GfK's main media measurement product."
       }
     },
     {
       "contact": "dimitar.andonov@gfk.com",
       "primary": "https://sensic.net",
-      "serviceSites": ["https://gfk.com"],
+      "serviceSites": ["https://development.sensic-demo.gfk.com"],
       "rationaleBySite": {
         "https://gfk.com": "The public homepage for GfK."
       }
