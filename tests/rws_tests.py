@@ -9,7 +9,26 @@ sys.path.append('.')
 from RwsSet import RwsSet
 from RwsCheck import RwsCheck
 from RwsCheck import WELL_KNOWN
-from check_sites import find_diff_sets
+from check_sites import find_diff_sets, parse_rws_json
+
+class TestLoadFile(unittest.TestCase):
+    """A test suite for the parse_rws_json function"""
+
+    def test_parse_only(self):
+        self.assertEqual(parse_rws_json("this is not json", False),
+                         (None, "There was an error when parsing the JSON;\nerror was:  Expecting value: line 1 column 1 (char 0)"))
+        self.assertEqual(parse_rws_json('{\n  "a": "foo", \n    "b": "bar"\n}\n  ', False),
+                         ({"a": "foo", "b": "bar"}, None))
+        self.assertEqual(parse_rws_json('{\n  "a": "foo",\n  "b": "bar"\n}\n', False),
+                         ({"a": "foo", "b": "bar"}, None))
+
+    def test_parse_and_check_format(self):
+        self.assertEqual(parse_rws_json("this is not json", True),
+                         (None, "There was an error when parsing the JSON;\nerror was:  Expecting value: line 1 column 1 (char 0)"))
+        self.assertEqual(parse_rws_json('{\n  "a": "foo", \n    "b": "bar"\n}\n  ', True),
+                         (None, 'Formatting for JSON is incorrect;\nerror was:\n-   "a": "foo", \n?              -\n+   "a": "foo",\n-     "b": "bar"\n? --\n+   "b": "bar"\n-   '))
+        self.assertEqual(parse_rws_json('{\n  "a": "foo",\n  "b": "bar"\n}\n', True),
+                         ({"a": "foo", "b": "bar"}, None))
 
 class TestValidateSchema(unittest.TestCase):
     """A test suite for the validate_schema function of RwsCheck"""

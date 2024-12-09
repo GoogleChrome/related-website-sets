@@ -11,12 +11,43 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from RwsCheck import RwsCheck
-import json
+import difflib
 import getopt
-import sys
+import json
+import pathlib
 import os
+import sys
 from publicsuffix2 import PublicSuffixList
+from RwsCheck import RwsCheck
+
+def parse_rws_json(rws_json_string, strict_formatting):
+    """Attempts to parse `rws_json_string` as JSON and validate formatting if `strict_formatting` is true.
+
+        Returns a tuple of the JSON dict and None if there were no errors,
+        or None and the error message if there was an error.
+
+        Args:
+            rws_json_string: string
+            strict_formatting: bool
+        Returns:
+            Tuple[Dict|None, string|None]
+    """
+    try:
+        rws_sites = json.loads(rws_json_string)
+    except Exception as inst:
+        # If the file cannot be loaded, we will not run any other checks
+        return (None, f"There was an error when parsing the JSON;\nerror was:  {inst}")
+    # Notify of any formatting errors in the JSON
+    if strict_formatting:
+        # Add final newline by convention
+        formatted_file = json.dumps(rws_sites, indent=2, ensure_ascii=False) + "\n"
+        if rws_json_string != formatted_file:
+            diff = difflib.ndiff(rws_json_string.splitlines(keepends=True), formatted_file.splitlines(keepends=True))
+            # Only show lines with differences
+            filtered_diff = (line for line in diff if len(line) > 0 and line[0] != ' ')
+            joined_diff = ''.join(filtered_diff)
+            return (None, f"Formatting for JSON is incorrect;\nerror was:\n{joined_diff}")
+    return (rws_sites, None)
 
 def find_diff_sets(old_sets, new_sets):
     """Finds changes made between two dictionaries of Related Website Sets
@@ -46,32 +77,30 @@ def find_diff_sets(old_sets, new_sets):
 
 def main():
     args = sys.argv[1:]
-    input_file = 'related_website_sets.JSON'
+    input_filepath = 'related_website_sets.JSON'
     cli_primaries = []
     input_prefix = ''
     with_diff = False
-    opts, _ = getopt.getopt(args, "i:p:", ["data_directory=", "with_diff", 
-                                         "primaries="])
+    strict_formatting = False
+    opts, _ = getopt.getopt(args, "i:p:", ["data_directory=", "with_diff",
+                                         "strict_formatting", "primaries="])
     for opt, arg in opts:
         if opt == '-i':
-            input_file = arg
+            input_filepath = arg
         if opt == '--data_directory':
             input_prefix = arg
         if opt == '--with_diff':
             with_diff = True
+        if opt == '--strict_formatting':
+            strict_formatting = True
         if opt == '--primaries' or opt == '-p':
             cli_primaries.extend(arg.split(','))
 
-    # Open and load the json of the new list
-    with open(input_file) as f:
-        try:
-            rws_sites = json.load(f)
-        except Exception as inst:
-        # If the file cannot be loaded, we will not run any other checks
-            print(f"There was an error when loading {input_file};" 
-                  f"\nerror was:  {inst}")
-            return  
-     
+    rws_json_string = pathlib.Path(input_filepath).read_text()
+    (rws_sites, error) = parse_rws_json(rws_json_string, strict_formatting)
+    if rws_sites == None or error != None:
+        print(error)
+        return
 
     # Load the etlds from the public suffix list
     etlds = PublicSuffixList(psl_file = os.path.join(input_prefix,'effective_tld_names.dat'))
