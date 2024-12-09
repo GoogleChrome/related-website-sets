@@ -14,7 +14,7 @@ from check_sites import find_diff_sets, parse_rws_json
 class TestLoadFile(unittest.TestCase):
     """A test suite for the parse_rws_json function"""
 
-    def test_load_only(self):
+    def test_parse_only(self):
         self.assertEqual(parse_rws_json("this is not json", False),
                          (None, "There was an error when parsing the JSON;\nerror was:  Expecting value: line 1 column 1 (char 0)"))
         self.assertEqual(parse_rws_json('{\n  "a": "foo", \n    "b": "bar"\n}\n  ', False),
@@ -22,7 +22,7 @@ class TestLoadFile(unittest.TestCase):
         self.assertEqual(parse_rws_json('{\n  "a": "foo",\n  "b": "bar"\n}\n', False),
                          ({"a": "foo", "b": "bar"}, None))
 
-    def test_load_and_format(self):
+    def test_parse_and_check_format(self):
         self.assertEqual(parse_rws_json("this is not json", True),
                          (None, "There was an error when parsing the JSON;\nerror was:  Expecting value: line 1 column 1 (char 0)"))
         self.assertEqual(parse_rws_json('{\n  "a": "foo", \n    "b": "bar"\n}\n  ', True),
