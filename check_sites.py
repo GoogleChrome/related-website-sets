@@ -14,9 +14,10 @@
 import difflib
 import getopt
 import json
-import pathlib
 import os
+import pathlib
 import sys
+
 from publicsuffix2 import PublicSuffixList
 from RwsCheck import RwsCheck
 

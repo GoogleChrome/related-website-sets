@@ -13,11 +13,13 @@
 # limitations under the License.
 import json
 import requests
-from RwsSet import RwsSet
+
 from jsonschema import validate
 from urllib.request import urlopen
 from urllib.request import Request
 from publicsuffix2 import PublicSuffixList
+
+from RwsSet import RwsSet
 
 WELL_KNOWN = "/.well-known/related-website-set.json"
 

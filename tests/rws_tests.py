@@ -1,15 +1,15 @@
-from check_sites import find_diff_sets, parse_rws_json
-from RwsCheck import WELL_KNOWN
-from RwsCheck import RwsCheck
-from RwsSet import RwsSet
-import unittest
 import sys
+import unittest
+
 from jsonschema import ValidationError
 from publicsuffix2 import PublicSuffixList
 from unittest import mock
 from requests import structures
 
 sys.path.append('.')
+from check_sites import find_diff_sets, parse_rws_json
+from RwsCheck import RwsCheck, WELL_KNOWN
+from RwsSet import RwsSet
 
 
 class TestLoadFile(unittest.TestCase):
