@@ -50,6 +50,7 @@ def main():
     cli_primaries = []
     input_prefix = ''
     with_diff = False
+    with_format = False
     opts, _ = getopt.getopt(args, "i:p:", ["data_directory=", "with_diff", 
                                          "primaries="])
     for opt, arg in opts:
@@ -59,6 +60,8 @@ def main():
             input_prefix = arg
         if opt == '--with_diff':
             with_diff = True
+        if opt == '--with_format':
+            with_format = True
         if opt == '--primaries' or opt == '-p':
             cli_primaries.extend(arg.split(','))
 
