@@ -20,24 +20,24 @@ import sys
 from publicsuffix2 import PublicSuffixList
 from RwsCheck import RwsCheck
 
-def load_rws_file_as_json(input_file, strict_formatting):
-    """Attempts to load `input_file`, parse it as JSON, and validate formatting if `strict_formatting` is true.
+def load_rws_file_as_json(input_filepath, strict_formatting):
+    """Attempts to load `input_filepath`, parse it as JSON, and validate formatting if `strict_formatting` is true.
 
         Returns a tuple of the JSON dict and None if there were no errors,
         or None and the error message if there was an error.
 
         Args:
-            input_file: string
+            input_filepath: string
             strict_formatting: bool
         Returns:
             Tuple[Dict|None, string|None]
     """
-    loaded_file = pathlib.Path(input_file).read_text()
+    loaded_file = pathlib.Path(input_filepath).read_text()
     try:
         rws_sites = json.loads(loaded_file)
     except Exception as inst:
         # If the file cannot be loaded, we will not run any other checks
-        return (None, f"There was an error when loading {input_file};\nerror was:  {inst}")
+        return (None, f"There was an error when loading {input_filepath};\nerror was:  {inst}")
     # Notify of any formatting errors in the JSON
     if strict_formatting:
         # Add final newline by convention
@@ -47,7 +47,7 @@ def load_rws_file_as_json(input_file, strict_formatting):
             # Only show lines with differences
             filtered_diff = (line for line in diff if len(line) > 0 and line[0] != ' ')
             joined_diff = ''.join(filtered_diff)
-            return (None, f"Formatting for {input_file} is incorrect;\nerror was:\n{joined_diff}")
+            return (None, f"Formatting for {input_filepath} is incorrect;\nerror was:\n{joined_diff}")
     return (rws_sites, None)
 
 def find_diff_sets(old_sets, new_sets):
@@ -78,7 +78,7 @@ def find_diff_sets(old_sets, new_sets):
 
 def main():
     args = sys.argv[1:]
-    input_file = 'related_website_sets.JSON'
+    input_filepath = 'related_website_sets.JSON'
     cli_primaries = []
     input_prefix = ''
     with_diff = False
@@ -87,7 +87,7 @@ def main():
                                          "strict_formatting", "primaries="])
     for opt, arg in opts:
         if opt == '-i':
-            input_file = arg
+            input_filepath = arg
         if opt == '--data_directory':
             input_prefix = arg
         if opt == '--with_diff':
@@ -97,7 +97,7 @@ def main():
         if opt == '--primaries' or opt == '-p':
             cli_primaries.extend(arg.split(','))
 
-    (rws_sites, error) = load_rws_file_as_json(input_file, strict_formatting)
+    (rws_sites, error) = load_rws_file_as_json(input_filepath, strict_formatting)
     if rws_sites == None or error != None:
         print(error)
         return
