@@ -51,7 +51,6 @@ def main():
     cli_primaries = []
     input_prefix = ''
     with_diff = False
-    with_format = False
     opts, _ = getopt.getopt(args, "i:p:", ["data_directory=", "with_diff", 
                                          "primaries="])
     for opt, arg in opts:
@@ -61,8 +60,6 @@ def main():
             input_prefix = arg
         if opt == '--with_diff':
             with_diff = True
-        if opt == '--with_format':
-            with_format = True
         if opt == '--primaries' or opt == '-p':
             cli_primaries.extend(arg.split(','))
 
@@ -75,15 +72,14 @@ def main():
             print(f"There was an error when loading {input_file};" 
                   f"\nerror was:  {inst}")
             return
-        if with_format:
-            input_file = f.read()
-            formatted_file = json.dumps(rws_sites, indent=2)
-            diff = difflib.ndiff(input_file.splitlines(keepends=True), formatted_file.splitlines(keepends=True))
-            joined_diff = ''.join(diff)
-            if joined_diff:
-                print(f"Formatting for {input_file} is incorrect;" 
-                  f"\nerror was:  {joined_diff}")
-            return
+        input_file = f.read()
+        formatted_file = json.dumps(rws_sites, indent=2)
+        diff = difflib.ndiff(input_file.splitlines(keepends=True), formatted_file.splitlines(keepends=True))
+        joined_diff = ''.join(diff)
+        if joined_diff:
+            print(f"Formatting for {input_file} is incorrect;" 
+              f"\nerror was:  {joined_diff}")
+        return
 
     # Load the etlds from the public suffix list
     etlds = PublicSuffixList(psl_file = os.path.join(input_prefix,'effective_tld_names.dat'))
