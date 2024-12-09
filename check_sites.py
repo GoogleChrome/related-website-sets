@@ -11,13 +11,14 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-from RwsCheck import RwsCheck
 import difflib
-import json
 import getopt
-import sys
+import json
+import pathlib
 import os
+import sys
 from publicsuffix2 import PublicSuffixList
+from RwsCheck import RwsCheck
 
 def load_rws_file_as_json(input_file, strict_formatting):
     """Attempts to load `input_file`, parse it as JSON, and validate formatting if `strict_formatting` is true.
@@ -31,23 +32,22 @@ def load_rws_file_as_json(input_file, strict_formatting):
         Returns:
             Tuple[Dict|None, string|None]
     """
-    with open(input_file) as f:
-        loaded_file = f.read()
-        try:
-            rws_sites = json.loads(loaded_file)
-        except Exception as inst:
-            # If the file cannot be loaded, we will not run any other checks
-            return (None, f"There was an error when loading {input_file};\nerror was:  {inst}")
-        # Notify of any formatting errors in the JSON
-        if strict_formatting:
-            # Add final newline by convention
-            formatted_file = json.dumps(rws_sites, indent=2, ensure_ascii=False) + "\n"
-            if loaded_file != formatted_file:
-                diff = difflib.ndiff(loaded_file.splitlines(keepends=True), formatted_file.splitlines(keepends=True))
-                # Only show lines with differences
-                filtered_diff = (line for line in diff if len(line) > 0 and line[0] != ' ')
-                joined_diff = ''.join(filtered_diff)
-                return (None, f"Formatting for {input_file} is incorrect;\nerror was:\n{joined_diff}")
+    loaded_file = pathlib.Path(input_file).read_text()
+    try:
+        rws_sites = json.loads(loaded_file)
+    except Exception as inst:
+        # If the file cannot be loaded, we will not run any other checks
+        return (None, f"There was an error when loading {input_file};\nerror was:  {inst}")
+    # Notify of any formatting errors in the JSON
+    if strict_formatting:
+        # Add final newline by convention
+        formatted_file = json.dumps(rws_sites, indent=2, ensure_ascii=False) + "\n"
+        if loaded_file != formatted_file:
+            diff = difflib.ndiff(loaded_file.splitlines(keepends=True), formatted_file.splitlines(keepends=True))
+            # Only show lines with differences
+            filtered_diff = (line for line in diff if len(line) > 0 and line[0] != ' ')
+            joined_diff = ''.join(filtered_diff)
+            return (None, f"Formatting for {input_file} is incorrect;\nerror was:\n{joined_diff}")
     return (rws_sites, None)
 
 def find_diff_sets(old_sets, new_sets):
