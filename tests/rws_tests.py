@@ -9,25 +9,25 @@ sys.path.append('.')
 from RwsSet import RwsSet
 from RwsCheck import RwsCheck
 from RwsCheck import WELL_KNOWN
-from check_sites import find_diff_sets, load_rws_file_as_json
+from check_sites import find_diff_sets, parse_rws_json
 
 class TestLoadFile(unittest.TestCase):
-    """A test suite for the load_rws_file_as_json function"""
+    """A test suite for the parse_rws_json function"""
 
     def test_load_only(self):
-        self.assertEqual(load_rws_file_as_json("this is not json", False),
+        self.assertEqual(parse_rws_json("this is not json", False),
                          (None, "There was an error when parsing the JSON;\nerror was:  Expecting value: line 1 column 1 (char 0)"))
-        self.assertEqual(load_rws_file_as_json('{\n  "a": "foo", \n    "b": "bar"\n}\n  ', False),
+        self.assertEqual(parse_rws_json('{\n  "a": "foo", \n    "b": "bar"\n}\n  ', False),
                          ({"a": "foo", "b": "bar"}, None))
-        self.assertEqual(load_rws_file_as_json('{\n  "a": "foo",\n  "b": "bar"\n}\n', False),
+        self.assertEqual(parse_rws_json('{\n  "a": "foo",\n  "b": "bar"\n}\n', False),
                          ({"a": "foo", "b": "bar"}, None))
 
     def test_load_and_format(self):
-        self.assertEqual(load_rws_file_as_json("this is not json", True),
+        self.assertEqual(parse_rws_json("this is not json", True),
                          (None, "There was an error when parsing the JSON;\nerror was:  Expecting value: line 1 column 1 (char 0)"))
-        self.assertEqual(load_rws_file_as_json('{\n  "a": "foo", \n    "b": "bar"\n}\n  ', True),
+        self.assertEqual(parse_rws_json('{\n  "a": "foo", \n    "b": "bar"\n}\n  ', True),
                          (None, 'Formatting for JSON is incorrect;\nerror was:\n-   "a": "foo", \n?              -\n+   "a": "foo",\n-     "b": "bar"\n? --\n+   "b": "bar"\n-   '))
-        self.assertEqual(load_rws_file_as_json('{\n  "a": "foo",\n  "b": "bar"\n}\n', True),
+        self.assertEqual(parse_rws_json('{\n  "a": "foo",\n  "b": "bar"\n}\n', True),
                          ({"a": "foo", "b": "bar"}, None))
 
 class TestValidateSchema(unittest.TestCase):

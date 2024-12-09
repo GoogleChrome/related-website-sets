@@ -20,7 +20,7 @@ import sys
 from publicsuffix2 import PublicSuffixList
 from RwsCheck import RwsCheck
 
-def load_rws_file_as_json(rws_json_string, strict_formatting):
+def parse_rws_json(rws_json_string, strict_formatting):
     """Attempts to parse `rws_json_string` as JSON and validate formatting if `strict_formatting` is true.
 
         Returns a tuple of the JSON dict and None if there were no errors,
@@ -97,7 +97,7 @@ def main():
             cli_primaries.extend(arg.split(','))
 
     rws_json_string = pathlib.Path(input_filepath).read_text()
-    (rws_sites, error) = load_rws_file_as_json(rws_json_string, strict_formatting)
+    (rws_sites, error) = parse_rws_json(rws_json_string, strict_formatting)
     if rws_sites == None or error != None:
         print(error)
         return
