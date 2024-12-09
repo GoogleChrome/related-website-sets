@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 from RwsCheck import RwsCheck
+import difflib
 import json
 import getopt
 import sys
@@ -73,8 +74,16 @@ def main():
         # If the file cannot be loaded, we will not run any other checks
             print(f"There was an error when loading {input_file};" 
                   f"\nerror was:  {inst}")
-            return  
-     
+            return
+        if with_format:
+            input_file = f.read()
+            formatted_file = json.dumps(rws_sites, indent=2)
+            diff = difflib.ndiff(input_file.splitlines(keepends=True), formatted_file.splitlines(keepends=True))
+            joined_diff = ''.join(diff)
+            if joined_diff:
+                print(f"Formatting for {input_file} is incorrect;" 
+                  f"\nerror was:  {joined_diff}")
+            return
 
     # Load the etlds from the public suffix list
     etlds = PublicSuffixList(psl_file = os.path.join(input_prefix,'effective_tld_names.dat'))
