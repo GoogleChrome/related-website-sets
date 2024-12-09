@@ -9,7 +9,26 @@ sys.path.append('.')
 from RwsSet import RwsSet
 from RwsCheck import RwsCheck
 from RwsCheck import WELL_KNOWN
-from check_sites import find_diff_sets
+from check_sites import find_diff_sets, load_rws_file_as_json
+
+class TestLoadFile(unittest.TestCase):
+    """A test suite for the load_rws_file_as_json function"""
+
+    def test_load_only(self):
+        self.assertEqual(load_rws_file_as_json("tests/not_json.JSON", False),
+                         (None, "There was an error when loading tests/not_json.JSON;\nerror was:  Expecting value: line 1 column 1 (char 0)"))
+        self.assertEqual(load_rws_file_as_json("tests/bad_formatting.JSON", False),
+                         ({"a": "foo", "b": "bar"}, None))
+        self.assertEqual(load_rws_file_as_json("tests/good_formatting.JSON", False),
+                         ({"a": "foo", "b": "bar"}, None))
+
+    def test_load_and_format(self):
+        self.assertEqual(load_rws_file_as_json("tests/not_json.JSON", True),
+                         (None, "There was an error when loading tests/not_json.JSON;\nerror was:  Expecting value: line 1 column 1 (char 0)"))
+        self.assertEqual(load_rws_file_as_json("tests/bad_formatting.JSON", True),
+                         (None, 'Formatting for tests/bad_formatting.JSON is incorrect;\nerror was:\n-   "a": "foo", \n?              -\n+   "a": "foo",\n-     "b": "bar"\n? --\n+   "b": "bar"\n-   '))
+        self.assertEqual(load_rws_file_as_json("tests/good_formatting.JSON", True),
+                         ({"a": "foo", "b": "bar"}, None))
 
 class TestValidateSchema(unittest.TestCase):
     """A test suite for the validate_schema function of RwsCheck"""
