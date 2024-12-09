@@ -75,14 +75,16 @@ def main():
             print(f"There was an error when loading {input_file};" 
                   f"\nerror was:  {inst}")
             return
+        # Notify of any formatting errrors in the JSON
         if with_format:
-            input_file = f.read()
-            formatted_file = json.dumps(rws_sites, indent=2)
-            diff = difflib.ndiff(input_file.splitlines(keepends=True), formatted_file.splitlines(keepends=True))
-            joined_diff = ''.join(diff)
-            if joined_diff:
+            f.seek(0)
+            loaded_file = f.read()
+            formatted_file = json.dumps(rws_sites, indent=2) + "\n"
+            if loaded_file != formatted_file:
+                diff = difflib.ndiff(loaded_file.splitlines(keepends=True), formatted_file.splitlines(keepends=True))
+                joined_diff = ''.join(diff)
                 print(f"Formatting for {input_file} is incorrect;" 
-                  f"\nerror was:  {joined_diff}")
+                      f"\nerror was:\n{joined_diff}")
                 return
 
     # Load the etlds from the public suffix list
