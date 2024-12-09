@@ -19,6 +19,37 @@ import sys
 import os
 from publicsuffix2 import PublicSuffixList
 
+def load_rws_file_as_json(input_file, with_format):
+    """Attempts to load `input_file`, parse it as JSON, and validate formatting if `with_format` is true.
+
+        Returns a tuple of the JSON dict and None if there were no errors,
+        or None and the error message if there was an error.
+
+        Args:
+            input_file: string
+            with_format: bool
+        Returns:
+            Tuple[Dict|None, string|None]
+    """
+    with open(input_file) as f:
+        loaded_file = f.read()
+        try:
+            rws_sites = json.loads(loaded_file)
+        except Exception as inst:
+            # If the file cannot be loaded, we will not run any other checks
+            return (None, f"There was an error when loading {input_file};\nerror was:  {inst}")
+        # Notify of any formatting errors in the JSON
+        if with_format:
+            # Add final newline by convention
+            formatted_file = json.dumps(rws_sites, indent=2, ensure_ascii=False) + "\n"
+            if loaded_file != formatted_file:
+                diff = difflib.ndiff(loaded_file.splitlines(keepends=True), formatted_file.splitlines(keepends=True))
+                # Only show lines with differences
+                filtered_diff = (line for line in diff if len(line) > 0 and line[0] != ' ')
+                joined_diff = ''.join(filtered_diff)
+                return (None, f"Formatting for {input_file} is incorrect;\nerror was:\n{joined_diff}")
+    return (rws_sites, None)
+
 def find_diff_sets(old_sets, new_sets):
     """Finds changes made between two dictionaries of Related Website Sets
 
@@ -66,29 +97,10 @@ def main():
         if opt == '--primaries' or opt == '-p':
             cli_primaries.extend(arg.split(','))
 
-    # Open and load the json of the new list
-    with open(input_file) as f:
-        try:
-            rws_sites = json.load(f)
-        except Exception as inst:
-        # If the file cannot be loaded, we will not run any other checks
-            print(f"There was an error when loading {input_file};" 
-                  f"\nerror was:  {inst}")
-            return
-        # Notify of any formatting errors in the JSON
-        if with_format:
-            f.seek(0)
-            loaded_file = f.read()
-            # Add final newline by convention
-            formatted_file = json.dumps(rws_sites, indent=2, ensure_ascii=False) + "\n"
-            if loaded_file != formatted_file:
-                diff = difflib.ndiff(loaded_file.splitlines(keepends=True), formatted_file.splitlines(keepends=True))
-                # Only show lines with differences
-                filtered_diff = (line for line in diff if len(line) > 0 and line[0] != ' ')
-                joined_diff = ''.join(filtered_diff)
-                print(f"Formatting for {input_file} is incorrect;" 
-                      f"\nerror was:\n{joined_diff}")
-                return
+    (rws_sites, error) = load_rws_file_as_json(input_file, with_format)
+    if rws_sites == None or error != None:
+        print(error)
+        return
 
     # Load the etlds from the public suffix list
     etlds = PublicSuffixList(psl_file = os.path.join(input_prefix,'effective_tld_names.dat'))
