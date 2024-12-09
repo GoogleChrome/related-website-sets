@@ -19,15 +19,15 @@ import sys
 import os
 from publicsuffix2 import PublicSuffixList
 
-def load_rws_file_as_json(input_file, with_format):
-    """Attempts to load `input_file`, parse it as JSON, and validate formatting if `with_format` is true.
+def load_rws_file_as_json(input_file, strict_formatting):
+    """Attempts to load `input_file`, parse it as JSON, and validate formatting if `strict_formatting` is true.
 
         Returns a tuple of the JSON dict and None if there were no errors,
         or None and the error message if there was an error.
 
         Args:
             input_file: string
-            with_format: bool
+            strict_formatting: bool
         Returns:
             Tuple[Dict|None, string|None]
     """
@@ -39,7 +39,7 @@ def load_rws_file_as_json(input_file, with_format):
             # If the file cannot be loaded, we will not run any other checks
             return (None, f"There was an error when loading {input_file};\nerror was:  {inst}")
         # Notify of any formatting errors in the JSON
-        if with_format:
+        if strict_formatting:
             # Add final newline by convention
             formatted_file = json.dumps(rws_sites, indent=2, ensure_ascii=False) + "\n"
             if loaded_file != formatted_file:
@@ -82,9 +82,9 @@ def main():
     cli_primaries = []
     input_prefix = ''
     with_diff = False
-    with_format = True
+    strict_formatting = True
     opts, _ = getopt.getopt(args, "i:p:", ["data_directory=", "with_diff",
-                                         "with_format", "primaries="])
+                                         "strict_formatting", "primaries="])
     for opt, arg in opts:
         if opt == '-i':
             input_file = arg
@@ -92,12 +92,12 @@ def main():
             input_prefix = arg
         if opt == '--with_diff':
             with_diff = True
-        if opt == '--with_format':
-            with_format = True
+        if opt == '--strict_formatting':
+            strict_formatting = True
         if opt == '--primaries' or opt == '-p':
             cli_primaries.extend(arg.split(','))
 
-    (rws_sites, error) = load_rws_file_as_json(input_file, with_format)
+    (rws_sites, error) = load_rws_file_as_json(input_file, strict_formatting)
     if rws_sites == None or error != None:
         print(error)
         return
