@@ -46,7 +46,7 @@ def parse_rws_json(rws_json_string, strict_formatting):
             # Only show lines with differences
             filtered_diff = (line for line in diff if len(line) > 0 and line[0] != ' ')
             joined_diff = ''.join(filtered_diff)
-            return (None, f"Formatting for JSON is incorrect;\nerror was:\n{joined_diff}")
+            return (None, f"Formatting for JSON is incorrect;\nerror was:\n```{joined_diff}```")
     return (rws_sites, None)
 
 def find_diff_sets(old_sets, new_sets):
