@@ -84,7 +84,7 @@ def main():
             if loaded_file != formatted_file:
                 diff = difflib.ndiff(loaded_file.splitlines(keepends=True), formatted_file.splitlines(keepends=True))
                 # Only show lines with differences
-                filtered_diff = filter(lambda line: len(line) > 0 and line[0] != ' ', diff)
+                filtered_diff = (line for line in diff if len(line) > 0 and line[0] != ' ')
                 joined_diff = ''.join(filtered_diff)
                 print(f"Formatting for {input_file} is incorrect;" 
                       f"\nerror was:\n{joined_diff}")
