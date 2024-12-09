@@ -26,7 +26,7 @@ class TestLoadFile(unittest.TestCase):
         self.assertEqual(parse_rws_json("this is not json", True),
                          (None, "There was an error when parsing the JSON;\nerror was:  Expecting value: line 1 column 1 (char 0)"))
         self.assertEqual(parse_rws_json('{\n  "a": "foo", \n    "b": "bar"\n}\n  ', True),
-                         (None, 'Formatting for JSON is incorrect;\nerror was:\n-   "a": "foo", \n?              -\n+   "a": "foo",\n-     "b": "bar"\n? --\n+   "b": "bar"\n-   '))
+                         (None, 'Formatting for JSON is incorrect;\nerror was:\n```diff\n-   "a": "foo", \n?              -\n+   "a": "foo",\n-     "b": "bar"\n? --\n+   "b": "bar"\n-   \n```'))
         self.assertEqual(parse_rws_json('{\n  "a": "foo",\n  "b": "bar"\n}\n', True),
                          ({"a": "foo", "b": "bar"}, None))
 
