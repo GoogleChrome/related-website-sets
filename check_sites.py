@@ -61,7 +61,7 @@ def main():
             input_prefix = arg
         if opt == '--with_diff':
             with_diff = True
-        if opt == '--with_diff':
+        if opt == '--with_format':
             with_format = True
         if opt == '--primaries' or opt == '-p':
             cli_primaries.extend(arg.split(','))
