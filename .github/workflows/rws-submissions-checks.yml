@@ -35,7 +35,7 @@ jobs:
         run: pip install publicsuffix2
       - name: Content check
         id: check
-        run: python3 main/check_sites.py -i pull-request/related_website_sets.JSON --data_directory=main --with_diff --with_format > results.txt
+        run: python3 main/check_sites.py -i pull-request/related_website_sets.JSON --data_directory=main --with_diff > results.txt
       - name: Read the result
         id: read_results
         uses: andstor/file-reader-action@v1
