@@ -79,7 +79,7 @@ def main():
         if with_format:
             f.seek(0)
             loaded_file = f.read()
-            formatted_file = json.dumps(rws_sites, indent=2) + "\n"
+            formatted_file = json.dumps(rws_sites, indent=2, ensure_ascii=False) + "\n"
             if loaded_file != formatted_file:
                 diff = difflib.ndiff(loaded_file.splitlines(keepends=True), formatted_file.splitlines(keepends=True))
                 joined_diff = ''.join(diff)
