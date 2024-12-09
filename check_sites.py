@@ -81,7 +81,7 @@ def main():
     cli_primaries = []
     input_prefix = ''
     with_diff = False
-    strict_formatting = True
+    strict_formatting = False
     opts, _ = getopt.getopt(args, "i:p:", ["data_directory=", "with_diff",
                                          "strict_formatting", "primaries="])
     for opt, arg in opts:
