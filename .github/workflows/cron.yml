@@ -16,11 +16,11 @@ jobs:
         cache: 'pip'
     - name: Run Tests and Validate JSON
       run: |
-      pip install -r requirements.txt
-      python tests/rws_tests.py
-      python check_sites.py -i related_website_sets.JSON --with_diff --strict_formatting > results.txt
-      cat results.txt
-      export VALIDATION_RESULTS=$(cat results.txt)
+        pip install -r requirements.txt
+        python tests/rws_tests.py
+        python check_sites.py -i related_website_sets.JSON --with_diff --strict_formatting > results.txt
+        cat results.txt
+        export VALIDATION_RESULTS=$(cat results.txt)
     - name: Record Failure
       if: ${{ env.VALIDATION_RESULTS == 'success' }}
       uses: actions/github-script@v3
