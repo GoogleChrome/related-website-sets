@@ -17,9 +17,9 @@ jobs:
         check-latest: true
     - name: Run Tests and Validate JSON
       run: |
-        pip install -r requirements.txt
-        python tests/rws_tests.py
-        python check_sites.py -i related_website_sets.JSON --with_diff --strict_formatting > results.txt
+        pip3 install -r requirements.txt
+        python3 tests/rws_tests.py
+        python3 check_sites.py -i related_website_sets.JSON --with_diff --strict_formatting > results.txt
         cat results.txt
         export VALIDATION_RESULTS=$(cat results.txt)
     - name: Record Failure
