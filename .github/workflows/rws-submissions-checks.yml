@@ -12,10 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 name: RWS submission checks
-on: 
-  schedule:
-  - cron: '0 14 * * 2' # 2pm UTC each Tuesday
-  pull_request_target:
+on: pull_request_target
 jobs:
   PR-Actions:
     runs-on: ubuntu-latest

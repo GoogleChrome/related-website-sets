@@ -1,0 +1,31 @@
+name: Main Branch Validations
+on:
+  push:
+    branches:
+    - main
+  schedule:
+  - cron: '0 14 * * 2' # 2pm UTC each Tuesday
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        cache: 'pip'
+        check-latest: true
+    - name: Run Tests and Validate JSON
+      run: |
+        pip3 install -r requirements.txt
+        python3 tests/rws_tests.py
+        python3 check_sites.py -i related_website_sets.JSON --with_diff --strict_formatting > results.txt
+    - name: Read Results
+      id: read_results
+      uses: andstor/file-reader-action@v1
+      with:
+        path: "results.txt"
+    - name: Record Failure
+      if: steps.read_results.outputs.contents != 'success'
+      uses: actions/github-script@v3
+      with:
+        script: core.setFailed('This run has failed.')
