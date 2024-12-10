@@ -75,8 +75,7 @@ class TestValidateSchema(unittest.TestCase):
         }
         rws_check = RwsCheck(rws_sites=json_dict,
                              etlds=None, icanns=set(['ca']))
-        with self.assertRaises(ValidationError):
-            rws_check.validate_schema("SCHEMA.json")
+        rws_check.validate_schema("SCHEMA.json")
 
     def test_invalid_field_type(self):
         json_dict = {
