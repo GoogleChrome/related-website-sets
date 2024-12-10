@@ -1,9 +1,5 @@
 name: cron
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
   schedule:
   - cron: '0 14 * * 2' # 2pm UTC each Tuesday
 jobs:
