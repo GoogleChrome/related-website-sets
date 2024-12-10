@@ -115,7 +115,7 @@ class RwsCheck:
             sites = rwset.get("associatedSites", []) + \
                 rwset.get("serviceSites", [])
             rationales = rwset.get('rationaleBySite', None)
-            print(sites)
+            print(sites) 
             print(rationales)
             if sites and rationales is not None:
                 for site in sites:
