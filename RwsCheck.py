@@ -115,14 +115,21 @@ class RwsCheck:
             sites = rwset.get("associatedSites", []) + \
                 rwset.get("serviceSites", [])
             rationales = rwset.get('rationaleBySite', None)
-            print(sites) 
+            print("HELLO")
+            print(sites)
             print(rationales)
+            print("HELLO2")
             if sites and rationales is not None:
                 for site in sites:
+                    print("HELLO3")
+                    print(site)
                     if site not in rationales.keys():
+                        print("HELLO4")
+                        print(site)
                         self.error_list.append(
                             f"There is no provided rationale for {site}")
             if sites is not None and rationales is None:
+                print("HELLO5")
                 self.error_list.append(
                     "A rationaleBySite field is required for this set, but"
                     + " none is provided. ")
