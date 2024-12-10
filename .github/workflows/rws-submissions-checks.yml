@@ -29,7 +29,7 @@ jobs:
         with:
           path: "main"
       - name: Get necessary libraries
-        run: pip install publicsuffix2
+        run: pip install -r requirements.txt
       - name: Content check
         id: check
         run: python3 main/check_sites.py -i pull-request/related_website_sets.JSON --data_directory=main --with_diff --strict_formatting > results.txt
