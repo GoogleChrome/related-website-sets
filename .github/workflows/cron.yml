@@ -1,0 +1,28 @@
+name: cron
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+  - cron: '0 14 * * 2' # 2pm UTC each Tuesday
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        cache: 'pip'
+    - run: pip install -r requirements.txt
+    - run: python3 tests/rws_tests.py
+    - run: python3 check_sites.py -i related_website_sets.JSON --with_diff --strict_formatting > results.txt
+    - run: cat results.txt
+    - id: read_results
+      uses: andstor/file-reader-action@v1
+      with:
+        path: "results.txt"
+    - if: steps.read_results.outputs.contents != 'success'
+      uses: actions/github-script@v3
+      with:
+        script: core.setFailed('This run has failed.')
