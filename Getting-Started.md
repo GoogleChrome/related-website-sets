@@ -1,6 +1,7 @@
 # Related Website Sets (RWS) Submission Quick-Start Guide and FAQs 
 The purpose of this document is to provide a companion guide to the [Related Website Sets Submission Guidelines](https://github.com/GoogleChrome/related-website-sets/blob/main/RWS-Submission_Guidelines.md), which details the full requirements for Related Website Sets creation and submission.
 
+
 Pre-steps
 =========
 
