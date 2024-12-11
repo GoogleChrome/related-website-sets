@@ -37,7 +37,7 @@ jobs:
       run: |
        echo "The RWS JSON was not successfully validated. Here are your results:" > message.txt
        cat results.txt >> message.txt
-    - name: Sucess Comment
+    - name: Success Comment
       if: steps.read_results.outputs.contents == 'success'
       run: echo "The RWS JSON was successfully validated!" > message.txt
     - name: Write Comment
