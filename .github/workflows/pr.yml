@@ -18,15 +18,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
     - uses: actions/setup-python@v5
       with:
         cache: 'pip'
         check-latest: true
     - name: Run Tests and Validate JSON
       run: |
-        git diff --name-only main > files.txt
         pip3 install -r requirements.txt
         python3 tests/rws_tests.py
         python3 check_sites.py -i related_website_sets.JSON --with_diff --strict_formatting > results.txt
@@ -35,11 +32,9 @@ jobs:
       uses: andstor/file-reader-action@v1
       with:
         path: "results.txt"
-    - name: Read the Files Changed
+    - name: Read the Changed Files
       id: read_files
-      uses: andstor/file-reader-action@v1
-      with:
-        path: "files.txt"
+      uses: tj-actions/changed-files@v45
     - name: Failure Comment
       if: steps.read_results.outputs.contents != 'success'
       run: |
@@ -49,7 +44,7 @@ jobs:
       if: steps.read_results.outputs.contents == 'success'
       run: echo "The RWS JSON was successfully validated!" > message.txt
     - name: System Comment
-      if: steps.read_files_modified.outputs.contents != 'related_website_sets.JSON'
+      if: steps.read_files.outputs.all_changed_and_modified_files_count != 'related_website_sets.JSON'
       run: echo "\n\n***THIS PR CONTAINS SYSTEM CHANGES***" >> message.txt
     - name: Write Comment
       uses: mshick/add-pr-comment@v2
