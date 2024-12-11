@@ -35,11 +35,11 @@ jobs:
     - name: Failure Comment
       if: steps.read_results.outputs.contents != 'success'
       run: |
-       echo "It appears you have failed some tests. Here are your results:" > message.txt
+       echo "The RWS JSON was not successfully validated. Here are your results:" > message.txt
        cat results.txt >> message.txt
     - name: Sucess Comment
       if: steps.read_results.outputs.contents == 'success'
-      run: echo "Looks like you've passed all of the checks!" > message.txt
+      run: echo "The RWS JSON was successfully validated!" > message.txt
     - name: Write Comment
       uses: mshick/add-pr-comment@v2
       with:   
