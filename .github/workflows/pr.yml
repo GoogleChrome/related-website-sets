@@ -46,8 +46,9 @@ jobs:
     - name: System Comment
       if: steps.read_files.outputs.all_changed_and_modified_files != 'related_website_sets.JSON'
       run: |
-        echo "<br/>***THIS PR CONTAINS SYSTEM CHANGES***:" >> message.txt
+        echo "<br/>***THIS PR CONTAINS SYSTEM CHANGES:***" >> message.txt
         echo "${{ steps.read_files.outputs.all_changed_and_modified_files }}" >> message.txt
+        echo "***PLEASE REVIEW WITH CARE***" >> message.txt
     - name: Write Comment
       uses: mshick/add-pr-comment@v2
       with:   
