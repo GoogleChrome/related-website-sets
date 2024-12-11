@@ -45,7 +45,9 @@ jobs:
       run: echo "The RWS JSON was successfully validated!" > message.txt
     - name: System Comment
       if: steps.read_files.outputs.all_changed_and_modified_files_count != 'related_website_sets.JSON'
-      run: echo "\n\n***THIS PR CONTAINS SYSTEM CHANGES***" >> message.txt
+      run: |
+        echo "<br/>***THIS PR CONTAINS SYSTEM CHANGES***:<br/>" >> message.txt
+        echo "${{ steps.read_files.outputs.all_changed_and_modified_files_count }}" >> message.txt
     - name: Write Comment
       uses: mshick/add-pr-comment@v2
       with:   
