@@ -14,7 +14,7 @@
 name: Pull Request Validations
 on: pull_request
 jobs:
-  build:
+  PR-Actions:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -24,7 +24,7 @@ jobs:
         check-latest: true
     - name: Run Tests and Validate JSON
       run: |
-        git diff --name-only origin/main > files.txt
+        git diff --name-only main > files.txt
         pip3 install -r requirements.txt
         python3 tests/rws_tests.py
         python3 check_sites.py -i related_website_sets.JSON --with_diff --strict_formatting > results.txt
