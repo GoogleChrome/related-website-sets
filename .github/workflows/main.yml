@@ -25,7 +25,6 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v5
       with:
-        cache: 'pip'
         check-latest: true
     - uses: psf/black@stable
     - name: Run Tests and Validate JSON
