@@ -13,6 +13,9 @@
 # limitations under the License.
 name: Main Branch Validations
 on:
+  pull_request:
+    branches:
+    - main
   push:
     branches:
     - main
