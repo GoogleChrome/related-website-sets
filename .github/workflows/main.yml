@@ -27,6 +27,9 @@ jobs:
       with:
         cache: 'pip'
         check-latest: true
+    - uses: psf/black@stable
+      with:
+        options: "--check --diff --verbose --exclude=\"third_party/.*\""
     - name: Run Tests and Validate JSON
       run: |
         pip3 install -r requirements.txt
