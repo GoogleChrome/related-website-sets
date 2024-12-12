@@ -1,3 +1,3 @@
-jsonschema
-publicsuffix2
-requests
+jsonschema=1.4.1
+publicsuffix2=latest
+requests=0.3.0
