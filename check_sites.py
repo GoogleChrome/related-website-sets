@@ -44,13 +44,13 @@ def parse_rws_json(rws_json_string, strict_formatting):
         # Add final newline by convention
         formatted_file = json.dumps(rws_sites, indent=2, ensure_ascii=False) + "\n"
         if rws_json_string != formatted_file:
-            diff = difflib.ndiff(
+            diff = difflib.unified_diff(
                 rws_json_string.splitlines(keepends=True),
                 formatted_file.splitlines(keepends=True),
+                fromfile="PR file",
+                tofile="expected",
             )
-            # Only show lines with differences
-            filtered_diff = (line for line in diff if len(line) > 0 and line[0] != " ")
-            joined_diff = "".join(filtered_diff)
+            joined_diff = "".join(diff)
             return (
                 None,
                 f"Formatting for JSON is incorrect;\nerror was:\n```diff\n{joined_diff}\n```",
