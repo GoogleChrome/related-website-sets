@@ -57,7 +57,20 @@ class TestLoadFile(unittest.TestCase):
             parse_rws_json('{\n  "a": "foo", \n    "b": "bar"\n}\n  ', True),
             (
                 None,
-                'Formatting for JSON is incorrect;\nerror was:\n```diff\n-   "a": "foo", \n?              -\n+   "a": "foo",\n-     "b": "bar"\n? --\n+   "b": "bar"\n-   \n```',
+                """Formatting for JSON is incorrect;
+error was:
+```diff
+--- PR file
++++ expected
+@@ -1,5 +1,4 @@
+ {
+-  "a": "foo", 
+-    "b": "bar"
++  "a": "foo",
++  "b": "bar"
+ }
+-  
+```""",
             ),
         )
         self.assertEqual(
@@ -969,7 +982,6 @@ def mock_open_and_load_json(*args, **kwargs):
 
 
 class MockTestsClass(unittest.TestCase):
-
     # We patch requests.get with our mocked method. We'll pass
     # in the relevant urls, and get our responses for robots checks
     @mock.patch("requests.get", side_effect=mock_get)
