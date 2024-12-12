@@ -21,7 +21,7 @@ on:
     - main
   schedule:
   - cron: '0 14 * * 2' # 2pm UTC each Tuesday
-permissions: read-all
+permissions: {}
 jobs:
   Code-Actions:
     runs-on: ubuntu-latest
