@@ -89,19 +89,14 @@ def main():
     args = sys.argv[1:]
     input_filepath = "related_website_sets.JSON"
     cli_primaries = []
-    input_prefix = ""
     with_diff = False
     strict_formatting = False
     opts, _ = getopt.getopt(
-        args,
-        "i:p:",
-        ["data_directory=", "with_diff", "strict_formatting", "primaries="],
+        args, "i:p:", ["with_diff", "strict_formatting", "primaries="]
     )
     for opt, arg in opts:
         if opt == "-i":
             input_filepath = arg
-        if opt == "--data_directory":
-            input_prefix = arg
         if opt == "--with_diff":
             with_diff = True
         if opt == "--strict_formatting":
@@ -116,12 +111,10 @@ def main():
         return
 
     # Load the etlds from the public suffix list
-    etlds = PublicSuffixList(
-        psl_file=os.path.join(input_prefix, "effective_tld_names.dat")
-    )
+    etlds = PublicSuffixList(psl_file="effective_tld_names.dat")
     # Get all the ICANN domains
     icanns = set()
-    with open(os.path.join(input_prefix, "ICANN_domains")) as f:
+    with open("ICANN_domains") as f:
         for line in f:
             l = line.strip()
             icanns.add(l)
@@ -130,7 +123,7 @@ def main():
     error_texts = []
 
     try:
-        rws_checker.validate_schema(os.path.join(input_prefix, "SCHEMA.json"))
+        rws_checker.validate_schema("SCHEMA.json")
     except Exception as inst:
         # If the schema is invalid, we will not run any other checks
         print(inst)
@@ -147,7 +140,7 @@ def main():
     # If called with with_diff, we must determine the sets that are different
     # to properly construct our check_sets
     if with_diff:
-        with open(os.path.join(input_prefix, "related_website_sets.JSON")) as f:
+        with open("related_website_sets.JSON") as f:
             try:
                 old_sites = json.load(f)
             except Exception as inst:
@@ -155,7 +148,7 @@ def main():
                 # checks
                 print(
                     "There was an error when loading "
-                    + os.path.join(input_prefix, "related_website_sets.JSON")
+                    + "related_website_sets.JSON"
                     + "\nerror was: "
                     + inst
                 )
