@@ -1,4 +1,4 @@
-# Copyright 2022 Google LLC
+# Copyright 2024 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,10 +11,18 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-name: Pull Request Validations
-on: pull_request
+name: Code Validations
+on:
+  pull_request:
+    branches:
+    - main
+  push:
+    branches:
+    - main
+  schedule:
+  - cron: '0 14 * * 2' # 2pm UTC each Tuesday
 jobs:
-  PR-Actions:
+  Code-Actions:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
@@ -27,33 +35,11 @@ jobs:
         pip3 install -r requirements.txt
         python3 tests/rws_tests.py
         python3 check_sites.py -i related_website_sets.JSON --with_diff --strict_formatting > results.txt
-    - name: Read the Validation Results
+    - name: Read Results
       id: read_results
       uses: andstor/file-reader-action@v1
       with:
         path: "results.txt"
-    - name: Read the Changed Files
-      id: read_files
-      uses: tj-actions/changed-files@v45
-    - name: Failure Comment
-      if: steps.read_results.outputs.contents != 'success'
-      run: |
-       echo "The RWS JSON was not successfully validated. Here are your results:" > message.txt
-       cat results.txt >> message.txt
-    - name: Success Comment
-      if: steps.read_results.outputs.contents == 'success'
-      run: echo "The RWS JSON was successfully validated!" > message.txt
-    - name: System Comment
-      if: steps.read_files.outputs.all_changed_and_modified_files != 'related_website_sets.JSON'
-      run: |
-        echo "<br/>***THIS PR CONTAINS SYSTEM CHANGES:***" >> message.txt
-        echo "${{ steps.read_files.outputs.all_changed_and_modified_files }}" >> message.txt
-        echo "***PLEASE REVIEW WITH CARE***" >> message.txt
-    - name: Write Comment
-      uses: mshick/add-pr-comment@v2
-      with:   
-        message-path: "message.txt" 
-        refresh-message-position: true
     - name: Record Failure
       if: steps.read_results.outputs.contents != 'success'
       uses: actions/github-script@v3
