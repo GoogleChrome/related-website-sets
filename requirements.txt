@@ -1,0 +1,3 @@
+jsonschema
+publicsuffix2
+requests

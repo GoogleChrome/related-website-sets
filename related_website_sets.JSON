@@ -14,40 +14,40 @@
       "contact": "il.mrbit@gmail.com",
       "primary": "https://poalim.xyz",
       "associatedSites": [
-         "https://poalim.site"
+        "https://poalim.site"
       ],
       "rationaleBySite": {
-         "https://poalim.site": "one of 3rd party cookie solutions option"
+        "https://poalim.site": "one of 3rd party cookie solutions option"
       }
-   },
+    },
     {
       "contact": "alicia.bonilla@nacion.com",
       "primary": "https://nacion.com",
       "associatedSites": [
-         "https://lateja.cr",
-         "https://elfinancierocr.com"
+        "https://lateja.cr",
+        "https://elfinancierocr.com"
       ],
       "rationaleBySite": {
-         "https://lateja.cr": "Newspaper owned by Grupo Nación",
-         "https://elfinancierocr.com": "Newspaper owned by Grupo Nación"
+        "https://lateja.cr": "Newspaper owned by Grupo Nación",
+        "https://elfinancierocr.com": "Newspaper owned by Grupo Nación"
       }
-   },
-   {
+    },
+    {
       "contact": "wojciech.bialy@grupawp.pl",
       "primary": "https://wp.pl",
       "associatedSites": [
-          "https://o2.pl",
-          "https://pudelek.pl",
-          "https://money.pl",
-          "https://abczdrowie.pl",
-          "https://wpext.pl"
+        "https://o2.pl",
+        "https://pudelek.pl",
+        "https://money.pl",
+        "https://abczdrowie.pl",
+        "https://wpext.pl"
       ],
       "rationaleBySite": {
-          "https://o2.pl": "News portal and email service",
-          "https://pudelek.pl": "Special Interest Website - celebrity news and gossip",
-          "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
-          "https://abczdrowie.pl": "Special Interest Website - healthy living and medical health",
-          "https://wpext.pl": "Content delivery domain for sensitive content websites"
+        "https://o2.pl": "News portal and email service",
+        "https://pudelek.pl": "Special Interest Website - celebrity news and gossip",
+        "https://money.pl": "Special Interest Website - news and information on the stock market, currencies, business and economics",
+        "https://abczdrowie.pl": "Special Interest Website - healthy living and medical health",
+        "https://wpext.pl": "Content delivery domain for sensitive content websites"
       }
     },
     {
@@ -130,10 +130,10 @@
       ],
       "rationaleBySite": {
         "https://livemint.com": "https://livemint.com",
-        "https://livehindustan.com":  "https://livehindustan.com",
-        "https://healthshots.com" : "https://healthshots.com",
-        "https://ottplay.com" : "https://ottplay.com",
-        "https://desimartini.com" : "https://desimartini.com"
+        "https://livehindustan.com": "https://livehindustan.com",
+        "https://healthshots.com": "https://healthshots.com",
+        "https://ottplay.com": "https://ottplay.com",
+        "https://desimartini.com": "https://desimartini.com"
       }
     },
     {
@@ -238,8 +238,8 @@
           "https://joyreactor.com"
         ]
       }
-     },
-     {
+    },
+    {
       "contact": "cmidata@cmi.mx",
       "primary": "https://unotv.com",
       "associatedSites": [
@@ -257,20 +257,20 @@
       "contact": "dnsadmin@idbs.com",
       "primary": "https://idbs-cloud.com",
       "associatedSites": [
-          "https://idbs-dev.com",
-          "https://idbs-staging.com",
-          "https://idbs-eworkbook.com",
-          "https://eworkbookcloud.com",
-          "https://eworkbookrequest.com"
+        "https://idbs-dev.com",
+        "https://idbs-staging.com",
+        "https://idbs-eworkbook.com",
+        "https://eworkbookcloud.com",
+        "https://eworkbookrequest.com"
       ],
       "rationaleBySite": {
-          "https://idbs-dev.com": "Dev version of main application IDBS-cloud",
-          "https://idbs-staging.com": "Staging version of main application IDBS-cloud",
-          "https://idbs-eworkbook.com": "E-workbook services part of IDBS-cloud product",
-          "https://eworkbookcloud.com": "E-workbook services part of IDBS-cloud product",
-          "https://eworkbookrequest.com": "E-workbook request part of IDBS-cloud product"
+        "https://idbs-dev.com": "Dev version of main application IDBS-cloud",
+        "https://idbs-staging.com": "Staging version of main application IDBS-cloud",
+        "https://idbs-eworkbook.com": "E-workbook services part of IDBS-cloud product",
+        "https://eworkbookcloud.com": "E-workbook services part of IDBS-cloud product",
+        "https://eworkbookrequest.com": "E-workbook request part of IDBS-cloud product"
       }
-     },
+    },
     {
       "contact": "mighty-devops@mightytext.net",
       "primary": "https://mightytext.net",
@@ -284,24 +284,24 @@
       }
     },
     {
-       "contact": "support@vwo.com",
-       "primary": "https://vwo.com",
-       "associatedSites": [
-          "https://wingify.com"
-       ],
-       "rationaleBySite": {
-          "https://wingify.com": "Alias"
-       }
+      "contact": "support@vwo.com",
+      "primary": "https://vwo.com",
+      "associatedSites": [
+        "https://wingify.com"
+      ],
+      "rationaleBySite": {
+        "https://wingify.com": "Alias"
+      }
     },
     {
-       "contact": "support@wildix.com",
-       "primary": "https://wildix.com",
-       "associatedSites": [
-          "https://wildixin.com"
-       ],
-       "rationaleBySite": {
-          "https://wildixin.com": "Wildix PBX's domain"
-       }
+      "contact": "support@wildix.com",
+      "primary": "https://wildix.com",
+      "associatedSites": [
+        "https://wildixin.com"
+      ],
+      "rationaleBySite": {
+        "https://wildixin.com": "Wildix PBX's domain"
+      }
     },
     {
       "contact": "amit.chouhan@timesinternet.in",
@@ -332,8 +332,13 @@
     {
       "contact": "operations@hc1.com",
       "primary": "https://hc1.com",
-      "associatedSites": ["https://hc1.global"],
-      "serviceSites": ["https://hc1cas.com", "https://hc1cas.global"],
+      "associatedSites": [
+        "https://hc1.global"
+      ],
+      "serviceSites": [
+        "https://hc1cas.com",
+        "https://hc1cas.global"
+      ],
       "rationaleBySite": {
         "https://hc1.global": "hc1 Insights Lab platform for UK.",
         "https://hc1cas.com": "hc1 Insights Lab platform authentication service for US.",
@@ -390,11 +395,11 @@
     {
       "contact": "bergmanpatrickr@johndeere.com",
       "primary": "https://johndeere.com",
-
-      "associatedSites": ["https://deere.com"],
-
+      "associatedSites": [
+        "https://deere.com"
+      ],
       "rationaleBySite": {
-         "https://deere.com": "Both johndeere.com and deere.com share branding, logos, and terms and conditions. They are used interchangeably. The names themselves are associated to Deere & Company in the marketplace."
+        "https://deere.com": "Both johndeere.com and deere.com share branding, logos, and terms and conditions. They are used interchangeably. The names themselves are associated to Deere & Company in the marketplace."
       }
     },
     {
@@ -408,45 +413,47 @@
       }
     },
     {
-    	"contact": "domain@nien.com",
-    	"primary": "https://nien.com",
-    	"associatedSites": [
-    		"https://chennien.com",
-    		"https://nien.org",
-    		"https://nien.co"
-    	],
-    	"rationaleBySite": {
-    		"https://chennien.com": "Alias domain for Nien Studio",
-    		"https://nien.org": "Campaign pages for Nien Studio",
-    		"https://nien.co": "URL shortener for Nien Studio"
-    	}
+      "contact": "domain@nien.com",
+      "primary": "https://nien.com",
+      "associatedSites": [
+        "https://chennien.com",
+        "https://nien.org",
+        "https://nien.co"
+      ],
+      "rationaleBySite": {
+        "https://chennien.com": "Alias domain for Nien Studio",
+        "https://nien.org": "Campaign pages for Nien Studio",
+        "https://nien.co": "URL shortener for Nien Studio"
+      }
     },
     {
-    	"contact": "admin@hearty.me",
-    	"primary": "https://hearty.me",
-    	"associatedSites": [
-    		"https://hearty.app",
-    		"https://hearty.gift",
-    		"https://hj.rs",
-    		"https://heartymail.com",
-    		"https://alice.tw",
-    		"https://jiayi.life",
-    		"https://miss.com.tw"
-    	],
-    	"rationaleBySite": {
-    		"https://hearty.app": "API endpoints for Hearty Journal",
-    		"https://hearty.gift": "Campaign pages for Hearty Journal",
-    		"https://hj.rs": "URL shortener for Hearty Journal",
-    		"https://heartymail.com": "Email service for Hearty Journal",
-    		"https://alice.tw": "Alice's blog",
-    		"https://jiayi.life": "Jiayi's blog",
-    		"https://miss.com.tw": "Company website"
-    	}
+      "contact": "admin@hearty.me",
+      "primary": "https://hearty.me",
+      "associatedSites": [
+        "https://hearty.app",
+        "https://hearty.gift",
+        "https://hj.rs",
+        "https://heartymail.com",
+        "https://alice.tw",
+        "https://jiayi.life",
+        "https://miss.com.tw"
+      ],
+      "rationaleBySite": {
+        "https://hearty.app": "API endpoints for Hearty Journal",
+        "https://hearty.gift": "Campaign pages for Hearty Journal",
+        "https://hj.rs": "URL shortener for Hearty Journal",
+        "https://heartymail.com": "Email service for Hearty Journal",
+        "https://alice.tw": "Alice's blog",
+        "https://jiayi.life": "Jiayi's blog",
+        "https://miss.com.tw": "Company website"
+      }
     },
     {
       "primary": "https://talkdeskqaid.com",
       "contact": "support@talkdesk.com",
-      "associatedSites": ["https://trytalkdesk.com"],
+      "associatedSites": [
+        "https://trytalkdesk.com"
+      ],
       "rationaleBySite": {
         "https://trytalkdesk.com": "Specialized platform for CCaS"
       }
@@ -454,7 +461,9 @@
     {
       "primary": "https://talkdeskstgid.com",
       "contact": "support@talkdesk.com",
-      "associatedSites": ["https://gettalkdesk.com"],
+      "associatedSites": [
+        "https://gettalkdesk.com"
+      ],
       "rationaleBySite": {
         "https://gettalkdesk.com": "Specialized platform for CCaS"
       }
@@ -480,23 +489,23 @@
       }
     },
     {
-       "contact": "dacostaylara@elpais.com.uy",
-       "primary": "https://elpais.com.uy",
-       "associatedSites": [
-          "https://clubelpais.com.uy",
-          "https://paula.com.uy",
-          "https://gallito.com.uy"
-       ],
-       "rationaleBySite": {
-          "https://clubelpais.com.uy": "Domain from El Pais Uruguay",
-          "https://paula.com.uy": "Domain from El Pais Uruguay",
-          "https://gallito.com.uy": "Domain from El Pais Uruguay"
-       },
-       "ccTLDs": {
-          "https://elpais.com.uy": [
-             "https://elpais.uy"
-          ]
-       }
+      "contact": "dacostaylara@elpais.com.uy",
+      "primary": "https://elpais.com.uy",
+      "associatedSites": [
+        "https://clubelpais.com.uy",
+        "https://paula.com.uy",
+        "https://gallito.com.uy"
+      ],
+      "rationaleBySite": {
+        "https://clubelpais.com.uy": "Domain from El Pais Uruguay",
+        "https://paula.com.uy": "Domain from El Pais Uruguay",
+        "https://gallito.com.uy": "Domain from El Pais Uruguay"
+      },
+      "ccTLDs": {
+        "https://elpais.com.uy": [
+          "https://elpais.uy"
+        ]
+      }
     },
     {
       "primary": "https://libero.it",
@@ -514,24 +523,27 @@
       }
     },
     {
-      "primary":"https://rws1nvtvt.com",
+      "primary": "https://rws1nvtvt.com",
       "contact": "przemyslaw.jaskierny@wbd.com",
-      "associatedSites": ["https://rws2nvtvt.com", "https://rws3nvtvt.com"],
+      "associatedSites": [
+        "https://rws2nvtvt.com",
+        "https://rws3nvtvt.com"
+      ],
       "rationaleBySite": {
-          "https://rws2nvtvt.com": "Test 1",
-          "https://rws3nvtvt.com": "Test 2"
+        "https://rws2nvtvt.com": "Test 1",
+        "https://rws3nvtvt.com": "Test 2"
       }
     },
     {
       "contact": "admin@stripe.com",
       "primary": "https://stripe.com",
       "serviceSites": [
-          "https://stripecdn.com",
-          "https://stripe.network"
+        "https://stripecdn.com",
+        "https://stripe.network"
       ],
       "rationaleBySite": {
-          "https://stripecdn.com": "Serves static assets accelerating page loads and sandboxes select Javascript",
-          "https://stripe.network": "Receives telemetry preventing fraud across Stripe services"
+        "https://stripecdn.com": "Serves static assets accelerating page loads and sandboxes select Javascript",
+        "https://stripe.network": "Receives telemetry preventing fraud across Stripe services"
       }
     },
     {
@@ -549,7 +561,17 @@
     {
       "contact": "noc@yandex-team.ru",
       "primary": "https://ya.ru",
-      "associatedSites": ["https://yandex.ru", "https://yandex.net", "https://turbopages.org", "https://auto.ru", "https://kinopoisk.ru", "https://clck.ru", "https://edadeal.ru", "https://webvisor.com", "https://yastatic.net"],
+      "associatedSites": [
+        "https://yandex.ru",
+        "https://yandex.net",
+        "https://turbopages.org",
+        "https://auto.ru",
+        "https://kinopoisk.ru",
+        "https://clck.ru",
+        "https://edadeal.ru",
+        "https://webvisor.com",
+        "https://yastatic.net"
+      ],
       "rationaleBySite": {
         "https://yandex.ru": "Yandex owned website",
         "https://yandex.net": "Yandex owned website",
@@ -562,8 +584,22 @@
         "https://edadeal.ru": "Yandex owned website"
       },
       "ccTLDs": {
-        "https://ya.ru": ["https://ya.cc"],
-        "https://yandex.ru": ["https://yandex.az", "https://yandex.by", "https://yandex.kz", "https://yandex.md", "https://yandex.tj", "https://yandex.tm", "https://yandex.uz", "https://yandex.st", "https://yandex.com", "https://yandex.com.am", "https://yandex.com.ru"]
+        "https://ya.ru": [
+          "https://ya.cc"
+        ],
+        "https://yandex.ru": [
+          "https://yandex.az",
+          "https://yandex.by",
+          "https://yandex.kz",
+          "https://yandex.md",
+          "https://yandex.tj",
+          "https://yandex.tm",
+          "https://yandex.uz",
+          "https://yandex.st",
+          "https://yandex.com",
+          "https://yandex.com.am",
+          "https://yandex.com.ru"
+        ]
       }
     },
     {
@@ -581,16 +617,16 @@
       }
     },
     {
-    	"contact": "nien@startupislandtaiwan.com",
-    	"primary": "https://startupislandtaiwan.com",
-    	"associatedSites": [
-    		"https://startupislandtaiwan.net",
-    		"https://startupislandtaiwan.org"
-    	],
-    	"rationaleBySite": {
-    		"https://startupislandtaiwan.net": "Domain alias",
-    		"https://startupislandtaiwan.org": "Domain alias"
-    	}
+      "contact": "nien@startupislandtaiwan.com",
+      "primary": "https://startupislandtaiwan.com",
+      "associatedSites": [
+        "https://startupislandtaiwan.net",
+        "https://startupislandtaiwan.org"
+      ],
+      "rationaleBySite": {
+        "https://startupislandtaiwan.net": "Domain alias",
+        "https://startupislandtaiwan.org": "Domain alias"
+      }
     },
     {
       "contact": "k.vermote@eurofleet-consult.com",
@@ -637,10 +673,10 @@
       "contact": "info@gridgames.app",
       "primary": "https://gridgames.app",
       "associatedSites": [
-         "https://wordle.at"
+        "https://wordle.at"
       ],
       "rationaleBySite": {
-         "https://wordle.at": "We are migrating our domain and will soon redirect all traffic from here to the primary, both of which we own. The two sites are almost identical. For convenience we want to transfer session cookies so users stay logged in."
+        "https://wordle.at": "We are migrating our domain and will soon redirect all traffic from here to the primary, both of which we own. The two sites are almost identical. For convenience we want to transfer session cookies so users stay logged in."
       }
     },
     {
@@ -665,14 +701,14 @@
       "contact": "ewelina.salamonik@wbd.com",
       "primary": "https://tvn.pl",
       "associatedSites": [
-            "https://player.pl",
-            "https://tvn24.pl",
-            "https://zdrowietvn.pl"
+        "https://player.pl",
+        "https://tvn24.pl",
+        "https://zdrowietvn.pl"
       ],
       "rationaleBySite": {
-          "https://player.pl":  "Streaming service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website",
-          "https://zdrowietvn.pl": "Educational service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website",
-          "https://tvn24.pl": "News service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website"
+        "https://player.pl": "Streaming service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website",
+        "https://zdrowietvn.pl": "Educational service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website",
+        "https://tvn24.pl": "News service that is owned by TVN S.A.. Information about the connection with TVN is included in the footer of this website"
       }
     },
     {
@@ -705,255 +741,261 @@
         "https://pdmp-apis.no": "Site owned by Schibsted that provides APIs for users across Schibsted's sites."
       }
     },
-  {
-   "contact": "asagrera@grupolpg.sv",
-   "primary": "https://laprensagrafica.com",
-   "associatedSites": [
-      "https://elgrafico.com",
-      "https://eleconomista.net",
-      "https://ella.sv",
-      "https://grupolpg.sv"
-   ],
-   "rationaleBySite": {
-      "https://elgrafico.com": "News portal owned by La Prensa Grafica Group",
-      "https://eleconomista.net": "News portal owned by La Prensa Grafica Group",
-      "https://ella.sv": "News portal owned by La Prensa Grafica Group",
-      "https://grupolpg.sv": "Domain owned by La Prensa Grafica Group"
-   }
-  },
-  {
-    "primary": "https://kaksya.in",
-    "contact": "kaksya.org@gmail.com",
-    "associatedSites": ["https://nidhiacademyonline.com"],
-    "serviceSites": [],
-    "rationaleBySite": {
-      "https://nidhiacademyonline.com": "This website is a subpart of kaksya.in and is used to host Nidhi Academy educational content videos/notes and more."
-    }
-  },
-  {
-    "contact": "profiel@vrt.be",
-    "primary": "https://vrt.be",
-    "associatedSites": [
-       "https://dewarmsteweek.be",
-       "https://sporza.be",
-       "https://een.be",
-       "https://radio2.be",
-       "https://radio1.be"
-    ],
-    "rationaleBySite": {
-       "https://dewarmsteweek.be": "domain for a yearly campaign",
-       "https://sporza.be": "sub brand for sports news",
-       "https://een.be": "sub brand site",
-       "https://radio2.be": "sub brand site",
-       "https://radio1.be": "sub brand site"
-    }
- },
- {
-    "contact": "abatahi@nvidia.com",
-    "primary": "https://nvidia.com",
-    "associatedSites": [
-      "https://geforcenow.com"
-    ],
-    "rationaleBySite": {
-      "https://geforcenow.com": "A site that represents the WEB client for NVIDIA GEFORCE NOW service. Players are able to instantly stream their PC game library. NVIDIA branding is clearly visible on this site."
-    }
- },
- {
-  "contact": "jsteam@intra.sapo.pt",
-  "primary": "https://sapo.pt",
-  "associatedSites": [
-   "https://meo.pt"
-  ],
-  "rationaleBySite": {
-   "https://meo.pt": "MEO is a prominent telecommunications and entertainment provider in Portugal, offering a wide range of services including television, internet, phone, and mobile."
-  },
-  "ccTLDs": {
-   "https://sapo.pt": [
-   "https://sapo.io"
-   ]
-  }
- },
- {
-    "contact": "support@tolteck.com",
-    "primary": "https://tolteck.com",
-    "associatedSites": [
-      "https://tolteck.app"
-    ],
-    "rationaleBySite": {
-      "https://tolteck.app": "Tolteck application"
-    }
-  },
-  {
+    {
+      "contact": "asagrera@grupolpg.sv",
+      "primary": "https://laprensagrafica.com",
+      "associatedSites": [
+        "https://elgrafico.com",
+        "https://eleconomista.net",
+        "https://ella.sv",
+        "https://grupolpg.sv"
+      ],
+      "rationaleBySite": {
+        "https://elgrafico.com": "News portal owned by La Prensa Grafica Group",
+        "https://eleconomista.net": "News portal owned by La Prensa Grafica Group",
+        "https://ella.sv": "News portal owned by La Prensa Grafica Group",
+        "https://grupolpg.sv": "Domain owned by La Prensa Grafica Group"
+      }
+    },
+    {
+      "primary": "https://kaksya.in",
+      "contact": "kaksya.org@gmail.com",
+      "associatedSites": [
+        "https://nidhiacademyonline.com"
+      ],
+      "serviceSites": [],
+      "rationaleBySite": {
+        "https://nidhiacademyonline.com": "This website is a subpart of kaksya.in and is used to host Nidhi Academy educational content videos/notes and more."
+      }
+    },
+    {
+      "contact": "profiel@vrt.be",
+      "primary": "https://vrt.be",
+      "associatedSites": [
+        "https://dewarmsteweek.be",
+        "https://sporza.be",
+        "https://een.be",
+        "https://radio2.be",
+        "https://radio1.be"
+      ],
+      "rationaleBySite": {
+        "https://dewarmsteweek.be": "domain for a yearly campaign",
+        "https://sporza.be": "sub brand for sports news",
+        "https://een.be": "sub brand site",
+        "https://radio2.be": "sub brand site",
+        "https://radio1.be": "sub brand site"
+      }
+    },
+    {
+      "contact": "abatahi@nvidia.com",
+      "primary": "https://nvidia.com",
+      "associatedSites": [
+        "https://geforcenow.com"
+      ],
+      "rationaleBySite": {
+        "https://geforcenow.com": "A site that represents the WEB client for NVIDIA GEFORCE NOW service. Players are able to instantly stream their PC game library. NVIDIA branding is clearly visible on this site."
+      }
+    },
+    {
+      "contact": "jsteam@intra.sapo.pt",
+      "primary": "https://sapo.pt",
+      "associatedSites": [
+        "https://meo.pt"
+      ],
+      "rationaleBySite": {
+        "https://meo.pt": "MEO is a prominent telecommunications and entertainment provider in Portugal, offering a wide range of services including television, internet, phone, and mobile."
+      },
+      "ccTLDs": {
+        "https://sapo.pt": [
+          "https://sapo.io"
+        ]
+      }
+    },
+    {
+      "contact": "support@tolteck.com",
+      "primary": "https://tolteck.com",
+      "associatedSites": [
+        "https://tolteck.app"
+      ],
+      "rationaleBySite": {
+        "https://tolteck.app": "Tolteck application"
+      }
+    },
+    {
       "contact": "datateam@centralmediacsoport.hu",
       "primary": "https://p24.hu",
       "associatedSites": [
-          "https://24.hu",
-          "https://startlap.hu",
-          "https://nlc.hu",
-          "https://hazipatika.com",
-          "https://nosalty.hu"
+        "https://24.hu",
+        "https://startlap.hu",
+        "https://nlc.hu",
+        "https://hazipatika.com",
+        "https://nosalty.hu"
       ],
       "rationaleBySite": {
-          "https://24.hu": "Hungarian news portal",
-          "https://startlap.hu": "Hungarian news aggregator site and link collection",
-          "https://nlc.hu": "Hungarian women's online magazine",
-          "https://hazipatika.com": "Hungarian health portal",
-          "https://nosalty.hu": "Hungarian recipe portal"
+        "https://24.hu": "Hungarian news portal",
+        "https://startlap.hu": "Hungarian news aggregator site and link collection",
+        "https://nlc.hu": "Hungarian women's online magazine",
+        "https://hazipatika.com": "Hungarian health portal",
+        "https://nosalty.hu": "Hungarian recipe portal"
       }
-  },
-  {
-    "contact": "info@cognitiveai.ru",
-    "primary": "https://cognitiveai.ru",
-    "associatedSites": ["https://cognitive-ai.ru"],
-    "rationaleBySite": {
-      "https://cognitive-ai.ru": "This domain is our backend service that needs to share cookies with the main user-facing domain for authentication and session management."
-    }
-  },
-  {
-    "contact": "technical@citybibleforum.org",
-    "primary": "https://citybibleforum.org",
-    "associatedSites": ["https://thirdspace.org.au"],
-    "rationaleBySite": {
-      "https://thirdspace.org.au": "Similar content served in slightly different formats to different audiences"
-    }
-  },
-  {
-    "contact": "admin@smpn106jkt.sch.id",
-    "primary": "https://p106.net",
-    "associatedSites": [
-      "https://smpn106jkt.sch.id"
-    ],
-    "rationaleBySite": {
-      "https://p106.net": "Indonesia Junior High School",
-      "https://smpn106jkt.sch.id": "Indonesia Junior High School"
-    }
-  },
-  {
-    "contact": "sanjay.nagpal@aajtak.com",
-    "primary": "https://indiatoday.in",
-    "associatedSites": [
+    },
+    {
+      "contact": "info@cognitiveai.ru",
+      "primary": "https://cognitiveai.ru",
+      "associatedSites": [
+        "https://cognitive-ai.ru"
+      ],
+      "rationaleBySite": {
+        "https://cognitive-ai.ru": "This domain is our backend service that needs to share cookies with the main user-facing domain for authentication and session management."
+      }
+    },
+    {
+      "contact": "technical@citybibleforum.org",
+      "primary": "https://citybibleforum.org",
+      "associatedSites": [
+        "https://thirdspace.org.au"
+      ],
+      "rationaleBySite": {
+        "https://thirdspace.org.au": "Similar content served in slightly different formats to different audiences"
+      }
+    },
+    {
+      "contact": "admin@smpn106jkt.sch.id",
+      "primary": "https://p106.net",
+      "associatedSites": [
+        "https://smpn106jkt.sch.id"
+      ],
+      "rationaleBySite": {
+        "https://p106.net": "Indonesia Junior High School",
+        "https://smpn106jkt.sch.id": "Indonesia Junior High School"
+      }
+    },
+    {
+      "contact": "sanjay.nagpal@aajtak.com",
+      "primary": "https://indiatoday.in",
+      "associatedSites": [
         "https://aajtak.in",
         "https://businesstoday.in",
         "https://intoday.in",
         "https://gnttv.com",
         "https://indiatodayne.in"
-    ],
-    "rationaleBySite": {
+      ],
+      "rationaleBySite": {
         "https://intoday.in": "The one-stop destination for all of India Today Group's digital properties.",
         "https://aajtak.in": "aajtak.in is the fastest, most reliable, and most popular website of news in Hindi. It provides readers with the news of India and worldwide along with every significant information related to everyday life with complete authenticity",
         "https://businesstoday.in": "Top destination for business news, markets,  economy and more",
         "https://indiatoday.in": "IndiaToday.in brings you news, analysis, explainers and opinion on a variety of subjects including politics, crime, civic issues, business, sports, technology, science, heatlh, lifestyle, and much more",
         "https://gnttv.com": " Good News Today is a website that focuses on the bright side of life and showcases stories of triumphs and positivity.",
         "https://indiatodayne.in": "India Today NE is dedicated to covering news and views of India’s north-eastern region which includes eight states—Assam, Arunachal Pradesh, Nagaland, Manipur, Mizoram, Tripura, Meghalaya and Sikkim"
-    }
-  },
- {
-        "contact": "naukri.comapp@gmail.com",
-        "primary": "https://naukri.com",
-        "associatedSites": [
-           "https://ambitionbox.com",
-           "https://infoedgeindia.com"
-        ],
-        "rationaleBySite": {
-           "https://ambitionbox.com": "Ambition box associated url",
-           "https://infoedgeindia.com": "InfoEdge India website"
-        }
- },
-  {
-    "contact": "l.powazka@text.com",
-    "primary": "https://text.com",
-    "associatedSites": [
-      "https://livechat.com",
-      "https://helpdesk.com",
-      "https://chatbot.com",
-      "https://livechatinc.com",
-      "https://knowledgebase.com",
-      "https://openwidget.com"
-    ],
-    "rationaleBySite": {
-      "https://livechat.com": "LiveChat - leading live chat software for business",
-      "https://helpdesk.com": "HelpDesk - leading help desk software for business",
-      "https://openwidget.com": "OpenWidget - free widgets for websites",
-      "https://chatbot.com": "ChatBot - leading automation software and chatbot platform",
-      "https://knowledgebase.com": "Knowledge base software for customer support and self-service",
-      "https://livechatinc.com": "Services supporting LiveChat"
-    }
-  },
-  {
-    "contact": "tech@thejournal.ie",
-    "primary": "https://thejournal.ie",
-    "associatedSites": [
-      "https://the42.ie"
-    ],
-    "rationaleBySite": {
-      "https://the42.ie": "Sports publication of TheJournal"
-    }
-  },
-  {
-    "contact": "dev@ad-shield.io",
-    "primary": "https://html-load.com",
-    "associatedSites": [
-      "https://css-load.com",
-      "https://img-load.com",
-      "https://content-loader.com",
-      "https://07c225f3.online",
-      "https://html-load.cc"
-    ],
-    "rationaleBySite": {
-      "https://css-load.com": "This domain is designated for the Pro version.",
-      "https://img-load.com": "This domain is designated for the Enterprise version.",
-      "https://content-loader.com": "This domain is designated for the Legacy version.",
-      "https://07c225f3.online": "This domain is designated for the Legacy version.",
-      "https://html-load.cc": "This domain is designated for the Essential version."
-    }
-  },
-  {
-    "contact": "jakub.lasecki@firma.interia.pl",
-    "primary": "https://interia.pl",
-    "associatedSites": [
-      "https://pomponik.pl",
-      "https://deccoria.pl",
-      "https://top.pl",
-      "https://smaker.pl",
-      "https://terazgotuje.pl"
-    ],
-    "rationaleBySite": {
-      "https://pomponik.pl": "Special Interest Website - celebrity news and gossip",
-      "https://deccoria.pl": "Special Interest Website - advice and inspirations foron interior design and garden care",
-      "https://top.pl": "Special Interest Website - wide range of articles, news and tips ",
-      "https://smaker.pl": "Special Interest Website - recipes, cooking, diet and everything for home cooks",
-      "https://terazgotuje.pl": "Special Interest Website - cooking news, tips and recipes"
-    }
-  },
-  {
-  	"contact": "david.molloy@bauermedia.co.uk",
-  	"primary": "https://graziadaily.co.uk",
-  	"associatedSites": [
-  		"https://heatworld.com",
-  		"https://closeronline.co.uk",
-  		"https://yours.co.uk",
-  		"https://motherandbaby.com",
-  		"https://takeabreak.co.uk"
-  	],
-  	"rationaleBySite": {
-  		"https://heatworld.com": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains.",
-  		"https://closeronline.co.uk": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains.",
-  		"https://yours.co.uk": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains.",
-  		"https://motherandbaby.com": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains.",
-  		"https://takeabreak.co.uk": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains."
-  	}
-   },
-   {
-     "contact": "hello@drimer.io",
-     "primary": "https://drimer.io",
-     "associatedSites": [
+      }
+    },
+    {
+      "contact": "naukri.comapp@gmail.com",
+      "primary": "https://naukri.com",
+      "associatedSites": [
+        "https://ambitionbox.com",
+        "https://infoedgeindia.com"
+      ],
+      "rationaleBySite": {
+        "https://ambitionbox.com": "Ambition box associated url",
+        "https://infoedgeindia.com": "InfoEdge India website"
+      }
+    },
+    {
+      "contact": "l.powazka@text.com",
+      "primary": "https://text.com",
+      "associatedSites": [
+        "https://livechat.com",
+        "https://helpdesk.com",
+        "https://chatbot.com",
+        "https://livechatinc.com",
+        "https://knowledgebase.com",
+        "https://openwidget.com"
+      ],
+      "rationaleBySite": {
+        "https://livechat.com": "LiveChat - leading live chat software for business",
+        "https://helpdesk.com": "HelpDesk - leading help desk software for business",
+        "https://openwidget.com": "OpenWidget - free widgets for websites",
+        "https://chatbot.com": "ChatBot - leading automation software and chatbot platform",
+        "https://knowledgebase.com": "Knowledge base software for customer support and self-service",
+        "https://livechatinc.com": "Services supporting LiveChat"
+      }
+    },
+    {
+      "contact": "tech@thejournal.ie",
+      "primary": "https://thejournal.ie",
+      "associatedSites": [
+        "https://the42.ie"
+      ],
+      "rationaleBySite": {
+        "https://the42.ie": "Sports publication of TheJournal"
+      }
+    },
+    {
+      "contact": "dev@ad-shield.io",
+      "primary": "https://html-load.com",
+      "associatedSites": [
+        "https://css-load.com",
+        "https://img-load.com",
+        "https://content-loader.com",
+        "https://07c225f3.online",
+        "https://html-load.cc"
+      ],
+      "rationaleBySite": {
+        "https://css-load.com": "This domain is designated for the Pro version.",
+        "https://img-load.com": "This domain is designated for the Enterprise version.",
+        "https://content-loader.com": "This domain is designated for the Legacy version.",
+        "https://07c225f3.online": "This domain is designated for the Legacy version.",
+        "https://html-load.cc": "This domain is designated for the Essential version."
+      }
+    },
+    {
+      "contact": "jakub.lasecki@firma.interia.pl",
+      "primary": "https://interia.pl",
+      "associatedSites": [
+        "https://pomponik.pl",
+        "https://deccoria.pl",
+        "https://top.pl",
+        "https://smaker.pl",
+        "https://terazgotuje.pl"
+      ],
+      "rationaleBySite": {
+        "https://pomponik.pl": "Special Interest Website - celebrity news and gossip",
+        "https://deccoria.pl": "Special Interest Website - advice and inspirations foron interior design and garden care",
+        "https://top.pl": "Special Interest Website - wide range of articles, news and tips ",
+        "https://smaker.pl": "Special Interest Website - recipes, cooking, diet and everything for home cooks",
+        "https://terazgotuje.pl": "Special Interest Website - cooking news, tips and recipes"
+      }
+    },
+    {
+      "contact": "david.molloy@bauermedia.co.uk",
+      "primary": "https://graziadaily.co.uk",
+      "associatedSites": [
+        "https://heatworld.com",
+        "https://closeronline.co.uk",
+        "https://yours.co.uk",
+        "https://motherandbaby.com",
+        "https://takeabreak.co.uk"
+      ],
+      "rationaleBySite": {
+        "https://heatworld.com": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains.",
+        "https://closeronline.co.uk": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains.",
+        "https://yours.co.uk": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains.",
+        "https://motherandbaby.com": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains.",
+        "https://takeabreak.co.uk": "Our websites are uniformly owned and operated by Bauer Media, a fact clearly indicated by the consistent footer across all domains."
+      }
+    },
+    {
+      "contact": "hello@drimer.io",
+      "primary": "https://drimer.io",
+      "associatedSites": [
         "https://drimer.travel"
-     ],
-     "rationaleBySite": {
+      ],
+      "rationaleBySite": {
         "https://drimer.travel": "The travel portal for Drimer"
-     }
-  },
-   {
+      }
+    },
+    {
       "contact": "homepage_migration_engineers@zoom.us",
       "primary": "https://zoom.us",
       "associatedSites": [
@@ -961,22 +1003,6 @@
       ],
       "rationaleBySite": {
         "https://zoom.com": "marketing new homepages for SEO purposes"
-      }
-    },
-    {
-      "contact": "dimitar.andonov@gfk.com",
-      "primary": "https://sensic.net",
-      "serviceSites": ["https://sensics.org"],
-      "rationaleBySite": {
-        "https://sensics.org": "Domain for test purposes."
-      }
-    },
-    {
-      "contact": "dimitar.andonov@gfk.com",
-      "primary": "https://sensics.org",
-      "serviceSites": ["https://sensic.net"],
-      "rationaleBySite": {
-        "https://sensic.net": "The public demo homepage for GfK's media measurement product."
       }
     }
   ]

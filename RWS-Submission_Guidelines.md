@@ -146,6 +146,7 @@ Upon submission of a PR, a series of technical checks will run on GitHub to veri
     <li>If an RWS owner wishes to remove a set entirely from the <a href="https://github.com/googlechrome/first-party-sets/blob/main/related_website_sets.JSON">canonical RWS list,</a> then that set's primary must serve a `404 (Not Found)` status code at their /.well-known/related-website-set.json endpoint to demonstrate a deliberate desire to remove the set.</li>
 		<li>Example for  primary.com/.well-known/related-website-set.json:</li>
   </ul>
+<li>The formatting of the JSON submitted must conform to the output of Python's [json.dumps](https://docs.python.org/3/library/json.html#json.dumps) function with the options `ensure_ascii=False` and `indent=2`.</li>
 </ul>
 	
 ```json

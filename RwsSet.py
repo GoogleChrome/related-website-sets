@@ -15,39 +15,41 @@ class RwsSet:
     """Stores the data of a Related Website Set
 
   Attributes:
-    primary: A string of the primary domain for a related website set 
-    associated_sites: a list containing domains associated with the 
+    primary: A string of the primary domain for a related website set
+    associated_sites: a list containing domains associated with the
     RWS' primary domain
     service_sites: a list containing necessary service sites for the
     primary domain and/or service sites and ccTLD sites.
     ccTLDs: a list of domains that are country code variants of other
-    members of the related website set. 
+    members of the related website set.
     relevant_fields_dict: a dictionary mapping the JSON field equivalents
-    of each field to their value within the object. 
+    of each field to their value within the object.
   """
+
     def __init__(self, ccTLDs, primary, associated_sites=[], service_sites=[]):
         self.ccTLDs = {} if ccTLDs is None else ccTLDs
         self.primary = "" if primary is None else primary
         self.associated_sites = [] if associated_sites is None else associated_sites
         self.service_sites = [] if service_sites is None else service_sites
-        self.relevant_fields_dict = {'ccTLDs': self.ccTLDs, 
+        self.relevant_fields_dict = {'ccTLDs': self.ccTLDs,
                                      'primary': self.primary,
-                                     'associatedSites': self.associated_sites, 
+                                     'associatedSites': self.associated_sites,
                                      'serviceSites': self.service_sites}
-    
+
     def __eq__(self, obj):
-      if isinstance(obj, RwsSet) and self.primary == obj.primary:
-        if self.ccTLDs == obj.ccTLDs:
-          if self.associated_sites == obj.associated_sites:
-            if self.service_sites == obj.service_sites:
-              return True
-      return False
-    
+        if isinstance(obj, RwsSet) and self.primary == obj.primary:
+            if self.ccTLDs == obj.ccTLDs:
+                if self.associated_sites == obj.associated_sites:
+                    if self.service_sites == obj.service_sites:
+                        return True
+        return False
+
     def includes(self, domain, with_ccTLDs=True):
-       if (self.primary == domain or
-                   domain in (self.associated_sites or []) or
-                   domain in (self.service_sites or [])):
-           return True
-       if with_ccTLDs:
-           return domain in (variant for variant_list in self.ccTLDs.values() for variant in variant_list)
-       return False
+        if (self.primary == domain or
+            domain in (self.associated_sites or []) or
+                domain in (self.service_sites or [])):
+            return True
+        if with_ccTLDs:
+            return domain in (variant for variant_list in self.ccTLDs.values()
+                              for variant in variant_list)
+        return False
