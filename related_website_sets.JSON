@@ -1004,6 +1004,23 @@
       "rationaleBySite": {
         "https://zoom.com": "marketing new homepages for SEO purposes"
       }
+    },
+
+    {
+      "contact": "dimitar.andonov@gfk.com",
+      "primary": "https://sensic.net",
+      "serviceSites": ["https://sensics.org"],
+      "rationaleBySite": {
+        "https://sensics.org": "Domain for test purposes."
+      }
+    },
+    {
+      "contact": "dimitar.andonov@gfk.com",
+      "primary": "https://sensics.org",
+      "serviceSites": ["https://sensic.net"],
+      "rationaleBySite": {
+        "https://sensic.net": "The public demo homepage for GfK's media measurement product."
+      }
     }
   ]
 }
