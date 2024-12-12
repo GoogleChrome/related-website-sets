@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-name: Main Branch Validations
+name: Code Validations
 on:
   pull_request:
     branches:
@@ -22,7 +22,7 @@ on:
   schedule:
   - cron: '0 14 * * 2' # 2pm UTC each Tuesday
 jobs:
-  MAIN-Actions:
+  Code-Actions:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
