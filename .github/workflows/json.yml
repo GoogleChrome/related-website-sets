@@ -11,25 +11,26 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-name: Pull Request Validations
+name: JSON Validations
 on: pull_request_target
 jobs:
-  PR-Actions:
+  JSON-Actions:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
+    - name: Get the PR JSON
+      uses: actions/checkout@v4
       with:
         ref: "refs/pull/${{ github.event.number }}/merge"
+        path: "pull-request"
+        sparse-checkout: "related_website_sets.JSON"
     - uses: actions/setup-python@v5
       with:
-        cache: 'pip'
         check-latest: true
-    - uses: psf/black@stable
-    - name: Run Tests and Validate JSON
+    - name: Validate JSON
       run: |
         pip3 install -r requirements.txt
-        python3 tests/rws_tests.py
-        python3 check_sites.py -i related_website_sets.JSON --with_diff --strict_formatting > results.txt
+        python3 check_sites.py -i pull-request/related_website_sets.JSON --with_diff --strict_formatting > results.txt
     - name: Read the Validation Results
       id: read_results
       uses: andstor/file-reader-action@v1

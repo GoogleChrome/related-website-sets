@@ -11,21 +11,23 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-name: Main Branch Validations
+name: Code Validations
 on:
+  pull_request:
+    branches:
+    - main
   push:
     branches:
     - main
   schedule:
   - cron: '0 14 * * 2' # 2pm UTC each Tuesday
 jobs:
-  MAIN-Actions:
+  Code-Actions:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
     - uses: actions/setup-python@v5
       with:
-        cache: 'pip'
         check-latest: true
     - uses: psf/black@stable
     - name: Run Tests and Validate JSON
