@@ -1,3 +1,3 @@
-jsonschema
+jsonschema==4.23.0
 publicsuffix2
-requests
+requests==2.32.3
