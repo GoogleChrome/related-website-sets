@@ -26,12 +26,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v4
-    - name: Get the PR JSON
-      uses: actions/checkout@v4
-      with:
-        ref: "refs/pull/${{ github.event.number }}/merge"
-        path: "pull-request"
-        sparse-checkout: "related_website_sets.JSON"
     - uses: actions/setup-python@v5
       with:
         check-latest: true
