@@ -30,7 +30,6 @@ jobs:
     - name: Validate JSON
       run: |
         pip3 install -r requirements.txt
-        git checkout "refs/pull/${{ github.event.number }}/merge" -- related_website_sets.JSON
         python3 check_sites.py -i pull-request/related_website_sets.JSON --with_diff --strict_formatting > results.txt
     - name: Read the Validation Results
       id: read_results
