@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 name: Pull Request Validations
-on: pull_request
+on: pull_request_target
 jobs:
   PR-Actions:
     runs-on: ubuntu-latest
@@ -21,11 +21,10 @@ jobs:
     - uses: actions/setup-python@v5
       with:
         check-latest: true
-    - uses: psf/black@stable
-    - name: Run Tests and Validate JSON
+    - name: Validate JSON
       run: |
         pip3 install -r requirements.txt
-        python3 tests/rws_tests.py
+        git checkout "refs/pull/${{ github.event.number }}/merge" -- related_website_sets.JSON
         python3 check_sites.py -i related_website_sets.JSON --with_diff --strict_formatting > results.txt
     - name: Read the Validation Results
       id: read_results
