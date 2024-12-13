@@ -33,3 +33,5 @@ use GitHub pull requests for this purpose. Consult
 information on using pull requests.
 
 Any modified python code must conform to the standards of [black](https://github.com/psf/black).
+
+Contributors, especially those modifying more than just `related_website_sets.JSON`, are encouraged to use [Codespaces](https://docs.github.com/en/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/setting-up-your-python-project-for-codespaces) as all the packages you need will be set up for you.
