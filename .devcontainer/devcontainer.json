@@ -1,6 +1,6 @@
 {
 	"name": "Default",
-	"image": "mcr.microsoft.com/devcontainers/universal:2-linux",
+	"image": "mcr.microsoft.com/devcontainers/base:alpine",
 	"features": {
 		"ghcr.io/devcontainers/features/python:latest": {
 			"version": "3.13"
@@ -15,5 +15,5 @@
 			]
 		}
 	},
-	"postCreateCommand": "pip3 install --user -r requirements.txt"
+	"postCreateCommand": "pip3 install -r requirements.txt"
 }
