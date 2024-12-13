@@ -1,3 +1,4 @@
 # These paths require review from an admin.
 /.github/ @arichiv @cfredric @krgovind @miketaylr @sjledoux
+/.python-version @arichiv @cfredric @krgovind @miketaylr @sjledoux
 /requirements.txt @arichiv @cfredric @krgovind @miketaylr @sjledoux
