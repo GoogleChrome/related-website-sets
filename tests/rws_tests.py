@@ -82,6 +82,87 @@ error was:
 class TestValidateSchema(unittest.TestCase):
     """A test suite for the validate_schema function of RwsCheck"""
 
+    def test_valid_associated(self):
+        json_dict = {
+            "sets": [
+                {
+                    "contact": "abc@example.com",
+                    "primary": "https://primary.com",
+                    "associatedSites": ["https://associated1.com"],
+                    "rationaleBySite": {
+                        "https://associated1.com": "example rationale",
+                    },
+                }
+            ]
+        }
+        rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
+        rws_check.validate_schema("SCHEMA.json")
+
+    def test_valid_service(self):
+        json_dict = {
+            "sets": [
+                {
+                    "contact": "abc@example.com",
+                    "primary": "https://primary.com",
+                    "serviceSites": ["https://service1.com"],
+                    "rationaleBySite": {
+                        "https://service1.com": "example rationale",
+                    },
+                }
+            ]
+        }
+        rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
+        rws_check.validate_schema("SCHEMA.json")
+
+    def test_valid_ccTLDs(self):
+        json_dict = {
+            "sets": [
+                {
+                    "contact": "abc@example.com",
+                    "primary": "https://primary.com",
+                    "ccTLDs": {"https://primary.com": ["https://primary.ca"]},
+                }
+            ]
+        }
+        rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
+        rws_check.validate_schema("SCHEMA.json")
+
+    def test_valid_full(self):
+        json_dict = {
+            "sets": [
+                {
+                    "contact": "abc@example.com",
+                    "primary": "https://primary.com",
+                    "associatedSites": ["https://associated1.com"],
+                    "serviceSites": ["https://service1.com"],
+                    "rationaleBySite": {
+                        "https://associated1.com": "example rationale",
+                        "https://service1.com": "example rationale",
+                    },
+                    "ccTLDs": {"https://associated1.com": ["https://associated1.ca"]},
+                }
+            ]
+        }
+        rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
+        rws_check.validate_schema("SCHEMA.json")
+
+    def test_duplicate_set(self):
+        entry = {
+            "contact": "abc@example.com",
+            "primary": "https://primary.com",
+            "associatedSites": ["https://associated1.com"],
+            "serviceSites": ["https://service1.com"],
+            "rationaleBySite": {
+                "https://associated1.com": "example rationale",
+                "https://service1.com": "example rationale",
+            },
+            "ccTLDs": {"https://associated1.com": ["https://associated1.ca"]},
+        }
+        json_dict = {"sets": [entry, entry]}
+        rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
+        with self.assertRaises(ValidationError):
+            rws_check.validate_schema("SCHEMA.json")
+
     def test_no_primary(self):
         json_dict = {
             "sets": [
@@ -94,6 +175,19 @@ class TestValidateSchema(unittest.TestCase):
                         "https://service1.com": "example rationale",
                     },
                     "ccTLDs": {"https://associated1.com": ["https://associated1.ca"]},
+                }
+            ]
+        }
+        rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
+        with self.assertRaises(ValidationError):
+            rws_check.validate_schema("SCHEMA.json")
+
+    def test_primary_only(self):
+        json_dict = {
+            "sets": [
+                {
+                    "contact": "abc@example.com",
+                    "primary": "https://primary.com",
                 }
             ]
         }
@@ -143,6 +237,71 @@ class TestValidateSchema(unittest.TestCase):
                         "https://service1.com": "example rationale",
                     },
                     "ccTLDs": {"https://associated1.com": ["https://associated1.ca"]},
+                }
+            ]
+        }
+        rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
+        with self.assertRaises(ValidationError):
+            rws_check.validate_schema("SCHEMA.json")
+
+    def test_nonunique_associated_sites(self):
+        json_dict = {
+            "sets": [
+                {
+                    "contact": "abc@example.com",
+                    "primary": "https://primary.com",
+                    "associatedSites": [
+                        "https://associated1.com",
+                        "https://associated1.com",
+                    ],
+                    "rationaleBySite": {
+                        "https://associated1.com": "example rationale",
+                    },
+                }
+            ]
+        }
+        rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
+        with self.assertRaises(ValidationError):
+            rws_check.validate_schema("SCHEMA.json")
+
+    def test_nonunique_service_sites(self):
+        json_dict = {
+            "sets": [
+                {
+                    "contact": "abc@example.com",
+                    "primary": "https://primary.com",
+                    "serviceSites": [
+                        "https://service1.com",
+                        "https://service1.com",
+                    ],
+                    "rationaleBySite": {
+                        "https://service1.com": "example rationale",
+                    },
+                }
+            ]
+        }
+        rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
+        with self.assertRaises(ValidationError):
+            rws_check.validate_schema("SCHEMA.json")
+
+    def test_unexpected_top_level_property(self):
+        json_dict = {"sets": [], "foo": True}
+        rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
+        with self.assertRaises(ValidationError):
+            rws_check.validate_schema("SCHEMA.json")
+
+    def test_unexpected_set_level_property(self):
+        json_dict = {
+            "sets": [
+                {
+                    "contact": "abc@example.com",
+                    "primary": "https://primary.com",
+                    "associatedSites": ["https://associated1.com"],
+                    "rationaleBySite": {
+                        "https://associated1.com": "example rationale",
+                    },
+                    "ccTLDs": {"https://associated1.com": ["https://associated1.ca"]},
+                    "foo": True,
                 }
             ]
         }

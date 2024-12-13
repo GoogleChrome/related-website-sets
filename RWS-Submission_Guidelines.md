@@ -44,57 +44,7 @@ ccTLD (country code top-level domain) variants for the subsets above are also su
 New submissions to the canonical RWS list must be filed as <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request">pull requests (PRs)</a> on GitHub. Submitters should ensure that submissions follow the schema template provided below. Anyone with a <a href="https://docs.github.com/en/get-started/learning-about-github/types-of-github-accounts">GitHub account</a> may make a submission.
 
 Modifications to existing sets, including deletions, must also be submitted as new PRs against the canonical RWS list.
-The canonical RWS list will be validated against this schema whenever a user files their PR:
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "sets": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-	  "contact" : {"type": "string"},
-          "ccTLDs": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          "primary": { "type": "string" },
-          "associatedSites": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "serviceSites": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "rationaleBySite": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            }
-          }
-        },
-        "required": ["primary"],
-        "dependentRequired": {
-          "associatedSites": ["An explanation of how you clearly present the affiliation across domains to users and why users would expect your domains to be affiliated"],
-          "serviceSites": ["An explanation of how each domain in this subset supports functionality or security needs."]
-        }
-      }
-    }
-  }
-}
-```
+The canonical RWS list will be validated against [this schema](./SCHEMA.json) whenever a user files their PR.
 
 A hypothetical example of the RWS canonical list is provided below for reference. A submission should follow the structure below, with new submissions being added as items to the "sets" list.
 
