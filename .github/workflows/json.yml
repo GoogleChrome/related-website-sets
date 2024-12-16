@@ -58,6 +58,8 @@ jobs:
       with:   
         message-path: "message.txt" 
         refresh-message-position: true
+    - name: Write Summary
+      run: cat message.txt >> $GITHUB_STEP_SUMMARY
     - name: Record Failure
       if: steps.read_results.outputs.contents != 'success'
       uses: actions/github-script@v3
