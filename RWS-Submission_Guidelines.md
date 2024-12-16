@@ -44,57 +44,7 @@ ccTLD (country code top-level domain) variants for the subsets above are also su
 New submissions to the canonical RWS list must be filed as <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request">pull requests (PRs)</a> on GitHub. Submitters should ensure that submissions follow the schema template provided below. Anyone with a <a href="https://docs.github.com/en/get-started/learning-about-github/types-of-github-accounts">GitHub account</a> may make a submission.
 
 Modifications to existing sets, including deletions, must also be submitted as new PRs against the canonical RWS list.
-The canonical RWS list will be validated against this schema whenever a user files their PR:
-
-```json
-{
-  "type": "object",
-  "properties": {
-    "sets": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-	  "contact" : {"type": "string"},
-          "ccTLDs": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            }
-          },
-          "primary": { "type": "string" },
-          "associatedSites": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "serviceSites": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "rationaleBySite": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
-            }
-          }
-        },
-        "required": ["primary"],
-        "dependentRequired": {
-          "associatedSites": ["An explanation of how you clearly present the affiliation across domains to users and why users would expect your domains to be affiliated"],
-          "serviceSites": ["An explanation of how each domain in this subset supports functionality or security needs."]
-        }
-      }
-    }
-  }
-}
-```
+The canonical RWS list will be validated against [this schema](./SCHEMA.json) whenever a user files their PR.
 
 A hypothetical example of the RWS canonical list is provided below for reference. A submission should follow the structure below, with new submissions being added as items to the "sets" list.
 
@@ -141,7 +91,7 @@ Upon submission of a PR, a series of technical checks will run on GitHub to veri
 <li>Each domain must satisfy the /.well-known/ metadata requirement:</li>
   <ul>
     <li>The /.well-known/ metadata requirement demonstrates that the submitter has administrative access to the domains present in the set, since administrative access is required to modify the /.well-known/ file. This will help prevent unauthorized actors from adding domains to a set. </li>
-    <li>The primary domain must serve a JSON file at /.well-known/related-website-set.json (Note: list entries merged before September 15th 2023 may serve their well-known file at /.well-known/related-website-set.json instead; however, any changes to those entries will require that the primary and all members of the set must be served at /.well-known/related-website-set.json like any other entry). The contents of the file must be identical to the submission. Each member domain must serve a JSON file at /.well-known/related-website-set.json. The contents of the file must name the primary domain. These files must be maintained for the duration of the domain’s inclusion in the set.</li>
+    <li>The primary domain must serve a JSON file at /.well-known/related-website-set.json (Note: list entries merged before September 15th 2023 may serve their well-known file at /.well-known/first-party-set.json instead; however, any changes to those entries will require that the primary and all members of the set must be served at /.well-known/related-website-set.json like any other entry). The contents of the file must be identical to the submission. Each member domain must serve a JSON file at /.well-known/related-website-set.json. The contents of the file must name the primary domain. These files must be maintained for the duration of the domain’s inclusion in the set.</li>
     <li>Any changes to an existing RWS in the <a href="https://github.com/googlechrome/first-party-sets/blob/main/related_website_sets.JSON">canonical RWS list</a>  must also be reflected in that set's JSON files at /.well-known/related-website-set.json.</li>
     <li>If an RWS owner wishes to remove a set entirely from the <a href="https://github.com/googlechrome/first-party-sets/blob/main/related_website_sets.JSON">canonical RWS list,</a> then that set's primary must serve a `404 (Not Found)` status code at their /.well-known/related-website-set.json endpoint to demonstrate a deliberate desire to remove the set.</li>
 		<li>Example for  primary.com/.well-known/related-website-set.json:</li>

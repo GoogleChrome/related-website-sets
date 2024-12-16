@@ -1,11 +1,13 @@
 {
     "type": "object",
+    "additionalProperties": false,
     "properties": {
-        "contact" : {"type": "string"},
         "sets":  {
             "type": "array",
+            "uniqueItems": true,
             "items": {
                 "type": "object",
+                "additionalProperties": false,
                 "properties": {
                     "ccTLDs": {
                         "type": "object",
@@ -16,15 +18,18 @@
                             }
                         }
                     },
+                    "contact": { "type": "string" },
                     "primary": {"type": "string"},
                     "associatedSites": {
                         "type": "array",
+                        "uniqueItems": true,
                         "items": {
                             "type": "string"
                         }
                     },
                     "serviceSites": {
                         "type": "array",
+                        "uniqueItems": true,
                         "items": {
                             "type": "string"
                         }
@@ -40,7 +45,12 @@
                 "dependentRequired": {
                     "associatedSites": ["rationaleBySite"],
                     "serviceSites": ["rationaleBySite"]
-                }
+                },
+                "anyOf": [
+                    { "required": ["associatedSites"] },
+                    { "required": ["serviceSites"] },
+                    { "required": ["ccTLDs"] }
+                ]
             }
         }
     }
