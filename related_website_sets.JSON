@@ -1014,16 +1014,6 @@
       "rationaleBySite": {
         "https://sensics.org": "Domain for test purposes."
       }
-    },
-    {
-      "contact": "dimitar.andonov@gfk.com",
-      "primary": "https://sensics.org",
-      "associatedSites": [
-        "https://sensic.net"
-      ],
-      "rationaleBySite": {
-        "https://sensic.net": "The public demo homepage for GfK's media measurement product."
-      }
     }
   ]
 }
