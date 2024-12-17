@@ -1004,6 +1004,16 @@
       "rationaleBySite": {
         "https://zoom.com": "marketing new homepages for SEO purposes"
       }
+    },
+    {
+      "contact": "dimitar.andonov@gfk.com",
+      "primary": "https://sensic.net",
+      "associatedSites": [
+        "https://sensics.org"
+      ],
+      "rationaleBySite": {
+        "https://sensics.org": "Domain for test purposes."
+      }
     }
   ]
 }
