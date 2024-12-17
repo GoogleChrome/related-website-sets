@@ -1008,7 +1008,7 @@
     {
       "contact": "dimitar.andonov@gfk.com",
       "primary": "https://sensic.net",
-      "serviceSites": [
+      "associatedSites": [
         "https://sensics.org"
       ],
       "rationaleBySite": {
@@ -1018,7 +1018,7 @@
     {
       "contact": "dimitar.andonov@gfk.com",
       "primary": "https://sensics.org",
-      "serviceSites": [
+      "associatedSites": [
         "https://sensic.net"
       ],
       "rationaleBySite": {
