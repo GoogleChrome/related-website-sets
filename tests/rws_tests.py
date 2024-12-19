@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import re
 import sys
 import unittest
 
@@ -160,7 +161,10 @@ class TestValidateSchema(unittest.TestCase):
         }
         json_dict = {"sets": [entry, entry]}
         rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
-        with self.assertRaises(ValidationError):
+        with self.assertRaisesRegex(
+            ValidationError,
+            "Failed validating 'uniqueItems' in schema\['properties'\]\['sets'\]:",
+        ):
             rws_check.validate_schema("SCHEMA.json")
 
     def test_no_primary(self):
@@ -179,7 +183,13 @@ class TestValidateSchema(unittest.TestCase):
             ]
         }
         rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
-        with self.assertRaises(ValidationError):
+        with self.assertRaisesRegex(
+            ValidationError,
+            re.compile(
+                "'primary' is a required property.*Failed validating 'required' in schema\['properties'\]\['sets'\]\['items'\]:",
+                re.DOTALL,
+            ),
+        ):
             rws_check.validate_schema("SCHEMA.json")
 
     def test_primary_only(self):
@@ -192,7 +202,10 @@ class TestValidateSchema(unittest.TestCase):
             ]
         }
         rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
-        with self.assertRaises(ValidationError):
+        with self.assertRaisesRegex(
+            ValidationError,
+            "Failed validating 'anyOf' in schema\['properties'\]\['sets'\]\['items'\]:",
+        ):
             rws_check.validate_schema("SCHEMA.json")
 
     def test_no_rationaleBySite(self):
@@ -208,7 +221,13 @@ class TestValidateSchema(unittest.TestCase):
             ]
         }
         rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
-        with self.assertRaises(ValidationError):
+        with self.assertRaisesRegex(
+            ValidationError,
+            re.compile(
+                "'rationaleBySite' is a dependency of 'associatedSites'.*Failed validating 'dependentRequired' in schema\['properties'\]\['sets'\]\['items'\]:",
+                re.DOTALL,
+            ),
+        ):
             rws_check.validate_schema("SCHEMA.json")
 
     def test_invalid_field_type(self):
@@ -222,7 +241,13 @@ class TestValidateSchema(unittest.TestCase):
             ]
         }
         rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
-        with self.assertRaises(ValidationError):
+        with self.assertRaisesRegex(
+            ValidationError,
+            re.compile(
+                "'https://primary.ca' is not of type 'array'.*Failed validating 'type' in schema\['properties'\]\['sets'\]\['items'\]\['properties'\]\['ccTLDs'\]\['additionalProperties'\]:",
+                re.DOTALL,
+            ),
+        ):
             rws_check.validate_schema("SCHEMA.json")
 
     def test_no_contact(self):
@@ -241,7 +266,13 @@ class TestValidateSchema(unittest.TestCase):
             ]
         }
         rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
-        with self.assertRaises(ValidationError):
+        with self.assertRaisesRegex(
+            ValidationError,
+            re.compile(
+                "'contact' is a required property.*Failed validating 'required' in schema\['properties'\]\['sets'\]\['items'\]:",
+                re.DOTALL,
+            ),
+        ):
             rws_check.validate_schema("SCHEMA.json")
 
     def test_nonunique_associated_sites(self):
@@ -261,7 +292,13 @@ class TestValidateSchema(unittest.TestCase):
             ]
         }
         rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
-        with self.assertRaises(ValidationError):
+        with self.assertRaisesRegex(
+            ValidationError,
+            re.compile(
+                "has non-unique elements.*Failed validating 'uniqueItems' in schema\['properties'\]\['sets'\]\['items'\]\['properties'\]\['associatedSites'\]:",
+                re.DOTALL,
+            ),
+        ):
             rws_check.validate_schema("SCHEMA.json")
 
     def test_nonunique_service_sites(self):
@@ -281,13 +318,25 @@ class TestValidateSchema(unittest.TestCase):
             ]
         }
         rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
-        with self.assertRaises(ValidationError):
+        with self.assertRaisesRegex(
+            ValidationError,
+            re.compile(
+                "has non-unique elements.*Failed validating 'uniqueItems' in schema\['properties'\]\['sets'\]\['items'\]\['properties'\]\['serviceSites'\]:",
+                re.DOTALL,
+            ),
+        ):
             rws_check.validate_schema("SCHEMA.json")
 
     def test_unexpected_top_level_property(self):
         json_dict = {"sets": [], "foo": True}
         rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
-        with self.assertRaises(ValidationError):
+        with self.assertRaisesRegex(
+            ValidationError,
+            re.compile(
+                "\('foo' was unexpected\).*Failed validating 'additionalProperties' in schema:",
+                re.DOTALL,
+            ),
+        ):
             rws_check.validate_schema("SCHEMA.json")
 
     def test_unexpected_set_level_property(self):
@@ -306,7 +355,13 @@ class TestValidateSchema(unittest.TestCase):
             ]
         }
         rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
-        with self.assertRaises(ValidationError):
+        with self.assertRaisesRegex(
+            ValidationError,
+            re.compile(
+                "\('foo' was unexpected\).*Failed validating 'additionalProperties' in schema\['properties'\]\['sets'\]\['items'\]:",
+                re.DOTALL,
+            ),
+        ):
             rws_check.validate_schema("SCHEMA.json")
 
 
