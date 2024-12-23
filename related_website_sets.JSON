@@ -1004,6 +1004,18 @@
       "rationaleBySite": {
         "https://zoom.com": "marketing new homepages for SEO purposes"
       }
+    },
+    {
+      "contact": "admin@datasign.jp",
+      "primary": "https://datasign.jp",
+      "associatedSites": [
+        "https://webtru.io",
+        "https://bunsin.io"
+      ],
+      "rationaleBySite": {
+        "https://webtru.io": "webtru, a CMP tool provided by DataSign",
+        "https://bunsin.io": "Bunsin, a dummy email address app provided by DataSign"
+      }
     }
   ]
 }
