@@ -1,6 +1,18 @@
 {
   "sets": [
     {
+       "contact": "edward.goodnow@gmail.com",
+       "primary": "https://pennyauctionsoftware.net",
+       "associatedSites": [
+          "https://www.pennyauctionsoftware.net",
+          "https://demo.pennyauctionsoftware.net"
+       ],
+       "rationaleBySite": {
+          "https://www.pennyauctionsoftware.net": "https://www.pennyauctionsoftware.net",
+          "https://demo.pennyauctionsoftware.net": "https://demo.pennyauctionsoftware.net"
+       }
+    },
+    {
       "contact": "oterrell28@gmail.com",
       "primary": "https://sackrace.ai",
       "serviceSites": [
