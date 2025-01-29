@@ -163,7 +163,7 @@ class TestValidateSchema(unittest.TestCase):
         rws_check = RwsCheck(rws_sites=json_dict, etlds=None, icanns=set(["ca"]))
         with self.assertRaisesRegex(
             ValidationError,
-            "Failed validating 'uniqueItems' in schema\['properies'\]\['sets'\]:",
+            "Failed validating 'uniqueItems' in schema\['properties'\]\['sets'\]:",
         ):
             rws_check.validate_schema("SCHEMA.json")
 
