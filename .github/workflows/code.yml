@@ -35,4 +35,4 @@ jobs:
       run: |
         pip3 install -r requirements.txt
         python3 tests/rws_tests.py
-        python3 check_sites.py --strict_formatting > results.txt
+        python3 check_sites.py --strict_formatting
