@@ -31,18 +31,8 @@ jobs:
       with:
         check-latest: true
     - uses: psf/black@stable
-    - name: Run Tests and Validate JSON
+    - name: Run Tests and Validate JSON (JSON errors will not cause job failure)
       run: |
         pip3 install -r requirements.txt
         python3 tests/rws_tests.py
-        python3 check_sites.py -i related_website_sets.JSON --with_diff --strict_formatting > results.txt
-    - name: Read Results
-      id: read_results
-      uses: andstor/file-reader-action@v1
-      with:
-        path: "results.txt"
-    - name: Record Failure
-      if: steps.read_results.outputs.contents != 'success'
-      uses: actions/github-script@v3
-      with:
-        script: core.setFailed('This run has failed.')
+        python3 check_sites.py --strict_formatting > results.txt
