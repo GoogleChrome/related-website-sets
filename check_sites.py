@@ -108,7 +108,7 @@ def main():
         (rws_sites, error) = parse_rws_json(rws_json_string, strict_formatting)
     except Exception as inst:
         # If the file cannot be loaded, we will not run any other checks
-        print (f"There was an error when parsing the JSON;\nerror was:  {inst}")
+        print(f"There was an error when parsing the JSON;\nerror was:  {inst}")
         return
     if error is not None:
         error_texts.append(error)

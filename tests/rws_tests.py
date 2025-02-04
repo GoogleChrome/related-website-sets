@@ -36,7 +36,7 @@ class TestLoadFile(unittest.TestCase):
             "Expecting value: line 1 column 1 \(char 0\)",
         ):
             parse_rws_json("this is not json", False)
-            
+
         self.assertEqual(
             parse_rws_json('{\n  "a": "foo", \n    "b": "bar"\n}\n  ', False),
             ({"a": "foo", "b": "bar"}, None),
@@ -52,7 +52,7 @@ class TestLoadFile(unittest.TestCase):
             "Expecting value: line 1 column 1 \(char 0\)",
         ):
             parse_rws_json("this is not json", False)
-        
+
         self.assertEqual(
             parse_rws_json('{\n  "a": "foo", \n    "b": "bar"\n}\n  ', True),
             (
