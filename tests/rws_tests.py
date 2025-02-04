@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+from json import JSONDecodeError
 import re
 import sys
 import unittest
@@ -30,13 +31,12 @@ class TestLoadFile(unittest.TestCase):
     """A test suite for the parse_rws_json function"""
 
     def test_parse_only(self):
-        self.assertEqual(
-            parse_rws_json("this is not json", False),
-            (
-                None,
-                "There was an error when parsing the JSON;\nerror was:  Expecting value: line 1 column 1 (char 0)",
-            ),
-        )
+        with self.assertRaisesRegex(
+            JSONDecodeError,
+            "Expecting value: line 1 column 1 \(char 0\)",
+        ):
+            parse_rws_json("this is not json", False)
+            
         self.assertEqual(
             parse_rws_json('{\n  "a": "foo", \n    "b": "bar"\n}\n  ', False),
             ({"a": "foo", "b": "bar"}, None),
@@ -47,13 +47,12 @@ class TestLoadFile(unittest.TestCase):
         )
 
     def test_parse_and_check_format(self):
-        self.assertEqual(
-            parse_rws_json("this is not json", True),
-            (
-                None,
-                "There was an error when parsing the JSON;\nerror was:  Expecting value: line 1 column 1 (char 0)",
-            ),
-        )
+        with self.assertRaisesRegex(
+            JSONDecodeError,
+            "Expecting value: line 1 column 1 \(char 0\)",
+        ):
+            parse_rws_json("this is not json", False)
+        
         self.assertEqual(
             parse_rws_json('{\n  "a": "foo", \n    "b": "bar"\n}\n  ', True),
             (

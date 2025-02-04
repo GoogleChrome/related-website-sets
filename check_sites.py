@@ -25,8 +25,9 @@ from RwsCheck import RwsCheck
 def parse_rws_json(rws_json_string, strict_formatting):
     """Attempts to parse `rws_json_string` as JSON and validate formatting if `strict_formatting` is true.
 
-    Returns a tuple of the JSON dict and None if there were no errors,
-    or None and the error message if there was an error.
+    Returns a tuple of the JSON dict and None if there were no formatting
+    errors, or None and the error message if there was an error.  If the file
+    is not proper json, `json.loads()` will throw a JSONDecodeError.
 
     Args:
         rws_json_string: string
@@ -34,11 +35,8 @@ def parse_rws_json(rws_json_string, strict_formatting):
     Returns:
         Tuple[Dict|None, string|None]
     """
-    try:
-        rws_sites = json.loads(rws_json_string)
-    except Exception as inst:
-        # If the file cannot be loaded, we will not run any other checks
-        return (None, f"There was an error when parsing the JSON;\nerror was:  {inst}")
+    # If this fails, it needs to be caught in the caller.
+    rws_sites = json.loads(rws_json_string)
     # Notify of any formatting errors in the JSON
     if strict_formatting:
         # Add final newline by convention
@@ -105,9 +103,21 @@ def main():
             cli_primaries.extend(arg.split(","))
 
     rws_json_string = pathlib.Path(input_filepath).read_text()
-    (rws_sites, error) = parse_rws_json(rws_json_string, strict_formatting)
-    if rws_sites is None or error is not None:
-        print(error)
+    error_texts = []
+    try:
+        (rws_sites, error) = parse_rws_json(rws_json_string, strict_formatting)
+    except Exception as inst:
+        # If the file cannot be loaded, we will not run any other checks
+        print (f"There was an error when parsing the JSON;\nerror was:  {inst}")
+        return
+    if error is not None:
+        error_texts.append(error)
+
+    try:
+        rws_checker.validate_schema("SCHEMA.json")
+    except Exception as inst:
+        # If the schema is invalid, we will not run any other checks
+        print(inst)
         return
 
     # Load the etlds from the public suffix list
@@ -120,14 +130,6 @@ def main():
             icanns.add(l)
 
     rws_checker = RwsCheck(rws_sites, etlds, icanns)
-    error_texts = []
-
-    try:
-        rws_checker.validate_schema("SCHEMA.json")
-    except Exception as inst:
-        # If the schema is invalid, we will not run any other checks
-        print(inst)
-        return
 
     # Check for exclusivity among all sets in the updated version
     try:
