@@ -72,6 +72,7 @@ def find_diff_sets(old_sets, new_sets):
     }
     return diff_sets, subtracted_sets
 
+
 def run_nonbreaking_checks(rws_checker, rws_json_string, strict_formatting, check_sets):
     """Runs all checks from check_sites and RWSCheck whose exceptions should
     not cause the program to immediately exit.
@@ -148,7 +149,6 @@ def main():
         print(f"There was an error when parsing the JSON;\nerror was:  {inst}")
         return
 
-
     # Load the etlds from the public suffix list
     etlds = PublicSuffixList(psl_file="effective_tld_names.dat")
     # Get all the ICANN domains
@@ -166,7 +166,7 @@ def main():
         # If the schema is invalid, we will not run any other checks
         print(inst)
         return
-    
+
     error_texts = []
     check_sets = {}
     subtracted_sets = {}

@@ -1655,14 +1655,14 @@ class TestRunNonbreakingChecks(unittest.TestCase):
         # Assert requests.get calls
         rws_check = RwsCheck(
             rws_sites=json.loads(self.VALID_JSON_STRING),
-            etlds = PublicSuffixList(psl_file="effective_tld_names.dat"),
-            icanns=set()
+            etlds=PublicSuffixList(psl_file="effective_tld_names.dat"),
+            icanns=set(),
         )
         error_texts = run_nonbreaking_checks(
             rws_check,
             self.VALID_JSON_STRING,
             strict_formatting=True,
-            check_sets=rws_check.load_sets()
+            check_sets=rws_check.load_sets(),
         )
         self.assertEqual(error_texts + rws_check.error_list, [])
 
@@ -1673,14 +1673,14 @@ class TestRunNonbreakingChecks(unittest.TestCase):
     def testFormatErrors(self, mock_get, mock_open_and_load_json):
         rws_check = RwsCheck(
             rws_sites=json.loads(self.BAD_FORMAT_JSON_STRING),
-            etlds = PublicSuffixList(psl_file="effective_tld_names.dat"),
-            icanns=set()
+            etlds=PublicSuffixList(psl_file="effective_tld_names.dat"),
+            icanns=set(),
         )
         error_texts = run_nonbreaking_checks(
             rws_check,
             self.BAD_FORMAT_JSON_STRING,
             strict_formatting=True,
-            check_sets=rws_check.load_sets()
+            check_sets=rws_check.load_sets(),
         )
         self.assertEqual(
             error_texts + rws_check.error_list,
@@ -1709,14 +1709,14 @@ error was:
     def testTechnicalErrors(self, mock_get, mock_open_and_load_json):
         rws_check = RwsCheck(
             rws_sites=json.loads(self.NO_RATIONALES_JSON_STRING),
-            etlds = PublicSuffixList(psl_file="effective_tld_names.dat"),
-            icanns=set()
+            etlds=PublicSuffixList(psl_file="effective_tld_names.dat"),
+            icanns=set(),
         )
         error_texts = run_nonbreaking_checks(
             rws_check,
             self.NO_RATIONALES_JSON_STRING,
             strict_formatting=True,
-            check_sets=rws_check.load_sets()
+            check_sets=rws_check.load_sets(),
         )
         self.assertEqual(
             error_texts + rws_check.error_list,
@@ -1730,14 +1730,14 @@ error was:
     def testTechnicalAndFormatErrors(self, mock_get, mock_open_and_load_json):
         rws_check = RwsCheck(
             rws_sites=json.loads(self.BAD_FORMAT_NO_RATIONALES_JSON_STRING),
-            etlds = PublicSuffixList(psl_file="effective_tld_names.dat"),
-            icanns=set()
+            etlds=PublicSuffixList(psl_file="effective_tld_names.dat"),
+            icanns=set(),
         )
         error_texts = run_nonbreaking_checks(
             rws_check,
             self.BAD_FORMAT_NO_RATIONALES_JSON_STRING,
             strict_formatting=True,
-            check_sets=rws_check.load_sets()
+            check_sets=rws_check.load_sets(),
         )
         self.assertEqual(
             error_texts + rws_check.error_list,
@@ -1767,14 +1767,14 @@ error was:
     def testNoStrictFormatting(self, mock_get, mock_open_and_load_json):
         rws_check = RwsCheck(
             rws_sites=json.loads(self.BAD_FORMAT_NO_RATIONALES_JSON_STRING),
-            etlds = PublicSuffixList(psl_file="effective_tld_names.dat"),
-            icanns=set()
+            etlds=PublicSuffixList(psl_file="effective_tld_names.dat"),
+            icanns=set(),
         )
         error_texts = run_nonbreaking_checks(
             rws_check,
             self.BAD_FORMAT_NO_RATIONALES_JSON_STRING,
             strict_formatting=False,
-            check_sets=rws_check.load_sets()
+            check_sets=rws_check.load_sets(),
         )
         # Should only see technical errors.
         self.assertEqual(
