@@ -22,38 +22,28 @@ from publicsuffix2 import PublicSuffixList
 from RwsCheck import RwsCheck
 
 
-def parse_rws_json(rws_json_string, strict_formatting):
-    """Attempts to parse `rws_json_string` as JSON and validate formatting if `strict_formatting` is true.
-
-    Returns a tuple of the JSON dict and None if there were no formatting
-    errors, or None and the error message if there was an error.  If the file
-    is not proper json, `json.loads()` will throw a JSONDecodeError.
+def find_format_diff(rws_json_string, rws_sites):
+    """Returns the diff of the rws_json_string and the formatted string
+    generated from rws_sites.
 
     Args:
         rws_json_string: string
-        strict_formatting: bool
+        rws_sites: JSON Object
     Returns:
-        Tuple[Dict|None, string|None]
+        String
     """
-    # If this fails, it needs to be caught in the caller.
-    rws_sites = json.loads(rws_json_string)
-    # Notify of any formatting errors in the JSON
-    if strict_formatting:
-        # Add final newline by convention
-        formatted_file = json.dumps(rws_sites, indent=2, ensure_ascii=False) + "\n"
-        if rws_json_string != formatted_file:
-            diff = difflib.unified_diff(
-                rws_json_string.splitlines(keepends=True),
-                formatted_file.splitlines(keepends=True),
-                fromfile="PR file",
-                tofile="expected",
-            )
-            joined_diff = "".join(diff)
-            return (
-                None,
-                f"Formatting for JSON is incorrect;\nerror was:\n```diff\n{joined_diff}\n```",
-            )
-    return (rws_sites, None)
+    # Add final newline by convention
+    formatted_file = json.dumps(rws_sites, indent=2, ensure_ascii=False) + "\n"
+    if rws_json_string == formatted_file:
+        return ""
+    diff = difflib.unified_diff(
+        rws_json_string.splitlines(keepends=True),
+        formatted_file.splitlines(keepends=True),
+        fromfile="PR file",
+        tofile="expected",
+    )
+    joined_diff = "".join(diff)
+    return f"Formatting for JSON is incorrect;\nerror was:\n```diff\n{joined_diff}\n```"
 
 
 def find_diff_sets(old_sets, new_sets):
@@ -82,6 +72,53 @@ def find_diff_sets(old_sets, new_sets):
     }
     return diff_sets, subtracted_sets
 
+def run_nonbreaking_checks(rws_checker, rws_json_string,
+                               strict_formatting, check_sets):
+    """Runs all checks from check_sites and RWSCheck whose exceptions should
+    not cause the program to immediately exit.
+
+    Returns a list of `error_texts` that result from running `find_format_diff`
+    as well as a number of RWSCheck functions. The RWSCheck function calls may
+    also result in changes to `rws_checker.error_list`.
+
+    Args:
+        rws_checker: RWSCheck object
+        rws_json_string: string
+        strict_formatting: boolean
+        check_sets: Dict[string, RwsSet]
+    Returns:
+        [String]
+    """
+    error_texts = []
+    if strict_formatting and (format_diff := find_format_diff(rws_json_string,
+                                                              rws_checker.rws_sites)):
+            error_texts.append(format_diff)
+    
+    try:
+        rws_checker.check_exclusivity(rws_checker.load_sets())
+    except Exception as inst:
+        error_texts.append(inst)
+
+    # These are RWSCheck functions that may append to the
+    # rws_checker's error_list.
+    check_list = [
+        rws_checker.has_all_rationales,
+        rws_checker.find_non_https_urls,
+        rws_checker.find_invalid_eTLD_Plus1,
+        rws_checker.find_invalid_well_known,
+        rws_checker.find_invalid_alias_eSLDs,
+        rws_checker.find_robots_tag,
+        rws_checker.find_ads_txt,
+        rws_checker.check_for_service_redirect,
+    ]
+
+    for check in check_list:
+        try:
+            check(check_sets)
+        except Exception as inst:
+            error_texts.append(inst)
+    
+    return error_texts
 
 def main():
     args = sys.argv[1:]
@@ -103,21 +140,11 @@ def main():
             cli_primaries.extend(arg.split(","))
 
     rws_json_string = pathlib.Path(input_filepath).read_text()
-    error_texts = []
     try:
-        (rws_sites, error) = parse_rws_json(rws_json_string, strict_formatting)
+        rws_sites = json.loads(rws_json_string)
     except Exception as inst:
         # If the file cannot be loaded, we will not run any other checks
         print(f"There was an error when parsing the JSON;\nerror was:  {inst}")
-        return
-    if error is not None:
-        error_texts.append(error)
-
-    try:
-        rws_checker.validate_schema("SCHEMA.json")
-    except Exception as inst:
-        # If the schema is invalid, we will not run any other checks
-        print(inst)
         return
 
     # Load the etlds from the public suffix list
@@ -131,12 +158,14 @@ def main():
 
     rws_checker = RwsCheck(rws_sites, etlds, icanns)
 
-    # Check for exclusivity among all sets in the updated version
     try:
-        rws_checker.check_exclusivity(rws_checker.load_sets())
+        rws_checker.validate_schema("SCHEMA.json")
     except Exception as inst:
-        error_texts.append(inst)
-
+        # If the schema is invalid, we will not run any other checks
+        print(inst)
+        return
+    
+    error_texts = []
     check_sets = {}
     subtracted_sets = {}
     # If called with with_diff, we must determine the sets that are different
@@ -172,24 +201,9 @@ def main():
 
     # Run check on subtracted sets
     rws_checker.find_invalid_removal(subtracted_sets)
-
-    # Run rest of checks
-    check_list = [
-        rws_checker.has_all_rationales,
-        rws_checker.find_non_https_urls,
-        rws_checker.find_invalid_eTLD_Plus1,
-        rws_checker.find_invalid_well_known,
-        rws_checker.find_invalid_alias_eSLDs,
-        rws_checker.find_robots_tag,
-        rws_checker.find_ads_txt,
-        rws_checker.check_for_service_redirect,
-    ]
-
-    for check in check_list:
-        try:
-            check(check_sets)
-        except Exception as inst:
-            error_texts.append(inst)
+    # Run remaining technical checks
+    error_texts += run_nonbreaking_checks(rws_checker, rws_json_string,
+                                  strict_formatting, check_sets)
     # This message allows us to check the succes of our action
     if rws_checker.error_list or error_texts:
         for checker_error in rws_checker.error_list:
