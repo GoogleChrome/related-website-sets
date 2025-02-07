@@ -72,8 +72,7 @@ def find_diff_sets(old_sets, new_sets):
     }
     return diff_sets, subtracted_sets
 
-def run_nonbreaking_checks(rws_checker, rws_json_string,
-                               strict_formatting, check_sets):
+def run_nonbreaking_checks(rws_checker, rws_json_string, strict_formatting, check_sets):
     """Runs all checks from check_sites and RWSCheck whose exceptions should
     not cause the program to immediately exit.
 
@@ -90,10 +89,11 @@ def run_nonbreaking_checks(rws_checker, rws_json_string,
         [String]
     """
     error_texts = []
-    if strict_formatting and (format_diff := find_format_diff(rws_json_string,
-                                                              rws_checker.rws_sites)):
-            error_texts.append(format_diff)
-    
+    if strict_formatting and (
+        format_diff := find_format_diff(rws_json_string, rws_checker.rws_sites)
+    ):
+        error_texts.append(format_diff)
+
     try:
         rws_checker.check_exclusivity(rws_checker.load_sets())
     except Exception as inst:
@@ -117,8 +117,9 @@ def run_nonbreaking_checks(rws_checker, rws_json_string,
             check(check_sets)
         except Exception as inst:
             error_texts.append(inst)
-    
+
     return error_texts
+
 
 def main():
     args = sys.argv[1:]
@@ -146,6 +147,7 @@ def main():
         # If the file cannot be loaded, we will not run any other checks
         print(f"There was an error when parsing the JSON;\nerror was:  {inst}")
         return
+
 
     # Load the etlds from the public suffix list
     etlds = PublicSuffixList(psl_file="effective_tld_names.dat")
@@ -202,8 +204,9 @@ def main():
     # Run check on subtracted sets
     rws_checker.find_invalid_removal(subtracted_sets)
     # Run remaining technical checks
-    error_texts += run_nonbreaking_checks(rws_checker, rws_json_string,
-                                  strict_formatting, check_sets)
+    error_texts += run_nonbreaking_checks(
+        rws_checker, rws_json_string, strict_formatting, check_sets
+    )
     # This message allows us to check the succes of our action
     if rws_checker.error_list or error_texts:
         for checker_error in rws_checker.error_list:
