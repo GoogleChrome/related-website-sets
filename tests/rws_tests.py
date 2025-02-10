@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+import json
 import re
 import sys
 import unittest
@@ -21,44 +22,19 @@ from unittest import mock
 from requests import structures
 
 sys.path.append(".")
-from check_sites import find_diff_sets, parse_rws_json
+from check_sites import find_diff_sets, find_format_diff, run_nonbreaking_checks
 from RwsCheck import RwsCheck, WELL_KNOWN
 from RwsSet import RwsSet
 
 
-class TestLoadFile(unittest.TestCase):
-    """A test suite for the parse_rws_json function"""
+class TestFindFormatDiff(unittest.TestCase):
+    """A test suite for the find_format_diff function"""
 
-    def test_parse_only(self):
+    def test_invalid_format(self):
+        invalid_format_string = '{\n  "a": "foo", \n    "b": "bar"\n}\n  '
         self.assertEqual(
-            parse_rws_json("this is not json", False),
-            (
-                None,
-                "There was an error when parsing the JSON;\nerror was:  Expecting value: line 1 column 1 (char 0)",
-            ),
-        )
-        self.assertEqual(
-            parse_rws_json('{\n  "a": "foo", \n    "b": "bar"\n}\n  ', False),
-            ({"a": "foo", "b": "bar"}, None),
-        )
-        self.assertEqual(
-            parse_rws_json('{\n  "a": "foo",\n  "b": "bar"\n}\n', False),
-            ({"a": "foo", "b": "bar"}, None),
-        )
-
-    def test_parse_and_check_format(self):
-        self.assertEqual(
-            parse_rws_json("this is not json", True),
-            (
-                None,
-                "There was an error when parsing the JSON;\nerror was:  Expecting value: line 1 column 1 (char 0)",
-            ),
-        )
-        self.assertEqual(
-            parse_rws_json('{\n  "a": "foo", \n    "b": "bar"\n}\n  ', True),
-            (
-                None,
-                """Formatting for JSON is incorrect;
+            find_format_diff(invalid_format_string, json.loads(invalid_format_string)),
+            """Formatting for JSON is incorrect;
 error was:
 ```diff
 --- PR file
@@ -72,11 +48,12 @@ error was:
  }
 -  
 ```""",
-            ),
         )
+
+    def test_valid_format(self):
+        valid_format_string = '{\n  "a": "foo",\n  "b": "bar"\n}\n'
         self.assertEqual(
-            parse_rws_json('{\n  "a": "foo",\n  "b": "bar"\n}\n', True),
-            ({"a": "foo", "b": "bar"}, None),
+            find_format_diff(valid_format_string, json.loads(valid_format_string)), ""
         )
 
 
@@ -1610,6 +1587,199 @@ class MockTestsClass(unittest.TestCase):
                 "The listed associated site did not have https://primary4.com "
                 + "listed as its primary: https://associated3.ca",
             ],
+        )
+
+
+class TestRunNonbreakingChecks(unittest.TestCase):
+    """A test suite for the run_nonbreaking_checks function.
+    Uses mock_get and mock_open_and_load_json."""
+
+    VALID_JSON_STRING = """{
+  "sets": [
+    {
+      "primary": "https://primary4.com",
+      "associatedSites": [
+        "https://associated3.com"
+      ],
+      "rationaleBySite": {
+        "https://associated3.com": "a rationale"
+      }
+    }
+  ]
+}
+"""
+    BAD_FORMAT_JSON_STRING = """{
+  "sets":[
+    {
+      "primary": "https://primary4.com",
+      "associatedSites": [
+        "https://associated3.com"
+      ],
+      "rationaleBySite": {
+        "https://associated3.com": "a rationale"
+      }
+    }
+  ]
+}
+"""
+    NO_RATIONALES_JSON_STRING = """{
+  "sets": [
+    {
+      "primary": "https://primary4.com",
+      "associatedSites": [
+        "https://associated3.com"
+      ],
+      "rationaleBySite": {}
+    }
+  ]
+}
+"""
+    BAD_FORMAT_NO_RATIONALES_JSON_STRING = """{
+  "sets":[
+    {
+      "primary": "https://primary4.com",
+      "associatedSites": [
+        "https://associated3.com"
+      ],
+      "rationaleBySite": {}
+    }
+  ]
+}
+"""
+
+    @mock.patch("requests.get", side_effect=mock_get)
+    @mock.patch(
+        "RwsCheck.RwsCheck.open_and_load_json", side_effect=mock_open_and_load_json
+    )
+    def testValidRWSJSONString(self, mock_get, mock_open_and_load_json):
+        # Assert requests.get calls
+        rws_check = RwsCheck(
+            rws_sites=json.loads(self.VALID_JSON_STRING),
+            etlds=PublicSuffixList(psl_file="effective_tld_names.dat"),
+            icanns=set(),
+        )
+        error_texts = run_nonbreaking_checks(
+            rws_check,
+            self.VALID_JSON_STRING,
+            strict_formatting=True,
+            check_sets=rws_check.load_sets(),
+        )
+        self.assertEqual(error_texts + rws_check.error_list, [])
+
+    @mock.patch("requests.get", side_effect=mock_get)
+    @mock.patch(
+        "RwsCheck.RwsCheck.open_and_load_json", side_effect=mock_open_and_load_json
+    )
+    def testFormatErrors(self, mock_get, mock_open_and_load_json):
+        rws_check = RwsCheck(
+            rws_sites=json.loads(self.BAD_FORMAT_JSON_STRING),
+            etlds=PublicSuffixList(psl_file="effective_tld_names.dat"),
+            icanns=set(),
+        )
+        error_texts = run_nonbreaking_checks(
+            rws_check,
+            self.BAD_FORMAT_JSON_STRING,
+            strict_formatting=True,
+            check_sets=rws_check.load_sets(),
+        )
+        self.assertEqual(
+            error_texts + rws_check.error_list,
+            [
+                """Formatting for JSON is incorrect;
+error was:
+```diff
+--- PR file
++++ expected
+@@ -1,5 +1,5 @@
+ {
+-  "sets":[
++  "sets": [
+     {
+       "primary": "https://primary4.com",
+       "associatedSites": [
+
+```"""
+            ],
+        )
+
+    @mock.patch("requests.get", side_effect=mock_get)
+    @mock.patch(
+        "RwsCheck.RwsCheck.open_and_load_json", side_effect=mock_open_and_load_json
+    )
+    def testTechnicalErrors(self, mock_get, mock_open_and_load_json):
+        rws_check = RwsCheck(
+            rws_sites=json.loads(self.NO_RATIONALES_JSON_STRING),
+            etlds=PublicSuffixList(psl_file="effective_tld_names.dat"),
+            icanns=set(),
+        )
+        error_texts = run_nonbreaking_checks(
+            rws_check,
+            self.NO_RATIONALES_JSON_STRING,
+            strict_formatting=True,
+            check_sets=rws_check.load_sets(),
+        )
+        self.assertEqual(
+            error_texts + rws_check.error_list,
+            ["There is no provided rationale for https://associated3.com"],
+        )
+
+    @mock.patch("requests.get", side_effect=mock_get)
+    @mock.patch(
+        "RwsCheck.RwsCheck.open_and_load_json", side_effect=mock_open_and_load_json
+    )
+    def testTechnicalAndFormatErrors(self, mock_get, mock_open_and_load_json):
+        rws_check = RwsCheck(
+            rws_sites=json.loads(self.BAD_FORMAT_NO_RATIONALES_JSON_STRING),
+            etlds=PublicSuffixList(psl_file="effective_tld_names.dat"),
+            icanns=set(),
+        )
+        error_texts = run_nonbreaking_checks(
+            rws_check,
+            self.BAD_FORMAT_NO_RATIONALES_JSON_STRING,
+            strict_formatting=True,
+            check_sets=rws_check.load_sets(),
+        )
+        self.assertEqual(
+            error_texts + rws_check.error_list,
+            [
+                """Formatting for JSON is incorrect;
+error was:
+```diff
+--- PR file
++++ expected
+@@ -1,5 +1,5 @@
+ {
+-  "sets":[
++  "sets": [
+     {
+       "primary": "https://primary4.com",
+       "associatedSites": [
+
+```""",
+                "There is no provided rationale for https://associated3.com",
+            ],
+        )
+
+    @mock.patch("requests.get", side_effect=mock_get)
+    @mock.patch(
+        "RwsCheck.RwsCheck.open_and_load_json", side_effect=mock_open_and_load_json
+    )
+    def testNoStrictFormatting(self, mock_get, mock_open_and_load_json):
+        rws_check = RwsCheck(
+            rws_sites=json.loads(self.BAD_FORMAT_NO_RATIONALES_JSON_STRING),
+            etlds=PublicSuffixList(psl_file="effective_tld_names.dat"),
+            icanns=set(),
+        )
+        error_texts = run_nonbreaking_checks(
+            rws_check,
+            self.BAD_FORMAT_NO_RATIONALES_JSON_STRING,
+            strict_formatting=False,
+            check_sets=rws_check.load_sets(),
+        )
+        # Should only see technical errors.
+        self.assertEqual(
+            error_texts + rws_check.error_list,
+            ["There is no provided rationale for https://associated3.com"],
         )
 
 
