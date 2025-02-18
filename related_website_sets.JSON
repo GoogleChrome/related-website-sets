@@ -1016,6 +1016,16 @@
         "https://webtru.io": "webtru, a CMP tool provided by DataSign",
         "https://bunsin.io": "Bunsin, a dummy email address app provided by DataSign"
       }
+    },
+    {
+      "contact": "support@hookpoint.com",
+      "primary": "https://hookpoint.com",
+      "associatedSites": [
+        "https://brendanjkane.com"
+      ],
+      "rationaleBySite": {
+        "https://brendanjkane.com": "Brendan Kane is Hook Point's founder and CEO. This is clearly stated on Brendan's website, including links to Hook Point's website, and Brendan's face and name are also featured on Hook Point's website."
+      }
     }
   ]
 }
