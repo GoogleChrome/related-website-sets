@@ -2,7 +2,7 @@
   "name": "Default",
   "image": "mcr.microsoft.com/devcontainers/python:3.13",
   "features": {
-    "ghcr.io/devcontainers-extra/features/black:latest": {}
+    "ghcr.io/devcontainers-extra/features/black:2.0.17": {}
   },
   "customizations": {
     "vscode": {
