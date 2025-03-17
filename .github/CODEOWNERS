@@ -1,4 +1,4 @@
 # These paths require review from an admin.
-/.github/ @arichiv @cfredric @krgovind @miketaylr @sjledoux
-/.python-version @arichiv @cfredric @krgovind @miketaylr @sjledoux
-/requirements.txt @arichiv @cfredric @krgovind @miketaylr @sjledoux
+/.github/ @GoogleChrome/rws-owners
+/.python-version @GoogleChrome/rws-owners
+/requirements.txt @GoogleChrome/rws-owners
