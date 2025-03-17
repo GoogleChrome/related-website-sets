@@ -1,4 +1,5 @@
 # These paths require review from an admin.
+/.devcontainer/ @GoogleChrome/rws-owners
 /.github/ @GoogleChrome/rws-owners
 /.python-version @GoogleChrome/rws-owners
 /requirements.txt @GoogleChrome/rws-owners
