@@ -19,14 +19,14 @@ jobs:
   JSON-Actions:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
     - name: Get the PR JSON
-      uses: actions/checkout@v4
+      uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       with:
         ref: "refs/pull/${{ github.event.number }}/merge"
         path: "pull-request"
         sparse-checkout: "related_website_sets.JSON"
-    - uses: actions/setup-python@v5
+    - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38
       with:
         check-latest: true
     - name: Validate JSON
@@ -35,12 +35,12 @@ jobs:
         python3 check_sites.py -i pull-request/related_website_sets.JSON --with_diff --strict_formatting > results.txt
     - name: Read the Validation Results
       id: read_results
-      uses: andstor/file-reader-action@v1
+      uses: andstor/file-reader-action@babb053761401147562e75be79d832978cc97325
       with:
         path: "results.txt"
     - name: Read the Changed Files
       id: read_files
-      uses: tj-actions/changed-files@v45
+      uses: tj-actions/changed-files@a284dc1814e3fd07f2e34267fc8f81227ed29fb8
     - name: Failure Comment
       if: steps.read_results.outputs.contents != 'success'
       run: |
@@ -54,7 +54,7 @@ jobs:
       run: |
         echo "<br/>***THIS PR CONTAINS SYSTEM CHANGES PLEASE REVIEW WITH CARE!***" >> message.txt
     - name: Write Comment
-      uses: mshick/add-pr-comment@v2
+      uses: mshick/add-pr-comment@b8f338c590a895d50bcbfa6c5859251edc8952fc
       with:   
         message-path: "message.txt" 
         refresh-message-position: true
@@ -62,6 +62,6 @@ jobs:
       run: cat message.txt >> $GITHUB_STEP_SUMMARY
     - name: Record Failure
       if: steps.read_results.outputs.contents != 'success'
-      uses: actions/github-script@v3
+      uses: actions/github-script@ffc2c79a5b2490bd33e0a41c1de74b877714d736
       with:
         script: core.setFailed('This run has failed.')
