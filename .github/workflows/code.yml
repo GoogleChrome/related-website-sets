@@ -26,8 +26,8 @@ jobs:
   Code-Actions:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-    - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
       with:
         check-latest: true
     - uses: psf/black@8a737e727ac5ab2f1d4cf5876720ed276dc8dc4b
