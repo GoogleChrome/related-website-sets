@@ -1,6 +1,6 @@
 # Related Website Sets Submission Guidelines 
 
-Related Website Sets ("RWS") provides a framework for developers to declare relationships among sites, to enable limited cross-site cookie access for specific, user-facing purposes. This framework may help user agents, such as the Chrome browser ("Chrome"), to decide when to allow or deny a site access to their cookies when in a third-party context.
+Related Website Sets ("RWS") provides a framework for developers to declare relationships among sites, to enable limited cross-site data access for specific, user-facing purposes. This framework may help user agents, such as the Chrome browser ("Chrome"), to decide when to allow or deny a site access to their cookies when in a third-party context.
 RWS is a [Privacy Sandbox](https://privacysandbox.com/) proposal being incubated in the W3C's [WICG](https://www.w3.org/community/wicg/). For a full overview, consult the [explainer](https://github.com/privacycg/first-party-sets). The Related Website Sets Submission Guidelines ("Guidelines") are put forth by Chrome to define requirements and expectations for sets submitted by developers. Chrome remains committed to pursuing [standardization](https://www.w3.org/standards/) of RWS through engaging with developers, other browser vendors, and other interested parties.
 
 ## Definitions
@@ -226,6 +226,10 @@ In addition to the formation requirements and validation requirements above, set
 
 While there is no limit on the number of ccTLDs that may be associated with a single associated or service domain in the same set, a ccTLD variant inherits the restrictions imposed on its equivalent domain. For example, `requestStorageAccessFor(origin)` calls will be auto-rejected when called by a ccTLD variant which is an alias of a service domain.
 To test this behavior in Chrome, please consult the [Related Website Sets integration guide](https://developer.chrome.com/en/docs/privacy-sandbox/first-party-sets-integration/).
+
+Note: Browsers may select to use Related Website Set's domain relationships for other purposes. For example, Chrome's [IP Protection](https://github.com/GoogleChrome/ip-protection) proposal includes relying on RWS for the purposes of determining first-party and third-party contexts, but does not change RWS's Subset Types or Validation criteria.
+
+If a submitter is defining related sites for non-browser-storage use cases like IP address, it may be to address network-level performance optimization or access management. In these scenarios, it may be appropriate to utilize the Service subset type, which does not have a domain limit but does have ownership requirements.
 
 ## Set Lifetime
 
