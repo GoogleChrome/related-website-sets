@@ -1026,6 +1026,22 @@
       "rationaleBySite": {
         "https://brendanjkane.com": "Brendan Kane is Hook Point's founder and CEO. This is clearly stated on Brendan's website, including links to Hook Point's website, and Brendan's face and name are also featured on Hook Point's website."
       }
+    },
+    {
+      "contact": "cezar.neaga@mavie.care",
+      "primary": "https://mavie.care",
+     "associatedSites": [
+        "https://mavie.me",
+        "https://enera.at",
+        "https://maviework.care",
+        "https://lucyhealth.io"
+      ],
+      "rationaleBySite": {
+        "https://mavie.me": "provider of diagnostic services at home",
+        "https://enera.at": "provider of medical services reimbursements services",
+        "https://maviework.care": "provider of health and wellness services for employees",
+        "https://lucyhealth.io": "blood sugar monitoring and management platform"
+      }
     }
   ]
 }
