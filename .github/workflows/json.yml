@@ -30,7 +30,7 @@ jobs:
           const { BODY, TITLE } = process.env;
 
           if (pattern.test(BODY) || pattern.test(TITLE)) {
-            const message = "This PR is marked 'Not a Contribution'; skipping validation.";
+            const message = "This PR is marked 'Not a Contribution'; DO NOT COMMIT.";
             core.setFailed(message);
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
