@@ -26,7 +26,7 @@ jobs:
         BODY: ${{ github.event.pull_request.bodyText }}
       with:
         script: |
-          const pattern = new RegExp("Not\s+a\s+Contribution", "i");
+          const pattern = /Not\s+a\s+Contribution/i;
           const { BODY, TITLE } = process.env;
 
           if (pattern.test(BODY) || pattern.test(TITLE)) {
