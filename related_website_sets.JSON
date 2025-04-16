@@ -1042,6 +1042,16 @@
         "https://maviework.care": "provider of health and wellness services for employees",
         "https://lucyhealth.io": "blood sugar monitoring and management platform"
       }
-    }
-  ]
+    },
+    {
+    {
+ {
+  "primary": "tcappliancehvac.com",
+  "contact": "support@tcappliancehvac.com",
+  "associatedSites": [
+    "tcappliancerepairman.com"
+  ],
+  "rationaleBySite": {
+    "tcappliancerepairman.com": "Same company — alternate domain for appliance repair services"
+  }
 }
