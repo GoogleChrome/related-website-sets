@@ -1042,6 +1042,18 @@
         "https://maviework.care": "provider of health and wellness services for employees",
         "https://lucyhealth.io": "blood sugar monitoring and management platform"
       }
+    },
+    {
+      "contact": "jane.tang@autodesk.com",
+      "primary": "https://autodesk.com",
+      "associatedSites": [],
+      "serviceSites": [],
+      "rationaleBySite": {},
+      "ccTLDs": {
+        "https://autodesk.com": [
+          "https://autodesk.eu"
+        ]
+      }
     }
   ]
 }
