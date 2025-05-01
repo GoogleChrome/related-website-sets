@@ -4,7 +4,7 @@ This page describes the use and content of URIs with the path
 `/.well-known/related-website-set.json`.
 ## Use
 
-A site may demonstrate intentional opt-in to participation in a Related Website
+A site must demonstrate intentional opt-in to participation in a Related Website
 Set (RWS) by hosting a specific JSON file at the URI with a path of
 `/.well-known/related-website-set.json`. Such sites must use the `https` scheme
 in order to participate in RWS and host this well-known file. 
