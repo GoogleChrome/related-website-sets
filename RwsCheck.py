@@ -17,7 +17,7 @@ import requests
 from jsonschema import validate
 from urllib.request import urlopen
 from urllib.request import Request
-from publicsuffix2 import PublicSuffixList
+from publicsuffixlist import PublicSuffixList
 
 from RwsSet import RwsSet
 
@@ -246,8 +246,8 @@ class RwsCheck:
         """
         assert site is not None
         site = site.removeprefix("https://")
-        is_etldp1_or_etld = self.etlds.get_sld(site, strict=True) == site
-        is_etld = self.etlds.get_tld(site, strict=True) == site
+        is_etldp1_or_etld = self.etlds.privatesuffix(site) == site
+        is_etld = self.etlds.publicsuffix(site) == site
         return is_etldp1_or_etld and not is_etld
 
     def find_invalid_eTLD_Plus1(self, check_sets):

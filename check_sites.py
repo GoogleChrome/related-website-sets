@@ -18,7 +18,7 @@ import os
 import pathlib
 import sys
 
-from publicsuffix2 import PublicSuffixList
+from publicsuffixlist import PublicSuffixList
 from RwsCheck import RwsCheck
 
 
@@ -150,7 +150,7 @@ def main():
         return
 
     # Load the etlds from the public suffix list
-    etlds = PublicSuffixList(psl_file="effective_tld_names.dat")
+    etlds = PublicSuffixList(open("effective_tld_names.dat", "rb"))
     # Get all the ICANN domains
     icanns = set()
     with open("ICANN_domains") as f:
