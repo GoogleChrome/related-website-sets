@@ -151,7 +151,7 @@ def main():
 
     # Load the etlds from the public suffix list
     with open("effective_tld_names.dat", "rb") as f:
-        etlds = PublicSuffixList(source=f)
+        etlds = PublicSuffixList(f)
     # Get all the ICANN domains
     icanns = set()
     with open("ICANN_domains") as f:
