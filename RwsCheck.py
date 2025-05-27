@@ -246,7 +246,7 @@ class RwsCheck:
         """
         assert site is not None
         site = site.removeprefix("https://")
-        return self.etlds.privatesuffix(site) == site
+        return self.etlds.privatesuffix(domain=site, accept_unknown=False) == site
 
     def find_invalid_eTLD_Plus1(self, check_sets):
         """Checks if all domains are etld+1 compliant
