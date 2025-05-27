@@ -709,7 +709,7 @@ class TestFindInvalidETLD(unittest.TestCase):
         rws_check = RwsCheck(
             rws_sites=json_dict,
             etlds=PublicSuffixList(
-                source=open("effective_tld_names.dat", "rb"), only_icann=True
+                source=open("effective_tld_names.dat", "rb"), accept_unknown=True
             ),
             icanns=set(),
         )
@@ -735,7 +735,7 @@ class TestFindInvalidETLD(unittest.TestCase):
         rws_check = RwsCheck(
             rws_sites=json_dict,
             etlds=PublicSuffixList(
-                source=open("effective_tld_names.dat", "rb"), only_icann=True
+                source=open("effective_tld_names.dat", "rb"), accept_unknown=True
             ),
             icanns=set(),
         )
@@ -761,7 +761,7 @@ class TestFindInvalidETLD(unittest.TestCase):
         rws_check = RwsCheck(
             rws_sites=json_dict,
             etlds=PublicSuffixList(
-                source=open("effective_tld_names.dat", "rb"), only_icann=True
+                source=open("effective_tld_names.dat", "rb"), accept_unknown=True
             ),
             icanns=set(),
         )
@@ -791,7 +791,7 @@ class TestFindInvalidETLD(unittest.TestCase):
         rws_check = RwsCheck(
             rws_sites=json_dict,
             etlds=PublicSuffixList(
-                source=open("effective_tld_names.dat", "rb"), only_icann=True
+                source=open("effective_tld_names.dat", "rb"), accept_unknown=True
             ),
             icanns=set(),
         )
@@ -817,7 +817,7 @@ class TestFindInvalidETLD(unittest.TestCase):
         rws_check = RwsCheck(
             rws_sites=json_dict,
             etlds=PublicSuffixList(
-                source=open("effective_tld_names.dat", "rb"), only_icann=True
+                source=open("effective_tld_names.dat", "rb"), accept_unknown=True
             ),
             icanns=set(),
         )
@@ -834,7 +834,7 @@ class TestFindInvalidETLD(unittest.TestCase):
         rws_check = RwsCheck(
             rws_sites=json_dict,
             etlds=PublicSuffixList(
-                source=open("effective_tld_names.dat", "rb"), only_icann=True
+                source=open("effective_tld_names.dat", "rb"), accept_unknown=True
             ),
             icanns=set(),
         )
@@ -847,7 +847,7 @@ class TestFindInvalidETLD(unittest.TestCase):
         rws_check = RwsCheck(
             rws_sites=json_dict,
             etlds=PublicSuffixList(
-                source=open("effective_tld_names.dat", "rb"), only_icann=True
+                source=open("effective_tld_names.dat", "rb"), accept_unknown=True
             ),
             icanns=set(),
         )
@@ -1670,7 +1670,7 @@ class TestRunNonbreakingChecks(unittest.TestCase):
         rws_check = RwsCheck(
             rws_sites=json.loads(self.VALID_JSON_STRING),
             etlds=PublicSuffixList(
-                source=open("effective_tld_names.dat", "rb"), only_icann=True
+                source=open("effective_tld_names.dat", "rb"), accept_unknown=True
             ),
             icanns=set(),
         )
@@ -1690,7 +1690,7 @@ class TestRunNonbreakingChecks(unittest.TestCase):
         rws_check = RwsCheck(
             rws_sites=json.loads(self.BAD_FORMAT_JSON_STRING),
             etlds=PublicSuffixList(
-                source=open("effective_tld_names.dat", "rb"), only_icann=True
+                source=open("effective_tld_names.dat", "rb"), accept_unknown=True
             ),
             icanns=set(),
         )
@@ -1728,7 +1728,7 @@ error was:
         rws_check = RwsCheck(
             rws_sites=json.loads(self.NO_RATIONALES_JSON_STRING),
             etlds=PublicSuffixList(
-                source=open("effective_tld_names.dat", "rb"), only_icann=True
+                source=open("effective_tld_names.dat", "rb"), accept_unknown=True
             ),
             icanns=set(),
         )
@@ -1751,7 +1751,7 @@ error was:
         rws_check = RwsCheck(
             rws_sites=json.loads(self.BAD_FORMAT_NO_RATIONALES_JSON_STRING),
             etlds=PublicSuffixList(
-                source=open("effective_tld_names.dat", "rb"), only_icann=True
+                source=open("effective_tld_names.dat", "rb"), accept_unknown=True
             ),
             icanns=set(),
         )
@@ -1790,7 +1790,7 @@ error was:
         rws_check = RwsCheck(
             rws_sites=json.loads(self.BAD_FORMAT_NO_RATIONALES_JSON_STRING),
             etlds=PublicSuffixList(
-                source=open("effective_tld_names.dat", "rb"), only_icann=True
+                source=open("effective_tld_names.dat", "rb"), accept_unknown=True
             ),
             icanns=set(),
         )
