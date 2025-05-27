@@ -17,7 +17,7 @@ import requests
 from jsonschema import validate
 from urllib.request import urlopen
 from urllib.request import Request
-from publicsuffix2 import PublicSuffixList
+from publicsuffixlist import PublicSuffixList
 
 from RwsSet import RwsSet
 
@@ -235,9 +235,9 @@ class RwsCheck:
     def is_eTLD_Plus1(self, site):
         """A helper function for checking if a domain is etld+1 compliant
 
-        calls get_public suffix from the publicsuffix2 package on the provided
-        domain name, returns true if the domain name contains a public suffix,
-        else false
+        calls privatesuffix from the publicsuffixlist package on the provided
+        domain name, returns true if the domain name matches is its own shortest
+        private suffix, else false
 
         Args:
             site: a string corresponding to a domain name
@@ -246,9 +246,7 @@ class RwsCheck:
         """
         assert site is not None
         site = site.removeprefix("https://")
-        is_etldp1_or_etld = self.etlds.get_sld(site, strict=True) == site
-        is_etld = self.etlds.get_tld(site, strict=True) == site
-        return is_etldp1_or_etld and not is_etld
+        return self.etlds.privatesuffix(site, accept_unknown=False) == site
 
     def find_invalid_eTLD_Plus1(self, check_sets):
         """Checks if all domains are etld+1 compliant
