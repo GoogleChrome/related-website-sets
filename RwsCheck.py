@@ -246,7 +246,7 @@ class RwsCheck:
         """
         assert site is not None
         site = site.removeprefix("https://")
-        is_etldp1_or_etld = self.etlds.privatesuffix(site) == site
+        is_etldp1_or_etld = self.etlds.suffix(site) == site
         is_etld = self.etlds.publicsuffix(site) == site
         return is_etldp1_or_etld and not is_etld
 
