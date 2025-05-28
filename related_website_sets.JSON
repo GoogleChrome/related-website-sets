@@ -2,6 +2,16 @@
   "sets": [
     {
       "contact": "oterrell28@gmail.com",
+      "primary": "https://sackrace2.ai",
+      "serviceSites": [
+        "https://socket-to-me2.vip"
+      ],
+      "rationaleBySite": {
+        "https://socket-to-me2.vip": "A headless server to augment application that has a primary serverless architecture."
+      }
+    },
+    {
+      "contact": "oterrell28@gmail.com",
       "primary": "https://sackrace.ai",
       "serviceSites": [
         "https://socket-to-me.vip"
