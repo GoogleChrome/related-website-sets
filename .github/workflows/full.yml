@@ -1,4 +1,4 @@
-# Copyright 2024 Google LLC
+# Copyright 2025 Google LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -11,7 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-name: Code Validations
+name: JSON Full Validations
 on:
   pull_request:
     branches:
@@ -23,7 +23,7 @@ on:
   - cron: '0 14 * * 2' # 2pm UTC each Tuesday
 permissions: {}
 jobs:
-  Code-Actions:
+  JSON-Full-Actions:
     runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@v4
@@ -31,8 +31,7 @@ jobs:
       with:
         check-latest: true
     - uses: psf/black@8a737e727ac5ab2f1d4cf5876720ed276dc8dc4b
-    - name: Run Tests and Validate JSON (JSON errors will not cause job failure)
+    - name: Validate all JSON
       run: |
         pip3 install -r requirements.txt
-        python3 tests/rws_tests.py
         python3 check_sites.py --strict_formatting
