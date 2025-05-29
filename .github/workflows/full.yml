@@ -23,7 +23,7 @@ on:
   - cron: '0 14 * * 2' # 2pm UTC each Tuesday
 permissions: {}
 jobs:
-  Code-Actions:
+  JSON-Full-Actions:
     runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@v4
