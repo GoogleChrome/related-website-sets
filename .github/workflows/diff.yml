@@ -39,7 +39,7 @@ jobs:
               body: message,
             });
           }
-  JSON-Actions:
+  JSON-Diff-Actions:
     runs-on: ubuntu-24.04
     needs: PR-Metadata-Actions
     steps:
