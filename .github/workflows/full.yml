@@ -1,0 +1,37 @@
+# Copyright 2025 Google LLC
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     https://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+name: Full Validations
+on:
+  pull_request:
+    branches:
+    - main
+  push:
+    branches:
+    - main
+  schedule:
+  - cron: '0 14 * * 2' # 2pm UTC each Tuesday
+permissions: {}
+jobs:
+  Code-Actions:
+    runs-on: ubuntu-24.04
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-python@v5
+      with:
+        check-latest: true
+    - uses: psf/black@8a737e727ac5ab2f1d4cf5876720ed276dc8dc4b
+    - name: Validate all JSON
+      run: |
+        pip3 install -r requirements.txt
+        python3 check_sites.py --strict_formatting
