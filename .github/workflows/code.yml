@@ -31,7 +31,7 @@ jobs:
       with:
         check-latest: true
     - uses: psf/black@8a737e727ac5ab2f1d4cf5876720ed276dc8dc4b
-    - name: Run Tests and Validate JSON (JSON errors will not cause job failure)
+    - name: Run Tests
       run: |
         pip3 install -r requirements.txt
         python3 tests/rws_tests.py
