@@ -1042,6 +1042,20 @@
         "https://maviework.care": "provider of health and wellness services for employees",
         "https://lucyhealth.io": "blood sugar monitoring and management platform"
       }
+    },
+    {
+      "contact": "ecomm@oficialfarma.com.br",
+      "primary": "https://oficialfarma.com.br",
+      "associatedSites": [
+        "https://oficialderma.com.br",
+        "https://oficialnutri.com",
+        "https://mercadooficial.com.br"
+      ],
+      "rationaleBySite": {
+        "https://oficialderma.com.br": "Segmented store that shares same user and cart with the primary store. The branding is clearly visible on the site.",
+        "https://oficialnutri.com": "Segmented store that shares same user and cart with the primary store. The branding is clearly visible on the site.",
+        "https://mercadooficial.com.br": "Segmented store that shares same user and cart with the primary store. The branding is clearly visible on the site."
+      }
     }
   ]
 }
