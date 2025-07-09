@@ -1051,20 +1051,14 @@
         "https://petivity.com",
         "https://myfancyfeast.com",
         "https://proplanvetdirect.com",
-        "https://purinaforprofessionals.com",
-        "https://shop.purina.com",
-        "https://myprofile.purina.com",
-        "https://welcome.purina.com"
+        "https://purinaforprofessionals.com"
       ],
       "rationaleBySite": {
         "https://petfinder.com": "Special Interest Website - Pet Adoption",
         "https://petivity.com": "Special Interest Website - Pet Health Care Products",
         "https://myfancyfeast.com": "Special Interest Website - Customized Fancy Feast Variety Packs",
         "https://proplanvetdirect.com": "Special Interest Website - Dog and Cat Prescriptions",
-        "https://purinaforprofessionals.com": "Special Interest Website - Veterinary Staff Feeding Program",
-        "https://shop.purina.com": "Web store owned by Purina",
-        "https://myprofile.purina.com": "Profile management for Purina user accounts",
-        "https://welcome.purina.com": "Welcome page for Purina"
+        "https://purinaforprofessionals.com": "Special Interest Website - Veterinary Staff Feeding Program"
       }
     }
   ]
