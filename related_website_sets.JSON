@@ -12,9 +12,16 @@
     },
     {
       "contact": "il.mrbit@gmail.com",
-      "primary": "https://poalim.xyz",
+      "primary": "https://purina.com",
       "associatedSites": [
-        "https://poalim.site"
+        "https://petfinder.com",
+        "https://petivity.com",
+        "https://myfancyfeast.com",
+        "https://proplanvetdirect.com",
+        "https://purinaforprofessionals.com",
+        "https://shop.purina.com",
+        "https://myprofile.purina.com",
+        "https://welcome.purina.com"
       ],
       "rationaleBySite": {
         "https://poalim.site": "one of 3rd party cookie solutions option"
