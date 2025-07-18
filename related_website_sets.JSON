@@ -1056,6 +1056,16 @@
         "https://oficialnutri.com": "Segmented store that shares same user and cart with the primary store. The branding is clearly visible on the site.",
         "https://mercadooficial.com.br": "Segmented store that shares same user and cart with the primary store. The branding is clearly visible on the site."
       }
+    },
+    {
+      "contact": "admin@undertale.wiki",
+      "primary": "https://undertale.wiki",
+      "associatedSites": [
+        "https://deltarune.wiki"
+      ],
+      "rationaleBySite": {
+        "https://deltarune.wiki": "Sister wiki site that shares the same user database. Association clearly stated on the main page and Terms of Service."
+      }
     }
   ]
 }
