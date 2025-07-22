@@ -302,7 +302,7 @@ class RwsCheck:
         """Checks that sites in a given list have the correct primary on their
         well-known page
 
-        Calls requests.get on a given list of sites, reads their json, and adds any
+        Calls self.open_and_load_json on a given list of sites, reads their json, and adds any
         sites that do not contain the passed in primary as their listed primary
         to the error list. Also catches and adds any exceptions when trying to
         open or read the url
