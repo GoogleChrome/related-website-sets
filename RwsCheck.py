@@ -15,8 +15,6 @@ import json
 import requests
 
 from jsonschema import validate
-from urllib.request import urlopen
-from urllib.request import Request
 from publicsuffixlist import PublicSuffixList
 
 from RwsSet import RwsSet
@@ -290,23 +288,21 @@ class RwsCheck:
                     )
 
     def open_and_load_json(self, url):
-        """Calls urlopen and returns json from a site
+        """Calls requests.get and returns json from a site
 
-        Calls urlopena and json.load on a domain. Returns the json object.
+        Calls requests.get(...).json() on a domain. Returns the json object.
         This functionality is separated out here to make testing easier.
 
         Args:
             url: a domain that we want to load the json from
         """
-        req = Request(url=url, headers={"User-Agent": "Chrome"})
-        with urlopen(req) as json_file:
-            return json.load(json_file)
+        return requests.get(url, timeout=10, headers={"User-Agent": "Chrome"}).json()
 
     def check_list_sites(self, primary, site_list):
         """Checks that sites in a given list have the correct primary on their
         well-known page
 
-        Calls urlopen on a given list of sites, reads their json, and adds any
+        Calls self.open_and_load_json on a given list of sites, reads their json, and adds any
         sites that do not contain the passed in primary as their listed primary
         to the error list. Also catches and adds any exceptions when trying to
         open or read the url
