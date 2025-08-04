@@ -1066,6 +1066,16 @@
       "rationaleBySite": {
         "https://deltarune.wiki": "Sister wiki site that shares the same user database. Association clearly stated on the main page and Terms of Service."
       }
+    },
+    {
+      "contact": "contact-email@mlb.com",
+      "primary": "https://mlb.com",
+      "serviceSites": [
+        "https://mlbstatic.com"
+      ],
+      "rationaleBySite": {
+        "https://mlbstatic.com": "Cookieless domain for serving static assets and images for MLB"
+      }
     }
   ]
 }
