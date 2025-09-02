@@ -1061,6 +1061,29 @@
         "https://proplanvetdirect.com": "Special Interest Website - Dog and Cat Prescriptions",
         "https://purinaforprofessionals.com": "Special Interest Website - Veterinary Staff Feeding Program",
         "https://www.proplanvet.com": "Special Interest Website - Veterinary Pro Plan Site"
+    },
+    {
+      "contact": "ecomm@oficialfarma.com.br",
+      "primary": "https://oficialfarma.com.br",
+      "associatedSites": [
+        "https://oficialderma.com.br",
+        "https://oficialnutri.com",
+        "https://mercadooficial.com.br"
+      ],
+      "rationaleBySite": {
+        "https://oficialderma.com.br": "Segmented store that shares same user and cart with the primary store. The branding is clearly visible on the site.",
+        "https://oficialnutri.com": "Segmented store that shares same user and cart with the primary store. The branding is clearly visible on the site.",
+        "https://mercadooficial.com.br": "Segmented store that shares same user and cart with the primary store. The branding is clearly visible on the site."
+      }
+    },
+    {
+      "contact": "admin@undertale.wiki",
+      "primary": "https://undertale.wiki",
+      "associatedSites": [
+        "https://deltarune.wiki"
+      ],
+      "rationaleBySite": {
+        "https://deltarune.wiki": "Sister wiki site that shares the same user database. Association clearly stated on the main page and Terms of Service."
       }
     }
   ]
