@@ -1044,6 +1044,26 @@
       }
     },
     {
+      "contact": "zach.lynn@vml.com",
+      "primary": "https://purina.com",
+      "associatedSites": [
+        "https://www.petfinder.com",
+        "https://www.petivity.com",
+        "https://www.myfancyfeast.com",
+        "https://www.proplanvetdirect.com",
+        "https://www.purinaforprofessionals.com",
+        "https://www.proplanvet.com"
+      ],
+      "rationaleBySite": {
+        "https://petfinder.com": "Special Interest Website - Pet Adoption",
+        "https://petivity.com": "Special Interest Website - Pet Health Care Products",
+        "https://myfancyfeast.com": "Special Interest Website - Customized Fancy Feast Variety Packs",
+        "https://proplanvetdirect.com": "Special Interest Website - Dog and Cat Prescriptions",
+        "https://purinaforprofessionals.com": "Special Interest Website - Veterinary Staff Feeding Program",
+        "https://www.proplanvet.com": "Special Interest Website - Veterinary Pro Plan Site"
+      }
+    },
+    {
       "contact": "ecomm@oficialfarma.com.br",
       "primary": "https://oficialfarma.com.br",
       "associatedSites": [
