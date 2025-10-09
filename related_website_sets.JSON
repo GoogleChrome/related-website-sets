@@ -1066,6 +1066,34 @@
       "rationaleBySite": {
         "https://deltarune.wiki": "Sister wiki site that shares the same user database. Association clearly stated on the main page and Terms of Service."
       }
+    },
+    {
+      "contact": "developer@teachingtextbooks.com",
+      "primary": "https://www.teachingtextbooks.com",
+      "associatedSites": [
+        "https://teachingtextbooks.com",
+        "https://parentportal.teachingtextbooksapp.com",
+        "https://transfer.teachingtextbooks.com",
+        "https://app.teachingtextbooks.com"
+      ],
+      "serviceSites": [
+        "https://api.teachingtextbooks.com",
+        "https://tthq.me",
+        "https://cloud.teachingtextbooks.com",
+        "https://research.teachingtextbooksapp.com",
+        "https://express.teachingtextbooksapp.com"
+      ],
+      "rationaleBySite": {
+        "https://www.teachingtextbooks.com": "Teaching Textbooks, LLC main website",
+        "https://parentportal.teachingtextbooksapp.com": "Parental controls dashboard",
+        "https://transfer.teachingtextbooks.com": "Tool to transfer enrollments",
+        "https://app.teachingtextbooks.com": "Teaching Textbooks educational applications",
+        "https://api.teachingtextbooks.com": "Teaching Textbooks API endpoints",
+        "https://tthq.me": "Teaching Textbooks, LLC enterprise portal",
+        "https://cloud.teachingtextbooks.com": "Teaching Textbooks, LLC file server",
+        "https://research.teachingtextbooksapp.com": "Teaching Textbooks R&D HTML site",
+        "https://express.teachingtextbooksapp.com": "Teaching Textbooks R&D express site"
+      }
     }
   ]
 }
