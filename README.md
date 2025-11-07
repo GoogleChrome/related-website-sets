@@ -1,3 +1,13 @@
+**This technology is scheduled for deprecation.**
+
+This repository will be archived and will no longer be updated.
+
+See our [Update on Plans for Privacy Sandbox Technologies](https://privacysandbox.com/news/update-on-plans-for-privacy-sandbox-technologies/).
+
+[Privacy Sandbox feature status](https://privacysandbox.google.com/overview/status) provides more information about the status of individual APIs and platform features.
+
+---
+
 # **Related Website Sets**
 For full instructions and guidance on how to submit a set, please read the [Related Website Sets Submission Guidelines](https://github.com/GoogleChrome/first-party-sets/blob/main/RWS-Submission_Guidelines.md).
 
