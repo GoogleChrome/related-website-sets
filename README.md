@@ -1,6 +1,6 @@
 **This technology is scheduled for deprecation.**
 
-This repository will be archived and will no longer be updated.
+This repository will be archived and will no longer accept new submissions.
 
 See our [Update on Plans for Privacy Sandbox Technologies](https://privacysandbox.com/news/update-on-plans-for-privacy-sandbox-technologies/).
 
