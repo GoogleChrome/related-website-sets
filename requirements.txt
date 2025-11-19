@@ -1,3 +1,3 @@
 jsonschema==4.25.1
-publicsuffixlist==1.0.2.20251113
+publicsuffixlist==1.0.2.20251119
 requests==2.32.5
